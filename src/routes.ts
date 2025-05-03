@@ -7,13 +7,19 @@ export function renderRoutes(path: string) {
     .querySelectorAll("nav a")
     .forEach((a) => a.classList.remove("active"));
   const active = document.querySelector(`nav a[href="${path}]`);
+  let [base, ...rest] = path.split("/").filter(Boolean); // e.g. ["works", "work-1"];
+  if (base===undefined){
+    base = ""
+  }
+  const subPath = rest.join("/"); // e.g. "work-1";
+
   if (active) active.classList.add("activate");
-  switch (path) {
+  switch ("/" + base) {
     case "/":
       main.innerHTML = homeView();
       break;
     case "/works":
-      main.innerHTML = workView();
+      main.innerHTML = workView(Number(subPath));
       break;
     default:
       main.innerHTML = "<h2> 404 not Found</h2>";
