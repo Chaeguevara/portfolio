@@ -1,11 +1,10 @@
 import { Works } from "../data/works";
-import { work } from "../components/work";
-import { Card } from "../components/card";
+import { work } from "../components/view/work";
+import { Card } from "../components/view/card";
 export function workView(subPath: number) {
   console.log(subPath);
   if (subPath){
     return work(subPath);
-
   }
   console.log("workview")
   console.log(subPath)

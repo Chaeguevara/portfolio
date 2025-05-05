@@ -3,7 +3,8 @@ import { renderRoutes } from "./routes";
 renderRoutes(location.pathname);
 
 window.addEventListener('popstate',()=>{
-  renderRoutes(location.pathname)
+  renderRoutes(location.pathname);
+  console.log(location.pathname);
 });
 
 document.addEventListener('click',(e)=>{

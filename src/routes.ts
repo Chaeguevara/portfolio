@@ -1,6 +1,6 @@
 import { homeView } from "./views/home";
 import { workView } from "./views/works";
-
+import { createScene } from "./scene";
 
 function setupCardNavigation() {
   document.querySelectorAll(".card[data-href]").forEach((card) => {
@@ -33,10 +33,12 @@ export function renderRoutes(path: string) {
       break;
     case "/works":
       main.innerHTML = workView(Number(subPath));
+      if (Number(subPath)>0){
+        createScene();
+      }
       break;
     default:
       main.innerHTML = "<h2> 404 not Found</h2>";
   }
-
   setupCardNavigation();
 }
