@@ -34,7 +34,7 @@ export function renderRoutes(path: string) {
     case "/works":
       main.innerHTML = workView(Number(subPath));
       if (Number(subPath)>0){
-        createScene();
+        createScene(Number(subPath))();
       }
       break;
     default:
