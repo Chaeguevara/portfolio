@@ -15,5 +15,5 @@ document.addEventListener('click',(e)=>{
     history.pushState(null,'',href);
     renderRoutes(href);
   }
-})
+});
 

@@ -6,14 +6,14 @@ export function workView(subPath: number) {
   if (subPath){
     return work(subPath);
   }
-  console.log("workview")
-  console.log(subPath)
+  console.log("workview");
+  console.log(subPath);
   return `<h1> Welcome Works </h1>
 <p>This is the work page.</p>
 ${Object.entries(Works).map(([k, v]) => {
   console.log(k,v);
-  const path = "/works/"+k
-  console.log(path)
+  const path = "/works/"+k;
+  console.log(path);
   return Card(v.title, v.body,path);
 })}
 `;

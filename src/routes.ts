@@ -1,5 +1,5 @@
-import { homeView } from "./views/home";
-import { workView } from "./views/works";
+import { homeView } from "./pages/home";
+import { workView } from "./pages/works";
 import { createScene } from "./scene";
 
 function setupCardNavigation() {
