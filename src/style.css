@@ -42,6 +42,33 @@ h1 {
   text-align: center;
 }
 
+/* Work page layout */
+.work-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem 0 2rem;
+  text-align: left;
+}
+.work-header { margin-bottom: 1rem; }
+.work-title { font-size: 2rem; margin: 0; }
+.work-note { color: #888; margin-top: 0.5rem; }
+
+/* Three.js mount area */
+.three-stage {
+  position: relative;
+  width: 100%;
+  min-height: 60vh; /* responsive height */
+  background: #111;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+}
+.three-stage canvas {
+  display: block;
+  width: 100% !important;  /* ensure canvas fills container */
+  height: 100% !important;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;

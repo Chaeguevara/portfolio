@@ -19,7 +19,15 @@ export function renderRoutes(path: string) {
   document
     .querySelectorAll("nav a")
     .forEach((a) => a.classList.remove("active"));
-  const active = document.querySelector(`nav a[href="${path}]`);
+  const active = document.querySelector(`nav a[href="${path}"]`);
+  // Bootstrap's active class and ARIA current
+  document.querySelectorAll('nav a').forEach((a)=>{
+    a.removeAttribute('aria-current');
+  });
+  if (active) {
+    active.classList.add('active');
+    (active as HTMLAnchorElement).setAttribute('aria-current','page');
+  }
   let [base, ...rest] = path.split("/").filter(Boolean); // e.g. ["works", "work-1"];
   if (base === undefined) {
     base = "";
