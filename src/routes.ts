@@ -1,6 +1,8 @@
 import { homeView } from "./pages/home";
 import { workView } from "./pages/works";
 import { createScene } from "./scene";
+import { initWorksGrid } from "./pages/works";
+const BASE = import.meta.env.BASE_URL || "/";
 
 function setupCardNavigation() {
   document.querySelectorAll(".card[data-href]").forEach((card) => {
@@ -28,7 +30,9 @@ export function renderRoutes(path: string) {
     active.classList.add('active');
     (active as HTMLAnchorElement).setAttribute('aria-current','page');
   }
-  let [base, ...rest] = path.split("/").filter(Boolean); // e.g. ["works", "work-1"];
+  // Normalize by stripping base path if present
+  const normalized = path.startsWith(BASE) ? path.slice(BASE.length - (BASE.endsWith('/') ? 1 : 0)) : path;
+  let [base, ...rest] = normalized.split("/").filter(Boolean); // e.g. ["works", "3"];
   if (base === undefined) {
     base = "";
   }
@@ -43,6 +47,8 @@ export function renderRoutes(path: string) {
       main.innerHTML = workView(Number(subPath));
       if (Number(subPath)>0){
         createScene(Number(subPath))();
+      } else {
+        initWorksGrid();
       }
       break;
     default:
@@ -50,3 +56,7 @@ export function renderRoutes(path: string) {
   }
   setupCardNavigation();
 }
+
+// Expose for dynamic navigation calls from modules that avoid cyclic imports
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+(window as any).renderRoutes = renderRoutes;

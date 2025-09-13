@@ -121,13 +121,14 @@ class AxisGridHelper {
 
 }
 
-const orbitObject = (scene:THREE.Scene) =>{
-  const mount = document.getElementById("work");
-  const container = (mount as HTMLElement) ?? document.body;
+type Options = { mount?: HTMLElement; preview?: boolean };
+
+const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
+  const container = opts.mount ?? document.getElementById("work") ?? document.body;
   const renderer = setRenderer(animate, container);
   container.appendChild(renderer.domElement);
 
-  const gui = new GUI();
+  const gui = opts.preview ? null : new GUI();
 
   const camera = setCamera();
 
@@ -156,7 +157,9 @@ const orbitObject = (scene:THREE.Scene) =>{
   addItemsToScene(scene, [light, lightHelper, solarSystem]);
 
   // GUI axis/grid toggles per node
-  addAxesToObjs(gui, [solarSystem, sunMesh, earthSystem, earthMesh, moonOrbit, moonMesh]);
+  if (gui) {
+    addAxesToObjs(gui, [solarSystem, sunMesh, earthSystem, earthMesh, moonOrbit, moonMesh]);
+  }
 
   // Handle resize
   function onWindowResize() {

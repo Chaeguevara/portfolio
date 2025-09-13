@@ -11,6 +11,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Centralized Three.js background color */
+  --three-bg: #80ff80; /* standard green */
 }
 
 a {
@@ -24,10 +26,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  display: block; /* allow normal flow so navbar sits above content */
+  padding-top: 56px; /* space for fixed navbar */
 }
 
 h1 {
@@ -57,8 +59,9 @@ h1 {
 .three-stage {
   position: relative;
   width: 100%;
-  min-height: 60vh; /* responsive height */
-  background: #111;
+  aspect-ratio: 16 / 9; /* keep a proper view ratio */
+  height: auto;
+  background: var(--three-bg, #111);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0,0,0,0.25);
@@ -84,6 +87,39 @@ h1 {
 
 .card {
   padding: 2em;
+}
+
+/* Card preview area for Three.js */
+.card-preview {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #0d0d0d;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.card-preview canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Cards grid: 3 columns, uniform card sizes */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.cards-grid .card {
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+.cards-grid .card .card-body {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+.cards-grid .card .card-preview {
+  flex: 0 0 180px;
 }
 
 .read-the-docs {

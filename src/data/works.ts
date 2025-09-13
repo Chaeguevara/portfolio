@@ -1,23 +1,24 @@
 import { drawLines,orbitObject,rotateBox,} from "../models";
 import { Scene } from "three";
+type AnimOpts = { mount?: HTMLElement; preview?: boolean };
 export const Works: Record<number,{
   title: string;
   body: string;
-  animation:(scene:Scene) => void;
+  animation:(scene:Scene, opts?: AnimOpts) => void;
 }> = {
     1:{
     title:"helo world",
     body: "this is the new world",
-    animation : rotateBox
+    animation : (scene, opts) => rotateBox(scene, opts)
     },
     2:{
     title:"My next World",
     body: "Card is making a world ",
-    animation : drawLines
+    animation : (scene, opts) => drawLines(scene, opts)
     },
     3:{
     title:"Orbig Galxy",
     body: "Orbiting Galaxy",
-    animation : orbitObject
+    animation : (scene, opts) => orbitObject(scene, opts)
     },
 };

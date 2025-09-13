@@ -120,3 +120,4 @@ sizes the renderer to the container for better responsiveness.
 Also adds a resize handler to update camera aspect and renderer size.
 
 Files: `src/components/view/work.ts`, `src/style.css`, `src/models/earthAndSun.ts`
+\n+## Theme\n+\n+- Three.js viewer background is centralized for consistency across pages and previews.\n+- CSS variable: define in `src/style.css` under `:root` → `--three-bg: #80ff80` (standard green).\n+- Code: `src/config.ts` exports `AppConfig.threeBackground` and `resolveThreeBgFromCss()` so scenes can read from CSS or fall back to a constant.\n+- All scenes (main pages and card previews) should use the resolved background value.\n+
