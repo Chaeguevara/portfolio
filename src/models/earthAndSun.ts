@@ -47,19 +47,19 @@ const defineSphereGeometry = (radius:number, widthSegments:number, heightSegment
   return sphereGeometry;
 };
 
-const setRenderer= (animate:XRFrameRequestCallback, container:HTMLElement):THREE.WebGLRenderer => {
+const setRenderer= (animate:XRFrameRequestCallback | null, container:HTMLElement):THREE.WebGLRenderer => {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const { clientWidth, clientHeight } = container;
   renderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
-  renderer.setAnimationLoop(animate);
+  if (animate) renderer.setAnimationLoop(animate);
   return renderer;
 };
 
-const setCamera = ():THREE.PerspectiveCamera => {
+const setCamera = (container: HTMLElement):THREE.PerspectiveCamera => {
   const camera = new THREE.PerspectiveCamera(
     45,
-    window.innerWidth / window.innerHeight,
+    (container.clientWidth || window.innerWidth) / (container.clientHeight || window.innerHeight),
     1,
     500,
   );
@@ -125,12 +125,14 @@ type Options = { mount?: HTMLElement; preview?: boolean };
 
 const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
   const container = opts.mount ?? document.getElementById("work") ?? document.body;
-  const renderer = setRenderer(animate, container);
+  // For previews, render once without animation loop or listeners
+  let stopped = false;
+  const renderer = setRenderer(opts.preview ? null : animate, container);
   container.appendChild(renderer.domElement);
 
   const gui = opts.preview ? null : new GUI();
 
-  const camera = setCamera();
+  const camera = setCamera(container);
 
   const solarSystem = new THREE.Object3D();
   solarSystem.name = 'solarSystem';
@@ -161,7 +163,7 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
     addAxesToObjs(gui, [solarSystem, sunMesh, earthSystem, earthMesh, moonOrbit, moonMesh]);
   }
 
-  // Handle resize
+  // Handle resize (skip for previews)
   function onWindowResize() {
     const { clientWidth, clientHeight } = container;
     const width = clientWidth || window.innerWidth;
@@ -170,9 +172,10 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
   }
-  window.addEventListener('resize', onWindowResize);
+  if (!opts.preview) window.addEventListener('resize', onWindowResize);
 
   function animate() {
+    if (stopped) return;
     // Spins and orbits
     solarSystem.rotation.y += 0.005;   // solar system slow drift
     earthSystem.rotation.y += 0.01;    // earth orbits sun
@@ -183,8 +186,22 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
 
     renderer.render(scene, camera);
   }
-  // initial kick; setAnimationLoop will take over
-  animate();
+  // initial kick; setAnimationLoop will take over for non-preview
+  if (!opts.preview) {
+    animate();
+  } else {
+    renderer.render(scene, camera);
+  }
+
+  // Cleanup disposer
+  return () => {
+    stopped = true;
+    if (!opts.preview) window.removeEventListener('resize', onWindowResize);
+    try { renderer.setAnimationLoop(null as unknown as XRFrameRequestCallback); } catch { /* noop */ }
+    try { renderer.dispose(); } catch { /* noop */ }
+    try { renderer.domElement.remove(); } catch { /* noop */ }
+    try { gui?.destroy(); } catch { /* noop */ }
+  };
 };
 
 export {orbitObject};

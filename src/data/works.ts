@@ -1,10 +1,10 @@
-import { drawLines,orbitObject,rotateBox,} from "../models";
+import { drawLines,orbitObject,rotateBox, materialsShowcase } from "../models";
 import { Scene } from "three";
 type AnimOpts = { mount?: HTMLElement; preview?: boolean };
 export const Works: Record<number,{
   title: string;
   body: string;
-  animation:(scene:Scene, opts?: AnimOpts) => void;
+  animation:(scene:Scene, opts?: AnimOpts) => () => void;
 }> = {
     1:{
     title:"helo world",
@@ -20,5 +20,10 @@ export const Works: Record<number,{
     title:"Orbig Galxy",
     body: "Orbiting Galaxy",
     animation : (scene, opts) => orbitObject(scene, opts)
+    },
+    4:{
+    title:"Materials Gallery",
+    body: "A quick tour of common Three.js materials",
+    animation : (scene, opts) => materialsShowcase(scene, opts)
     },
 };

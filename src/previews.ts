@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import { Works } from './data/works';
 import { AppConfig, resolveThreeBgFromCss } from './config';
 
+const previewCleanups: Array<() => void> = [];
+
 export function initCardPreviews() {
   Object.entries(Works).forEach(([id, work]) => {
     const el = document.getElementById(`preview-${id}`);
@@ -14,11 +16,19 @@ export function initCardPreviews() {
     const bg = resolveThreeBgFromCss() ?? AppConfig.threeBackground;
     scene.background = new THREE.Color(bg);
     try {
-      work.animation(scene, { mount: el, preview: true });
+      const dispose = work.animation(scene, { mount: el, preview: true });
+      if (typeof dispose === 'function') previewCleanups.push(dispose);
     } catch (e) {
       // fail gracefully per card
       // eslint-disable-next-line no-console
       console.warn('Preview init failed for', id, e);
     }
   });
+}
+
+export function disposeCardPreviews() {
+  while (previewCleanups.length) {
+    const fn = previewCleanups.pop();
+    try { fn && fn(); } catch { /* noop */ }
+  }
 }

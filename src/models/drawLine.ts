@@ -5,6 +5,7 @@ type Options = { mount?: HTMLElement; preview?: boolean };
 const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
   const container = opts.mount ?? document.getElementById("work") ?? document.body;
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const { clientWidth, clientHeight } = container;
   renderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
   container.appendChild(renderer.domElement);
@@ -20,7 +21,7 @@ const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
 
   const material = new THREE.LineBasicMaterial({color:0x0000ff});
 
-  const points = [];
+  const points = [] as THREE.Vector3[];
   points.push(new THREE.Vector3(-10,0,0));
   points.push(new THREE.Vector3(0,10,0));
   points.push(new THREE.Vector3(10,0,0));
@@ -38,9 +39,17 @@ const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
   }
-  window.addEventListener('resize', onResize);
+  if (!opts.preview) window.addEventListener('resize', onResize);
 
   renderer.render(scene,camera);
+
+  return () => {
+    if (!opts.preview) window.removeEventListener('resize', onResize);
+    try { renderer.dispose(); } catch { /* noop */ }
+    try { renderer.domElement.remove(); } catch { /* noop */ }
+    try { geometry.dispose(); } catch { /* noop */ }
+    try { (material as THREE.Material).dispose(); } catch { /* noop */ }
+  };
 };
 
 export {drawLines};

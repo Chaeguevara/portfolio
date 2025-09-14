@@ -1,21 +1,17 @@
 import * as THREE from "three";
+import { createGame } from "../lib/game";
 
 type Options = { mount?: HTMLElement; preview?: boolean };
 
 const rotateBox = (scene:THREE.Scene, opts: Options = {}) =>{
+  const container = opts.mount ?? document.getElementById("work") ?? document.body;
+  const { clientWidth, clientHeight } = container;
   const camera = new THREE.PerspectiveCamera(
     50,
-    window.innerWidth / window.innerHeight,
+    (clientWidth || window.innerWidth) / (clientHeight || window.innerHeight),
     0.1,
     1000,
   );
-  const container = opts.mount ?? document.getElementById("work") ?? document.body;
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  const { clientWidth, clientHeight } = container;
-  renderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
-  renderer.setAnimationLoop(animate);
-
-  container.appendChild(renderer.domElement);
 
   const geometry = new THREE.BoxGeometry(1, 1, 1);
   const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
@@ -24,26 +20,41 @@ const rotateBox = (scene:THREE.Scene, opts: Options = {}) =>{
 
   camera.position.z = opts.preview ? 3 : 5;
 
-  function onResize(){
-    const { clientWidth, clientHeight } = container;
-    const width = clientWidth || window.innerWidth;
-    const height = clientHeight || window.innerHeight;
-    camera.aspect = width/height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
+  if (!opts.preview) {
+    // Use the reusable game loop for non-preview mode
+    const game = createGame({ mount: container, scene, camera });
+    const spinner = {
+      update(dt: number) {
+        // rotate at 1 rad/s and 0.8 rad/s respectively
+        cube.rotation.x += 1.0 * dt;
+        cube.rotation.y += 0.8 * dt;
+      },
+    };
+    game.add(spinner);
+    game.start();
+    return () => {
+      game.remove(spinner);
+      game.stop();
+      game.dispose();
+      try { geometry.dispose(); } catch { /* noop */ }
+      try { (material as THREE.Material).dispose(); } catch { /* noop */ }
+    };
   }
-  window.addEventListener('resize', onResize);
 
-  function animate() {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
-    renderer.render(scene, camera);
-  }
-
-  animate();
-}
+  // Preview mode: single render, no listeners/loop
+  const previewRenderer = new THREE.WebGLRenderer({ antialias: true });
+  previewRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  previewRenderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
+  container.appendChild(previewRenderer.domElement);
+  previewRenderer.render(scene, camera);
+  return () => {
+    try { previewRenderer.dispose(); } catch { /* noop */ }
+    try { previewRenderer.domElement.remove(); } catch { /* noop */ }
+    try { geometry.dispose(); } catch { /* noop */ }
+    try { (material as THREE.Material).dispose(); } catch { /* noop */ }
+  };
+};
 
 export {
   rotateBox
-}
+};

@@ -35,6 +35,11 @@ This repository hosts a client‑side web app deployed on GitHub Pages. All feat
 - Scripts should cover: type‑check, lint, build, and local preview.
 - Deployment: `npm run build` should produce a static `dist/` ready for GitHub Pages. Configure the repo or an action to publish `dist/`.
 
+### ESLint
+- Lint rules are defined in `eslint.config.js` (flat config). Any coding changes should adhere to these rules.
+- Prefer reading the rules directly in `eslint.config.js` when deciding style or patterns.
+- Run ESLint locally to check: `npx eslint .` (or add a `lint` script if desired).
+
 ## Contribution Guidelines
 - Keep files focused and small; avoid unrelated refactors.
 - Follow existing code style and directory layout (`src/pages`, `src/components`, `src/models`, etc.).

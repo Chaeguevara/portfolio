@@ -93,7 +93,9 @@ h1 {
 .card-preview {
   position: relative;
   width: 100%;
-  height: 180px;
+  /* Maintain a consistent aspect ratio across widths */
+  aspect-ratio: 16 / 9;
+  height: auto;
   background: #0d0d0d;
   border-top: 1px solid rgba(255,255,255,0.06);
 }
@@ -106,11 +108,13 @@ h1 {
 /* Cards grid: 3 columns, uniform card sizes */
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  /* Responsive columns that collapse gracefully */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 .cards-grid .card {
-  height: 320px;
+  /* Let height be defined by content (preview aspect + body) */
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -119,7 +123,15 @@ h1 {
   overflow: hidden;
 }
 .cards-grid .card .card-preview {
-  flex: 0 0 180px;
+  /* Allow preview to size by its aspect ratio */
+  flex: 0 0 auto;
+}
+
+/* Force single column on small screens */
+@media (max-width: 640px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .read-the-docs {

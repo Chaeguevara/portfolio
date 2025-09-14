@@ -1,22 +1,14 @@
 import { homeView } from "./pages/home";
 import { workView } from "./pages/works";
-import { createScene } from "./scene";
+import { createScene, disposeActiveScene } from "./scene";
 import { initWorksGrid } from "./pages/works";
+import { disposeCardPreviews } from "./previews";
 const BASE = import.meta.env.BASE_URL || "/";
 
-function setupCardNavigation() {
-  document.querySelectorAll(".card[data-href]").forEach((card) => {
-    card.addEventListener("click", () => {
-      const path = card.getAttribute("data-href");
-      if (path) {
-        history.pushState({}, "", path);
-        renderRoutes(path);
-      }
-    });
-  });
-}
-
 export function renderRoutes(path: string) {
+  // Always dispose previous scenes and previews before rendering new route
+  disposeActiveScene();
+  disposeCardPreviews();
   const main = document.getElementById("app")!;
   document
     .querySelectorAll("nav a")
@@ -54,7 +46,6 @@ export function renderRoutes(path: string) {
     default:
       main.innerHTML = "<h2> 404 not Found</h2>";
   }
-  setupCardNavigation();
 }
 
 // Expose for dynamic navigation calls from modules that avoid cyclic imports
