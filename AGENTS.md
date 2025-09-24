@@ -42,6 +42,7 @@ This repository hosts a client‑side web app deployed on GitHub Pages. All feat
 
 ## Contribution Guidelines
 - Keep files focused and small; avoid unrelated refactors.
+- Keep functions small for maintainability: aim for ≤30 lines per function; extract helpers instead of growing monoliths.
 - Follow existing code style and directory layout (`src/pages`, `src/components`, `src/models`, etc.).
 - Prefer TypeScript types/interfaces for clear contracts.
 - Remove dead code and noisy console logs before merging; keep helpful runtime warnings during development only.
