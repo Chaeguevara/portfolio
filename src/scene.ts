@@ -11,7 +11,12 @@ export function disposeActiveScene() {
   }
 }
 
-const createScene = (path:number) => () => {
+export function setActiveCleanup(cleanup: () => void) {
+  disposeActiveScene();
+  activeCleanup = cleanup;
+}
+
+const createScene = (path: number) => () => {
   // Dispose any previous scene/renderers/listeners first
   disposeActiveScene();
 
@@ -20,7 +25,7 @@ const createScene = (path:number) => () => {
   scene.background = new THREE.Color(bg);
   const mount = document.getElementById("work") ?? undefined;
   const run = Works[path] ? Works[path].animation : null;
-  if (run){
+  if (run) {
     const cleanup = run(scene, { mount, preview: false });
     activeCleanup = typeof cleanup === 'function' ? cleanup : null;
   } else {

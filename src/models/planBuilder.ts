@@ -283,6 +283,7 @@ function createUi(mount: HTMLElement, opts: Options): UiElements {
 
 function createRenderer(container: HTMLElement) {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(resolveThreeBgFromCss());
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   container.appendChild(renderer.domElement);
   return renderer;
@@ -836,7 +837,7 @@ function createInitialState(scene: THREE.Scene, renderer: THREE.WebGLRenderer, c
       stopVel: 2,
     },
     opts,
-    startSimulation: () => {},
+    startSimulation: () => { },
   };
 }
 

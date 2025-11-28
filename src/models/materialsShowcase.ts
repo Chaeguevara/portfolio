@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { resolveThreeBgFromCss } from '../config';
 /**
  * Materials Showcase
  *
@@ -146,6 +147,7 @@ function createTextSprite(text: string): LabelRes {
 
 function createRenderer(container: HTMLElement): THREE.WebGLRenderer {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(resolveThreeBgFromCss());
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const w = container.clientWidth || window.innerWidth;
   const h = container.clientHeight || window.innerHeight;
@@ -192,7 +194,7 @@ function disposeAll(args: {
   removeResize?: () => void;
   stopLoop?: () => void;
 }): void {
-  const { renderer, geometry, materials, labels} = args;
+  const { renderer, geometry, materials, labels } = args;
   // try { stopLoop && stopLoop(); } catch { /* noop */ }
   // try { removeResize && removeResize(); } catch { /* noop */ }
   try { renderer.dispose(); } catch { /* noop */ }

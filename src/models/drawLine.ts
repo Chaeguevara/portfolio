@@ -1,10 +1,12 @@
 import * as THREE from "three";
+import { resolveThreeBgFromCss } from "../config";
 
 type Options = { mount?: HTMLElement; preview?: boolean };
 
 const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
   const container = opts.mount ?? document.getElementById("work") ?? document.body;
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(resolveThreeBgFromCss());
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const { clientWidth, clientHeight } = container;
   renderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
@@ -19,29 +21,29 @@ const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
   camera.position.set(0, 0, opts.preview ? 60 : 100);
   camera.lookAt(0, 0, 0);
 
-  const material = new THREE.LineBasicMaterial({color:0x0000ff});
+  const material = new THREE.LineBasicMaterial({ color: 0x0000ff });
 
   const points = [] as THREE.Vector3[];
-  points.push(new THREE.Vector3(-10,0,0));
-  points.push(new THREE.Vector3(0,10,0));
-  points.push(new THREE.Vector3(10,0,0));
+  points.push(new THREE.Vector3(-10, 0, 0));
+  points.push(new THREE.Vector3(0, 10, 0));
+  points.push(new THREE.Vector3(10, 0, 0));
 
   const geometry = new THREE.BufferGeometry().setFromPoints(points);
-  const line = new THREE.Line(geometry,material);
+  const line = new THREE.Line(geometry, material);
 
   scene.add(line);
 
-  function onResize(){
+  function onResize() {
     const { clientWidth, clientHeight } = container;
     const width = clientWidth || window.innerWidth;
     const height = clientHeight || window.innerHeight;
-    camera.aspect = width/height;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height);
   }
   if (!opts.preview) window.addEventListener('resize', onResize);
 
-  renderer.render(scene,camera);
+  renderer.render(scene, camera);
 
   return () => {
     if (!opts.preview) window.removeEventListener('resize', onResize);
@@ -52,4 +54,4 @@ const drawLines = (scene: THREE.Scene, opts: Options = {}) => {
   };
 };
 
-export {drawLines};
+export { drawLines };

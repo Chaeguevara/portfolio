@@ -1,32 +1,32 @@
-//https://threejs.org/manual/#en/scenegraph
 import * as THREE from 'three';
 import GUI from 'lil-gui';
+import { resolveThreeBgFromCss } from '../config';
 
-const addItemsToScene = (scene:THREE.Scene, objects:Array<THREE.Object3D>) => {
-  for (const obj of objects){
+const addItemsToScene = (scene: THREE.Scene, objects: Array<THREE.Object3D>) => {
+  for (const obj of objects) {
     scene.add(obj);
   }
 };
 
 const definePlanet = (
-  sphereGeometry:THREE.SphereGeometry,
-  color:number,
-  emissive:number,
+  sphereGeometry: THREE.SphereGeometry,
+  color: number,
+  emissive: number,
   scale: readonly [number, number, number]
-):THREE.Mesh => {
-  const planetMaterial = new THREE.MeshPhongMaterial({color, emissive });
+): THREE.Mesh => {
+  const planetMaterial = new THREE.MeshPhongMaterial({ color, emissive });
   const planetMesh = new THREE.Mesh(sphereGeometry, planetMaterial);
   planetMesh.scale.set(scale[0], scale[1], scale[2]);
   return planetMesh;
 };
 
-const defineOrbit = (orbitXPosition:number):THREE.Object3D => {
+const defineOrbit = (orbitXPosition: number): THREE.Object3D => {
   const orbitObj = new THREE.Object3D();
   orbitObj.position.x = orbitXPosition;
   return orbitObj;
 };
 
-const defineEarthSystem = (sphereGeometry:THREE.SphereGeometry,earthPosition:number) => {
+const defineEarthSystem = (sphereGeometry: THREE.SphereGeometry, earthPosition: number) => {
   const earthOrbit = defineOrbit(earthPosition);
   earthOrbit.name = 'earthOrbit';
   const earthMesh = definePlanet(sphereGeometry, 0x2233FF, 0x112244, [1, 1, 1]);
@@ -42,13 +42,14 @@ const defineEarthSystem = (sphereGeometry:THREE.SphereGeometry,earthPosition:num
 };
 
 
-const defineSphereGeometry = (radius:number, widthSegments:number, heightSegments:number):THREE.SphereGeometry => {
+const defineSphereGeometry = (radius: number, widthSegments: number, heightSegments: number): THREE.SphereGeometry => {
   const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
   return sphereGeometry;
 };
 
-const setRenderer= (animate:XRFrameRequestCallback | null, container:HTMLElement):THREE.WebGLRenderer => {
+const setRenderer = (animate: XRFrameRequestCallback | null, container: HTMLElement): THREE.WebGLRenderer => {
   const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setClearColor(resolveThreeBgFromCss());
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const { clientWidth, clientHeight } = container;
   renderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
@@ -56,7 +57,7 @@ const setRenderer= (animate:XRFrameRequestCallback | null, container:HTMLElement
   return renderer;
 };
 
-const setCamera = (container: HTMLElement):THREE.PerspectiveCamera => {
+const setCamera = (container: HTMLElement): THREE.PerspectiveCamera => {
   const camera = new THREE.PerspectiveCamera(
     45,
     (container.clientWidth || window.innerWidth) / (container.clientHeight || window.innerHeight),
@@ -69,23 +70,23 @@ const setCamera = (container: HTMLElement):THREE.PerspectiveCamera => {
   return camera;
 };
 
-const addAxesToObjs = (gui:GUI, objects:Array<THREE.Object3D>):undefined => {
-  objects.forEach((node)=>{
+const addAxesToObjs = (gui: GUI, objects: Array<THREE.Object3D>): undefined => {
+  objects.forEach((node) => {
     const label = node.name || 'object';
     makeAxisGrid(gui, node, label, 10);
   });
 };
 
-const makeAxisGrid = (gui:GUI, node:THREE.Object3D, label:string, units:number):undefined =>{
-  const helper = new AxisGridHelper(node,units);
-  gui.add(helper,'visible').name(label);
+const makeAxisGrid = (gui: GUI, node: THREE.Object3D, label: string, units: number): undefined => {
+  const helper = new AxisGridHelper(node, units);
+  gui.add(helper, 'visible').name(label);
 };
 class AxisGridHelper {
   grid: THREE.GridHelper | undefined = undefined;
-  axes:THREE.AxesHelper | undefined = undefined;
-  _visible:boolean = false;
+  axes: THREE.AxesHelper | undefined = undefined;
+  _visible: boolean = false;
 
-  constructor(node:THREE.Object3D,units=10){
+  constructor(node: THREE.Object3D, units = 10) {
     const axes = new THREE.AxesHelper();
     const axesMat = (axes.material as THREE.Material | THREE.Material[]);
     if (Array.isArray(axesMat)) {
@@ -95,7 +96,7 @@ class AxisGridHelper {
     }
     axes.renderOrder = 2;
     node.add(axes);
-    const grid = new THREE.GridHelper(units,units);
+    const grid = new THREE.GridHelper(units, units);
     const gridMat = (grid.material as THREE.Material | THREE.Material[]);
     if (Array.isArray(gridMat)) {
       gridMat.forEach(m => m.depthTest = false);
@@ -123,7 +124,7 @@ class AxisGridHelper {
 
 type Options = { mount?: HTMLElement; preview?: boolean };
 
-const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
+const orbitObject = (scene: THREE.Scene, opts: Options = {}) => {
   const container = opts.mount ?? document.getElementById("work") ?? document.body;
   // For previews, render once without animation loop or listeners
   let stopped = false;
@@ -137,11 +138,11 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
   const solarSystem = new THREE.Object3D();
   solarSystem.name = 'solarSystem';
 
-  const sphereGeometry = defineSphereGeometry(1,6,6);
+  const sphereGeometry = defineSphereGeometry(1, 6, 6);
   const sunMesh = definePlanet(sphereGeometry, 0xFFFF00, 0xFFFF00, [5, 5, 5]);
   sunMesh.name = 'sun';
 
-  const earthSystem = defineEarthSystem(sphereGeometry,10);
+  const earthSystem = defineEarthSystem(sphereGeometry, 10);
   const earthMesh = earthSystem.children[0];
   earthMesh.name = earthMesh.name || 'earth';
   const moonOrbit = earthSystem.children[1] as THREE.Object3D;
@@ -151,7 +152,7 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
 
   const color = 0xFFFFFF;
   const intensity = 3;
-  const light = new THREE.PointLight(color,intensity);
+  const light = new THREE.PointLight(color, intensity);
   const lightHelper = new THREE.PointLightHelper(light, 0.5);
 
   solarSystem.add(sunMesh);
@@ -204,4 +205,4 @@ const orbitObject = (scene:THREE.Scene, opts: Options = {}) =>{
   };
 };
 
-export {orbitObject};
+export { orbitObject };

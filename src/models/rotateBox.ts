@@ -1,9 +1,10 @@
 import * as THREE from "three";
 import { createGame } from "../lib/game";
+import { resolveThreeBgFromCss } from "../config";
 
 type Options = { mount?: HTMLElement; preview?: boolean };
 
-const rotateBox = (scene:THREE.Scene, opts: Options = {}) =>{
+const rotateBox = (scene: THREE.Scene, opts: Options = {}) => {
   const container = opts.mount ?? document.getElementById("work") ?? document.body;
   const { clientWidth, clientHeight } = container;
   const camera = new THREE.PerspectiveCamera(
@@ -43,6 +44,7 @@ const rotateBox = (scene:THREE.Scene, opts: Options = {}) =>{
 
   // Preview mode: single render, no listeners/loop
   const previewRenderer = new THREE.WebGLRenderer({ antialias: true });
+  previewRenderer.setClearColor(resolveThreeBgFromCss());
   previewRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   previewRenderer.setSize(clientWidth || window.innerWidth, clientHeight || window.innerHeight);
   container.appendChild(previewRenderer.domElement);

@@ -1,26 +1,37 @@
+import * as THREE from "three";
 import { homeView } from "./pages/home";
 import { workView } from "./pages/works";
-import { createScene, disposeActiveScene } from "./scene";
+import { createScene, disposeActiveScene, setActiveCleanup } from "./scene";
 import { initWorksGrid } from "./pages/works";
 import { disposeCardPreviews } from "./previews";
+import { aboutView } from "./pages/about";
+import { aboutScene } from "./models";
 const BASE = import.meta.env.BASE_URL || "/";
+
+let routeCleanup: (() => void) | null = null;
 
 export function renderRoutes(path: string) {
   // Always dispose previous scenes and previews before rendering new route
   disposeActiveScene();
   disposeCardPreviews();
+
+  if (routeCleanup) {
+    routeCleanup();
+    routeCleanup = null;
+  }
+
   const main = document.getElementById("app")!;
   document
     .querySelectorAll("nav a")
     .forEach((a) => a.classList.remove("active"));
   const active = document.querySelector(`nav a[href="${path}"]`);
   // Bootstrap's active class and ARIA current
-  document.querySelectorAll('nav a').forEach((a)=>{
+  document.querySelectorAll('nav a').forEach((a) => {
     a.removeAttribute('aria-current');
   });
   if (active) {
     active.classList.add('active');
-    (active as HTMLAnchorElement).setAttribute('aria-current','page');
+    (active as HTMLAnchorElement).setAttribute('aria-current', 'page');
   }
   // Normalize by stripping base path if present
   const normalized = path.startsWith(BASE) ? path.slice(BASE.length - (BASE.endsWith('/') ? 1 : 0)) : path;
@@ -37,10 +48,32 @@ export function renderRoutes(path: string) {
       break;
     case "/works":
       main.innerHTML = workView(Number(subPath));
-      if (Number(subPath)>0){
+      if (Number(subPath) > 0) {
         createScene(Number(subPath))();
+
+        // Add 'h' key listener to toggle details
+        const onKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'h') {
+            const overlay = document.getElementById('work-details-overlay');
+            if (overlay) {
+              overlay.style.opacity = overlay.style.opacity === '0' ? '1' : '0';
+              overlay.style.pointerEvents = overlay.style.opacity === '0' ? 'none' : 'auto';
+            }
+          }
+        };
+        window.addEventListener('keydown', onKeyDown);
+        routeCleanup = () => window.removeEventListener('keydown', onKeyDown);
+
       } else {
         initWorksGrid();
+      }
+      break;
+    case "/about":
+      main.innerHTML = aboutView();
+      const aboutContainer = document.getElementById('about-scene');
+      if (aboutContainer) {
+        const cleanup = aboutScene(new THREE.Scene(), { mount: aboutContainer });
+        setActiveCleanup(cleanup);
       }
       break;
     default:

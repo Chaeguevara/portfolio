@@ -108,22 +108,56 @@ This app uses Vite. Production builds go to `dist/` and can be hosted on any sta
 
 ## Git Commit Messages
 
-Follow these practices (adapted from cbea.ms/git-commit) to keep history readable and useful:
+Follow these practices (adapted from [cbea.ms/git-commit](https://cbea.ms/git-commit/)) to keep history readable and useful:
 
-- Subject line: max ~50 chars, imperative mood, capitalized, no trailing period.
-- Separate subject from body with a blank line.
-- Body: wrap at ~72 chars; explain what and why, not how.
-- Reference issues/PRs when relevant (e.g., "Fixes #123").
-- Keep each commit focused; avoid unrelated changes.
-- Prefer active voice and concrete phrasing.
+1.  **Separate subject from body with a blank line**
+2.  **Limit the subject line to 50 characters**
+3.  **Capitalize the subject line**
+4.  **Do not end the subject line with a period**
+5.  **Use the imperative mood in the subject line**
+    *   Example: "Refactor subsystem X for readability" rather than "Refactoring subsystem X" or "Refactored subsystem X".
+    *   Tip: A properly formed subject line should always be able to complete the sentence: "If applied, this commit will *your subject line here*".
+6.  **Wrap the body at 72 characters**
+7.  **Use the body to explain what and why vs. how**
 
-Example
+### Example
 
-Add responsive container for Three.js canvas
+```
+Summarize changes in around 50 characters or less
 
-Wraps the Three.js renderer in a `.three-stage` container and
-sizes the renderer to the container for better responsiveness.
-Also adds a resize handler to update camera aspect and renderer size.
+More detailed explanatory text, if necessary. Wrap it to about 72
+characters or so. In some contexts, the first line is treated as the
+subject of the commit and the rest of the text as the body. The
+blank line separating the summary from the body is critical (unless
+you omit the body entirely); various tools like `log`, `shortlog`
+and `rebase` can get confused if you run the two together.
 
-Files: `src/components/view/work.ts`, `src/style.css`, `src/models/earthAndSun.ts`
-\n+## Theme\n+\n+- Three.js viewer background is centralized for consistency across pages and previews.\n+- CSS variable: define in `src/style.css` under `:root` → `--three-bg: #80ff80` (standard green).\n+- Code: `src/config.ts` exports `AppConfig.threeBackground` and `resolveThreeBgFromCss()` so scenes can read from CSS or fall back to a constant.\n+- All scenes (main pages and card previews) should use the resolved background value.\n+
+Explain the problem that this commit is solving. Focus on why you
+are making this change as opposed to how (the code explains that).
+Are there side effects or other unintuitive consequences of this
+change? Here's the place to explain them.
+
+Further paragraphs come after blank lines.
+
+ - Bullet points are okay, too
+
+ - Typically a hyphen or asterisk is used for the bullet, preceded
+   by a single space, with blank lines in between, but conventions
+   vary here
+
+If you use an issue tracker, put references to them at the bottom,
+like this:
+
+Resolves: #123
+See also: #456, #789
+```
+\n+## Theme\n+\n+- Three.js viewer background is centralized for consistency across pages and previews.\n+- CSS variable: define in `src/style.css` under `:root` → `--three-bg: #80ff80` (standard green).\n+- Code: `src/config.ts` exports `AppConfig.threeBackground` and `resolveThreeBgFromCss()` so scenes can read from CSS or fall back to a constant.\n+- All scenes (main pages and card previews) should use the resolved background value.
+
+## Work Descriptions
+- Every work entry in `src/data/works.ts` must include a `details` field containing HTML content.
+- The `details` field should explain:
+    - **Purpose**: What the work demonstrates.
+    - **How it works**: Brief technical explanation (e.g., Raycasting, GPU picking).
+    - **Interaction**: How the user can interact with the scene.
+- The UI must display this description in an overlay.
+- The overlay must be toggleable using the 'h' key.\n+
