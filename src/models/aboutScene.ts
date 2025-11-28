@@ -46,7 +46,6 @@ export const aboutScene = (scene: THREE.Scene, opts: Options = {}) => {
     scene.add(particles);
 
     // Animation Loop
-    let animationId: number;
     const animate = () => {
         particles.rotation.y += 0.002;
         particles.rotation.x += 0.001;
