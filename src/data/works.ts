@@ -5,7 +5,7 @@ export const Works: Record<number, {
   title: string;
   body: string;
   details?: string;
-  animation: (scene: Scene, opts?: AnimOpts) => () => void;
+  animation: (scene: Scene, opts?: AnimOpts) => (() => void) | Promise<() => void>;
 }> = {
   1: {
     title: "helo world",
@@ -67,4 +67,24 @@ export const Works: Record<number, {
     `,
     animation: (scene, opts) => gpuPickingDemo(scene, opts)
   },
+  8: {
+    title: "Cozy Cartoon Bike",
+    body: "A procedural bicycle rendered with Cel shading.",
+    details: `
+        <h3>A Cozy Ride</h3>
+        <p>This scene uses <strong>Toon Shading</strong> (Cel Shading) to create a hand-drawn, illustrative feel.</p>
+        <ul>
+          <li><strong>Procedural Geometry</strong>: The bicycle is built entirely from code using basic shapes (Cylinders, Tori).</li>
+          <li><strong>Gradient Map</strong>: A custom 3-tone gradient texture snaps the lighting into distinct bands (Dark, Mid, Light).</li>
+        </ul>
+        <p><strong>Tech</strong>: <code>THREE.MeshToonMaterial</code>, <code>THREE.DataTexture</code> (Gradient).</p>
+      `,
+    animation: (scene, opts) => import("../models/cartoonBicycle").then(m => m.cartoonBicycle(scene, opts))
+  },
+  9: {
+    title: "Simple Asset Test",
+    body: "Verifying asset loading architecture.",
+    details: "A red box loaded from <code>src/models/assets/simpleBox.ts</code> used in <code>simpleTestScene.ts</code>.",
+    animation: (scene, opts) => import("../models/simpleTestScene").then(m => m.simpleTestScene(scene, opts))
+  }
 };
