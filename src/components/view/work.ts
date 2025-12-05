@@ -29,6 +29,30 @@ export function work(path: number) {
   return `
 <section class="work-wrap" style="position: relative; height: 100vh; overflow: hidden;">
   <div id="work" class="three-stage" aria-label="Three.js canvas mount" style="width: 100%; height: 100%;"></div>
+  
+  <button id="info-toggle" aria-label="Toggle details" style="
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+  " onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+    ?
+  </button>
+
   ${details}
 </section>
 `;

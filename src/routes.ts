@@ -52,17 +52,30 @@ export function renderRoutes(path: string) {
         createScene(Number(subPath))();
 
         // Add 'h' key listener to toggle details
-        const onKeyDown = (e: KeyboardEvent) => {
-          if (e.key === 'h') {
-            const overlay = document.getElementById('work-details-overlay');
-            if (overlay) {
-              overlay.style.opacity = overlay.style.opacity === '0' ? '1' : '0';
-              overlay.style.pointerEvents = overlay.style.opacity === '0' ? 'none' : 'auto';
-            }
+        // Toggle logic for overlay
+        const toggleOverlay = () => {
+          const overlay = document.getElementById('work-details-overlay');
+          if (overlay) {
+            const isHidden = overlay.style.opacity === '0';
+            overlay.style.opacity = isHidden ? '1' : '0';
+            overlay.style.pointerEvents = isHidden ? 'auto' : 'none';
           }
         };
+
+        // UI Button Listener
+        const btn = document.getElementById('info-toggle');
+        if (btn) btn.addEventListener('click', toggleOverlay);
+
+        // Keyboard Listener
+        const onKeyDown = (e: KeyboardEvent) => {
+          if (e.key === 'h') toggleOverlay();
+        };
         window.addEventListener('keydown', onKeyDown);
-        routeCleanup = () => window.removeEventListener('keydown', onKeyDown);
+
+        routeCleanup = () => {
+          if (btn) btn.removeEventListener('click', toggleOverlay);
+          window.removeEventListener('keydown', onKeyDown);
+        };
 
       } else {
         initWorksGrid();

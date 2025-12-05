@@ -15,19 +15,25 @@ export class GPUPickHelper {
         this.pixelBuffer = new Uint8Array(4);
     }
 
-    pick(cssPosition: { x: number; y: number }, scene: THREE.Scene, camera: THREE.Camera, renderer: THREE.WebGLRenderer, idToObject: { [key: number]: THREE.Object3D }): THREE.Object3D | null {
+    pick(normalizedPosition: { x: number; y: number }, scene: THREE.Scene, camera: THREE.Camera, renderer: THREE.WebGLRenderer, idToObject: { [key: number]: THREE.Object3D }): THREE.Object3D | null {
         const { pickingTexture, pixelBuffer } = this;
 
-        // set the view offset to represent just a single pixel under the mouse
-        const pixelRatio = renderer.getPixelRatio();
+        // Get actual drawing buffer size
+        const drawingBufferWidth = renderer.getContext().drawingBufferWidth;
+        const drawingBufferHeight = renderer.getContext().drawingBufferHeight;
+
+        // Calculate pixel coordinates from normalized position
+        const pixelX = (normalizedPosition.x * drawingBufferWidth) | 0;
+        const pixelY = (normalizedPosition.y * drawingBufferHeight) | 0;
+
         // @ts-ignore
         camera.setViewOffset(
-            renderer.getContext().drawingBufferWidth,   // full width
-            renderer.getContext().drawingBufferHeight,  // full height
-            cssPosition.x * pixelRatio | 0,             // rect x
-            cssPosition.y * pixelRatio | 0,             // rect y
-            1,                                          // rect width
-            1,                                          // rect height
+            drawingBufferWidth,   // full width
+            drawingBufferHeight,  // full height
+            pixelX,               // rect x
+            pixelY,               // rect y
+            1,                    // rect width
+            1,                    // rect height
         );
 
         // render the scene

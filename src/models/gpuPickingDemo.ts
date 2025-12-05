@@ -83,8 +83,9 @@ export const gpuPickingDemo = (scene: THREE.Scene, opts: Options = {}) => {
 
     const onMouseMove = (event: MouseEvent) => {
         const rect = renderer.domElement.getBoundingClientRect();
-        pickPosition.x = event.clientX - rect.left;
-        pickPosition.y = event.clientY - rect.top;
+        // Calculate normalized coordinates (0 to 1)
+        pickPosition.x = (event.clientX - rect.left) / rect.width;
+        pickPosition.y = (event.clientY - rect.top) / rect.height;
     };
 
     if (!opts.preview) {
