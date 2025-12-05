@@ -1,163 +1,21 @@
-# Project Philosophy and Guidelines
+# Portfolio Agent Guidelines
 
-This repository hosts a client‑side web app deployed on GitHub Pages. All features must run entirely in the browser without any server‑side components. The codebase favors modular design and clear separation of concerns, with Three.js powering interactive works.
+This repository uses a modular rule system to keep the context clean and focused.
 
-## Purpose
-- Provide a lightweight, modular portfolio app that can be deployed to GitHub Pages.
-- Showcase Three.js based works in a way that is easy to extend and maintain.
+## 📚 Rule Index
 
-## Hosting Constraints (GitHub Pages)
-- Static hosting only: no server or SSR. Assume browser‑only APIs.
-- Bundle dependencies; do not rely on runtime package installs. Prefer local builds over third‑party CDNs to avoid CSP/CORS surprises.
-- Use relative asset paths so content works under repository subpaths (e.g., `https://<user>.github.io/<repo>/`). If using Vite, configure `base` accordingly.
-- Avoid secrets, private APIs, or anything requiring authentication.
-- Keep payload sizes reasonable; lazy‑load where appropriate.
+The rules are located in `.agent/rules/`.
 
-## Three.js Works
-- Structure: place self‑contained scene/animation modules under `src/models/`. Export functions that accept a `THREE.Scene` (and optionally a mount element) and set up the work.
-- Renderer lifecycle: create at most one renderer per mounted scene. Attach to a known container (currently `#work`).
-- Responsiveness: handle window resize (update camera aspect/projection and renderer size). Clamp device pixel ratio for performance.
-- Cleanup: on route changes, remove animation loops, GUI, event listeners, and dispose geometries/materials/textures when applicable.
-- Performance: reuse shared geometries/materials when possible; avoid creating objects in hot loops; prefer `renderer.setAnimationLoop` for consistency.
-- Debug/GUI: `lil-gui` and helpers are welcome, but should be optional and kept lightweight; avoid shipping heavy debug tooling by default.
+| File | Purpose |
+| :--- | :--- |
+| **[01-philosophy.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/01-philosophy.md)** | Core values, hosting constraints (Static/GitHub Pages). |
+| **[02-tech-stack.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/02-tech-stack.md)** | Tooling, commands, and styling basics. |
+| **[03-threejs.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/03-threejs.md)** | Three.js best practices, structure, and theme. |
+| **[04-deployment.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/04-deployment.md)** | Deployment cheatsheet (Vite -> GitHub Pages). |
+| **[05-git-process.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/05-git-process.md)** | Contribution guide and commit message rules. |
+| **[typescript-codestyle-guide.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/typescript-codestyle-guide.md)** | Strict TypeScript coding style. |
 
-## Modularity
-- Favor small, composable modules and pure helpers (e.g., camera/renderer factories, geometry/mesh builders).
-- Keep DOM access centralized and explicit; pass the mount element instead of querying globally when feasible.
-- Use clear names and export only what’s needed from each module.
-
-## Styling
-- Bootstrap is sufficient for now. Place custom tweaks in `src/style.css` and keep them minimal.
-- Fancy CSS/theming can be layered later without disrupting structure.
-
-## Tooling and Commands
-- Use Node LTS. Keep the toolchain simple (TypeScript, ESLint, Vite or equivalent bundler).
-- Scripts should cover: type‑check, lint, build, and local preview.
-- Deployment: `npm run build` should produce a static `dist/` ready for GitHub Pages. Configure the repo or an action to publish `dist/`.
-
-### ESLint
-- Lint rules are defined in `eslint.config.js` (flat config). Any coding changes should adhere to these rules.
-- Prefer reading the rules directly in `eslint.config.js` when deciding style or patterns.
-- Run ESLint locally to check: `npx eslint .` (or add a `lint` script if desired).
-
-## Contribution Guidelines
-- Keep files focused and small; avoid unrelated refactors.
-- Keep functions small for maintainability: aim for ≤30 lines per function; extract helpers instead of growing monoliths.
-- Follow existing code style and directory layout (`src/pages`, `src/components`, `src/models`, etc.).
-- Prefer TypeScript types/interfaces for clear contracts.
-- Remove dead code and noisy console logs before merging; keep helpful runtime warnings during development only.
-- Document non‑obvious decisions with short comments or this file.
-
-## Browser Support
-- Target modern evergreen browsers. Avoid Node‑only APIs and experimental features that lack broad support unless properly guarded.
-
-## Out of Scope
-- Server‑side features, secret management, or runtime package installation.
-- Assumptions that require non‑static hosting or custom headers.
-
-By adhering to these guidelines, each component and Three.js work will remain modular, maintainable, and compatible with GitHub Pages’ static hosting model.
-
-## Vite Static Deploy Cheatsheet
-
-This app uses Vite. Production builds go to `dist/` and can be hosted on any static provider. Key references adapted from Vite’s static deployment guide.
-
-### Build
-- Install deps: `npm ci`
-- Build: `npm run build` (runs `tsc && vite build`)
-- Preview locally: `npm run preview`
-
-### Base Path (subpath hosting)
-- When the site is served under a subpath (e.g., GitHub Pages at `/<repo>/`), set Vite’s `base`.
-- Example `vite.config.ts`:
-  ```ts
-  import { defineConfig } from 'vite';
-  export default defineConfig({
-    base: '/<repo>/', // e.g. '/portfolio/'
-  });
-  ```
-- Use relative URLs for assets referenced in HTML and code when practical.
-
-### Single-Page App Fallbacks
-- Many static hosts need a fallback so deep links work (history mode).
-- GitHub Pages: copy `index.html` to `404.html` in `dist/`.
-  - Example step in CI: `cp dist/index.html dist/404.html`
-- Netlify: add `_redirects` with `/* /index.html 200`.
-- Cloudflare Pages / Vercel: enable SPA/History fallback or framework preset.
-
-### GitHub Pages Deployment
-- Branch-based: serve `dist/` from `gh-pages` branch.
-  - Build: `npm run build`
-  - Copy SPA fallback: `cp dist/index.html dist/404.html`
-  - Push `dist/` to `gh-pages`.
-- GitHub Actions (Pages):
-  - Use `actions/upload-pages-artifact@v3` to upload `dist/` and `actions/deploy-pages@v4` to publish.
-  - Ensure `vite.config.ts` sets `base: '/<repo>/'`.
-
-### Other Providers (quick hints)
-- Netlify: Build `npm run build`, Publish directory `dist`, Redirects `_redirects` → `/* /index.html 200`.
-- Vercel: Framework preset “Vite”, Build `npm run build`, Output `dist`.
-- Cloudflare Pages: Build command `npm run build`, Output directory `dist`.
-- GitLab Pages: Produce `public/` (or configure job to copy `dist/` to `public/`).
-- Firebase Hosting: `firebase.json` rewrites to `/index.html`, `public` set to `dist`.
-
-### Deployment Tips
-- Always confirm the site root in production matches the configured `base`.
-- Avoid absolute `/` asset paths when hosting under subpaths.
-- Keep bundles small; code-split large Three.js demos if needed.
-- Add `dist/404.html` for GitHub Pages SPA routing.
-
-## Git Commit Messages
-
-Follow these practices (adapted from [cbea.ms/git-commit](https://cbea.ms/git-commit/)) to keep history readable and useful:
-
-1.  **Separate subject from body with a blank line**
-2.  **Limit the subject line to 50 characters**
-3.  **Capitalize the subject line**
-4.  **Do not end the subject line with a period**
-5.  **Use the imperative mood in the subject line**
-    *   Example: "Refactor subsystem X for readability" rather than "Refactoring subsystem X" or "Refactored subsystem X".
-    *   Tip: A properly formed subject line should always be able to complete the sentence: "If applied, this commit will *your subject line here*".
-6.  **Wrap the body at 72 characters**
-7.  **Use the body to explain what and why vs. how**
-
-### Example
-
-```
-Summarize changes in around 50 characters or less
-
-More detailed explanatory text, if necessary. Wrap it to about 72
-characters or so. In some contexts, the first line is treated as the
-subject of the commit and the rest of the text as the body. The
-blank line separating the summary from the body is critical (unless
-you omit the body entirely); various tools like `log`, `shortlog`
-and `rebase` can get confused if you run the two together.
-
-Explain the problem that this commit is solving. Focus on why you
-are making this change as opposed to how (the code explains that).
-Are there side effects or other unintuitive consequences of this
-change? Here's the place to explain them.
-
-Further paragraphs come after blank lines.
-
- - Bullet points are okay, too
-
- - Typically a hyphen or asterisk is used for the bullet, preceded
-   by a single space, with blank lines in between, but conventions
-   vary here
-
-If you use an issue tracker, put references to them at the bottom,
-like this:
-
-Resolves: #123
-See also: #456, #789
-```
-\n+## Theme\n+\n+- Three.js viewer background is centralized for consistency across pages and previews.\n+- CSS variable: define in `src/style.css` under `:root` → `--three-bg: #80ff80` (standard green).\n+- Code: `src/config.ts` exports `AppConfig.threeBackground` and `resolveThreeBgFromCss()` so scenes can read from CSS or fall back to a constant.\n+- All scenes (main pages and card previews) should use the resolved background value.
-
-## Work Descriptions
-- Every work entry in `src/data/works.ts` must include a `details` field containing HTML content.
-- The `details` field should explain:
-    - **Purpose**: What the work demonstrates.
-    - **How it works**: Brief technical explanation (e.g., Raycasting, GPU picking).
-    - **Interaction**: How the user can interact with the scene.
-- The UI must display this description in an overlay.
-- The overlay must be toggleable using the 'h' key.\n+
+## 🚀 How to use
+- **Read**: Check the relevant rule file before starting a task.
+- **Update**: If you change a process, update the corresponding rule file, not this index (unless adding a new file).
+- **Follow**: Adhere to the "Philosophy" and "Tech Stack" at all times.
