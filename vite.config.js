@@ -7,4 +7,14 @@ export default defineConfig({
   // When deploying to https://<USERNAME>.github.io/<REPO>/ use '/<REPO>/'
   // For a custom domain or root (https://<USERNAME>.github.io/), set to '/'
   base: '/portfolio/',
+  build: {
+    chunkSizeWarningLimit: 700, // Three.js is big, suppress warning
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          three: ['three'], // Split render engine into its own file for better caching
+        },
+      },
+    },
+  },
 });
