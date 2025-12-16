@@ -1,18 +1,26 @@
+/**
+ * @fileoverview Skeleton model generator for a bicycle.
+ * Provides a scene graph hierarchy with placeholder or procedural geometry.
+ */
+
 import * as THREE from 'three';
 
-// Skeleton for the bicycle using Scene Graph hierarchy
-// Hierarchy:
-// bicycleGroup
-// └── frameGroup
-//     ├── backWheelGroup
-//     │   └── (Mesh: Wheel, Spokes)
-//     ├── frontWheelGroup (pivot for steering?)
-//     │   └── (Mesh: Wheel, Spokes)
-//     ├── handlebarsGroup (pivot for steering)
-//     │   └── (Mesh: Bars)
-//     └── seatGroup
-//         └── (Mesh: Seat)
-
+/**
+ * Creates a bicycle skeleton using a Scene Graph hierarchy.
+ * 
+ * Hierarchy:
+ * - bicycleGroup
+ *   └── frameGroup
+ *       ├── backWheelGroup
+ *       │   └── (Mesh: Wheel, Spokes)
+ *       ├── steerGroup
+ *       │   ├── frontWheelGroup
+ *       │   └── handlebarsGroup
+ *       └── seatGroup
+ *           └── (Mesh: Seat)
+ * 
+ * @returns An object containing the root group and references to its movable parts.
+ */
 export const createBicycleSkeleton = () => {
     const bicycleGroup = new THREE.Group();
     bicycleGroup.name = 'bicycleGroup';
@@ -22,11 +30,54 @@ export const createBicycleSkeleton = () => {
     frameGroup.name = 'frameGroup';
     bicycleGroup.add(frameGroup);
 
-    // TODO: Add Frame Meshes here
-    // const frameMesh = ...
-    // frameGroup.add(frameMesh);
-    const frameMesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0x88ccff }));
-    frameGroup.add(frameMesh);
+    // Frame Material
+
+    const frameMaterial = new THREE.MeshBasicMaterial({ color: 0x88ccff });
+    const thickness = 0.05;
+
+    // Helper to create a tube between two points
+    const createTube = (p1: THREE.Vector3, p2: THREE.Vector3, radi: number) => {
+        const vector = new THREE.Vector3().subVectors(p2, p1);
+        const length = vector.length();
+        const geometry = new THREE.CylinderGeometry(radi, radi, length, 8);
+        const mesh = new THREE.Mesh(geometry, frameMaterial);
+
+        // Orient the cylinder (default Y-axis) to the vector
+        const axis = new THREE.Vector3(0, 1, 0);
+        mesh.quaternion.setFromUnitVectors(axis, vector.clone().normalize());
+
+        // Position at midpoint
+        const center = new THREE.Vector3().addVectors(p1, p2).multiplyScalar(0.5);
+        mesh.position.copy(center);
+
+        return mesh;
+    };
+
+    // Hardpoints (match existing group positions)
+    const rearDropout = new THREE.Vector3(-1.2, 0, 0); // Matches backWheelGroup
+    const bb = new THREE.Vector3(0, -0.5, 0);
+    const seatNode = new THREE.Vector3(-0.4, 0.5, 0); // Matches seatGroup
+
+    // Derived Head Tube points (vertical for simplicity, could angle later)
+    const headTubeTop = new THREE.Vector3(1.2, 0.2, 0);
+    const headTubeBottom = new THREE.Vector3(1.2, -0.2, 0);
+
+    // Generate Tubes
+    const seatTube = createTube(bb, seatNode, thickness);
+    const downTube = createTube(bb, headTubeBottom, thickness); // Connect to lower head tube
+    const topTube = createTube(seatNode, headTubeTop, thickness); // Connect to upper head tube
+    const headTube = createTube(headTubeBottom, headTubeTop, thickness * 1.5); // Thicker head tube
+
+    // Stays (connect to rear dropout)
+    const chainStay = createTube(bb, rearDropout, thickness * 0.8);
+    const seatStay = createTube(seatNode, rearDropout, thickness * 0.8);
+
+    frameGroup.add(seatTube);
+    frameGroup.add(downTube);
+    frameGroup.add(topTube);
+    frameGroup.add(headTube);
+    frameGroup.add(chainStay);
+    frameGroup.add(seatStay);
 
 
     // 2. Back Wheel Group - Child of Frame (fixed relative to frame)

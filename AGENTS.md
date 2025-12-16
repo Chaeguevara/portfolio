@@ -64,7 +64,7 @@ The rules are located in `.agent/rules/`.
 | **[03-threejs.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/03-threejs.md)** | Three.js best practices, structure, and theme. |
 | **[04-deployment.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/04-deployment.md)** | Deployment cheatsheet (Vite -> GitHub Pages). |
 | **[05-git-process.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/05-git-process.md)** | Contribution guide and commit message rules. |
-| **[typescript-codestyle-guide.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/typescript-codestyle-guide.md)** | Strict TypeScript coding style. |
+| **[typescript-codestyle-guide.md](file:///Users/heejinchae/Documents/Dev/Personal/portfolio/.agent/rules/typescript-codestyle-guide.md)** | Strict TypeScript coding style (based on [Google Style](https://google.github.io/styleguide/tsguide.html)). |
 
 ## 🚀 How to use
 - **Read**: Check the relevant rule file before starting a task.
