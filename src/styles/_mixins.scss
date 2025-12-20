@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+// -----------------------------------------------------------------------------
+// Reusable Mixins
+// -----------------------------------------------------------------------------
+
+@mixin glass($bg: $glass-bg, $blur: $glass-blur, $border: $glass-border) {
+    background: $bg;
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+    border: 1px solid $border;
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin hover-lift($scale: 1.02, $lift: -8px) {
+    transition: transform $transition-smooth, box-shadow $transition-smooth;
+
+    &:hover {
+        transform: translateY($lift) scale($scale);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+}
+
+@mixin interactive {
+    cursor: pointer;
+    transition: $transition-base;
+
+    &:active {
+        transform: scale(0.96);
+    }
+}
+
+@mixin screen-sm {
+    @media (max-width: 640px) {
+        @content;
+    }
+}
+
+@mixin screen-md {
+    @media (max-width: 900px) {
+        @content;
+    }
+}
+
+@mixin hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome, Safari and Opera */
+    }
+}

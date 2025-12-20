@@ -5,6 +5,7 @@ import { createBicycleSkeleton } from './assets/simpleBox';
 type Options = { mount?: HTMLElement; preview?: boolean };
 
 export const simpleTestScene = (scene: THREE.Scene, opts: Options = {}) => {
+    console.log("[SimpleTestScene] Init", opts);
     const container = opts.mount ?? document.getElementById("work") ?? document.body;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
@@ -54,13 +55,16 @@ export const simpleTestScene = (scene: THREE.Scene, opts: Options = {}) => {
         // Also force a delayed resize just in case CSS flexbox is slow
         setTimeout(onResize, 100);
     }
+    console.log("[SimpleTestScene] Animation loop started");
 
     return () => {
+        console.log("[SimpleTestScene] Disposing");
         if (!opts.preview) {
             window.removeEventListener('resize', onResize);
             renderer.setAnimationLoop(null);
         }
         renderer.dispose();
         dispose();
+        console.log("[SimpleTestScene] Disposal complete");
     };
 };

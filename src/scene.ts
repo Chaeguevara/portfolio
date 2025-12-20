@@ -1,24 +1,55 @@
+/**
+ * @fileoverview Scene lifecycle management for Three.js work pages.
+ * Handles creation, cleanup, and prevents race conditions during navigation.
+ */
+
 import * as THREE from "three";
 import { Works } from "./data/works";
 import { AppConfig, resolveThreeBgFromCss } from "./config";
 
+/** Current cleanup function for the active scene. */
 let activeCleanup: (() => void) | null = null;
 
+/** Token to track the current scene instance (prevents race conditions). */
+let currentSceneToken = 0;
+
+/**
+ * Disposes the currently active scene and its cleanup function.
+ */
 export function disposeActiveScene() {
+  console.log("[Scene] Disposing active scene");
   if (activeCleanup) {
-    try { activeCleanup(); } catch { /* noop */ }
+    try {
+      activeCleanup();
+      console.log("[Scene] Cleanup successful");
+    } catch (e) {
+      console.error("[Scene] Cleanup failed", e);
+    }
     activeCleanup = null;
   }
 }
 
+/**
+ * Sets the active cleanup function, disposing any previous one first.
+ * @param cleanup - Cleanup function to call on scene disposal.
+ */
 export function setActiveCleanup(cleanup: () => void) {
   disposeActiveScene();
   activeCleanup = cleanup;
 }
 
+/**
+ * Factory that creates a scene initializer for a given work path.
+ * Uses a token mechanism to prevent stale async cleanups from being set.
+ * @param path - Work ID to create scene for.
+ */
 const createScene = (path: number) => () => {
+  console.log(`[Scene] Creating scene for work #${path}`);
   // Dispose any previous scene/renderers/listeners first
   disposeActiveScene();
+
+  // Generate a new token for this scene instance
+  const sceneToken = ++currentSceneToken;
 
   const scene = new THREE.Scene();
   const bg = resolveThreeBgFromCss() ?? AppConfig.threeBackground;
@@ -30,23 +61,12 @@ const createScene = (path: number) => () => {
     const result = run(scene, { mount, preview: false });
     if (result instanceof Promise) {
       result.then(cleanup => {
-        // Check if we are still on the same scene? 
-        // Ideally we track if this scene is still active, but simpler:
-        // If activeCleanup is set to something else, we might have moved on.
-        // But since disposeActiveScene sets it to null, we can just set it.
-        // Provided the user hasn't generated ANOTHER scene in the meantime.
-        // For now, let's just assume we want the cleanup.
-        if (!activeCleanup) {
-          // Check if the scene wasn't disposed immediately?
+        // Only set cleanup if this scene is still the current one
+        if (sceneToken === currentSceneToken) {
           activeCleanup = cleanup;
         } else {
-          // If there's already an active cleanup, it means another scene started?
-          // Or we are overwriting?
-          // Actually, since createScene is sync, activeCleanup is null.
-          // If user navigates FAST, activeCleanup might be null, but we just started another view.
-          // We should likely attach the cleanup to the specific scene instance or use a cancellation token.
-          // But for this portfolio, simpler logic:
-          activeCleanup = cleanup;
+          // Scene changed during async load, dispose immediately
+          try { cleanup(); } catch { /* noop */ }
         }
       });
     } else {
@@ -55,6 +75,8 @@ const createScene = (path: number) => () => {
   } else {
     activeCleanup = null;
   }
+  console.log(`[Scene] Creation complete for work #${path} (Token: ${sceneToken})`);
 };
 
 export { createScene };
+

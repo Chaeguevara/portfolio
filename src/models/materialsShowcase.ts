@@ -33,6 +33,7 @@ type Options = {
  * @returns A disposer function that tears down listeners, renderer and materials.
  */
 export function materialsShowcase(scene: THREE.Scene, opts: Options = {}) {
+  console.log("[MaterialsShowcase] Init", opts);
   const container = resolveContainer(opts);
   const camera = createCamera(container);
   addLights(scene);
@@ -46,12 +47,22 @@ export function materialsShowcase(scene: THREE.Scene, opts: Options = {}) {
     const renderer = createRenderer(container);
     const removeResize = bindResize(container, camera, renderer);
     const stopLoop = startRotationLoop(renderer, scene, camera, group);
-    return () => disposeAll({ renderer, geometry, materials, labels, removeResize, stopLoop });
+    console.log("[MaterialsShowcase] Animation loop and resize listeners bound");
+    return () => {
+      console.log("[MaterialsShowcase] Disposal initiated (full)");
+      disposeAll({ renderer, geometry, materials, labels, removeResize, stopLoop });
+      console.log("[MaterialsShowcase] Disposal complete (full)");
+    };
   }
 
   const previewRenderer = createRenderer(container);
   singleRender(previewRenderer, scene, camera);
-  return () => disposeAll({ renderer: previewRenderer, geometry, materials, labels });
+  console.log("[MaterialsShowcase] Preview single render complete");
+  return () => {
+    console.log("[MaterialsShowcase] Disposal initiated (preview)");
+    disposeAll({ renderer: previewRenderer, geometry, materials, labels });
+    console.log("[MaterialsShowcase] Disposal complete (preview)");
+  };
 }
 
 function resolveContainer(opts: Options): HTMLElement {
@@ -175,6 +186,7 @@ function startRotationLoop(renderer: THREE.WebGLRenderer, scene: THREE.Scene, ca
     group.rotation.y += 0.01;
     renderer.render(scene, camera);
   };
+  console.log("[MaterialsShowcase] Rotation loop defined");
   renderer.setAnimationLoop(animate as unknown as XRFrameRequestCallback);
   return () => {
     running = false;

@@ -1,0 +1,132 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// -----------------------------------------------------------------------------
+// Plan Builder Specific Styles
+// -----------------------------------------------------------------------------
+
+.plan-wrap {
+    display: flex;
+    gap: $space-md;
+    width: 100%;
+    height: 100%;
+    padding: $space-sm;
+    box-sizing: border-box;
+
+    @include screen-md {
+        flex-direction: column;
+    }
+}
+
+.plan-canvas {
+    flex: 1 1 auto;
+    position: relative;
+    min-width: 200px;
+    border-radius: $radius-md;
+    overflow: hidden;
+    @include glass;
+}
+
+.plan-controls {
+    flex: 0 0 320px;
+    max-width: 45%;
+    @include glass($bg: rgba(0, 0, 0, 0.2));
+    border-radius: $radius-md;
+    padding: $space-sm;
+    display: flex;
+    flex-direction: column;
+
+    @include screen-md {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+
+    &-inner {
+        display: flex;
+        flex-direction: column;
+        gap: $space-sm;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto;
+        gap: $space-xs + 2;
+        align-items: center;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+        padding: $space-sm;
+        border-radius: $radius-sm;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.2);
+        color: inherit;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
+            border-color: $color-primary;
+        }
+    }
+
+    textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    .toggle {
+        display: flex;
+        gap: $space-sm;
+        align-items: center;
+    }
+
+    .hint {
+        color: $color-text-dim;
+        font-size: 0.85rem;
+    }
+}
+
+.rooms-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs + 2;
+
+    .pill {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 10px;
+        border-radius: $radius-full;
+        font-size: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+.rooms-sizes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs + 2;
+    margin-top: $space-xs;
+
+    .size-row {
+        display: grid;
+        grid-template-columns: 1fr auto auto auto auto;
+        gap: $space-sm;
+        align-items: center;
+
+        label {
+            color: $color-text-dim;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        input[type="number"] {
+            width: 70px;
+        }
+
+        .unit {
+            color: $color-text-dim;
+            font-size: 0.8rem;
+        }
+    }
+}

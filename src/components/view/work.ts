@@ -1,55 +1,28 @@
 import { Works } from "../../data/works";
 
+/**
+ * Renders a single work detail page with Three.js mount and overlay panel.
+ * @param path - Work ID from the URL.
+ */
 export function work(path: number) {
   const data = Works[path];
   const details = data?.details ? `
-    <div id="work-details-overlay" class="work-details" style="
-      position: absolute; 
-      bottom: 20px; 
-      left: 20px; 
-      background: rgba(0,0,0,0.8); 
-      color: white; 
-      padding: 20px; 
-      border-radius: 8px; 
-      max-width: 400px; 
-      z-index: 10;
-      pointer-events: auto;
-      transition: opacity 0.3s ease;
-    ">
-      <h2 style="margin-top: 0; font-size: 1.5rem;">${data.title}</h2>
-      <p style="font-size: 1rem; margin-bottom: 10px;">${data.body}</p>
-      <hr style="border-color: rgba(255,255,255,0.2);">
-      <div style="font-size: 0.9rem; line-height: 1.5;">
+    <div id="work-details-overlay" class="work-details-overlay">
+      <h2 class="work-details-overlay__title">${data.title}</h2>
+      <p class="work-details-overlay__body">${data.body}</p>
+      <hr class="work-details-overlay__divider">
+      <div class="work-details-overlay__content">
         ${data.details}
       </div>
-      <small style="display:block; margin-top:10px; opacity:0.7; font-size: 0.8rem;">(Press 'h' to toggle details)</small>
+      <small class="work-details-overlay__hint">(Press 'h' to toggle details)</small>
     </div>
   ` : '';
 
   return `
-<section class="work-wrap" style="position: relative; height: 100vh; overflow: hidden;">
-  <div id="work" class="three-stage" aria-label="Three.js canvas mount" style="width: 100%; height: 100%;"></div>
+<section class="work-wrap work-wrap--fullscreen">
+  <div id="work" class="three-stage three-stage--fullscreen" aria-label="Three.js canvas mount"></div>
   
-  <button id="info-toggle" aria-label="Toggle details" style="
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    cursor: pointer;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s;
-  " onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+  <button id="info-toggle" class="info-toggle-btn" aria-label="Toggle details">
     ?
   </button>
 
@@ -57,3 +30,4 @@ export function work(path: number) {
 </section>
 `;
 }
+

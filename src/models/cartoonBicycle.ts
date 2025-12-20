@@ -14,6 +14,7 @@ type Options = { mount?: HTMLElement; preview?: boolean };
  * - Cozy pastel atmosphere
  */
 export const cartoonBicycle = (scene: THREE.Scene, opts: Options = {}) => {
+    console.log("[CartoonBicycle] Init", opts);
     const container = opts.mount ?? document.getElementById("work") ?? document.body;
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
 
@@ -23,10 +24,13 @@ export const cartoonBicycle = (scene: THREE.Scene, opts: Options = {}) => {
     // However, the rules say "ALL scenes must use resolved background".
     // Let's stick to the rule but maybe add a big soft sphere or backdrop if needed.
     // actually, let's follow the rule strictly for consistency, but we can add ambient warm light.
-    renderer.setClearColor(resolveThreeBgFromCss());
+    const bgColor = resolveThreeBgFromCss();
+    console.log(`[CartoonBicycle] Setting background color: ${bgColor}`);
+    renderer.setClearColor(bgColor);
 
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     const { clientWidth, clientHeight } = container;
+    console.log(`[CartoonBicycle] Container dimensions: ${clientWidth}x${clientHeight}`);
     renderer.setSize(clientWidth, clientHeight);
     container.appendChild(renderer.domElement);
 
@@ -97,7 +101,10 @@ export const cartoonBicycle = (scene: THREE.Scene, opts: Options = {}) => {
         // The wheels object from asset contains the groups
         wheels.back.rotation.z = rot;
         wheels.front.rotation.z = rot;
+
+        renderer.render(scene, camera);
     };
+    console.log("[CartoonBicycle] Animation loop defined");
 
 
     if (!opts.preview) {
@@ -121,6 +128,7 @@ export const cartoonBicycle = (scene: THREE.Scene, opts: Options = {}) => {
     }
 
     return () => {
+        console.log("[CartoonBicycle] Disposing scene");
         if (!opts.preview) {
             window.removeEventListener('resize', onResize);
             renderer.setAnimationLoop(null);
@@ -129,5 +137,6 @@ export const cartoonBicycle = (scene: THREE.Scene, opts: Options = {}) => {
         disposeBike();
         shadowGeo.dispose(); shadowMat.dispose();
         gradientMap.dispose();
+        console.log("[CartoonBicycle] Disposal complete");
     };
 };

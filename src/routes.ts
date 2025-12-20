@@ -6,11 +6,13 @@ import { initWorksGrid } from "./pages/works";
 import { disposeCardPreviews } from "./previews";
 import { aboutView } from "./pages/about";
 import { aboutScene } from "./models";
+import { initOverlayToggle } from "./lib/overlayToggle";
 const BASE = import.meta.env.BASE_URL || "/";
 
 let routeCleanup: (() => void) | null = null;
 
 export function renderRoutes(path: string) {
+  console.log(`[Router] Navigation start: ${path}`);
   // Always dispose previous scenes and previews before rendering new route
   disposeActiveScene();
   disposeCardPreviews();
@@ -40,6 +42,7 @@ export function renderRoutes(path: string) {
     base = "";
   }
   const subPath = rest.join("/"); // e.g. "work-1";
+  console.log(`[Router] Normalized: ${normalized}, Base: ${base}, SubPath: ${subPath}`);
 
   if (active) active.classList.add("active");
   switch ("/" + base) {
@@ -50,33 +53,7 @@ export function renderRoutes(path: string) {
       main.innerHTML = workView(Number(subPath));
       if (Number(subPath) > 0) {
         createScene(Number(subPath))();
-
-        // Add 'h' key listener to toggle details
-        // Toggle logic for overlay
-        const toggleOverlay = () => {
-          const overlay = document.getElementById('work-details-overlay');
-          if (overlay) {
-            const isHidden = overlay.style.opacity === '0';
-            overlay.style.opacity = isHidden ? '1' : '0';
-            overlay.style.pointerEvents = isHidden ? 'auto' : 'none';
-          }
-        };
-
-        // UI Button Listener
-        const btn = document.getElementById('info-toggle');
-        if (btn) btn.addEventListener('click', toggleOverlay);
-
-        // Keyboard Listener
-        const onKeyDown = (e: KeyboardEvent) => {
-          if (e.key === 'h') toggleOverlay();
-        };
-        window.addEventListener('keydown', onKeyDown);
-
-        routeCleanup = () => {
-          if (btn) btn.removeEventListener('click', toggleOverlay);
-          window.removeEventListener('keydown', onKeyDown);
-        };
-
+        routeCleanup = initOverlayToggle();
       } else {
         initWorksGrid();
       }
@@ -89,9 +66,8 @@ export function renderRoutes(path: string) {
         setActiveCleanup(cleanup);
       }
       break;
-    default:
-      main.innerHTML = "<h2> 404 not Found</h2>";
   }
+  console.log(`[Router] Navigation end: ${path}`);
 }
 
 // Expose for dynamic navigation calls from modules that avoid cyclic imports

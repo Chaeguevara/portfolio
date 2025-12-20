@@ -1,0 +1,81 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+// -----------------------------------------------------------------------------
+// Base Elements
+// -----------------------------------------------------------------------------
+
+:root {
+    --three-bg: #{$three-bg-default};
+    color-scheme: light dark;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    padding-top: 96px;
+    background-color: $color-bg-dark;
+    color: $color-text-dark;
+    font-family: $font-sans;
+    font-size: $base-font-size;
+    line-height: $line-height-base;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+#app {
+    max-width: $container-max-width;
+    margin: 0 auto;
+    padding: 0 $space-md;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: $space-md;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: $space-sm;
+}
+
+a {
+    color: $color-link;
+    text-decoration: none;
+    transition: $transition-base;
+
+    &:hover {
+        color: $color-link-hover;
+    }
+}
+
+button {
+    @include m.interactive;
+    padding: $space-sm $space-lg;
+    border-radius: $radius-md;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: $glass-bg;
+    color: white;
+    font-weight: 600;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: $color-primary;
+    }
+}
+
+// Global Classes

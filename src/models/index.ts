@@ -1,18 +1,16 @@
-import { drawLines } from "./drawLine";
-export * from "./aboutScene";
-export * from "./pickingDemo";
-export * from "./gpuPickingDemo";
-export * from "./cartoonBicycle";
-export * from "./simpleTestScene"; // Export the test scene
-import { rotateBox } from "./rotateBox";
-import { orbitObject } from "./earthAndSun";
-import { materialsShowcase } from "./materialsShowcase";
-import planBuilder from "./planBuilder";
+/**
+ * @fileoverview Barrel exports for all Three.js scene modules.
+ * Uses consistent named re-export style for clarity.
+ */
 
-export {
-  drawLines,
-  rotateBox,
-  orbitObject,
-  materialsShowcase,
-  planBuilder,
-};
+// Scene modules (named re-exports)
+export { aboutScene } from "./aboutScene";
+export { pickingDemo } from "./pickingDemo";
+export { gpuPickingDemo } from "./gpuPickingDemo";
+export { cartoonBicycle } from "./cartoonBicycle";
+export { simpleTestScene } from "./simpleTestScene";
+export { drawLines } from "./drawLine";
+export { rotateBox } from "./rotateBox";
+export { orbitObject } from "./earthAndSun";
+export { materialsShowcase } from "./materialsShowcase";
+export { default as planBuilder } from "./planBuilder";

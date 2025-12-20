@@ -1,0 +1,459 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// -----------------------------------------------------------------------------
+// UI Components
+// -----------------------------------------------------------------------------
+
+// Navbar (Floating Apple-style Bar)
+nav {
+    position: fixed;
+    top: $space-md;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - #{$space-lg});
+    max-width: 800px; // More centered and compact
+    height: 52px;
+    @include glass($bg: rgba(0, 0, 0, 0.5), $blur: 24px);
+    border-radius: $radius-full;
+    z-index: 1000;
+    padding: 0 4px; // Tight padding for pill look
+    display: flex;
+    align-items: center;
+    justify-content: center; // Center everything for Apple look
+    gap: $space-lg;
+
+    .nav-brand {
+        display: none; // Minimalist: hide brand in floating nav if user prefers
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2px; // Tight gap
+
+        a {
+            padding: 0 $space-md;
+            height: 44px; // Consistent height
+            display: flex;
+            align-items: center;
+            border-radius: $radius-full;
+            color: $color-text-dim;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: -0.01em;
+            transition: $transition-base;
+
+            &:hover {
+                color: white;
+            }
+
+            &.active {
+                color: white;
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+    }
+
+    @include screen-sm {
+        max-width: calc(100% - #{$space-md});
+        height: 48px;
+        gap: $space-sm;
+
+        .nav-links {
+            a {
+                padding: 0 $space-sm;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}
+
+// Work Grid & Cards
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: $space-lg;
+    margin-top: $space-xl;
+
+    @include screen-sm {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    @include glass($bg: rgba(255, 255, 255, 0.02), $border: rgba(255, 255, 255, 0.06));
+    @include hover-lift($scale: 1.01, $lift: -8px);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: $transition-smooth;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    .card-preview {
+        aspect-ratio: 16 / 10;
+        background: #000;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .card-body {
+        padding: $space-lg;
+        text-align: left;
+
+        h5,
+        h2 {
+            font-size: 1.35rem;
+            margin-bottom: $space-xs;
+            color: white;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: $color-text-dim;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: $line-height-base;
+            font-weight: 400;
+        }
+    }
+}
+
+// Work Detail View
+.work-wrap {
+    padding: $space-lg 0;
+    min-height: calc(100vh - 96px);
+
+    &--fullscreen {
+        padding: 0;
+        height: calc(100vh - 96px); // Adjust for fixed navbar
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.three-stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--three-bg, #111);
+    border-radius: $radius-lg;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    &--fullscreen {
+        aspect-ratio: auto;
+        height: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+.work-details-overlay {
+    @include glass($bg: rgba(0, 0, 0, 0.4), $blur: 32px); // Ultra-deep blur
+    border-radius: $radius-lg;
+    position: absolute;
+    bottom: $space-lg;
+    left: $space-lg;
+    width: 420px;
+    max-width: calc(100% - #{$space-xl});
+    padding: $space-lg;
+    text-align: left;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.8s $transition-smooth;
+
+    h2 {
+        font-size: 2.2rem;
+        color: white;
+        letter-spacing: -0.04em;
+        margin-bottom: $space-sm;
+    }
+
+    p {
+        color: $color-text-dim;
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+
+    &__divider {
+        border: none;
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: $space-md 0;
+    }
+
+    &__hint {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.7rem;
+        font-family: $font-sans;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}
+
+.info-toggle-btn {
+    @include glass($blur: 8px);
+    @include interactive;
+    border-radius: $radius-full;
+    width: 48px;
+    height: 48px;
+    @include flex-center;
+    font-size: 1.5rem;
+    top: $space-lg;
+    right: $space-lg;
+
+    &:hover {
+        background: white;
+        color: black;
+        transform: scale(1.1);
+    }
+}
+
+// Hero & Landing Sections
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: $space-xl $space-md;
+
+    &__content {
+        max-width: 800px;
+    }
+
+    &__title {
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        line-height: 1.1;
+        margin-bottom: $space-md;
+        letter-spacing: -0.05em;
+    }
+
+    &__accent {
+        color: $color-link;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    &__subtitle {
+        font-size: clamp(1.1rem, 3vw, 1.4rem);
+        color: $color-text-dim;
+        max-width: 600px;
+        margin: 0 auto $space-lg;
+        line-height: 1.4;
+    }
+
+    &__actions {
+        display: flex;
+        gap: $space-md;
+        justify-content: center;
+
+        @include screen-sm {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+}
+
+// Features Grid (Home)
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $space-xl;
+    padding: $space-xl 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    @include screen-md {
+        grid-template-columns: 1fr;
+        gap: $space-lg;
+    }
+
+    .feature-card {
+        h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: $color-text-dim;
+            margin-bottom: $space-sm;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: white;
+        }
+    }
+}
+
+// About Page Specifics
+.about-hero {
+    height: 50vh;
+    position: relative;
+    margin-bottom: $space-xl;
+    border-radius: $radius-lg;
+    overflow: hidden;
+
+    &__scene {
+        position: absolute;
+        inset: 0;
+        background: $color-bg-dark;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 10;
+        height: 100%;
+        @include flex-center;
+        flex-direction: column;
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: $space-xs;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: $color-text-dim;
+        }
+    }
+}
+
+// Timeline
+.timeline-container {
+    max-width: 800px;
+    margin: 0 auto $space-xl;
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: $space-xl;
+        text-align: center;
+    }
+}
+
+.timeline {
+    position: relative;
+    padding-left: $space-xl;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    &-item {
+        position: relative;
+        margin-bottom: $space-xl;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: calc(-#{$space-xl} - 4px);
+            top: 10px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    &-year {
+        position: absolute;
+        left: -#{$space-xl * 1.5};
+        top: 4px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: $color-text-dim;
+        transform: rotate(-90deg);
+        transform-origin: center;
+
+        @include screen-sm {
+            position: relative;
+            transform: none;
+            left: 0;
+            margin-bottom: $space-sm;
+        }
+    }
+
+    &-role {
+        color: $color-link;
+        font-weight: 500;
+        font-size: 0.9rem;
+        margin-bottom: $space-md;
+    }
+
+    .timeline-content {
+        padding: $space-lg;
+
+        ul {
+            padding-left: 1.2rem;
+            margin: 0;
+
+            li {
+                color: $color-text-dim;
+                font-size: 0.95rem;
+                margin-bottom: $space-sm;
+                line-height: 1.4;
+            }
+        }
+    }
+}
+
+// Buttons
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 32px;
+    height: 52px;
+    border-radius: $radius-full;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: $transition-base;
+    text-decoration: none;
+
+    &--primary {
+        background: white;
+        color: black;
+
+        &:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    }
+
+    &--secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+    }
+}
+
+// Animations
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
