@@ -14,7 +14,7 @@ export function work(path: number) {
       <div class="work-details-overlay__content">
         ${data.details}
       </div>
-      <small class="work-details-overlay__hint">(Press 'h' to toggle details)</small>
+      <small class="work-details-overlay__hint">(Press 'h' or 'i' button to toggle details)</small>
     </div>
   ` : '';
 
@@ -23,7 +23,7 @@ export function work(path: number) {
   <div id="work" class="three-stage three-stage--fullscreen" aria-label="Three.js canvas mount"></div>
   
   <button id="info-toggle" class="info-toggle-btn" aria-label="Toggle details">
-    ?
+    i
   </button>
 
   ${details}

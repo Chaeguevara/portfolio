@@ -199,20 +199,31 @@ nav {
 }
 
 .info-toggle-btn {
-    @include glass($blur: 8px);
-    @include interactive;
-    border-radius: $radius-full;
-    width: 48px;
-    height: 48px;
-    @include flex-center;
-    font-size: 1.5rem;
+    position: absolute;
     top: $space-lg;
     right: $space-lg;
+    z-index: 100;
+    @include glass($bg: rgba(255, 255, 255, 0.1), $blur: 12px);
+    @include interactive;
+    border-radius: $radius-full;
+    width: 44px;
+    height: 44px;
+    @include flex-center;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 600;
 
     &:hover {
         background: white;
         color: black;
-        transform: scale(1.1);
+        transform: scale(1.05);
+    }
+
+    @include screen-sm {
+        width: 40px;
+        height: 40px;
+        top: $space-md;
+        right: $space-md;
     }
 }
 
