@@ -18,6 +18,19 @@ export function work(path: number) {
     </div>
   ` : '';
 
+  // Portfolio-style description content
+  const portfolioContent = data?.details ? `
+    <section class="work-description">
+      <div class="work-description__header">
+        <h1>${data.title}</h1>
+        <p class="work-description__subtitle">${data.body}</p>
+      </div>
+      <div class="work-description__content card">
+        ${data.details}
+      </div>
+    </section>
+  ` : '';
+
   return `
 <section class="work-wrap work-wrap--fullscreen">
   <div id="work" class="three-stage three-stage--fullscreen" aria-label="Three.js canvas mount"></div>
@@ -28,6 +41,8 @@ export function work(path: number) {
 
   ${details}
 </section>
+
+${portfolioContent}
 `;
 }
 

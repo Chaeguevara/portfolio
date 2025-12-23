@@ -1,6 +1,13 @@
 import { renderRoutes } from "./routes";
+import { initTheme, toggleTheme } from "./lib/theme";
 import "./styles/main.scss";
 const BASE = import.meta.env.BASE_URL || "/";
+
+initTheme();
+
+document.getElementById('theme-toggle')?.addEventListener('click', () => {
+  toggleTheme();
+});
 
 renderRoutes(location.pathname);
 

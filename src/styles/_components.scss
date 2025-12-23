@@ -37,19 +37,19 @@ nav {
             display: flex;
             align-items: center;
             border-radius: $radius-full;
-            color: $color-text-dim;
+            color: var(--nav-text);
             font-weight: 500;
             font-size: 0.85rem;
             letter-spacing: -0.01em;
             transition: $transition-base;
 
             &:hover {
-                color: white;
+                color: var(--nav-text-hover);
             }
 
             &.active {
-                color: white;
-                background: rgba(255, 255, 255, 0.08);
+                color: var(--nav-text-hover);
+                background: var(--nav-bg-active);
             }
         }
     }
@@ -105,7 +105,7 @@ nav {
         h2 {
             font-size: 1.35rem;
             margin-bottom: $space-xs;
-            color: white;
+            color: var(--text-color);
             font-weight: 600;
             letter-spacing: -0.02em;
         }
@@ -171,7 +171,7 @@ nav {
 
     h2 {
         font-size: 2.2rem;
-        color: white;
+        color: var(--text-color);
         letter-spacing: -0.04em;
         margin-bottom: $space-sm;
     }
@@ -210,12 +210,12 @@ nav {
     height: 44px;
     @include flex-center;
     font-size: 1.2rem;
-    color: white;
+    color: var(--text-color);
     font-weight: 600;
 
     &:hover {
-        background: white;
-        color: black;
+        background: var(--text-color);
+        color: var(--bg-color);
         transform: scale(1.05);
     }
 
@@ -224,6 +224,86 @@ nav {
         height: 40px;
         top: $space-md;
         right: $space-md;
+    }
+}
+
+// Portfolio-style Work Description
+.work-description {
+    max-width: 900px;
+    margin: $space-xl auto;
+    padding: 0 $space-lg;
+
+    &__header {
+        text-align: center;
+        margin-bottom: $space-xl;
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: $space-md;
+            letter-spacing: -0.03em;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: $color-text-dim;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    }
+
+    &__content {
+        padding: $space-xl;
+
+        h3 {
+            font-size: 1.5rem;
+            margin-top: $space-lg;
+            margin-bottom: $space-md;
+            color: $color-link;
+            letter-spacing: -0.02em;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: $color-text-dim;
+            margin-bottom: $space-md;
+        }
+
+        pre {
+            background: var(--code-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: $radius-md;
+            padding: $space-md;
+            overflow-x: auto;
+            margin: $space-md 0;
+
+            code {
+                font-family: $font-mono;
+                font-size: 0.85rem;
+                line-height: 1.5;
+                color: var(--text-color);
+            }
+        }
+
+        code {
+            font-family: $font-mono;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+    }
+
+    @include screen-sm {
+        padding: 0 $space-md;
+
+        &__content {
+            padding: $space-lg;
+        }
     }
 }
 
@@ -298,7 +378,7 @@ nav {
         p {
             font-size: 1rem;
             line-height: 1.5;
-            color: white;
+            color: var(--text-color);
         }
     }
 }
@@ -360,7 +440,7 @@ nav {
         top: 0;
         bottom: 0;
         width: 1px;
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--timeline-line);
     }
 
     &-item {
@@ -375,8 +455,8 @@ nav {
             width: 9px;
             height: 9px;
             border-radius: 50%;
-            background: white;
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+            background: var(--timeline-dot);
+            box-shadow: 0 0 0 4px var(--timeline-shadow);
         }
     }
 
@@ -435,8 +515,8 @@ nav {
     text-decoration: none;
 
     &--primary {
-        background: white;
-        color: black;
+        background: var(--btn-primary-bg);
+        color: var(--btn-primary-text);
 
         &:hover {
             opacity: 0.9;
@@ -445,12 +525,12 @@ nav {
     }
 
     &--secondary {
-        background: rgba(255, 255, 255, 0.08);
-        color: white;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: var(--btn-secondary-bg);
+        color: var(--btn-secondary-text);
+        border: 1px solid var(--btn-secondary-border);
 
         &:hover {
-            background: rgba(255, 255, 255, 0.12);
+            background: var(--nav-bg-active);
             transform: translateY(-2px);
         }
     }
@@ -466,5 +546,47 @@ nav {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}// Certifications Section
+.certifications-container {
+    max-width: 1000px;
+    margin: $space-xl auto;
+    padding: 0 $space-lg;
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: $space-lg;
+        text-align: center;
+        color: var(--text-color);
+    }
+}
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $space-lg;
+    padding-bottom: $space-xl;
+}
+
+.cert-card {
+    padding: $space-lg;
+
+    h4 {
+        font-size: 1.1rem;
+        margin-bottom: $space-md;
+        color: var(--link-color);
+        letter-spacing: -0.01em;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 1.2rem;
+
+        li {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            margin-bottom: $space-xs;
+            line-height: 1.4;
+        }
     }
 }

@@ -5,17 +5,17 @@ export const AppConfig = {
   threeBackgroundCssVar: '--three-bg',
 };
 
-export function resolveThreeBgFromCss(): number {
+export function resolveThreeBgFromCss(): string | number {
   try {
     const varName = AppConfig.threeBackgroundCssVar;
     const css = getComputedStyle(document.documentElement).getPropertyValue(varName);
     if (!css) return AppConfig.threeBackground;
-    // parse #RRGGBB
-    const hex = css.trim();
-    if (/^#?[0-9a-fA-F]{6}$/.test(hex)) {
-      const clean = hex.startsWith('#') ? hex.slice(1) : hex;
-      return parseInt(clean, 16);
-    }
+
+    // Return the string directly (e.g., "hsl(120, 15%, 12%)" or "rgb(20, 20, 20)")
+    // Three.js Color constructor handles standard CSS color strings.
+    const clean = css.trim();
+    if (clean) return clean;
+
     return AppConfig.threeBackground;
   } catch {
     return AppConfig.threeBackground;

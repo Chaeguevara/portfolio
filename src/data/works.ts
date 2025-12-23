@@ -8,33 +8,118 @@ export const Works: Record<number, {
   animation: (scene: Scene, opts?: AnimOpts) => (() => void) | Promise<() => void>;
 }> = {
   1: {
-    title: "helo world",
-    body: "this is the new world",
-    details: "A simple rotating box to demonstrate the basic Three.js setup: Scene, Camera, Renderer, and an Animation Loop.",
+    title: "Rotating Box",
+    body: "Your first step into Three.js",
+    details: `
+      <h3>Purpose</h3>
+      <p>Demonstrates the fundamental Three.js setup: Scene, Camera, Renderer, and an Animation Loop.</p>
+      
+      <h3>How it works</h3>
+      <p>The core loop updates the box's rotation every frame:</p>
+      <pre><code>mesh.rotation.x += 0.01;
+mesh.rotation.y += 0.01;</code></pre>
+      
+      <h3>Interaction</h3>
+      <p>Watch the box rotate continuously in 3D space.</p>
+    `,
     animation: (scene, opts) => rotateBox(scene, opts)
   },
   2: {
-    title: "My next World",
-    body: "Card is making a world ",
-    details: "A demonstration of drawing lines in 3D space. This can be used for visualizing paths, connections, or wireframe models.",
+    title: "Line Drawing",
+    body: "Drawing dynamic lines in 3D space",
+    details: `
+      <h3>Purpose</h3>
+      <p>Demonstrates how to visualize paths, connections, or wireframe models using Three.js LineBasicMaterial.</p>
+      
+      <h3>How it works</h3>
+      <p>Define vertices in 3D space and connect them:</p>
+      <pre><code>const points = [];
+points.push(new THREE.Vector3(-10, 0, 0));
+points.push(new THREE.Vector3(0, 10, 0));
+points.push(new THREE.Vector3(10, 0, 0));
+const geometry = new THREE.BufferGeometry().setFromPoints(points);
+const line = new THREE.Line(geometry, material);</code></pre>
+      
+      <h3>Interaction</h3>
+      <p>Observe the lines forming geometric patterns in 3D space.</p>
+    `,
     animation: (scene, opts) => drawLines(scene, opts)
   },
   3: {
-    title: "Orbig Galxy",
-    body: "Orbiting Galaxy",
-    details: "A simulation of a solar system with a sun, earth, and moon. It demonstrates object hierarchy (grouping) and relative transformations.",
+    title: "Orbital System",
+    body: "Hierarchical transformations in 3D",
+    details: `
+      <h3>Purpose</h3>
+      <p>Simulates a solar system with sun, earth, and moon to demonstrate object hierarchy (grouping) and relative transformations.</p>
+      
+      <h3>How it works</h3>
+      <p>Objects are nested in groups, inheriting parent transformations:</p>
+      <pre><code>// Earth orbits sun
+sunGroup.add(earthGroup);
+earthGroup.position.x = 10;
+earthGroup.rotation.y += 0.01;
+
+// Moon orbits earth
+earthGroup.add(moonGroup);
+moonGroup.position.x = 2;
+moonGroup.rotation.y += 0.03;</code></pre>
+      
+      <h3>Interaction</h3>
+      <p>Watch the nested rotation creating realistic orbital mechanics.</p>
+    `,
     animation: (scene, opts) => orbitObject(scene, opts)
   },
   4: {
     title: "Materials Gallery",
-    body: "A quick tour of common Three.js materials",
-    details: "Showcases different material types in Three.js (Basic, Lambert, Phong, Standard) and how they react to light.",
+    body: "Exploring Three.js materials and lighting",
+    details: `
+      <h3>Purpose</h3>
+      <p>Showcases different material types (Basic, Lambert, Phong, Standard) and how they react to light.</p>
+      
+      <h3>How it works</h3>
+      <p>Each material responds differently to light:</p>
+      <pre><code>// MeshBasicMaterial: No lighting
+const basicMat = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+
+// MeshLambertMaterial: Diffuse lighting
+const lambertMat = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+
+// MeshPhongMaterial: Specular highlights
+const phongMat = new THREE.MeshPhongMaterial({ 
+  color: 0x0000ff, 
+  shininess: 100 
+});</code></pre>
+      
+      <h3>Interaction</h3>
+      <p>Compare how each material reacts to the scene's lighting.</p>
+    `,
     animation: (scene, opts) => materialsShowcase(scene, opts)
   },
   5: {
     title: "2D Plan Builder",
-    body: "PoC: define room relations and see a 2D layout with optional arrows.",
-    details: "A Proof of Concept for a 2D layout engine. It uses physics-based simulation to arrange nodes (rooms) and draws connections between them.",
+    body: "Physics-based layout engine for architectural planning",
+    details: `
+      <h3>Purpose</h3>
+      <p>A Proof of Concept for a 2D layout engine that uses physics-based simulation to arrange nodes (rooms) and draws connections between them.</p>
+      
+      <h3>How it works</h3>
+      <p>Uses force-directed graph layout:</p>
+      <pre><code>// Nodes repel each other
+for (let node of nodes) {
+  const repulsion = calculateRepulsion(node, others);
+  node.velocity.add(repulsion);
+}
+
+// Connected nodes attract
+for (let edge of edges) {
+  const attraction = calculateAttraction(edge.source, edge.target);
+  edge.source.velocity.add(attraction);
+  edge.target.velocity.sub(attraction);
+}</code></pre>
+      
+      <h3>Interaction</h3>
+      <p>Watch the rooms automatically organize themselves based on their relationships.</p>
+    `,
     animation: (scene, opts) => planBuilder(scene, opts)
   },
   6: {

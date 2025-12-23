@@ -2,36 +2,74 @@
 // Design Tokens & Variables
 // -----------------------------------------------------------------------------
 
-// Colors (Sophisticated Apple Neutrals)
-$color-bg-dark: hsl(240, 10%, 4%); // Deep Obsidian
-$color-bg-light: hsl(0, 0%, 98%);
-$color-text-dark: hsl(0, 0%, 100%);
-$color-text-dim: hsl(240, 5%, 70%); // Soft Gray
-$color-link: hsl(210, 100%, 50%); // Apple Blue
-$color-link-hover: hsl(210, 100%, 65%);
+:root {
+    // Dark Theme Defaults (Default)
+    --bg-color: hsl(240, 10%, 4%);
+    --bg-light: hsl(240, 10%, 6%);
+    --text-color: hsl(0, 0%, 100%);
+    --text-dim: hsl(240, 5%, 70%);
+    --link-color: hsl(210, 100%, 50%);
+    --three-bg: hsl(120, 10%, 8%);
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --card-bg: rgba(255, 255, 255, 0.02);
+
+    --code-bg: rgba(0, 0, 0, 0.3);
+
+    // Timeline
+    --timeline-line: rgba(255, 255, 255, 0.1);
+    --timeline-dot: #ffffff;
+    --timeline-shadow: rgba(255, 255, 255, 0.1);
+
+    // Light Theme Overrides
+    &[data-theme="light"] {
+        --bg-color: hsl(0, 0%, 98%);
+        --bg-light: hsl(0, 0%, 100%);
+        --text-color: hsl(240, 10%, 10%);
+        --text-dim: hsl(240, 5%, 40%);
+        --link-color: hsl(210, 100%, 45%);
+        --three-bg: hsl(120, 5%, 90%); // Light distinct background
+        --glass-bg: rgba(0, 0, 0, 0.04);
+        --glass-border: rgba(0, 0, 0, 0.08);
+        --card-bg: rgba(0, 0, 0, 0.02);
+
+        // Timeline Light
+        --timeline-line: rgba(0, 0, 0, 0.1);
+        --timeline-dot: hsl(240, 10%, 10%);
+        --timeline-shadow: rgba(0, 0, 0, 0.1);
+    }
+}
+
+// SCSS maps to CSS Variables for usage in styles
+$color-bg-dark: var(--bg-color);
+$color-bg-light: var(--bg-light);
+$color-text-dark: var(--text-color);
+$color-text-dim: var(--text-dim);
+$color-link: var(--link-color);
+$color-link-hover: hsl(210, 100%, 65%); // Keep static or make var if needed
 
 // Vibrant Accents (Clean & Pure)
-$color-primary: hsl(0, 0%, 100%); // Pure White
-$color-accent: hsl(210, 100%, 50%);
+$color-primary: var(--text-color);
+$color-accent: var(--link-color);
 $color-success: hsl(140, 50%, 50%);
 
 // Three.js Defaults
-$three-bg-default: hsl(240, 10%, 6%);
+$three-bg-default: var(--three-bg);
 
-// Glassmorphism (Sophisticated Frost)
-$glass-bg: rgba(255, 255, 255, 0.04);
-$glass-border: rgba(255, 255, 255, 0.08);
+// Glassmorphism
+$glass-bg: var(--glass-bg);
+$glass-border: var(--glass-border);
 $glass-blur: 20px;
 
 // Layout & Spacing
-$container-max-width: 1200px; // Slightly tighter
+$container-max-width: 1200px;
 $space-xs: 6px;
 $space-sm: 12px;
 $space-md: 20px;
 $space-lg: 40px;
 $space-xl: 80px;
 
-// Border Radii (Apple Continuous Curves)
+// Border Radii
 $radius-sm: 10px;
 $radius-md: 18px;
 $radius-lg: 32px;
@@ -40,9 +78,9 @@ $radius-full: 9999px;
 // Typography Hierarchy
 $font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 $font-mono: 'SF Mono', 'JetBrains Mono', monospace;
-$base-font-size: 17px; // Apple standard base
+$base-font-size: 17px;
 $line-height-base: 1.5;
 
-// Transitions (Organic Motion)
+// Transitions
 $transition-base: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 $transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
