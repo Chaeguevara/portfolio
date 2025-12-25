@@ -5,7 +5,7 @@ import { initCardPreviews } from "../previews";
 const BASE = import.meta.env.BASE_URL || "/";
 export function workView(subPath: number) {
   console.log(subPath);
-  if (subPath){
+  if (subPath) {
     return work(subPath);
   }
   console.log("workview");
@@ -17,7 +17,7 @@ export function workView(subPath: number) {
 }
 
 export function initWorksGrid() {
-  const entries = Object.entries(Works).sort((a,b)=> Number(a[0]) - Number(b[0]));
+  const entries = Object.entries(Works).sort((a, b) => Number(b[0]) - Number(a[0]));
   const PAGE_SIZE = 9; // 3 rows x 3 columns
   let offset = 0;
   const grid = document.getElementById('cards-grid');
@@ -25,11 +25,11 @@ export function initWorksGrid() {
   if (!grid || !sentinel) return;
 
   const bindNavigation = (scope: ParentNode) => {
-    scope.querySelectorAll('.card[data-href]:not([data-nav-bound])').forEach((card)=>{
-      (card as HTMLElement).setAttribute('data-nav-bound','1');
-      card.addEventListener('click', ()=>{
+    scope.querySelectorAll('.card[data-href]:not([data-nav-bound])').forEach((card) => {
+      (card as HTMLElement).setAttribute('data-nav-bound', '1');
+      card.addEventListener('click', () => {
         const path = (card as HTMLElement).getAttribute('data-href');
-        if (path){
+        if (path) {
           history.pushState({}, '', path);
           const anyWin = window as any;
           if (typeof anyWin.renderRoutes === 'function') {
@@ -56,7 +56,7 @@ export function initWorksGrid() {
 
   appendNext();
 
-  const observer = new IntersectionObserver((entriesObs)=>{
+  const observer = new IntersectionObserver((entriesObs) => {
     for (const entry of entriesObs) {
       if (entry.isIntersecting) {
         const hasMore = appendNext();

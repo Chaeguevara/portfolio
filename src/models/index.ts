@@ -14,3 +14,4 @@ export { rotateBox } from "./rotateBox";
 export { orbitObject } from "./earthAndSun";
 export { materialsShowcase } from "./materialsShowcase";
 export { default as planBuilder } from "./planBuilder";
+export { osmCityBuilder } from "./osmCityBuilder";

@@ -10,6 +10,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.27.0",
+    "@types/geojson": "^7946.0.16",
     "eslint": "^9.27.0",
     "globals": "^16.1.0",
     "sass": "^1.97.1",
@@ -20,6 +21,8 @@
   "dependencies": {
     "@types/three": "^0.176.0",
     "lil-gui": "^0.20.0",
-    "three": "^0.176.0"
+    "three": "^0.176.0",
+    "three-bvh-csg": "^0.0.17",
+    "three-mesh-bvh": "^0.9.4"
   }
 }

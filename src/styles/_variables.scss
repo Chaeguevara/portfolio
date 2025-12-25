@@ -16,6 +16,10 @@
 
     --code-bg: rgba(0, 0, 0, 0.3);
 
+    &[data-theme="dark"] {
+        --three-bg: hsl(120, 10%, 8%);
+    }
+
     // Timeline
     --timeline-line: rgba(255, 255, 255, 0.1);
     --timeline-dot: #ffffff;

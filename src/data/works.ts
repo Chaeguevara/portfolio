@@ -171,5 +171,35 @@ for (let edge of edges) {
     body: "Verifying asset loading architecture.",
     details: "A red box loaded from <code>src/models/assets/simpleBox.ts</code> used in <code>simpleTestScene.ts</code>.",
     animation: (scene, opts) => import("../models/simpleTestScene").then(m => m.simpleTestScene(scene, opts))
+  },
+  10: {
+    title: "OSM City Builder",
+    body: "Generate 3D cities from OpenStreetMap data with STL export",
+    details: `
+      <h3>Purpose</h3>
+      <p>Automatically generate 3D city models from real-world OpenStreetMap data. Features address geocoding, building visualization, and STL export for 3D printing.</p>
+      
+      <h3>How it works</h3>
+      <p>Uses Nominatim API for geocoding and Overpass API to fetch building footprints:</p>
+      <pre><code>// 1. Geocode address to coordinates
+const {lat, lon} = await geocode("1600 Amphitheatre Parkway");
+
+// 2. Fetch buildings from OSM
+const buildings = await fetchBuildingsInRadius(lat, lon, 500);
+
+// 3. Generate 3D meshes with ExtrudeGeometry
+const shape = new THREE.Shape(polygonPoints);
+const geometry = new THREE.ExtrudeGeometry(shape, {depth: height});</code></pre>
+      
+      <h3>Interaction</h3>
+      <ul>
+        <li><strong>Click</strong> on buildings to highlight them in pastel red.</li>
+        <li>Press <strong>'e'</strong> to export the entire scene to STL format for 3D printing.</li>
+        <li>Use mouse to orbit and zoom around the city.</li>
+      </ul>
+      
+      <p><strong>Default Location</strong>: Google HQ, Mountain View, CA</p>
+    `,
+    animation: (scene, opts) => import("../models/osmCityBuilder").then(m => m.osmCityBuilder(scene, opts))
   }
 };

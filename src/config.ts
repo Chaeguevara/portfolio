@@ -1,6 +1,6 @@
 export const AppConfig = {
   // Standard green background for all Three.js scenes
-  threeBackground: 0x80ff80,
+  threeBackground: 0x0a140a, // Darker green fallback
   // CSS variable fallback (kept in sync with :root --three-bg)
   threeBackgroundCssVar: '--three-bg',
 };
