@@ -5,8 +5,10 @@ import { createScene, disposeActiveScene, setActiveCleanup } from "./scene";
 import { initWorksGrid } from "./pages/works";
 import { disposeCardPreviews } from "./previews";
 import { aboutView } from "./pages/about";
+import { designerView } from "./pages/designer";
 import { aboutScene } from "./models";
 import { initOverlayToggle } from "./lib/overlayToggle";
+import { initDesigner } from "./lib/designerEngine";
 const BASE = import.meta.env.BASE_URL || "/";
 
 let routeCleanup: (() => void) | null = null;
@@ -65,6 +67,10 @@ export function renderRoutes(path: string) {
         const cleanup = aboutScene(new THREE.Scene(), { mount: aboutContainer });
         setActiveCleanup(cleanup);
       }
+      break;
+    case "/designer":
+      main.innerHTML = designerView();
+      routeCleanup = initDesigner();
       break;
   }
   console.log(`[Router] Navigation end: ${path}`);

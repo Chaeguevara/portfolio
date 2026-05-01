@@ -3,58 +3,96 @@
 // -----------------------------------------------------------------------------
 
 :root {
-    // Dark Theme Defaults (Default)
-    --bg-color: hsl(240, 10%, 4%);
-    --bg-light: hsl(240, 10%, 6%);
-    --text-color: hsl(0, 0%, 100%);
-    --text-dim: hsl(240, 5%, 70%);
-    --link-color: hsl(210, 100%, 50%);
-    --three-bg: hsl(120, 10%, 8%);
-    --glass-bg: rgba(255, 255, 255, 0.04);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    // Dark Theme Defaults
+    --bg-color: hsl(220, 15%, 5%);
+    --bg-light: hsl(220, 12%, 8%);
+    --bg-surface: hsl(220, 12%, 10%);
+    --text-color: hsl(0, 0%, 95%);
+    --text-dim: hsl(220, 10%, 55%);
+    --text-muted: hsl(220, 8%, 40%);
+    --accent: hsl(200, 80%, 55%);
+    --accent-soft: hsl(200, 60%, 25%);
+    --link-color: hsl(200, 80%, 55%);
+    --three-bg: hsl(220, 15%, 6%);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.06);
     --card-bg: rgba(255, 255, 255, 0.02);
+    --card-bg-hover: rgba(255, 255, 255, 0.05);
+    --code-bg: rgba(0, 0, 0, 0.4);
+    --divider: rgba(255, 255, 255, 0.06);
+    --tag-bg: rgba(255, 255, 255, 0.06);
+    --tag-text: hsl(200, 60%, 70%);
 
-    --code-bg: rgba(0, 0, 0, 0.3);
+    // Nav
+    --nav-text: rgba(255, 255, 255, 0.7);
+    --nav-text-hover: rgba(255, 255, 255, 1);
+    --nav-bg-active: rgba(255, 255, 255, 0.08);
 
-    &[data-theme="dark"] {
-        --three-bg: hsl(120, 10%, 8%);
-    }
+    // Buttons
+    --btn-primary-bg: hsl(0, 0%, 95%);
+    --btn-primary-text: hsl(220, 15%, 5%);
+    --btn-secondary-bg: transparent;
+    --btn-secondary-text: hsl(0, 0%, 90%);
+    --btn-secondary-border: rgba(255, 255, 255, 0.15);
 
     // Timeline
-    --timeline-line: rgba(255, 255, 255, 0.1);
-    --timeline-dot: #ffffff;
-    --timeline-shadow: rgba(255, 255, 255, 0.1);
+    --timeline-line: rgba(255, 255, 255, 0.08);
+    --timeline-dot: hsl(200, 80%, 55%);
+    --timeline-shadow: rgba(100, 180, 255, 0.15);
+
+    &[data-theme="dark"] {
+        --three-bg: hsl(220, 15%, 6%);
+    }
 
     // Light Theme Overrides
     &[data-theme="light"] {
-        --bg-color: hsl(0, 0%, 98%);
+        --bg-color: hsl(210, 20%, 98%);
         --bg-light: hsl(0, 0%, 100%);
-        --text-color: hsl(240, 10%, 10%);
-        --text-dim: hsl(240, 5%, 40%);
-        --link-color: hsl(210, 100%, 45%);
-        --three-bg: hsl(120, 5%, 90%); // Light distinct background
-        --glass-bg: rgba(0, 0, 0, 0.04);
-        --glass-border: rgba(0, 0, 0, 0.08);
-        --card-bg: rgba(0, 0, 0, 0.02);
+        --bg-surface: hsl(210, 15%, 96%);
+        --text-color: hsl(220, 20%, 12%);
+        --text-dim: hsl(220, 10%, 45%);
+        --text-muted: hsl(220, 8%, 65%);
+        --accent: hsl(210, 90%, 45%);
+        --accent-soft: hsl(210, 60%, 90%);
+        --link-color: hsl(210, 90%, 45%);
+        --three-bg: hsl(210, 10%, 94%);
+        --glass-bg: rgba(255, 255, 255, 0.6);
+        --glass-border: rgba(0, 0, 0, 0.06);
+        --card-bg: rgba(255, 255, 255, 0.8);
+        --card-bg-hover: rgba(255, 255, 255, 1);
+        --code-bg: rgba(0, 0, 0, 0.04);
+        --divider: rgba(0, 0, 0, 0.06);
+        --tag-bg: hsl(210, 60%, 95%);
+        --tag-text: hsl(210, 70%, 40%);
+
+        // Nav light
+        --nav-text: rgba(0, 0, 0, 0.6);
+        --nav-text-hover: rgba(0, 0, 0, 0.9);
+        --nav-bg-active: rgba(0, 0, 0, 0.05);
+
+        // Buttons light
+        --btn-primary-bg: hsl(220, 20%, 12%);
+        --btn-primary-text: hsl(0, 0%, 98%);
+        --btn-secondary-bg: transparent;
+        --btn-secondary-text: hsl(220, 20%, 12%);
+        --btn-secondary-border: rgba(0, 0, 0, 0.15);
 
         // Timeline Light
-        --timeline-line: rgba(0, 0, 0, 0.1);
-        --timeline-dot: hsl(240, 10%, 10%);
-        --timeline-shadow: rgba(0, 0, 0, 0.1);
+        --timeline-line: rgba(0, 0, 0, 0.08);
+        --timeline-dot: hsl(210, 90%, 45%);
+        --timeline-shadow: rgba(0, 100, 200, 0.15);
     }
 }
 
-// SCSS maps to CSS Variables for usage in styles
+// SCSS aliases
 $color-bg-dark: var(--bg-color);
 $color-bg-light: var(--bg-light);
 $color-text-dark: var(--text-color);
 $color-text-dim: var(--text-dim);
 $color-link: var(--link-color);
-$color-link-hover: hsl(210, 100%, 65%); // Keep static or make var if needed
-
-// Vibrant Accents (Clean & Pure)
+$color-link-hover: var(--accent);
 $color-primary: var(--text-color);
-$color-accent: var(--link-color);
+$color-accent: var(--accent);
 $color-success: hsl(140, 50%, 50%);
 
 // Three.js Defaults
@@ -76,15 +114,15 @@ $space-xl: 80px;
 // Border Radii
 $radius-sm: 10px;
 $radius-md: 18px;
-$radius-lg: 32px;
+$radius-lg: 24px;
 $radius-full: 9999px;
 
 // Typography Hierarchy
 $font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-$font-mono: 'SF Mono', 'JetBrains Mono', monospace;
-$base-font-size: 17px;
-$line-height-base: 1.5;
+$font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', monospace;
+$base-font-size: 16px;
+$line-height-base: 1.6;
 
 // Transitions
-$transition-base: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-$transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+$transition-base: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+$transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);

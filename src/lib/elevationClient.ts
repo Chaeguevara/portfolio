@@ -23,10 +23,13 @@ export async function fetchElevationGrid(
     gridSize: number = 20
 ): Promise<ElevationPoint[]> {
     console.log(`[Elevation] Fetching ${gridSize}x${gridSize} elevation grid`);
+    console.log(`[Elevation] Center: lat=${centerLat}, lon=${centerLon}, radius=${radius}m`);
 
     // Calculate bounding box (simple lat/lon approximation)
     const latDelta = (radius / 111320); // meters to degrees lat (approx)
     const lonDelta = (radius / (111320 * Math.cos(centerLat * Math.PI / 180))); // meters to degrees lon
+
+    console.log(`[Elevation] Grid bounds: lat[${(centerLat - latDelta).toFixed(6)}, ${(centerLat + latDelta).toFixed(6)}], lon[${(centerLon - lonDelta).toFixed(6)}, ${(centerLon + lonDelta).toFixed(6)}]`);
 
     const points: { latitude: number; longitude: number }[] = [];
 
@@ -44,10 +47,16 @@ export async function fetchElevationGrid(
     }
 
     try {
-        const response = await fetch('https://api.open-elevation.com/api/v1/lookup', {
+        // Use allorigins proxy with POST data
+        const apiUrl = 'https://api.open-elevation.com/api/v1/lookup';
+
+        // For POST requests, we need to use a different approach
+        // Let's try direct fetch first (open-elevation might support CORS)
+        const response = await fetch(apiUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({ locations: points })
         });

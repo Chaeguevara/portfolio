@@ -1,9 +1,11 @@
 import { renderRoutes } from "./routes";
 import { initTheme, toggleTheme } from "./lib/theme";
+import { initInProgressDropdown } from "./lib/inProgress";
 import "./styles/main.scss";
 const BASE = import.meta.env.BASE_URL || "/";
 
 initTheme();
+initInProgressDropdown();
 
 document.getElementById('theme-toggle')?.addEventListener('click', () => {
   toggleTheme();

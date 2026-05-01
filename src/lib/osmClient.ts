@@ -7,25 +7,24 @@ import type { FeatureCollection, Feature } from 'geojson';
 
 /**
  * Geocode an address or place name to coordinates using Nominatim.
+ * Uses allorigins CORS proxy for browser access.
  * @param query - Address or place name to geocode.
  * @returns Promise resolving to {lat, lon} coordinates.
  */
 export async function geocode(query: string): Promise<{ lat: number; lon: number }> {
     console.log(`[OSMClient] Geocoding: ${query}`);
-    const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
+    const nominatimUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
+    const url = `https://api.allorigins.win/get?url=${encodeURIComponent(nominatimUrl)}`;
 
     try {
-        const response = await fetch(url, {
-            headers: {
-                'User-Agent': 'Portfolio-OSM-City-Builder/1.0'
-            }
-        });
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`Geocoding failed: ${response.status}`);
         }
 
-        const data = await response.json();
+        const wrapper = await response.json();
+        const data = JSON.parse(wrapper.contents);
 
         if (!data || data.length === 0) {
             throw new Error(`No results found for: ${query}`);
@@ -58,8 +57,6 @@ export async function fetchBuildingsInRadius(
 ): Promise<FeatureCollection> {
     console.log(`[OSMClient] Fetching buildings around ${lat}, ${lon} (radius: ${radius}m)`);
 
-    const overpassUrl = 'https://overpass-api.de/api/interpreter';
-
     // Overpass QL query for buildings
     const query = `
     [out:json][timeout:25];
@@ -70,20 +67,19 @@ export async function fetchBuildingsInRadius(
     out geom;
   `;
 
+    // Use GET with encoded query through allorigins proxy
+    const overpassUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+    const url = `https://api.allorigins.win/get?url=${encodeURIComponent(overpassUrl)}`;
+
     try {
-        const response = await fetch(overpassUrl, {
-            method: 'POST',
-            body: query,
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
+        const response = await fetch(url);
 
         if (!response.ok) {
             throw new Error(`Overpass API failed: ${response.status}`);
         }
 
-        const data = await response.json();
+        const wrapper = await response.json();
+        const data = JSON.parse(wrapper.contents);
         console.log(`[OSMClient] Fetched ${data.elements?.length || 0} buildings`);
 
         // Convert OSM JSON to GeoJSON

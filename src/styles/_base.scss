@@ -17,7 +17,7 @@
 
 body {
     margin: 0;
-    padding-top: 96px;
+    padding-top: 80px;
     background-color: $color-bg-dark;
     color: $color-text-dark;
     font-family: $font-sans;
@@ -31,27 +31,22 @@ body {
 #app {
     max-width: $container-max-width;
     margin: 0 auto;
-    padding: 0 $space-md;
+    padding: 0 $space-lg;
+
+    @include m.screen-sm {
+        padding: 0 $space-md;
+    }
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4, h5 {
     margin: 0;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: $space-md;
-}
-
-h2 {
-    font-size: 2rem;
-    margin-bottom: $space-sm;
-}
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 a {
     color: $color-link;
@@ -67,15 +62,19 @@ button {
     @include m.interactive;
     padding: $space-sm $space-lg;
     border-radius: $radius-md;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: $glass-bg;
-    color: white;
-    font-weight: 600;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-color);
+    font-weight: 500;
+    font-family: $font-sans;
+    font-size: 0.875rem;
 
     &:hover {
-        background: rgba(255, 255, 255, 0.15);
-        border-color: $color-primary;
+        background: var(--card-bg-hover);
     }
 }
 
-// Global Classes
+::selection {
+    background: var(--accent-soft);
+    color: var(--text-color);
+}

@@ -33,21 +33,21 @@ export function projectToTerrain(
 /**
  * Create foundation pad for building with terrain-aware vertical walls.
  * Uses raycasting to project footprint onto actual terrain surface.
+ * Building sits at highest terrain point; foundation fills down to terrain.
  */
 export function createFoundationPad(
     footprintPoints: THREE.Vector2[],
     terrainMesh: THREE.Mesh | null
 ): { mesh: THREE.Mesh; padElevation: number } {
-    // Project all footprint points to terrain and find lowest
+    // Project all footprint points to terrain and find HIGHEST
     const terrainElevations: number[] = [];
-    let lowestElevation = Infinity;
+    let highestElevation = -Infinity;
 
     for (const point of footprintPoints) {
         const terrainY = projectToTerrain(terrainMesh, point.x, point.y);
-        console.log(`Terrain elevation at ${point.x.toFixed(2)}, ${point.y.toFixed(2)}: ${terrainY.toFixed(2)}`);
         terrainElevations.push(terrainY);
-        if (terrainY < lowestElevation) {
-            lowestElevation = terrainY;
+        if (terrainY > highestElevation) {
+            highestElevation = terrainY;
         }
     }
 
@@ -55,12 +55,12 @@ export function createFoundationPad(
     const positions: number[] = [];
     const indices: number[] = [];
 
-    // Top pad vertices (horizontal at lowestElevation) - world coordinates
+    // Top pad vertices (horizontal at highestElevation) - building sits here
     for (const point of footprintPoints) {
-        positions.push(point.x, lowestElevation, point.y);
+        positions.push(point.x, highestElevation, point.y);
     }
 
-    // Bottom vertices (at actual terrain surface) - world coordinates
+    // Bottom vertices (at actual terrain surface) - foundation goes down to meet terrain
     const bottomOffset = footprintPoints.length;
     for (let i = 0; i < footprintPoints.length; i++) {
         const point = footprintPoints[i];
@@ -68,22 +68,31 @@ export function createFoundationPad(
         positions.push(point.x, terrainY, point.y);
     }
 
-    // Top face indices (fan triangulation from center)
+    // Calculate footprint centroid for fan triangulation
+    let cx = 0, cz = 0;
+    for (const point of footprintPoints) {
+        cx += point.x;
+        cz += point.y; // y in Vector2 is z in 3D
+    }
+    cx /= footprintPoints.length;
+    cz /= footprintPoints.length;
+
+    // Top face indices (fan triangulation from centroid)
     const topCenter = positions.length / 3;
-    positions.push(0, lowestElevation, 0);
+    positions.push(cx, highestElevation, cz);
     for (let i = 0; i < footprintPoints.length - 1; i++) {
         indices.push(topCenter, i + 1, i);
     }
     // Close the loop
     indices.push(topCenter, 0, footprintPoints.length - 1);
 
-    // Vertical walls connecting pad to terrain
+    // Vertical walls connecting pad (top) down to terrain (bottom)
     for (let i = 0; i < footprintPoints.length; i++) {
         const next = (i + 1) % footprintPoints.length;
-        const a = i;
-        const b = next;
-        const c = bottomOffset + i;
-        const d = bottomOffset + next;
+        const a = i;           // top vertex i
+        const b = next;        // top vertex next
+        const c = bottomOffset + i;      // bottom vertex i
+        const d = bottomOffset + next;   // bottom vertex next
         // Two triangles per wall segment
         indices.push(a, c, b);
         indices.push(b, c, d);
@@ -103,7 +112,7 @@ export function createFoundationPad(
 
     return {
         mesh: new THREE.Mesh(foundationGeometry, foundationMaterial),
-        padElevation: lowestElevation
+        padElevation: highestElevation
     };
 }
 
@@ -228,5 +237,11 @@ export function createTerrainMesh(
         metalness: 0.1
     });
 
-    return new THREE.Mesh(solidGeometry, terrainMaterial);
+    const mesh = new THREE.Mesh(solidGeometry, terrainMaterial);
+
+    // Store coordinate system metadata for building placement
+    mesh.userData.centerLat = centerLat;
+    mesh.userData.centerLon = centerLon;
+
+    return mesh;
 }

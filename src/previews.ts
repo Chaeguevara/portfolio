@@ -16,8 +16,15 @@ export function initCardPreviews() {
     const bg = resolveThreeBgFromCss() ?? AppConfig.threeBackground;
     scene.background = new THREE.Color(bg);
     try {
-      const dispose = work.animation(scene, { mount: el, preview: true });
-      if (typeof dispose === 'function') previewCleanups.push(dispose);
+      const result = work.animation(scene, { mount: el, preview: true });
+      if (result && typeof (result as Promise<() => void>).then === 'function') {
+        // Async animation (dynamic import) - await the cleanup function
+        (result as Promise<() => void>).then(dispose => {
+          if (typeof dispose === 'function') previewCleanups.push(dispose);
+        }).catch(e => console.warn('Preview async init failed for', id, e));
+      } else if (typeof result === 'function') {
+        previewCleanups.push(result);
+      }
     } catch (e) {
       // fail gracefully per card
       // eslint-disable-next-line no-console

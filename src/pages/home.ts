@@ -2,30 +2,31 @@ export function homeView() {
   return `
   <section class="hero">
     <div class="hero__content">
-      <h1 class="hero__title">Bridging Architecture <span class="hero__accent">&</span> Code.</h1>
+      <span class="hero__tag">MIT 6.849 Geometric Folding Algorithms</span>
+      <h1 class="hero__title">Geometry, Folding <span class="hero__accent">&</span> Code</h1>
       <p class="hero__subtitle">
-        Solutions Architect at <strong>Autodesk</strong>. 
-        Designing solutions with Autodesk products. Highly motivated by handling complex geometry in the digital realm.
+        From crease patterns and flat-foldability to curved surface mapping.
+        Building interactive visualizations of computational geometry algorithms.
       </p>
       <div class="hero__actions">
-        <a href="/portfolio/works" class="btn btn--primary" data-link>View Works</a>
-        <a href="/portfolio/about" class="btn btn--secondary" data-link>About My Journey</a>
+        <a href="/portfolio/works" class="btn btn--primary" data-link>View Projects</a>
+        <a href="/portfolio/about" class="btn btn--secondary" data-link>About</a>
       </div>
     </div>
   </section>
 
   <section class="features">
     <div class="feature-card">
-      <h3>Digital Transformation</h3>
-      <p>Consulting on AEC+O workflows and delivering technical solutions for industry-leading clients.</p>
+      <h3>Geometric Folding</h3>
+      <p>Linkages, origami, and flat-foldability. Studying MIT 6.849 and building interactive visualizations of folding algorithms.</p>
     </div>
     <div class="feature-card">
-      <h3>Geometry Optimization</h3>
-      <p>Specializing in DfMA and complex façade unrolling for global landmarks and luxury retail.</p>
+      <h3>Curved Surface Mapping</h3>
+      <p>Projecting images onto non-planar surfaces. Solving UV mapping and distortion problems for curved LED billboard displays.</p>
     </div>
     <div class="feature-card">
-      <h3>3D Development</h3>
-      <p>Building custom 3D web applications and automation tools using Three.js and Autodesk Platform Services.</p>
+      <h3>3D Visualization</h3>
+      <p>Building interactive geometry tools with Three.js. From crease pattern editors to real-world city generation from OpenStreetMap data.</p>
     </div>
   </section>
   `;

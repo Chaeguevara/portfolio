@@ -42,3 +42,22 @@ export function getFootprintPoints(
 
     return points;
 }
+
+/**
+ * Extract footprint points from a GeoJSON feature using terrain's coordinate system.
+ * This eliminates the need to pass centerLat/centerLon separately.
+ */
+export function getFootprintPointsFromTerrain(
+    feature: Feature,
+    terrainMesh: THREE.Mesh
+): THREE.Vector2[] {
+    const centerLat = terrainMesh.userData.centerLat as number;
+    const centerLon = terrainMesh.userData.centerLon as number;
+
+    if (centerLat === undefined || centerLon === undefined) {
+        console.error('[getFootprintPointsFromTerrain] Terrain missing coordinate system metadata');
+        return [];
+    }
+
+    return getFootprintPoints(feature, centerLat, centerLon);
+}

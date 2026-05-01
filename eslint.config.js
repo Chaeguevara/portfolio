@@ -9,7 +9,7 @@ export default defineConfig([
     plugins: { js },
     extends: ["js/recommended"],
     rules: {
-      "max-lines-per-function": [ "warn", {"max": 30, "skipComments":true, "skipBlankLines":true}, ],
+      // "max-lines-per-function": [ "warn", {"max": 30, "skipComments":true, "skipBlankLines":true}, ],
       "semi": ["error", "always"]
     }
   },

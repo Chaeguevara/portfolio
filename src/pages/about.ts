@@ -4,7 +4,7 @@ export function aboutView() {
     <div id="about-scene" class="about-hero__scene"></div>
     <div class="about-hero__content">
       <h1>Heejin Chae</h1>
-      <p>Computational Designer & Software Engineer</p>
+      <p>Computational Geometry & Software Engineering</p>
     </div>
   </div>
 
@@ -19,6 +19,7 @@ export function aboutView() {
           <p class="timeline-role">Solutions Architect (Feb 2025 - Present)</p>
           <ul>
             <li>Focusing on professional solutions architecture for enterprise clients.</li>
+            <li>Applying computational geometry expertise to AEC industry 3D solutions.</li>
           </ul>
           <p class="timeline-role" style="margin-top: 1rem;">Technical Solution Executive (Jun 2024 - Feb 2025)</p>
           <ul>
@@ -88,6 +89,7 @@ export function aboutView() {
           <p class="timeline-role">Master of Science - MS</p>
           <ul>
             <li>Researched Machine Learning-based Geospatial Analysis and NLP.</li>
+            <li>Computational geometry applications in architectural design and fabrication.</li>
             <li><strong>Excellence Award:</strong> DID-based Coupon Book Management System using blockchain.</li>
             <li>Thesis: Procedures for extracting geospatial analysis workflows from natural language.</li>
           </ul>
@@ -111,6 +113,14 @@ export function aboutView() {
   <div class="certifications-container">
     <h2 class="section-title">Licenses & Certifications</h2>
     <div class="cert-grid">
+      <div class="cert-card card">
+        <h4>Computational Geometry</h4>
+        <ul>
+          <li><strong>MIT 6.849:</strong> Geometric Folding Algorithms - Linkages, Origami, Polyhedra (In Progress)</li>
+          <li><strong>MIT 6.042J:</strong> Mathematics for Computer Science (In Progress)</li>
+        </ul>
+      </div>
+
       <div class="cert-card card">
         <h4>AEC & BIM</h4>
         <ul>
