@@ -11,10 +11,16 @@ export function designerView() {
     <div class="designer-sidebar__section">
       <h3>Pattern</h3>
       <select id="pattern-select" class="designer-select">
-        <option value="miura">Miura-ori</option>
-        <option value="square-twist">Square Twist</option>
-        <option value="diagonal">Diagonal Grid</option>
-        <option value="waterbomb">Waterbomb</option>
+        <optgroup label="Flat-foldable tessellations">
+          <option value="miura">Miura-ori</option>
+          <option value="square-twist">Square Twist</option>
+          <option value="diagonal">Diagonal Grid</option>
+          <option value="waterbomb">Waterbomb</option>
+        </optgroup>
+        <optgroup label="Glueless boxes (3D)">
+          <option value="masu-box">Masu Box (origami)</option>
+          <option value="tray-box">Tray Box (rigid)</option>
+        </optgroup>
       </select>
     </div>
 
@@ -63,15 +69,36 @@ export function designerView() {
       <p>M = Mountain (solid red)</p>
       <p>V = Valley (dashed blue)</p>
       <hr style="border-color: var(--divider); margin: 8px 0;" />
-      <p><strong>3D Print STL:</strong></p>
-      <p>Panels = 2mm solid slabs</p>
-      <p>Creases = 0.4mm living hinges</p>
-      <p>0.3mm gap for flexibility</p>
+      <p><strong>3D Print STL (parametric):</strong></p>
+      <p>Panel = 2mm box, inset 1.2mm from each crease.</p>
+      <p>Hinge = lollipop cross-section (tab + Ø2mm disc + Ø1.4mm bore) extruded 3mm along crease, repeated with 0.4mm gap.</p>
+      <p>Adjacent knuckles alternate which panel they fuse to → piano-hinge interleave.</p>
+      <p>Pin: 1.5mm filament/wire through bore. No flex fatigue.</p>
+      <p>STL works for tessellations only (not Masu/Tray yet).</p>
+      <hr style="border-color: var(--divider); margin: 8px 0;" />
+      <p><strong>Glueless boxes:</strong></p>
+      <p>Masu/Tray are 3D-foldable, not flat-foldable — vertex validation will flag them by design.</p>
     </div>
   </aside>
 
   <main class="designer-canvas-area">
-    <canvas id="designer-canvas"></canvas>
+    <div class="designer-views">
+      <div class="designer-view designer-view--2d">
+        <div class="designer-view__label">2D Crease Pattern</div>
+        <canvas id="designer-canvas"></canvas>
+      </div>
+      <div class="designer-view designer-view--3d">
+        <div class="designer-view__label">
+          3D Preview
+          <span class="designer-view__toggles">
+            <label><input type="checkbox" id="show-panels" checked /> Panels</label>
+            <label><input type="checkbox" id="show-hinges" checked /> Hinges</label>
+            <label><input type="checkbox" id="show-wireframe" /> Wireframe</label>
+          </span>
+        </div>
+        <div id="designer-3d" class="designer-3d-mount"></div>
+      </div>
+    </div>
     <div class="designer-ad" id="designer-ad-slot">
       <!-- AdSense ad unit inserted here -->
     </div>

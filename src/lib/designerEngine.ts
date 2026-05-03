@@ -63,8 +63,84 @@ function generatePattern(
         case 'miura': return genMiura(cols, rows, size, ox, oy);
         case 'square-twist': return genSquareTwist(cols, rows, size, ox, oy);
         case 'waterbomb': return genWaterbomb(cols, rows, size, ox, oy);
+        case 'masu-box': return genMasuBox(size, ox, oy);
+        case 'tray-box': return genTrayBox(cols, rows, size, ox, oy);
         default: return genDiagonal(cols, rows, size, ox, oy);
     }
+}
+
+// Glueless box (Masu) — folds to a 3D open-top cube.
+// NOT flat-foldable: interior vertices are degree-5 (Maekawa fails by parity).
+// LFFG framework still applies for verifying the pre-fold state and edge-locking
+// behaviour at the corner triangles, but the final form is 3D, not flat.
+function genMasuBox(size: number, ox: number, oy: number) {
+    const raw: DCrease[] = [];
+    const u = size / 4;
+    const pt = (r: number, c: number): Pt => ({ x: ox + c * u, y: oy + r * u });
+
+    // 4×4 grid: only the 4 wall creases (between bottom and walls). The two outer
+    // grid lines are paper edges (not folded); inner two are box wall hinges.
+    const wall = (p0: Pt, p1: Pt) => raw.push(mkCrease(p0, p1, 'M', size, ox, oy));
+    wall(pt(1, 1), pt(1, 3)); // top wall hinge
+    wall(pt(3, 1), pt(3, 3)); // bottom wall hinge
+    wall(pt(1, 1), pt(3, 1)); // left wall hinge
+    wall(pt(1, 3), pt(3, 3)); // right wall hinge
+
+    // Corner-tab diagonals (V): each outer corner folds along the diagonal,
+    // tucking a triangular tab inside an adjacent wall — this is the lock.
+    const diag = (p0: Pt, p1: Pt) => raw.push(mkCrease(p0, p1, 'V', size, ox, oy));
+    diag(pt(0, 0), pt(1, 1));
+    diag(pt(0, 4), pt(1, 3));
+    diag(pt(4, 0), pt(3, 1));
+    diag(pt(4, 4), pt(3, 3));
+
+    // Tab-fold M creases that pre-bias the triangle to fold inward
+    const fold = (p0: Pt, p1: Pt) => raw.push(mkCrease(p0, p1, 'M', size, ox, oy));
+    fold(pt(1, 1), pt(0, 2));
+    fold(pt(1, 1), pt(2, 0));
+    fold(pt(1, 3), pt(0, 2));
+    fold(pt(1, 3), pt(2, 4));
+    fold(pt(3, 1), pt(4, 2));
+    fold(pt(3, 1), pt(2, 0));
+    fold(pt(3, 3), pt(4, 2));
+    fold(pt(3, 3), pt(2, 4));
+
+    return finalize(raw, ox, oy, size);
+}
+
+// Cross-shaped tray box — purely 90° M folds, glueless via tab-and-slot lock.
+// Not a flat-fold pattern at all (rigid origami only). Validation flags expected.
+function genTrayBox(cols: number, rows: number, size: number, ox: number, oy: number) {
+    const raw: DCrease[] = [];
+    // We build a fixed cross shape inside the paper regardless of cols/rows
+    // (sliders left active for paper sizing only).
+    void cols; void rows;
+    const u = size / 5;
+    const pt = (r: number, c: number): Pt => ({ x: ox + c * u, y: oy + r * u });
+
+    const m = (p0: Pt, p1: Pt) => raw.push(mkCrease(p0, p1, 'M', size, ox, oy));
+    // Bottom outline (cells (2,1)-(2,3) is the box floor; (3,1)-(3,3) too — 2×3 floor)
+    m(pt(2, 1), pt(2, 4)); // top hinge of floor
+    m(pt(3, 1), pt(3, 4)); // bottom hinge of floor
+    m(pt(2, 1), pt(3, 1)); // left hinge
+    m(pt(2, 4), pt(3, 4)); // right hinge
+
+    // Outer wall outlines drawn as light U-creases for cut-line guidance
+    const u_ = (p0: Pt, p1: Pt) => raw.push(mkCrease(p0, p1, 'U', size, ox, oy));
+    u_(pt(1, 1), pt(1, 4)); // top wall top edge
+    u_(pt(1, 1), pt(2, 1));
+    u_(pt(1, 4), pt(2, 4));
+    u_(pt(4, 1), pt(4, 4)); // bottom wall bottom edge
+    u_(pt(3, 1), pt(4, 1));
+    u_(pt(3, 4), pt(4, 4));
+    u_(pt(2, 0), pt(3, 0)); // left wall left edge
+    u_(pt(2, 0), pt(2, 1));
+    u_(pt(3, 0), pt(3, 1));
+    u_(pt(2, 5), pt(3, 5)); // right wall right edge
+    u_(pt(2, 5), pt(2, 4));
+    u_(pt(3, 5), pt(3, 4));
+
+    return finalize(raw, ox, oy, size);
 }
 
 function genMiura(cols: number, rows: number, size: number, ox: number, oy: number) {
@@ -77,15 +153,16 @@ function genMiura(cols: number, rows: number, size: number, ox: number, oy: numb
         return { x: ox + c * cw + xShift, y: oy + r * ch };
     };
 
-    // Horizontals
+    // Horizontals: all V (zigzag lines)
     for (let r = 0; r <= rows; r++)
         for (let c = 0; c < cols; c++)
             raw.push(mkCrease(pt(r, c), pt(r, c + 1), 'V', size, ox, oy));
 
-    // Verticals
+    // Verticals: alternate M/V per row so every interior vertex gets 3V:1M
+    // Vertical from row r to r+1: M when r even, V when r odd
     for (let r = 0; r < rows; r++)
         for (let c = 0; c <= cols; c++)
-            raw.push(mkCrease(pt(r, c), pt(r + 1, c), 'M', size, ox, oy));
+            raw.push(mkCrease(pt(r, c), pt(r + 1, c), r % 2 === 0 ? 'M' : 'V', size, ox, oy));
 
     return finalize(raw, ox, oy, size);
 }
@@ -307,25 +384,53 @@ function exportPDF(state: DesignerState) {
     }
 }
 
-// ─── 3D Print Export (STL with living hinges) ────────────────────────────────
-//
-// Concept:
-//   Panel (face between creases) = solid slab, e.g. 2mm thick
-//   Crease line (hinge) = thin living hinge strip, e.g. 0.4mm thick × 1.5mm wide
-//
-// The hinge is thinner so it bends; the panels are rigid.
-// For each grid cell we extrude a polygon as a panel.
-// Along each crease we place a thin bridge connecting adjacent panels.
-//
-// Geometry (all in mm, matching paperW × paperH):
-//   - Panel: rectangle extruded to PANEL_THICKNESS
-//   - Hinge: narrow rectangle along crease, extruded to HINGE_THICKNESS
-//   - Small gap between panel edge and hinge for flexibility
+import { buildGraph, extractFaces as extractPGFaces } from './planarGraph';
 
-const PANEL_THICKNESS = 2.0;   // mm
-const HINGE_THICKNESS = 0.4;   // mm
-const HINGE_WIDTH = 1.5;       // mm (width of the hinge strip)
-const HINGE_GAP = 0.3;         // mm gap between panel and hinge
+// ─── 3D Print Export (parametric pin-hinges via THREE.Shape) ─────────────────
+//
+// Parametric model. The geometry is built with THREE.Shape + ExtrudeGeometry
+// so the lollipop-shaped knuckle cross-section (tab + half-disc + bore hole)
+// is described once analytically, then extruded along each crease axis.
+// Maintenance: change a constant below → all geometry updates consistently.
+//
+// Cross-section (in the plane perpendicular to the crease):
+//
+//      Y (vertical, = world Z)
+//      ▲
+//   T ─┤───┐                  ●●●
+//      │   │tab             ●     ●
+//   ½T ┤   │      ←─bore──→ │  ⊙   │     ⊙ = bore (Ø 2·R_IN)
+//      │   │               ●     ●
+//   0 ─┤───┘                  ●●●
+//      └───┴─────────────────► X (perp to crease, in paper plane)
+//      -d  0                 R_OUT
+//
+//  Side A: tab on -X (panel A side), disc bulges +X, hinge axis at (0, ½T)
+//  Side B: mirror image (tab +X, disc -X)
+//
+//  Extruded for KNUCKLE_LEN along Z (= crease direction in world).
+//
+// Why R_OUT = T/2:
+//   The knuckle's outer circle is exactly inscribed in panel thickness, so
+//   when the hinge folds 90° the rotating knuckle never protrudes beyond the
+//   panel surface (no surface-to-surface interference at fold).
+//
+// Why panel inset d = R_OUT + clearance:
+//   The closest the panel face can sit to the rotation axis without the
+//   knuckle scraping it during rotation. With clearance > 0, hinge spins free.
+//
+// Adjacent knuckles alternate ownership (A, B, A, B …) along the crease,
+// so when assembled the bores line up but the tabs interleave like a piano
+// hinge. Pin = 1.5mm rod (filament/wire) inserted post-print, OR print-in-
+// place with the geometry as-is (slicer adds 0.3mm clearance via gap).
+
+const T = 2.0;                       // panel thickness
+const R_OUT = T / 2;                 // = 1.0 — knuckle inscribed in panel thickness
+const R_IN = 0.7;                    // bore radius (Ø 1.4mm, fits 1.5mm pin + clearance)
+const PANEL_INSET = R_OUT + 0.2;     // = 1.2 — distance from crease to panel edge
+const KNUCKLE_LEN = 3.0;             // axial length of one knuckle
+const KNUCKLE_GAP = 0.4;             // axial clearance between adjacent knuckles
+const ARC_SEGMENTS = 16;             // disc facet count
 
 interface Face {
     /** Vertices in order (normalized 0-1 coords) */
@@ -334,7 +439,8 @@ interface Face {
 
 /**
  * Extract rectangular faces from grid-based crease patterns.
- * For grid patterns, faces are the cells between grid lines.
+ * Only valid for tessellation patterns (Miura, diagonal, waterbomb).
+ * For Masu/Tray boxes the face topology is non-grid and STL is disabled.
  */
 function extractFaces(state: DesignerState): Face[] {
     const { cols, rows } = state;
@@ -342,7 +448,6 @@ function extractFaces(state: DesignerState): Face[] {
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-            // Each grid cell is a face
             const x0 = c / cols, y0 = r / rows;
             const x1 = (c + 1) / cols, y1 = (r + 1) / rows;
             faces.push({
@@ -359,145 +464,186 @@ function extractFaces(state: DesignerState): Face[] {
 }
 
 /**
- * Build STL binary buffer with panels and hinges.
+ * Parametric lollipop cross-section for one knuckle.
+ * Side 'A' = tab on -X (panel A direction), disc bulges +X.
+ * Side 'B' = mirrored.
+ * Hole = bore through disc center for the pin.
  */
-function buildPrintableSTL(state: DesignerState): ArrayBuffer {
+function buildKnuckleShape(THREE: typeof import('three'), side: 'A' | 'B'): InstanceType<typeof THREE.Shape> {
+    const shape = new THREE.Shape();
+    if (side === 'A') {
+        // Outline CCW: (-d,0) → (0,0) → arc(+X half) → (0,T) → (-d,T) → close
+        shape.moveTo(-PANEL_INSET, 0);
+        shape.lineTo(0, 0);
+        shape.absarc(0, T / 2, R_OUT, -Math.PI / 2, Math.PI / 2, false);
+        shape.lineTo(-PANEL_INSET, T);
+        shape.lineTo(-PANEL_INSET, 0);
+    } else {
+        // Mirror image: (d,0) → (d,T) → (0,T) → arc(-X half) → (0,0) → close
+        shape.moveTo(PANEL_INSET, 0);
+        shape.lineTo(PANEL_INSET, T);
+        shape.lineTo(0, T);
+        shape.absarc(0, T / 2, R_OUT, Math.PI / 2, 3 * Math.PI / 2, false);
+        shape.lineTo(PANEL_INSET, 0);
+    }
+
+    // Bore — hole subpath (clockwise winding)
+    const hole = new THREE.Path();
+    hole.absarc(0, T / 2, R_IN, 0, Math.PI * 2, true);
+    shape.holes.push(hole);
+
+    return shape;
+}
+
+/**
+ * World transform for a knuckle.
+ *
+ * Local frame:
+ *   X = perpendicular to crease (in paper plane)
+ *   Y = vertical (= world Z)
+ *   Z = along crease (extrusion axis)
+ *
+ * World frame:
+ *   X = paper X, Y = paper Y, Z = up
+ *
+ * Origin (0,0,0) maps to (px, py, 0) — the start of the knuckle on the
+ * crease line at floor level.
+ */
+function knuckleMatrix(THREE: typeof import('three'),
+                       sx: number, sy: number, ux: number, uy: number): InstanceType<typeof THREE.Matrix4> {
+    const m = new THREE.Matrix4();
+    // perp in paper plane (left-hand rotated): (-uy, ux)
+    // Rows of M; col 0 = localX-in-world, col 1 = localY-in-world, col 2 = localZ-in-world, col 3 = origin
+    m.set(
+        -uy, 0, ux, sx,
+         ux, 0, uy, sy,
+          0, 1,  0,  0,
+          0, 0,  0,  1
+    );
+    return m;
+}
+
+/**
+ * Build the printable mesh: panels + knuckles, returned as one merged Mesh.
+ * Each panel is a simple inset box. Each knuckle is a parametric lollipop
+ * extrusion with bore. They overlap deliberately at tab/panel edges — the
+ * slicer treats coincident manifold meshes as union, which is the standard
+ * "multi-part STL" pattern (used widely for print-in-place mechanisms).
+ */
+async function buildPrintableMesh(state: DesignerState): Promise<{
+    geometry: import('three').BufferGeometry;
+    THREE: typeof import('three');
+}> {
+    const THREE = await import('three');
+    const BufferGeometryUtils = await import('three/examples/jsm/utils/BufferGeometryUtils.js');
+
     const { paperW, paperH, creases } = state;
     const faces = extractFaces(state);
-    const triangles: number[][] = []; // each: [nx,ny,nz, v1x,v1y,v1z, v2x,v2y,v2z, v3x,v3y,v3z]
+    const geoms: InstanceType<typeof THREE.BufferGeometry>[] = [];
 
-    // Helper: add a box (6 faces = 12 triangles)
-    function addBox(x: number, y: number, w: number, h: number, z0: number, z1: number) {
-        // Bottom face (z=z0)
-        triangles.push([0,0,-1, x,y,z0, x+w,y,z0, x+w,y+h,z0]);
-        triangles.push([0,0,-1, x,y,z0, x+w,y+h,z0, x,y+h,z0]);
-        // Top face (z=z1)
-        triangles.push([0,0,1, x,y,z1, x+w,y+h,z1, x+w,y,z1]);
-        triangles.push([0,0,1, x,y,z1, x,y+h,z1, x+w,y+h,z1]);
-        // Front (y=y)
-        triangles.push([0,-1,0, x,y,z0, x+w,y,z0, x+w,y,z1]);
-        triangles.push([0,-1,0, x,y,z0, x+w,y,z1, x,y,z1]);
-        // Back (y=y+h)
-        triangles.push([0,1,0, x,y+h,z0, x+w,y+h,z1, x+w,y+h,z0]);
-        triangles.push([0,1,0, x,y+h,z0, x,y+h,z1, x+w,y+h,z1]);
-        // Left (x=x)
-        triangles.push([-1,0,0, x,y,z0, x,y+h,z1, x,y+h,z0]);
-        triangles.push([-1,0,0, x,y,z0, x,y,z1, x,y+h,z1]);
-        // Right (x=x+w)
-        triangles.push([1,0,0, x+w,y,z0, x+w,y+h,z0, x+w,y+h,z1]);
-        triangles.push([1,0,0, x+w,y,z0, x+w,y+h,z1, x+w,y,z1]);
-    }
-
-    // --- Panels: each face is a rectangular slab with inset for hinge gaps ---
-    const gap = HINGE_GAP + HINGE_WIDTH / 2; // total inset per side in mm
+    // Panels — inset on all sides by PANEL_INSET (deckle edge along paper boundary too)
     for (const face of faces) {
-        const x = face.pts[0].x * paperW + gap;
-        const y = face.pts[0].y * paperH + gap;
-        const w = (face.pts[1].x - face.pts[0].x) * paperW - gap * 2;
-        const h = (face.pts[2].y - face.pts[0].y) * paperH - gap * 2;
-        if (w > 0.1 && h > 0.1) {
-            addBox(x, y, w, h, 0, PANEL_THICKNESS);
-        }
+        const x = face.pts[0].x * paperW + PANEL_INSET;
+        const y = face.pts[0].y * paperH + PANEL_INSET;
+        const w = (face.pts[1].x - face.pts[0].x) * paperW - 2 * PANEL_INSET;
+        const h = (face.pts[2].y - face.pts[0].y) * paperH - 2 * PANEL_INSET;
+        if (w < 0.5 || h < 0.5) continue;
+        const g = new THREE.BoxGeometry(w, h, T);
+        g.translate(x + w / 2, y + h / 2, T / 2);
+        geoms.push(g);
     }
 
-    // --- Hinges: thin strips along each crease line ---
-    const hw = HINGE_WIDTH;
-    for (const c of creases) {
-        if (c.mv === 'U') continue; // only assigned creases get hinges
+    // Knuckles — alternating A/B along each assigned crease
+    const knuckleStride = KNUCKLE_LEN + KNUCKLE_GAP;
+    const extrudeOpts = {
+        depth: KNUCKLE_LEN,
+        bevelEnabled: false,
+        steps: 1,
+        curveSegments: ARC_SEGMENTS,
+    };
 
+    for (const c of creases) {
+        if (c.mv === 'U') continue;
         const x0 = c.n0.x * paperW, y0 = c.n0.y * paperH;
         const x1 = c.n1.x * paperW, y1 = c.n1.y * paperH;
         const dx = x1 - x0, dy = y1 - y0;
         const len = Math.sqrt(dx * dx + dy * dy);
-        if (len < 0.1) continue;
+        if (len < KNUCKLE_LEN * 2 + KNUCKLE_GAP) continue; // need ≥2 knuckles for a real hinge
 
-        // Perpendicular direction for hinge width
-        const px = -dy / len * (hw / 2);
-        const py = dx / len * (hw / 2);
+        const ux = dx / len, uy = dy / len;
 
-        // Hinge is a thin box along the crease
-        // We approximate with an axis-aligned box for simplicity
-        const isHorizontal = Math.abs(dy) < 0.1;
-        const isVertical = Math.abs(dx) < 0.1;
+        const numKnuckles = Math.floor((len + KNUCKLE_GAP) / knuckleStride);
+        if (numKnuckles < 2) continue;
+        const totalLen = numKnuckles * KNUCKLE_LEN + (numKnuckles - 1) * KNUCKLE_GAP;
+        const startOffset = (len - totalLen) / 2;
 
-        if (isHorizontal) {
-            const hx = Math.min(x0, x1);
-            const hy = Math.min(y0, y1) - hw / 2;
-            addBox(hx, hy, Math.abs(dx), hw, 0, HINGE_THICKNESS);
-        } else if (isVertical) {
-            const hx = Math.min(x0, x1) - hw / 2;
-            const hy = Math.min(y0, y1);
-            addBox(hx, hy, hw, Math.abs(dy), 0, HINGE_THICKNESS);
-        } else {
-            // Diagonal hinge: approximate as series of small boxes
-            const steps = Math.ceil(len / 3);
-            const stepLen = len / steps;
-            const ndx = dx / len, ndy = dy / len;
-            for (let s = 0; s < steps; s++) {
-                const sx = x0 + ndx * stepLen * s + px;
-                const sy = y0 + ndy * stepLen * s + py;
-                const sw = Math.abs(ndx * stepLen) + hw * Math.abs(ndy / ndx || 0) * 0.5;
-                const sh = Math.abs(ndy * stepLen) + hw * Math.abs(ndx / ndy || 0) * 0.5;
-                addBox(
-                    Math.min(sx, sx + ndx * stepLen),
-                    Math.min(sy, sy + ndy * stepLen),
-                    Math.max(sw, hw), Math.max(sh, hw),
-                    0, HINGE_THICKNESS
-                );
-            }
+        // Pre-build A / B shapes once per crease (reuse across knuckles)
+        const shapeA = buildKnuckleShape(THREE, 'A');
+        const shapeB = buildKnuckleShape(THREE, 'B');
+
+        for (let i = 0; i < numKnuckles; i++) {
+            const side = i % 2 === 0 ? 'A' : 'B';
+            const shape = side === 'A' ? shapeA : shapeB;
+            const s0 = startOffset + i * knuckleStride;
+            const sx = x0 + ux * s0, sy = y0 + uy * s0;
+
+            const g = new THREE.ExtrudeGeometry(shape, extrudeOpts);
+            g.applyMatrix4(knuckleMatrix(THREE, sx, sy, ux, uy));
+            geoms.push(g);
         }
     }
 
-    // --- Encode as binary STL ---
-    const numTriangles = triangles.length;
-    const bufferSize = 84 + numTriangles * 50; // 80 header + 4 count + 50 per triangle
-    const buffer = new ArrayBuffer(bufferSize);
-    const view = new DataView(buffer);
-
-    // Header (80 bytes)
-    const header = 'Crease Pattern 3D Print - Living Hinge Model';
-    for (let i = 0; i < 80; i++) {
-        view.setUint8(i, i < header.length ? header.charCodeAt(i) : 0);
+    if (geoms.length === 0) {
+        return { geometry: new THREE.BufferGeometry(), THREE };
     }
 
-    // Triangle count
-    view.setUint32(80, numTriangles, true);
-
-    // Triangles
-    let offset = 84;
-    for (const tri of triangles) {
-        // Normal (3 floats)
-        view.setFloat32(offset, tri[0], true); offset += 4;
-        view.setFloat32(offset, tri[1], true); offset += 4;
-        view.setFloat32(offset, tri[2], true); offset += 4;
-        // Vertex 1
-        view.setFloat32(offset, tri[3], true); offset += 4;
-        view.setFloat32(offset, tri[4], true); offset += 4;
-        view.setFloat32(offset, tri[5], true); offset += 4;
-        // Vertex 2
-        view.setFloat32(offset, tri[6], true); offset += 4;
-        view.setFloat32(offset, tri[7], true); offset += 4;
-        view.setFloat32(offset, tri[8], true); offset += 4;
-        // Vertex 3
-        view.setFloat32(offset, tri[9], true); offset += 4;
-        view.setFloat32(offset, tri[10], true); offset += 4;
-        view.setFloat32(offset, tri[11], true); offset += 4;
-        // Attribute byte count
-        view.setUint16(offset, 0, true); offset += 2;
+    // Normalize geometry attributes (BoxGeometry has uv/normal, ExtrudeGeometry too,
+    // but mergeGeometries requires consistent attribute sets).
+    for (const g of geoms) {
+        if (g.attributes.uv && !g.attributes.normal) g.computeVertexNormals();
     }
-
-    return buffer;
+    // Merge into one buffer. Box (indexed, has uv) + Extrude (non-indexed, no uv)
+    // need normalization: convert all to non-indexed and strip uv before merging.
+    const cleaned = geoms.map(g => {
+        const flat = g.index ? g.toNonIndexed() : g.clone();
+        delete (flat.attributes as Record<string, unknown>).uv;
+        // Keep only position + normal (STL only needs position; normals recomputed)
+        for (const key of Object.keys(flat.attributes)) {
+            if (key !== 'position' && key !== 'normal') {
+                delete (flat.attributes as Record<string, unknown>)[key];
+            }
+        }
+        if (!flat.attributes.normal) flat.computeVertexNormals();
+        return flat as InstanceType<typeof THREE.BufferGeometry>;
+    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const merged = (BufferGeometryUtils.mergeGeometries as any)(cleaned, false);
+    if (!merged) {
+        throw new Error('Geometry merge failed — incompatible attributes between panels and knuckles.');
+    }
+    return { geometry: merged, THREE };
 }
 
-function exportSTL(state: DesignerState) {
-    const buffer = buildPrintableSTL(state);
-    const blob = new Blob([buffer], { type: 'application/octet-stream' });
+async function exportSTL(state: DesignerState): Promise<void> {
+    if (state.pattern === 'masu-box' || state.pattern === 'tray-box') {
+        alert('STL export currently supports tessellation patterns only (Miura, Square Twist, Diagonal, Waterbomb). Glueless boxes have non-grid face topology — coming soon.');
+        return;
+    }
+
+    const { geometry, THREE } = await buildPrintableMesh(state);
+    const { STLExporter } = await import('three/examples/jsm/exporters/STLExporter.js');
+    const mesh = new THREE.Mesh(geometry);
+    const result = new STLExporter().parse(mesh, { binary: true }) as DataView;
+
+    const blob = new Blob([result.buffer], { type: 'application/octet-stream' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `crease-pattern-${state.pattern}-3dprint.stl`;
     a.click();
     URL.revokeObjectURL(url);
+
+    geometry.dispose();
 }
 
 // ─── Main init ───────────────────────────────────────────────────────────────
@@ -554,6 +700,7 @@ export function initDesigner(): () => void {
         state.vertices = vertices;
         updateValidation();
         render(ctx, state);
+        update3DPreview();
     }
 
     function updateValidation() {
@@ -567,6 +714,75 @@ export function initDesigner(): () => void {
         } else {
             el.innerHTML = '<span class="status-dot status-dot--err"></span> ' + invalid.length + '/' + total + ' vertices invalid';
         }
+    }
+
+    // ─── 3D Preview lifecycle ────────────────────────────────────────────
+    // Mounts the Three.js viewport into #designer-3d. Updates whenever the
+    // crease pattern changes. Built lazily via dynamic import.
+    type PreviewCtl = import('./designer3DPreview').Preview3DController | null;
+    let preview3D: PreviewCtl = null;
+    const preview3DMount = document.getElementById('designer-3d');
+
+    if (preview3DMount) {
+        import('./designer3DPreview').then(mod => {
+            return mod.initPreview3D(preview3DMount, {
+                panelInset: PANEL_INSET,
+                panelT: T,
+                knuckleR: R_OUT,
+                boreR: R_IN,
+                knuckleLen: KNUCKLE_LEN,
+                knuckleGap: KNUCKLE_GAP,
+            });
+        }).then(ctl => {
+            preview3D = ctl;
+            update3DPreview();
+            // Bind toggles after preview is ready
+            const bindToggle = (id: string, fn: (v: boolean) => void) => {
+                const el = document.getElementById(id) as HTMLInputElement | null;
+                if (el) el.addEventListener('change', () => fn(el.checked));
+            };
+            bindToggle('show-panels', v => ctl.setShowPanels(v));
+            bindToggle('show-hinges', v => ctl.setShowHinges(v));
+            bindToggle('show-wireframe', v => ctl.setWireframe(v));
+        }).catch(err => {
+            console.error('[Designer] 3D preview init failed', err);
+        });
+    }
+
+    // Compute face decomposition + push it to the 3D preview.
+    function update3DPreview() {
+        if (!preview3D) return;
+
+        // Map crease coords from canvas pixels to mm via paper bounds
+        const sx = state.sheetOx, sy = state.sheetOy, ss = state.sheetSize;
+        const toMm = (px: number, py: number) => ({
+            x: ((px - sx) / ss) * state.paperW,
+            y: ((py - sy) / ss) * state.paperH,
+        });
+
+        const segs = state.creases.map(c => ({
+            p0: toMm(c.p0.x, c.p0.y),
+            p1: toMm(c.p1.x, c.p1.y),
+        }));
+
+        const { verts, edges } = buildGraph(segs, {
+            minX: 0, minY: 0, maxX: state.paperW, maxY: state.paperH,
+        });
+        const faces = extractPGFaces(verts, edges);
+
+        const previewCreases = state.creases.map(c => ({
+            p0: toMm(c.p0.x, c.p0.y),
+            p1: toMm(c.p1.x, c.p1.y),
+            mv: c.mv,
+        }));
+
+        preview3D.update({
+            verts,
+            faces,
+            creases: previewCreases,
+            paperW: state.paperW,
+            paperH: state.paperH,
+        });
     }
 
     // Bind controls
@@ -607,7 +823,7 @@ export function initDesigner(): () => void {
     });
 
     bind('export-pdf', 'click', () => exportPDF(state));
-    bind('export-stl', 'click', () => exportSTL(state));
+    bind('export-stl', 'click', () => { void exportSTL(state); });
 
     // Canvas interaction
     const getXY = (e: MouseEvent): [number, number] => {
@@ -638,6 +854,7 @@ export function initDesigner(): () => void {
             c.mv = c.mv === 'U' ? 'M' : c.mv === 'M' ? 'V' : 'U';
             updateValidation();
             render(ctx, state);
+            update3DPreview();
         }
     };
 
@@ -661,5 +878,6 @@ export function initDesigner(): () => void {
         canvas.removeEventListener('click', onClick);
         canvas.removeEventListener('mousemove', onMove);
         window.removeEventListener('resize', onResize);
+        if (preview3D) { preview3D.dispose(); preview3D = null; }
     };
 }

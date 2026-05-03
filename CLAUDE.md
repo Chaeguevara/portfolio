@@ -107,3 +107,37 @@ Every work should include `details` explaining Purpose, How it works, and Intera
 2. Export from `src/models/index.ts`
 3. Add entry to `src/data/works.ts` with title, body, details (HTML), and animation function
 4. Scene will automatically appear in grid and be routable at `/portfolio/works/{id}`
+
+## Model-Tiered Workflow (Token Efficiency)
+
+The main session runs on Opus and should reserve its tokens for what only Opus does well:
+high-level reasoning, architecture decisions, planning, ambiguous design judgment, and
+**evaluating the output of cheaper models**.
+
+**Delegate implementation to Sonnet/Haiku via subagents** whenever the task is mechanical:
+
+| Task type | Run on | Why |
+|-----------|--------|-----|
+| Architecture design, API design, novel algorithms | Opus (main) | Requires deep reasoning |
+| Planning, breaking work into steps | Opus (main) | Requires judgment |
+| Ambiguous bug investigation (root cause unclear) | Opus (main) | Hypothesis generation |
+| Code reading / search / grep across files | Sonnet via Explore agent | Mechanical, parallelizable |
+| Implementing a well-specified change | Sonnet via general-purpose agent | Pattern matching |
+| Writing tests for already-designed code | Sonnet | Mechanical |
+| Refactor/rename/move with clear spec | Haiku | Pure transformation |
+| Build verification, lint fixing, formatting | Haiku via subagent or hook | No judgment needed |
+| Reading large files for fact extraction | Sonnet via Explore | Bandwidth heavy |
+
+**How to delegate from Opus**:
+- Use the `Agent` tool with `subagent_type: "general-purpose"` and `model: "sonnet"` (or `"haiku"`)
+- Pass a fully-specified prompt — Opus has already done the thinking, so the subagent
+  just needs the *what*, not the *why*
+- Expect to verify the result: a subagent's report is a claim, not a guarantee.
+  Spot-check critical edits with `Read` before reporting done
+
+**Anti-pattern**: Opus running `grep` across 50 files itself, or hand-writing a 200-line
+boilerplate scene. Both should be delegated.
+
+**Pattern**: Opus designs the cylindrical-hinge geometry → spawns Sonnet subagent with
+"implement `addKnuckleCylinder()` matching this signature, here's the math" → reviews
+the diff, fixes any subtle bugs.

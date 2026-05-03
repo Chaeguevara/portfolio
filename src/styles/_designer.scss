@@ -156,17 +156,88 @@
     }
 }
 
-// Canvas area
+// Canvas area — split into 2D editor and 3D preview side by side
 .designer-canvas-area {
     flex: 1;
     position: relative;
     min-height: 400px;
     background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.designer-views {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--divider);
+    min-height: 0;
+
+    @include screen-md {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+.designer-view {
+    position: relative;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    min-width: 0;
+
+    &__label {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        background: var(--bg-surface);
+        border-bottom: 1px solid var(--divider);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    &__toggles {
+        display: flex;
+        gap: 10px;
+        font-size: 0.7rem;
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            color: var(--text-dim);
+        }
+
+        input {
+            accent-color: var(--accent);
+        }
+    }
 
     canvas {
         display: block;
         width: 100%;
         height: 100%;
+        flex: 1;
+    }
+}
+
+.designer-3d-mount {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+
+    canvas {
+        display: block;
+        width: 100% !important;
+        height: 100% !important;
     }
 }
 

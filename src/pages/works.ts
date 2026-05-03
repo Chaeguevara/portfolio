@@ -2,6 +2,7 @@ import { Works, type WorkCategory } from "../data/works";
 import { work } from "../components/view/work";
 import { Card } from "../components/view/card";
 import { initCardPreviews } from "../previews";
+import { navigate } from "../routes";
 const BASE = import.meta.env.BASE_URL || "/";
 export function workView(subPath: number) {
   if (subPath) {
@@ -44,13 +45,7 @@ function bindNavigation(scope: ParentNode) {
     (card as HTMLElement).setAttribute('data-nav-bound', '1');
     card.addEventListener('click', () => {
       const path = (card as HTMLElement).getAttribute('data-href');
-      if (path) {
-        history.pushState({}, '', path);
-        const anyWin = window as any;
-        if (typeof anyWin.renderRoutes === 'function') {
-          anyWin.renderRoutes(path);
-        }
-      }
+      if (path) navigate(path);
     });
   });
 }
