@@ -1,4 +1,3 @@
-import { drawLines, orbitObject, rotateBox, materialsShowcase, planBuilder, pickingDemo, gpuPickingDemo } from "../models";
 import { Scene } from "three";
 type AnimOpts = { mount?: HTMLElement; preview?: boolean };
 
@@ -196,7 +195,7 @@ mesh.rotation.y += 0.01;</code></pre>
       <h3>Interaction</h3>
       <p>Watch the box rotate continuously in 3D space.</p>
     `,
-    animation: (scene, opts) => rotateBox(scene, opts)
+    animation: (scene, opts) => import("../models/rotateBox").then(m => m.rotateBox(scene, opts))
   },
   2: {
     title: "Line Drawing",
@@ -218,7 +217,7 @@ const line = new THREE.Line(geometry, material);</code></pre>
       <h3>Interaction</h3>
       <p>Observe the lines forming geometric patterns in 3D space.</p>
     `,
-    animation: (scene, opts) => drawLines(scene, opts)
+    animation: (scene, opts) => import("../models/drawLine").then(m => m.drawLines(scene, opts))
   },
   3: {
     title: "Orbital System",
@@ -243,7 +242,7 @@ moonGroup.rotation.y += 0.03;</code></pre>
       <h3>Interaction</h3>
       <p>Watch the nested rotation creating realistic orbital mechanics.</p>
     `,
-    animation: (scene, opts) => orbitObject(scene, opts)
+    animation: (scene, opts) => import("../models/earthAndSun").then(m => m.orbitObject(scene, opts))
   },
   4: {
     title: "Materials Gallery",
@@ -270,7 +269,7 @@ const phongMat = new THREE.MeshPhongMaterial({
       <h3>Interaction</h3>
       <p>Compare how each material reacts to the scene's lighting.</p>
     `,
-    animation: (scene, opts) => materialsShowcase(scene, opts)
+    animation: (scene, opts) => import("../models/materialsShowcase").then(m => m.materialsShowcase(scene, opts))
   },
   5: {
     title: "2D Plan Builder",
@@ -298,7 +297,7 @@ for (let edge of edges) {
       <h3>Interaction</h3>
       <p>Watch the rooms automatically organize themselves based on their relationships.</p>
     `,
-    animation: (scene, opts) => planBuilder(scene, opts)
+    animation: (scene, opts) => import("../models/planBuilder").then(m => m.default(scene, opts))
   },
   6: {
     title: "Picking Demo",
@@ -314,7 +313,7 @@ for (let edge of edges) {
       </ol>
       <p><strong>Interaction</strong>: Move your mouse over the cubes to see them turn red.</p>
     `,
-    animation: (scene, opts) => pickingDemo(scene, opts)
+    animation: (scene, opts) => import("../models/pickingDemo").then(m => m.pickingDemo(scene, opts))
   },
   7: {
     title: "GPU Picking Demo",
@@ -330,7 +329,7 @@ for (let edge of edges) {
       </ol>
       <p><strong>Interaction</strong>: Move your mouse over the rotating cubes. Notice how smooth it is even with many objects!</p>
     `,
-    animation: (scene, opts) => gpuPickingDemo(scene, opts)
+    animation: (scene, opts) => import("../models/gpuPickingDemo").then(m => m.gpuPickingDemo(scene, opts))
   },
   8: {
     title: "Cozy Cartoon Bike",

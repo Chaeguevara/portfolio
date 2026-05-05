@@ -19,6 +19,12 @@
 # vite
 /.vite
 
+# astro
+/.astro
+
+# claude
+/.claude/projects
+
 # misc
 .DS_Store
 *.pem

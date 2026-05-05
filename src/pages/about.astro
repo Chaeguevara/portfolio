@@ -1,5 +1,7 @@
-export function aboutView() {
-  return `
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="About — Heejin Chae" current="about">
   <div class="about-hero">
     <div id="about-scene" class="about-hero__scene"></div>
     <div class="about-hero__content">
@@ -10,7 +12,7 @@ export function aboutView() {
 
   <div class="timeline-container">
     <h2 class="section-title">Professional Journey</h2>
-    
+
     <div class="timeline">
       <div class="timeline-item">
         <div class="timeline-year">2024 - PRES</div>
@@ -160,5 +162,15 @@ export function aboutView() {
       </div>
     </div>
   </div>
-  `;
-}
+</BaseLayout>
+
+<script>
+  import * as THREE from 'three';
+  import { aboutScene } from '../models/aboutScene';
+
+  const mount = document.getElementById('about-scene');
+  if (mount) {
+    const scene = new THREE.Scene();
+    aboutScene(scene, { mount });
+  }
+</script>

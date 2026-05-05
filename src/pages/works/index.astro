@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Works, type WorkCategory } from '../../data/works';
+
+const base = import.meta.env.BASE_URL;
+
+function entriesByCategory(category: WorkCategory) {
+  return Object.entries(Works)
+    .filter(([, v]) => v.category === category)
+    .sort((a, b) => Number(b[0]) - Number(a[0]));
+}
+
+const featured = entriesByCategory('featured');
+const fundamentals = entriesByCategory('fundamentals');
+---
+<BaseLayout title="Works — Heejin Chae" current="works">
+  <section class="works-section">
+    <h2 class="section-title">Featured Projects</h2>
+    <p class="section-subtitle">Geometric folding, curved surface mapping, and computational geometry</p>
+    <div id="featured-grid" class="cards-grid">
+      {featured.map(([id, work]) => (
+        <a class="card" href={`${base}works/${id}`} data-work-id={id}>
+          <div class="card-body">
+            <h5>{work.title}</h5>
+            <p class="card-text">{work.body}</p>
+          </div>
+          <div class="card-preview" id={`preview-${id}`}></div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="works-section works-section--fundamentals">
+    <h2 class="section-title">Three.js Fundamentals</h2>
+    <p class="section-subtitle">Core concepts and technique explorations</p>
+    <div id="fundamentals-grid" class="cards-grid">
+      {fundamentals.map(([id, work]) => (
+        <a class="card" href={`${base}works/${id}`} data-work-id={id}>
+          <div class="card-body">
+            <h5>{work.title}</h5>
+            <p class="card-text">{work.body}</p>
+          </div>
+          <div class="card-preview" id={`preview-${id}`}></div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initCardPreviews } from '../../previews';
+  initCardPreviews();
+</script>

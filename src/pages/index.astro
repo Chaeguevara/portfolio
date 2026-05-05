@@ -1,5 +1,8 @@
-export function homeView() {
-  return `
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout current="">
   <section class="hero">
     <div class="hero__content">
       <span class="hero__tag">MIT 6.849 Geometric Folding Algorithms</span>
@@ -9,8 +12,8 @@ export function homeView() {
         Building interactive visualizations of computational geometry algorithms.
       </p>
       <div class="hero__actions">
-        <a href="/portfolio/works" class="btn btn--primary" data-link>View Projects</a>
-        <a href="/portfolio/about" class="btn btn--secondary" data-link>About</a>
+        <a href={`${base}works`} class="btn btn--primary">View Projects</a>
+        <a href={`${base}about`} class="btn btn--secondary">About</a>
       </div>
     </div>
   </section>
@@ -29,5 +32,4 @@ export function homeView() {
       <p>Building interactive geometry tools with Three.js. From crease pattern editors to real-world city generation from OpenStreetMap data.</p>
     </div>
   </section>
-  `;
-}
+</BaseLayout>
