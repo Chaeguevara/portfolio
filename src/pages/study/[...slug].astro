@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import 'katex/dist/katex.min.css';
+
+export async function getStaticPaths() {
+  const concepts = await getCollection('concepts');
+  return concepts.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const base = import.meta.env.BASE_URL;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const isKo = d.lang === 'ko';
+
+const pair = d.pair ? await getEntry('concepts', d.pair) : undefined;
+
+const lookup = async (slugs: string[]) =>
+  (await Promise.all(slugs.map((s) => getEntry('concepts', s)))).filter(
+    (e) => e !== undefined,
+  );
+const prereqs = await lookup(d.prereqs);
+const related = await lookup(d.related.filter((r) => !d.prereqs.includes(r)));
+
+// Breadcrumb: find the topic map whose syllabus links this concept (EN slug).
+const enSlug = entry.id.replace(/\.ko$/, '');
+const maps = await getCollection('maps');
+const parentMap = maps.find((m) => (m.body ?? '').includes(`/study/${enSlug}/`));
+
+const courseLabel = d.course ?? d.courses?.join(', ');
+const lectureLabel = d.lectures?.length
+  ? `Lecture ${d.lectures.join(', ')}`
+  : undefined;
+---
+<BaseLayout title={`${d.title} — Study`} current="study">
+  <main class="study study-concept">
+    <nav class="study-breadcrumb">
+      <a href={`${base}study/`}>Study</a>
+      {parentMap && (
+        <>
+          <span>/</span>
+          <a href={`${base}study/maps/${parentMap.id}/`}>{parentMap.data.title}</a>
+        </>
+      )}
+      <span>/</span>
+      <span>{d.title}</span>
+    </nav>
+
+    <header class="concept-header">
+      <div class="concept-meta">
+        {courseLabel && <span class="chip chip-course">{courseLabel}</span>}
+        {lectureLabel && <span class="chip">{lectureLabel}</span>}
+        {d.tags.map((t) => <span class="chip chip-tag">{t}</span>)}
+        {pair && (
+          <a class="chip chip-lang" href={`${base}study/${pair.id}/`}>
+            {isKo ? 'Read in English' : '한국어로 읽기'}
+          </a>
+        )}
+      </div>
+    </header>
+
+    {prereqs.length > 0 && (
+      <aside class="concept-panel concept-prereqs">
+        <h2>{isKo ? '먼저 알아야 할 것' : 'Before this lecture'}</h2>
+        <ul>
+          {prereqs.map((p) => (
+            <li>
+              <a href={`${base}study/${p.id}/`}>{p.data.title}</a>
+              <span class="panel-summary">{p.data.summary}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+
+    <article class="study-prose">
+      <Content />
+    </article>
+
+    {related.length > 0 && (
+      <aside class="concept-panel concept-related">
+        <h2>{isKo ? '이어서 읽기' : 'Where to go next'}</h2>
+        <ul>
+          {related.map((r) => (
+            <li>
+              <a href={`${base}study/${r.id}/`}>{r.data.title}</a>
+              <span class="panel-summary">{r.data.summary}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+  </main>
+
+  <script type="module" is:inline>
+    const blocks = document.querySelectorAll(
+      'code.language-mermaid, pre[data-language="mermaid"] > code',
+    );
+    if (blocks.length) {
+      const { default: mermaid } = await import(
+        'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs'
+      );
+      const light = document.documentElement.getAttribute('data-theme') === 'light';
+      mermaid.initialize({ startOnLoad: false, theme: light ? 'neutral' : 'dark' });
+      let i = 0;
+      for (const code of blocks) {
+        const pre = code.closest('pre');
+        try {
+          const { svg } = await mermaid.render(`mmd-${i++}`, code.textContent ?? '');
+          const div = document.createElement('div');
+          div.className = 'mermaid-diagram';
+          div.innerHTML = svg;
+          pre?.replaceWith(div);
+        } catch {
+          /* leave the fenced source visible if a diagram fails to parse */
+        }
+      }
+    }
+  </script>
+</BaseLayout>

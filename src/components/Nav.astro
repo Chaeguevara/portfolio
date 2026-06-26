@@ -27,6 +27,11 @@ const isActive = (path: string) => current === path;
       class:list={[{ active: isActive('designer') }]}
       aria-current={isActive('designer') ? 'page' : undefined}
     >Designer</a>
+    <a
+      href={href('study')}
+      class:list={[{ active: isActive('study') }]}
+      aria-current={isActive('study') ? 'page' : undefined}
+    >Study</a>
     <div class="nav-dropdown">
       <button class="nav-dropdown-toggle" aria-label="In Progress">
         In Progress

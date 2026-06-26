@@ -1,0 +1,325 @@
+// -----------------------------------------------------------------------------
+// Study section — lecture-note pages synced from the MIT prep vault
+// -----------------------------------------------------------------------------
+
+.study {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 100px 24px 80px;
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 2.8rem);
+        line-height: 1.15;
+        margin: 0 0 16px;
+    }
+}
+
+.study-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+}
+
+.study-lede {
+    color: var(--text-dim);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin: 0 0 14px;
+}
+
+// --- Index: course catalog -------------------------------------------------
+
+.study-modules {
+    margin-top: 48px;
+
+    h2 {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        margin-bottom: 20px;
+    }
+}
+
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px;
+}
+
+.module-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--card-bg);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+        background: var(--card-bg-hover);
+        transform: translateY(-2px);
+    }
+
+    h3 {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+}
+
+.module-code {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+}
+
+.module-pitch {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--text-dim);
+    flex: 1;
+}
+
+.module-count {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+// --- Shared chrome -----------------------------------------------------------
+
+.study-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+
+    a {
+        color: var(--text-dim);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--accent);
+        }
+    }
+}
+
+.study-syllabus-note {
+    border-left: 3px solid var(--accent);
+    padding: 10px 16px;
+    margin: 20px 0 8px;
+    background: var(--glass-bg);
+    border-radius: 0 10px 10px 0;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.chip {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+}
+
+.chip-course {
+    font-family: ui-monospace, monospace;
+    color: var(--accent);
+}
+
+.chip-lang {
+    text-decoration: none;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+
+    &:hover {
+        background: var(--card-bg-hover);
+    }
+}
+
+.concept-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.concept-panel {
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    background: var(--card-bg);
+    padding: 18px 22px;
+    margin: 24px 0;
+
+    h2 {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-dim);
+        margin: 0 0 12px;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+        font-weight: 600;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .panel-summary {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-dim);
+        line-height: 1.5;
+    }
+}
+
+// --- Rendered markdown -------------------------------------------------------
+
+.study-prose {
+    line-height: 1.75;
+    font-size: 1rem;
+
+    h1 {
+        font-size: 1.9rem;
+        margin: 8px 0 16px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin: 36px 0 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--divider);
+    }
+
+    h3 {
+        font-size: 1.05rem;
+        margin: 24px 0 8px;
+    }
+
+    p,
+    li {
+        color: var(--text-color);
+    }
+
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    blockquote {
+        margin: 16px 0;
+        padding: 10px 18px;
+        border-left: 3px solid var(--accent);
+        background: var(--glass-bg);
+        border-radius: 0 10px 10px 0;
+        color: var(--text-dim);
+
+        p {
+            margin: 0;
+            color: inherit;
+        }
+    }
+
+    code {
+        font-family: ui-monospace, 'SF Mono', monospace;
+        font-size: 0.88em;
+        background: var(--code-bg);
+        padding: 2px 6px;
+        border-radius: 6px;
+    }
+
+    pre {
+        background: var(--code-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 10px;
+        padding: 14px 18px;
+        overflow-x: auto;
+        margin: 16px 0;
+
+        code {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        font-size: 0.92rem;
+
+        th,
+        td {
+            border: 1px solid var(--divider);
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        th {
+            background: var(--glass-bg);
+        }
+    }
+
+    // KaTeX display blocks can overflow on phones
+    .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 4px 0;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid var(--divider);
+        margin: 32px 0;
+    }
+}
+
+.mermaid-diagram {
+    margin: 16px 0;
+    padding: 12px;
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    background: var(--glass-bg);
+    overflow-x: auto;
+
+    svg {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+// Vault wiki-links whose targets aren't published on the site (lecture notes,
+// course indexes) — rendered as inert labels.
+.wl-missing {
+    color: var(--text-dim);
+    border-bottom: 1px dotted var(--text-muted);
+    cursor: default;
+}

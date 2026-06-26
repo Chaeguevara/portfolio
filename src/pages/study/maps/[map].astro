@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const maps = await getCollection('maps');
+  return maps.map((entry) => ({ params: { map: entry.id }, props: { entry } }));
+}
+
+const base = import.meta.env.BASE_URL;
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BaseLayout title={`${entry.data.title} — Study`} current="study">
+  <main class="study study-map">
+    <nav class="study-breadcrumb">
+      <a href={`${base}study/`}>Study</a>
+      <span>/</span>
+      <span>{entry.data.title}</span>
+    </nav>
+
+    <header class="study-map-header">
+      <h1>{entry.data.title}</h1>
+      {entry.data.summary && <p class="study-lede">{entry.data.summary}</p>}
+      <p class="study-syllabus-note">
+        <strong>How to work through this module:</strong> the sections below are the
+        syllabus, in teaching order. Read each concept until you can state its one-line
+        summary from memory, then move on. Lecture numbers (L#) tell you where the idea
+        appears in the original course.
+      </p>
+    </header>
+
+    <article class="study-prose">
+      <Content />
+    </article>
+  </main>
+</BaseLayout>

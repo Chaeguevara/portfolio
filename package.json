@@ -7,7 +7,8 @@
     "dev": "astro dev --host",
     "check": "astro check",
     "build": "astro check && astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sync:study": "node scripts/sync-study.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
@@ -16,6 +17,9 @@
     "astro": "^5.18.1",
     "eslint": "^9.27.0",
     "globals": "^16.1.0",
+    "katex": "^0.17.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "sass": "^1.97.1",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.32.1",

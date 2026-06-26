@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const base = import.meta.env.BASE_URL;
+const maps = await getCollection('maps');
+const concepts = await getCollection('concepts');
+const enCount = concepts.filter((c) => c.data.lang !== 'ko').length;
+
+// Course catalog: display order, MIT course code, and a short lecturer's pitch
+// for each topic map (module).
+const MODULES: Record<string, { code: string; order: number; pitch: string }> = {
+  'math-for-cs': {
+    code: '6.042J',
+    order: 1,
+    pitch: 'Start here. Proofs, induction, number theory, graphs, counting, probability — the language every other module is written in.',
+  },
+  'linear-algebra': {
+    code: '18.06',
+    order: 2,
+    pitch: 'The four fundamental subspaces, factorizations from LU to SVD. Strang’s course, distilled into atomic notes.',
+  },
+  algorithms: {
+    code: '6.006',
+    order: 3,
+    pitch: 'Data structures, sorting, graph search, shortest paths, dynamic programming — how to think about computation with a clock running.',
+  },
+  'advanced-algorithms': {
+    code: '6.046J',
+    order: 4,
+    pitch: 'Divide & conquer, greedy exchange arguments, flows, randomization, and what to do when a problem turns out NP-complete.',
+  },
+  'geometric-folding': {
+    code: '6.849',
+    order: 5,
+    pitch: 'Origami mathematics, linkages, and polyhedra — Demaine’s course on what folding can compute and construct.',
+  },
+  'geometric-fabrication': {
+    code: 'cross-course',
+    order: 6,
+    pitch: 'A fabrication lens across 6.849 + 18.06 + algorithms: from fold theory to things you can actually build.',
+  },
+};
+
+const conceptCount = (body: string) =>
+  new Set(
+    [...body.matchAll(/\/study\/([a-z0-9.-]+)\//g)]
+      .map((m) => m[1])
+      .filter((s) => !s.endsWith('.ko')),
+  ).size;
+
+const modules = maps
+  .map((m) => ({
+    id: m.id,
+    title: m.data.title,
+    summary: m.data.summary ?? '',
+    meta: MODULES[m.id] ?? { code: '', order: 99, pitch: '' },
+    count: conceptCount(m.body ?? ''),
+  }))
+  .sort((a, b) => a.meta.order - b.meta.order);
+---
+<BaseLayout title="Study — Open Lecture Notes" current="study">
+  <main class="study study-index">
+    <header class="study-hero">
+      <p class="study-eyebrow">Open lecture notes · MIT OCW</p>
+      <h1>The Lecture Hall</h1>
+      <p class="study-lede">
+        Welcome. What follows is a working set of lecture notes built from five MIT
+        OpenCourseWare courses — {enCount} atomic concepts, each one a single idea you can
+        read in a few minutes, cross-linked the way the ideas actually depend on each other.
+      </p>
+      <p class="study-lede">
+        A word of advice from the lectern: don’t read these like a feed. Pick a module,
+        follow its syllabus top to bottom, and when a note lists prerequisites you haven’t
+        met, go meet them first — mathematics does not forgive skipped steps. Every note has
+        a Korean twin (한국어 페어) one click away.
+      </p>
+    </header>
+
+    <section class="study-modules">
+      <h2>Course catalog</h2>
+      <div class="module-grid">
+        {modules.map((m) => (
+          <a class="module-card" href={`${base}study/maps/${m.id}/`}>
+            <span class="module-code">{m.meta.code}</span>
+            <h3>{m.title}</h3>
+            <p class="module-pitch">{m.meta.pitch}</p>
+            <span class="module-count">{m.count} concepts →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
