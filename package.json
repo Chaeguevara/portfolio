@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "astro dev --host",
     "check": "astro check",
-    "build": "astro check && astro build",
+    "build": "npm run sync:ontology && astro build",
     "preview": "astro preview",
-    "sync:study": "node scripts/sync-study.mjs"
+    "sync:ontology": "node scripts/sync-ontology.mjs",
+    "predev": "node scripts/sync-ontology.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
@@ -30,6 +31,7 @@
     "lil-gui": "^0.20.0",
     "three": "^0.176.0",
     "three-bvh-csg": "^0.0.17",
-    "three-mesh-bvh": "^0.9.4"
+    "three-mesh-bvh": "^0.9.4",
+    "troika-three-text": "^0.52.4"
   }
 }

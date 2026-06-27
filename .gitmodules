@@ -1,0 +1,3 @@
+[submodule "ontology/myownokf"]
+	path = ontology/myownokf
+	url = https://github.com/Chaeguevara/myownokf.git

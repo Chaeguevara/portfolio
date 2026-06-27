@@ -45,3 +45,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated OKF bundle (built from study notes)
+public/okf/
+
+# study ontology — generated from the myownokf submodule (source of truth)
+/src/content/study/
+/public/okf/
+/_source/

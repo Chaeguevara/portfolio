@@ -1,0 +1,27 @@
+// Sync the study ontology from the myownokf git submodule into the locations
+// the Astro build expects. Source of truth = ontology/myownokf (a submodule);
+// these copies are generated artifacts (gitignored), regenerated every build.
+import { cpSync, rmSync, existsSync, mkdirSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+const SUB = join(root, 'ontology', 'myownokf');
+
+if (!existsSync(join(SUB, 'study'))) {
+  console.error('myownokf submodule not populated — run: git submodule update --init --remote');
+  process.exit(1);
+}
+
+// [fromSubmodule, toPortfolio]
+const pairs = [
+  ['study', 'src/content/study'], // authored concepts → Astro content collection
+  ['study-okf', 'public/okf'],    // generated OKF bundle → published static artifact
+];
+for (const [from, to] of pairs) {
+  const dst = join(root, to);
+  rmSync(dst, { recursive: true, force: true });
+  mkdirSync(dirname(dst), { recursive: true });
+  cpSync(join(SUB, from), dst, { recursive: true });
+  console.log(`synced ontology/${from} -> ${to}`);
+}
