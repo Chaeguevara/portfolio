@@ -53,3 +53,6 @@ public/okf/
 /src/content/study/
 /public/okf/
 /_source/
+
+# Serena MCP tooling
+.serena/

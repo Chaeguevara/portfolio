@@ -104,3 +104,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   import { initDesigner } from '../lib/designerEngine';
   initDesigner();
 </script>
+
+<script>
+  // grid-na-sync: Masu/Tray boxes fold from a fixed crease pattern and ignore
+  // Columns/Rows (see designerEngine genMasuBox/genTrayBox). Disable those
+  // sliders for box patterns so the UI does not lie about affecting the render.
+  const FIXED = new Set(["masu-box", "tray-box"]);
+  const sel = document.getElementById("pattern-select");
+  function syncGrid() {
+    const fixed = sel instanceof HTMLSelectElement && FIXED.has(sel.value);
+    for (const id of ["cols-slider", "rows-slider"]) {
+      const el = document.getElementById(id);
+      if (!(el instanceof HTMLInputElement)) continue;
+      el.disabled = fixed;
+      el.title = fixed ? "Not applicable: box patterns use a fixed crease pattern" : "";
+      const group = el.closest("label") ?? el.parentElement;
+      if (group instanceof HTMLElement) group.style.opacity = fixed ? "0.4" : "";
+    }
+  }
+  sel?.addEventListener("change", syncGrid);
+  syncGrid();
+</script>

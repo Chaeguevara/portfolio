@@ -1,259 +1,208 @@
-# Portfolio Spec
+# Portfolio Spec — "Folded"
 
-이 문서가 단일 진실 원본 (Single Source of Truth) 이다. 작업·검증 모두 spec 기준.
-구조 변경 시 spec.md 부터 갱신 후 코드.
+이 문서가 단일 진실 원본 (Single Source of Truth). 구조 변경 시 SPEC.md 부터 갱신 후 코드.
 
-## 1. 목적
+## 0. 한 줄 정의
 
-정적 Three.js 포트폴리오. **Astro 5 + GitHub Pages**, `/portfolio/` 서브패스에서 호스팅.
-각 라우트는 진짜 정적 HTML 파일이라 새로고침·뒤로가기는 GitHub Pages 가 native 처리 —
-SPA 폴백 트릭 없음.
+포트폴리오 자체가 **한 장의 종이**다. 진짜 flat-foldable crease pattern (Kawasaki +
+Maekawa 만족) 이 접히면서 그 면(face)들이 **방(room)** 이 된다 — works / about.
+모든 시각·내비게이션은 **단일 full-screen `<canvas>` 안의 Three.js** 로 그린다.
+DOM UI 없음. Astro 는 정적 셸을 굽는 빌드 도구일 뿐.
+
+Erik Demaine 이 세 출처(6.849 folding · 6.006 algorithms · 6.042J math)의 공통
+줄기이고, 그가 "알고리즘을 종이로 접는" 사람이라는 점이 컨셉의 근거다.
+출처 지식은 [[geometric-folding]] 등 `src/content/study/` 노트로 이미 distill 됨 —
+이 PRD 는 그 지식을 **코드(접기 엔진)** 와 **공간(방)** 으로 reflect 한다.
+
+## 1. 설계 결정 (확정)
+
+| 항목 | 결정 |
+| --- | --- |
+| 셸 | **단일 캔버스, DOM UI 없음.** `index.astro` = `<canvas>` + boot script + 접근성용 숨김 시맨틱 DOM. |
+| 내러티브 | **Folding-as-portfolio.** 종이가 접혀 rooms 로. Demaine-inspired. |
+| 텍스트 | WebGL 안에서 렌더 (`troika-three-text`, SDF). 제목·라벨·본문 모두 3D. |
+| 라우팅 | `/`, `/works`, `/about` = **캔버스 상태**(History API, 새로고침 없음). `/study/*`, `/designer` = **실제 HTML 페이지**로 hard navigation. |
+| Study | 기존 markdown 페이지 **그대로 유지** (SEO/가독성). 캔버스가 link-out. |
+| 접근성/SEO | `index.astro` 에 **visually-hidden 시맨틱 DOM** (real `<a>` + 본문 텍스트 + `<noscript>`). 캔버스는 `aria-hidden`. **콘텐츠는 이 숨김 DOM 에 1회 작성** → Three.js 앱이 DOM 에서 읽어 3D 로 렌더 (콘텐츠 단일 출처). |
+| 접기 정확성 | crease pattern 은 **검증된 flat-foldable** 패턴. rigid origami 보간(면은 강체, crease 만 회전). |
 
 ## 2. 디렉터리 구조
 
 ```
 portfolio/
 ├── src/
-│   ├── pages/                     # Astro 라우트 (파일 = URL)
-│   │   ├── index.astro            # /
-│   │   ├── about.astro            # /about/
-│   │   ├── designer.astro         # /designer/
-│   │   ├── 404.astro              # 404 페이지
-│   │   └── works/
-│   │       ├── index.astro        # /works/
-│   │       └── [id].astro         # /works/<id>/  (getStaticPaths)
-│   ├── layouts/BaseLayout.astro   # html/head/body, theme/dropdown 초기화
-│   ├── components/
-│   │   ├── Nav.astro              # 공통 네비게이션
-│   │   └── ProgressTracker.ts     # In Progress 모달 컴포넌트
-│   ├── data/
-│   │   ├── works.ts               # Works registry (§3)
-│   │   └── inProgress.ts          # 진행중 항목 데이터
-│   ├── lib/                       # 유틸 모듈
-│   │   ├── theme.ts               # light/dark 토글, theme-changed 이벤트
-│   │   ├── inProgress.ts          # In Progress 드롭다운 init
-│   │   ├── overlayToggle.ts       # work 상세 오버레이
-│   │   ├── designerEngine.ts      # designer 페이지 코어
-│   │   ├── designer3DPreview.ts   # designer 3D 미리보기
-│   │   ├── planarGraph.ts         # 평면 그래프 자료구조
-│   │   ├── osmClient.ts           # OSM 데이터 fetch
-│   │   ├── elevationClient.ts     # 고도 API
-│   │   ├── gpuPickHelper.ts       # GPU picking
-│   │   ├── progressStore.ts
-│   │   └── game.ts
-│   ├── models/                    # Three.js 씬 모듈 (§4)
-│   ├── styles/                    # SCSS 모듈
-│   └── config.ts                  # 전역 설정 (three 배경 등)
-├── astro.config.mjs               # base: '/portfolio/', static, three chunk
-├── spec.md                        # ← 이 문서
-├── public/                        # 정적 자산 (vite.svg 등)
-├── dist/                          # 빌드 산출물 (gitignored)
-└── .github/workflows/deploy.yml   # main 푸시 → Pages 배포
+│   ├── pages/
+│   │   ├── index.astro        # 캔버스 셸 + 숨김 시맨틱 DOM (콘텐츠 SSOT)
+│   │   ├── study/             # ← 변경 없음 (markdown 컬렉션)
+│   │   ├── designer.astro     # ← 유지 (crease-pattern lab, 이미 three.js)
+│   │   └── 404.astro
+│   ├── app/                   # 단일 캔버스 애플리케이션 (신규)
+│   │   ├── main.ts            # boot: renderer, camera, loop, theme, router
+│   │   ├── router.ts          # 가상 라우트 ↔ History API, deeplink, popstate
+│   │   ├── content.ts         # 숨김 DOM → 구조화 콘텐츠 파싱
+│   │   ├── fold/              # 접기 엔진 = 6.849 지식의 코드화
+│   │   │   ├── creasePattern.ts  # 자료구조: vertices, creases, MV 배정
+│   │   │   ├── foldMath.ts       # Kawasaki/Maekawa 검증 + dihedral 해
+│   │   │   └── foldEngine.ts     # flat ↔ folded 보간 (rigid), Mesh 생성
+│   │   ├── scenes/
+│   │   │   ├── home.ts        # 접히는 종이 → rooms 진입
+│   │   │   ├── works.ts       # works room
+│   │   │   └── about.ts       # about room
+│   │   └── ui/
+│   │       ├── text.ts        # troika label/heading/body 헬퍼
+│   │       └── raycastNav.ts  # pointer picking → 라우트 전이
+│   ├── lib/theme.ts           # light/dark, --three-bg (유지)
+│   ├── styles/                # 캔버스 fullscreen + .sr-only (대폭 축소)
+│   └── content.config.ts      # study 컬렉션 (유지)
+├── astro.config.mjs           # base '/portfolio/', static
+└── .github/workflows/deploy.yml
 ```
+
+**Deprecated (제거 대상):** 기존 `works/` 라우트·grid, `previews.ts`, `Nav.astro`,
+`BaseLayout` 의 멀티페이지 chrome, `inProgress*`, `ProgressTracker`, OSM/terrain
+계열 (`osmClient`/`elevationClient`/`game`/`planarGraph` 등 캔버스가 안 쓰는 것).
+study·designer 가 쓰는 것은 보존. 구현 중 점진 삭제.
 
 ## 3. 라우트 계약
 
-| URL                            | 산출물 (`dist/...`)             | 페이지 종류                 |
-| ------------------------------ | ------------------------------ | --------------------------- |
-| `/portfolio/`                  | `index.html`                   | Home (정적)                 |
-| `/portfolio/works/`            | `works/index.html`             | Work grid + 미니 프리뷰     |
-| `/portfolio/works/<id>/`       | `works/<id>/index.html`        | 단일 work + Three.js 씬     |
-| `/portfolio/about/`            | `about/index.html`             | About + about 씬            |
-| `/portfolio/designer/`         | `designer/index.html`          | Crease pattern designer     |
-| (그 외)                        | `404.html`                     | 404 페이지                  |
+| URL | 산출물 | 종류 | 처리 |
+| --- | --- | --- | --- |
+| `/portfolio/` | `index.html` | 캔버스 홈 | 종이 flat → 접힘 idle |
+| `/portfolio/works` | (캔버스 상태) | works room | History pushState, deeplink 시 초기 상태로 |
+| `/portfolio/about` | (캔버스 상태) | about room | 동상 |
+| `/portfolio/study/*` | `study/.../index.html` | markdown | 실제 페이지, hard nav |
+| `/portfolio/designer` | `designer/index.html` | lab | 실제 페이지, hard nav |
+| (그 외) | `404.html` | 404 | — |
 
-`<id>` 는 §4 Work Registry 키 (현재 1–16). 빌드 시 `getStaticPaths()` 가 모든 id 정적 prerender.
+`/works`·`/about` 는 빌드 산출 HTML 이 없다(캔버스 가상 상태). 단, deeplink·새로고침
+대비로 **둘 다 `index.html` 로 서빙**되도록 셸이 처리: GitHub Pages 404 fallback 대신
+`index.astro` 가 `/works`,`/about` 경로도 같은 셸을 내도록 빌드 시 정적 alias 생성
+(`getStaticPaths` 로 `works/index.html`, `about/index.html` = 동일 셸). 앱이 부팅 시
+`location.pathname` 읽어 해당 room 으로 초기화.
 
-## 4. Work Registry
+## 4. 접기 엔진 계약 (6.849 → 코드)
 
-`src/data/works.ts` 의 `Works: Record<number, ...>`.
+`src/app/fold/`. 이 모듈이 PRD 의 핵심이자 "지식 reflect" 의 증거.
 
 ```ts
-{
-  title: string;
-  body: string;            // 카드용 짧은 설명
-  category: 'featured' | 'fundamentals';
-  details?: string;        // 오버레이 + 설명 섹션 HTML
-  animation: (scene, opts?) => cleanup | Promise<cleanup>;
+// creasePattern.ts
+interface Crease { v1: number; v2: number; assignment: 'M' | 'V' | 'B'; }  // B=border
+interface CreasePattern {
+  vertices: THREE.Vector2[];   // 평면(flat) 좌표
+  creases: Crease[];
+  faces: number[][];           // crease 그래프가 나눈 평면 영역 (vertex index 순환)
 }
+
+// foldMath.ts — 검증. 잘못된 패턴은 빌드/런타임에서 거부.
+function kawasakiHolds(p: CreasePattern, vertex: number): boolean;  // 교번각 합 == 180°
+function maekawaHolds(p: CreasePattern, vertex: number): boolean;   // |#M - #V| == 2
+function isFlatFoldable(p: CreasePattern): boolean;                 // 모든 내부 vertex
+
+// foldEngine.ts — rigid origami 보간.
+//  t=0 평면, t=1 완전 접힘. 면은 강체, dihedral angle 만 시간축 보간.
+function buildFoldMesh(p: CreasePattern): { mesh: THREE.Group; setFold(t: number): void };
 ```
 
-- **id**: 객체 키 (숫자). featured = 10–16, fundamentals = 1–9.
-- **animation**: 모두 dynamic import → 각 work 모듈 자체 chunk. 신규 work도 같은 패턴.
+- **방(room) ↔ face 매핑:** 접힌 형상의 특정 face 들이 works/about 패널. `home.ts`
+  가 face → 라벨/카메라 타겟 연결.
+- **검증 불변식:** 앱이 쓰는 패턴은 `isFlatFoldable === true`. 자체 점검(§9) 으로 보장.
 
-## 5. Three.js Scene Module 시그니처
-
-`src/models/<sceneName>.ts`:
+## 5. 앱 모듈 계약
 
 ```ts
-export function sceneName(
-  scene: THREE.Scene,
-  opts?: { mount?: HTMLElement; preview?: boolean }
-): (() => void) | Promise<() => void>
+// main.ts: 단일 WebGLRenderer, perspective camera, RAF loop, theme 동기화.
+//   캔버스 = #stage. resize/visibilitychange/contextlost 처리.
+// router.ts:
+type Route = 'home' | 'works' | 'about';
+function initRouter(onEnter: (r: Route, viaHistory: boolean) => void): {
+  go(r: Route): void;     // pushState + onEnter(r,false)
+};  // popstate → onEnter(r,true). study/designer 링크는 location.href 로 hard nav.
+// content.ts: #content(숨김 DOM) 파싱 → { about: {...}, works: [{title,body,href}] }
+// ui/text.ts: makeLabel(text, opts), makeBody(html→plain, maxWidth) → troika Mesh
+// ui/raycastNav.ts: register(mesh, route), pointermove=hover, click=go(route)
 ```
 
-- `opts.mount` 미지정 시 `document.getElementById('work')` 사용.
-- `opts.preview === true` → 컨트롤 없이 카드용 축소 렌더.
-- 반환값 = cleanup. WebGL renderer / geometry / material / 이벤트 리스너 모두 해제.
+- 모든 scene 모듈은 `enter(ctx)` / `exit()` 반환. `exit` 에서 geometry/material/
+  troika text/listener 해제 (메모리 누수 금지).
 
-## 6. Theme System
+## 6. Theme
 
-CSS 변수 (`src/styles/_variables.scss`): `--bg`, `--text`, `--accent`, `--three-bg`.
+`src/lib/theme.ts` 유지. `data-theme` 토글 + `theme-changed` 이벤트 →
+`renderer.setClearColor(--three-bg)`, troika 색 갱신. 토글 UI 는 캔버스 안 3D 버튼
+(우상단), 숨김 DOM 에도 real `<button>` 미러(접근성).
 
-- `src/lib/theme.ts` 가 `data-theme="light|dark"` 토글 + `theme-changed` CustomEvent dispatch.
-- 활성 씬은 `theme-changed` 리스너로 `scene.background` 갱신 (각 페이지 `<script>` 안).
-- Astro 페이지 네비게이션 = full reload → 페이지 간 cleanup 은 unload 시점에 자동.
+## 7. 의존성
 
-## 7. 환경 매트릭스
+- 신규: **`troika-three-text`** — WebGL SDF 텍스트. TextGeometry 로 본문 렌더는
+  불가/추함. 정당화된 추가.
+- 유지: `three`. **제거 검토:** `three-bvh-csg`, `three-mesh-bvh`, `lil-gui` 는
+  designer 전용 — designer 가 쓰면 유지, 아니면 제거.
 
-| 환경                  | 명령              | 새로고침/뒤로가기 |
-| --------------------- | ----------------- | ----------------- |
-| 개발                  | `npm run dev`     | ✓ Astro dev 서버  |
-| 로컬 정적 검증        | `npm run preview` | ✓ 정적 파일 서빙  |
-| 프로덕션 GitHub Pages | (자동 배포)       | ✓ 각 라우트 = 실제 HTML |
+## 8. 환경 매트릭스
 
-## 8. 신규 work 추가
+| 환경 | 명령 | 비고 |
+| --- | --- | --- |
+| 개발 | `npm run dev` | Astro dev. 캔버스 HMR. |
+| 정적 검증 | `npm run build && npm run preview` | 산출 HTML 확인 |
+| 프로덕션 | main push → Pages | `base: '/portfolio/'` |
 
-1. `src/models/<name>.ts` 작성 (§5 시그니처).
-2. `src/data/works.ts` 의 `Works` 에 새 id entry:
-   ```ts
-   17: {
-     title: "...", body: "...", category: 'featured', details: `...`,
-     animation: (scene, opts) =>
-       import('../models/<name>').then(m => m.<name>(scene, opts)),
-   }
-   ```
-3. `npm run build` → `dist/works/17/index.html` 자동 생성 확인.
+## 9. 검증 (acceptance)
 
-## 9. 빌드·배포
-
-- 로컬: `npm run build` = `astro check && astro build` → `dist/`
-- 배포: `main` 푸시 → `.github/workflows/deploy.yml` → Pages
-- `astro.config.mjs` 의 `base: '/portfolio/'` 가 모든 자산·링크에 prefix 부여
-
-## 10. 검증
-
-`npm run build` 후 다음 산출물 존재 = spec 충족:
+`npm run build` 후:
 
 ```bash
 test -f dist/index.html
-test -f dist/about/index.html
-test -f dist/works/index.html
+test -f dist/works/index.html      # 셸 alias
+test -f dist/about/index.html      # 셸 alias
 test -f dist/designer/index.html
 test -f dist/404.html
-for id in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16; do
-  test -f "dist/works/$id/index.html" || echo "MISSING: works/$id"
-done
+test -d dist/study                 # markdown 보존
 ```
 
-prod 수동 검증:
+런타임 (preview):
 
-1. `https://chaeguevara.github.io/portfolio/works/3` 직접 입력 → 200, 씬 렌더
-2. 새로고침 → 동일 페이지 재로드
-3. 뒤로가기 → 이전 라우트 이동
-4. Designer 에서 Miura 패턴 → STL export 동작
+1. `/` 로드 → 평면 종이 → 접힘 애니메이션, idle 회전.
+2. works 라벨 클릭 → works room 전이, URL `/works` 로 변경, **새로고침 없음**.
+3. `/works` 직접 입력 + 새로고침 → 동일 works room 으로 부팅.
+4. 뒤로가기 → home 으로 카메라/접힘 복귀.
+5. study 라벨 클릭 → 실제 `/study/` HTML 로 hard nav.
+6. JS 끄거나 크롤러 → 숨김 시맨틱 DOM 의 텍스트·링크 노출 (a11y/SEO).
+7. 접기 엔진 자체 점검: `isFlatFoldable(homePattern) === true` (§4).
 
-## 11. 알려진 제약
+## 10. 알려진 제약
 
-- 서버 런타임 없음 (정적 전용)
-- `/portfolio/` 서브패스 고정. 커스텀 도메인 시 `astro.config.mjs` 의 `base` 변경 필요.
-- Three.js 씬은 client-only (`<script>` 안). SSG 시 실행 X.
-- `getStaticPaths()` 는 `Works` 메타데이터만 사용 — animation 함수는 빌드 시 호출 X.
-
----
-
-## 12. 작업 흐름
-
-향후 Claude 세션:
-
-1. **이 spec.md 를 먼저 읽어** 라우트 / 시그니처 / 검증 규칙 파악.
-2. 변경 시 §10 검증 명령으로 spec 위반 여부 확인.
-3. spec 자체를 변경해야 하는 작업(구조 변경, 신규 라우트) 은 spec.md 부터 갱신 후 코드.
+- 서버 런타임 없음 (정적). `/portfolio/` 서브패스 고정.
+- 캔버스 콘텐츠는 숨김 DOM 이 SSOT — 신규 work/about 문구는 `index.astro` 에 작성.
+- WebGL 미지원/JS off → 숨김 DOM 만 보임 (graceful degradation).
+- rigid origami 보간은 단일 정점 패턴 위주. 복잡한 multi-vertex 동시 접힘은 비범위.
 
 ---
 
-# 진행 작업 (Backlog)
+## 11. 작업 흐름
 
-spec.md 는 "현재 상태 + 다음 할 일" 을 함께 담는다. 아래는 합의된 작업 목록 — 각 항목은
-구현 시 별도 섹션(§N)으로 정식 spec 에 흡수.
+1. 이 SPEC 을 먼저 읽어 §3 라우트 / §4·§5 계약 / §9 검증 파악.
+2. 변경 시 §9 로 위반 확인.
+3. 구조 변경은 SPEC 부터 갱신 후 코드.
 
-## B1. Glueless Origami Package (최우선)
+## 12. Backlog
 
-**상태**: 이론 학습 중. 코드 미구현. spec 만 선반영.
+### B1. Designer (crease-pattern lab) — 유지·정리
+기존 `designer.astro` 는 이 컨셉의 "작업실" 로 유지. 빈 AdSense 박스 제거
+(`designer-ad` div + `.designer-ad` 스타일 + BaseLayout AdSense `<script>`).
 
-### B1.1 배경
-사용자는 MIT 6.849 Geometric Folding Algorithms 학습 흐름에서, 풀·테이프 없이
-종이 한 장의 folding 만으로 닫히는 박스류 (glueless origami) 를 다루는
-**전용 패키지 / 도구** 가 필요. 현재 `designer.astro` 의 pattern select 는
-`masu-box`, `tray-box` 옵션만 placeholder 로 가지고 있고, validation·STL export
-모두 tessellation 전용 — glueless box 는 실제로는 동작하지 않음.
+### B2. Glueless origami 패키지 (이론 학습 중, 코드 미구현)
+Masu/Tray 등 풀 없이 닫히는 박스 — `src/lib/glueless/` (patterns/foldSimulator/
+validator/cutGuide) + designer 연동. 접기 엔진(§4) 성숙 후 그 위에 구축.
 
-### B1.2 목적
-- Glueless 박스 패밀리(Masu, Tray, 그 외 origami box)를 1급 시민으로 다루기.
-- Crease pattern → 3D 폴딩 시뮬레이션 → 종이 컷팅 가이드 (PDF/SVG) 까지 일관된 파이프라인.
-- 검증: 입력 패턴이 실제로 닫힌 박스로 접히는지 (rigid foldability + non-self-intersection)
-  알고리즘적으로 보장.
+### B3. OKF 지식 그래프 (format 채택 완료, 3D 뷰 미구현)
+**상태**: OKF (Open Knowledge Format, GoogleCloudPlatform/knowledge-catalog) 채택됨.
+`scripts/export-okf.mjs` 가 `src/content/study/**` 노트(en) → `public/okf/` 번들 생성:
+- `index.md` (`okf_version: "0.1"`) + `concepts/` + `maps/` (frontmatter + bundle-relative
+  링크 = 엣지). OKF 도구·visualizer 호환.
+- `graph.json` (nodes + edges) — Three.js study room 소비용.
+- `npm run build` 에 포함(`okf:export`). 결정적(timestamp 없음). `public/okf/` gitignore.
+- **GCloud 비과금**: OKF의 reference agent(BigQuery+Gemini, 과금)는 미사용 — 노트가 이미
+  수작업 distill 됨. format + visualizer 만 채택.
 
-### B1.3 범위 (초안 — 구현 시점에 §13 으로 격상)
-- **`src/lib/glueless/`** (신규 디렉터리)
-  - `patterns.ts` — Masu / Tray / 외 박스의 parametric crease pattern 생성 (cols/rows 대신
-    box 차원: width / depth / height).
-  - `foldSimulator.ts` — 평면 패턴 → 3D 폴딩 상태 보간. dihedral angle 시간축 애니메이션.
-  - `validator.ts` — rigid foldability 체크. tessellation 의 Kawasaki/Maekawa 와 다른
-    rule (closure + non-overlap) 검사.
-  - `cutGuide.ts` — 종이 컷팅 PDF/SVG. tab/slit 위치 명시.
-- **`src/pages/designer.astro`** 갱신
-  - "Pattern" select 에 glueless 그룹 (이미 placeholder 존재) 가 실제로 작동.
-  - Tessellation / glueless 모드별로 **검증 패널·export 버튼 세트** 가 분기.
-  - STL export: glueless 박스도 panel + hinge 분리 export (현재 tessellation 만 지원).
-- **`src/pages/works/`** 에 1개 work entry (e.g. id `17`) 로 학습 시각화 추가
-  — Masu box 의 폴딩 단계별 애니메이션을 카드 프리뷰까지 포함.
-
-### B1.4 학습 트랙 (사용자가 따라가는 이론)
-사용자가 공부 중인 토픽 — 구현 우선순위 결정에 사용:
-
-1. **Rigid Origami** — panel 이 변형 없이 hinge 만 회전. Masu / Tray 의 기본 모델.
-2. **Closure conditions** — 박스가 닫히려면 dihedral angle 들이 만족해야 하는 대수 관계.
-3. **Tab / lock geometry** — 풀 없이 잠기게 하는 종이 끝 형태(예: Masu 의 corner tuck).
-4. **Cut vs. fold trade-off** — glueless 라도 종이를 자를지(=tray 류) vs. 한 장 통째로
-   접을지 (=masu 류) 의 분류.
-
-학습 노트 / 참고 문헌은 사용자가 수기로 보충. Claude 는 spec 의 §B1.3 범위만 구현 대상.
-
-### B1.5 비범위 (이번 라운드에서 다루지 않음)
-- 자유 형태 박스 (임의 다각형 단면) — 직사각형 단면만.
-- 컬러·텍스처드 종이 시뮬레이션.
-- 인터랙티브 polyhedra 펼침 (다른 학습 단원).
-
-### B1.6 인수 조건 (구현 시 검증)
-- `/portfolio/designer/` 에서 Masu 선택 → 3D 미리보기에 닫힌 박스 형성 (단계별 animation).
-- "Download cut guide PDF" 버튼이 1장 짜리 cutting layout 출력.
-- `validator.ts` 단위 테스트: 의도적으로 잘못된 dimension 입력 시 "박스 닫히지 않음" 에러.
-- 새 work entry id `17` 가 `dist/works/17/index.html` 로 prerender.
-
----
-
-## B2. Designer 우측 하단 빈 박스 제거
-
-**상태**: 즉시 처리 가능. spec 에만 명시.
-
-### B2.1 현상
-`/portfolio/designer/` 우측 하단에 내용 없는 흰 박스가 보임.
-
-### B2.2 원인
-- `src/pages/designer.astro:98` 의 `<div class="designer-ad" id="designer-ad-slot"></div>`
-  + `src/styles/_designer.scss:245` 의 `.designer-ad` 스타일이 300×250 박스를 absolute 로
-  우측 하단에 배치. AdSense 가 placeholder publisher ID (`ca-pub-XXXXXXXXXXXXXXXX`) 라
-  실제 광고가 채워지지 않아 빈 카드만 남음.
-- `src/layouts/BaseLayout.astro:18-23` 의 AdSense 스크립트가 모든 페이지에 로드되어
-  공용 부수 효과 발생.
-
-### B2.3 조치
-1. `src/pages/designer.astro` 에서 `<div class="designer-ad">` 삭제.
-2. `src/styles/_designer.scss` 의 `.designer-ad` 블록 삭제.
-3. (옵션) 실제 publisher ID 가 들어오기 전까지 `BaseLayout.astro` 의 AdSense `<script>`
-   태그를 제거 — 모든 페이지에서 깔끔.
-
-### B2.4 인수 조건
-- Designer 페이지 우측 하단 빈 박스 사라짐.
-- `npm run build` 통과, 다른 페이지 영향 없음.
+**미구현**: study room 을 단일 캔버스(§3) 안 **3D force-directed 지식 그래프**로.
+`graph.json` fetch → 노드=concept, 엣지=prereq/related, 클릭 → 실제 `/study/<id>/` HTML.

@@ -1,0 +1,106 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}vite.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Heejin Chae — interactive Three.js portfolio exploring computational geometry, geometric folding, and algorithms (MIT 6.849 / 6.006 / 6.042J)." />
+    <title>Heejin Chae — Geometry, Folding &amp; Code</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { background: #0d0f14; overflow: hidden; }
+      #stage { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="stage" aria-hidden="true"></canvas>
+
+    <div id="content" class="sr-only">
+      <h1>Heejin Chae</h1>
+      <p>
+        Geometry, Folding &amp; Code — exploring MIT 6.849 Geometric Folding Algorithms
+        (Demaine), 6.006 Introduction to Algorithms, and 6.042J Mathematics for Computer Science
+        through interactive Three.js visualizations.
+      </p>
+
+      <nav aria-label="Main navigation">
+        <a href={`${base}works`}>Works</a>
+        <a href={`${base}study`}>Study</a>
+        <a href={`${base}about`}>About</a>
+        <a href={`${base}designer`}>Designer</a>
+      </nav>
+
+      <section id="about-content">
+        <p>
+          I'm a developer and computational geometry enthusiast working through MIT OpenCourseWare:
+          6.849 Geometric Folding Algorithms (Demaine &amp; Tachi), 6.006 Introduction to Algorithms,
+          and 6.042J Mathematics for Computer Science. My work sits at the intersection of origami
+          mathematics, discrete geometry, and real-time 3D visualization in the browser.
+        </p>
+        <p>
+          Previously I worked in AEC as a BIM engineer and facade consultant at Samoo Architects,
+          Front Inc, and Syntegrate, applying parametric geometry to large-scale architectural
+          projects. Now I build interactive tools that make abstract folding theory tangible —
+          flat-foldability proofs you can rotate, crease patterns you can animate, and linkage
+          kinematics rendered in the browser with Three.js.
+        </p>
+      </section>
+
+      <section id="works-content">
+        <ul>
+          <li>
+            <a href={`${base}designer`}>
+              <h3>Crease Pattern Designer</h3>
+              <p>Interactive flat-foldability checker with Kawasaki and Maekawa theorem validation. Design origami crease patterns and verify mathematical conditions in real time.</p>
+            </a>
+          </li>
+          <li>
+            <a href={`${base}study`}>
+              <h3>3D Knowledge Graph</h3>
+              <p>Spatial visualization of MIT 6.849 / 6.006 / 6.042J concepts as a navigable graph. Explore connections between theorems, algorithms, and proofs in 3D.</p>
+            </a>
+          </li>
+          <li>
+            <a href={`${base}works`}>
+              <h3>Curved Surface Mapping</h3>
+              <p>UV mapping and distortion correction for curved LED billboard displays. Geometric projection onto non-planar surfaces — solving the inverse problem.</p>
+            </a>
+          </li>
+          <li>
+            <a href={`${base}works`}>
+              <h3>OSM City Generator</h3>
+              <p>Procedural 3D city generation from OpenStreetMap data using Three.js. Extruded buildings, road networks, and spatial queries at interactive frame rates.</p>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <noscript>
+        <p>The interactive 3D experience requires JavaScript. Please use the navigation links above to explore the site.</p>
+      </noscript>
+    </div>
+
+    <button id="theme-toggle" class="sr-only">Toggle theme</button>
+
+    <script>
+      import { initTheme, toggleTheme } from '../lib/theme';
+      import { boot } from '../app/main';
+      initTheme();
+      document.getElementById('theme-toggle')?.addEventListener('click', () => toggleTheme());
+      boot();
+    </script>
+  </body>
+</html>
