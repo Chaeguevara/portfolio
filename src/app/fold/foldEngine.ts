@@ -5,6 +5,8 @@ export interface FoldMesh {
   group: THREE.Group;
   /** Per-face panel meshes, index-aligned with pattern.faces (for nav picking). */
   panels: THREE.Mesh[];
+  /** Crease line objects, index-aligned with pattern.creases (for draw-in FX). */
+  creaseLines: THREE.Line[];
   /** t in [0,1]: 0 = flat sheet, 1 = folded. */
   setFold(t: number): void;
   dispose(): void;
@@ -68,6 +70,7 @@ export function buildFoldMesh(p: CreasePattern, dark = false): FoldMesh {
 
   // Crease lines, colored by mountain/valley assignment (the theory, made visible).
   const creaseGroup = new THREE.Group();
+  const creaseLines: THREE.Line[] = [];
   for (const c of p.creases) {
     const a = p.vertices[c.v1];
     const b = p.vertices[c.v2];
@@ -81,6 +84,7 @@ export function buildFoldMesh(p: CreasePattern, dark = false): FoldMesh {
       new THREE.LineBasicMaterial({ color, transparent: true, opacity: c.assignment === 'B' ? 0.3 : 0.9 }),
     );
     creaseGroup.add(line);
+    creaseLines.push(line);
   }
   group.add(creaseGroup);
 
@@ -109,5 +113,5 @@ export function buildFoldMesh(p: CreasePattern, dark = false): FoldMesh {
     });
   }
 
-  return { group, panels, setFold, dispose };
+  return { group, panels, creaseLines, setFold, dispose };
 }

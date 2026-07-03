@@ -1,8 +1,11 @@
 import { homePattern } from '../fold/creasePattern';
 import { buildFoldMesh } from '../fold/foldEngine';
+import { createJourney, type Journey } from './foldJourney';
 import { makeText, disposeText } from '../ui/text';
 import type { Text } from 'troika-three-text';
 import type { Ctx } from '../types';
+
+const JOURNEY_KEY = 'foldJourneyDone';
 
 const LABELS = ['WORKS', 'STUDY', 'ABOUT', 'DESIGNER'] as const;
 // Approx center of each quadrant face in flat-state local coords
@@ -56,30 +59,74 @@ export function enter(ctx: Ctx): () => void {
   ];
   foldMesh.panels.forEach((panel, i) => ctx.nav.register(panel, handlers[i]));
 
-  // Animation: fold in over 1.6s, then idle rotation
+  // Animation: fold journey intro (once per session) → fold in → idle rotation
   const FOLD_DURATION = 1.6;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const journeyPlayed = sessionStorage.getItem(JOURNEY_KEY) === '1';
+
+  let journey: Journey | null = null;
+  let phase: 'journey' | 'fold' | 'idle' = 'fold';
+  const headerTexts = [title, tagline, ...panelTexts];
+
+  if (!reducedMotion && !journeyPlayed) {
+    phase = 'journey';
+    journey = createJourney(ctx.scene, foldMesh, pattern, isDark);
+    headerTexts.forEach((t) => (t.visible = false)); // story first, chrome after
+  }
+
+  function endJourney() {
+    if (journey) {
+      journey.dispose();
+      journey = null;
+    }
+    sessionStorage.setItem(JOURNEY_KEY, '1');
+    headerTexts.forEach((t) => (t.visible = true));
+  }
+
+  // Any input skips the story
+  const skip = () => {
+    if (phase !== 'journey') return;
+    endJourney();
+    phase = 'fold';
+    foldStart = performance.now();
+  };
+  window.addEventListener('pointerdown', skip);
+  window.addEventListener('keydown', skip);
+  window.addEventListener('wheel', skip);
+
   const enterTime = performance.now();
-  let folded = false;
+  let foldStart = enterTime;
   let idleStart = 0;
 
   ctx.frame.fn = (_dt, now) => {
-    const elapsed = (now - enterTime) / 1000;
-    if (!folded) {
-      const t = Math.min(elapsed / FOLD_DURATION, 1);
+    if (phase === 'journey' && journey) {
+      if (journey.update((now - enterTime) / 1000)) {
+        endJourney();
+        phase = 'fold';
+        foldStart = now;
+      }
+      return;
+    }
+    if (phase === 'fold') {
+      const t = reducedMotion ? 1 : Math.min((now - foldStart) / 1000 / FOLD_DURATION, 1);
       foldMesh.setFold(t);
       if (t >= 1) {
-        folded = true;
+        phase = 'idle';
         idleStart = now;
       }
-    } else {
-      const idle = (now - idleStart) / 1000;
-      foldMesh.group.rotation.y = Math.sin(idle * 0.3) * 0.15;
-      foldMesh.group.rotation.x = Math.sin(idle * 0.2 + 1) * 0.05;
+      return;
     }
+    const idle = (now - idleStart) / 1000;
+    foldMesh.group.rotation.y = Math.sin(idle * 0.3) * 0.15;
+    foldMesh.group.rotation.x = Math.sin(idle * 0.2 + 1) * 0.05;
   };
 
   return () => {
     ctx.frame.fn = null;
+    window.removeEventListener('pointerdown', skip);
+    window.removeEventListener('keydown', skip);
+    window.removeEventListener('wheel', skip);
+    journey?.dispose();
     ctx.scene.remove(foldMesh.group);
     ctx.scene.remove(title);
     ctx.scene.remove(tagline);
