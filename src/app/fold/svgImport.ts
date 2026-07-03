@@ -240,7 +240,7 @@ function collectSegments(svg: Element, warnings: string[]): Seg[] {
 
 // ---------------------------------------------------------------- graph cleaning
 
-interface Graph {
+export interface Graph {
   vertices: [number, number][];
   edges: PatternEdge[];
 }
@@ -445,7 +445,7 @@ function signedArea(g: Graph, face: number[]): number {
 
 // ---------------------------------------------------------------- triangulation
 
-function triangulate(g: Graph, faces: number[][]): [number, number, number][] {
+export function triangulate(g: Graph, faces: number[][]): [number, number, number][] {
   const tris: [number, number, number][] = [];
   const edgeSet = new Set(g.edges.map((e) => (e.v1 < e.v2 ? `${e.v1},${e.v2}` : `${e.v2},${e.v1}`)));
   const addFacet = (a: number, b: number) => {

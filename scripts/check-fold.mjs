@@ -130,4 +130,43 @@ function dihedral(pos, faces, f1, f2, v3, v4) {
   console.log(`ok  single vertex 3M/1V  strain=${(s.strain() * 100).toFixed(2)}%`);
 }
 
+// --- Test 3: FOLD import → solve → export → re-import round-trip ---
+{
+  const { importFOLD, exportFOLDText } = await import('../src/app/fold/foldFormat.ts');
+  const foldFile = {
+    file_spec: 1.1,
+    vertices_coords: [[0, 0], [1, 0], [0, 1], [-1, 0], [0, -1], [1, 1], [-1, 1], [-1, -1], [1, -1]],
+    edges_vertices: [[0, 1], [0, 2], [0, 3], [0, 4], [1, 5], [5, 2], [2, 6], [6, 3], [3, 7], [7, 4], [4, 8], [8, 1]],
+    edges_assignment: ['M', 'V', 'M', 'M', 'B', 'B', 'B', 'B', 'B', 'B', 'B', 'B'],
+    faces_vertices: [[0, 1, 5, 2], [0, 2, 6, 3], [0, 3, 7, 4], [0, 4, 8, 1]],
+  };
+  const p = importFOLD(JSON.stringify(foldFile));
+  assert.equal(p.vertices.length, 9, 'FOLD import vertex count');
+  assert.equal(p.faces.length, 8, 'FOLD import: 4 quads → 8 triangles');
+  assert.equal(p.edges.filter((e) => e.assignment === 'F').length, 4, 'quad diagonals become F edges');
+  assert.equal(p.edges.find((e) => e.assignment === 'M').targetAngle, -180, 'M defaults to −180°');
+  assert.equal(p.edges.find((e) => e.assignment === 'V').targetAngle, 180, 'V defaults to +180°');
+
+  const s = createSolver({ vertices: p.vertices, faces: p.faces, edges: p.edges });
+  s.setFoldPercent(0.7);
+  s.step(6000);
+  assert(s.strain() < 0.05, `FOLD pattern strain ${(s.strain() * 100).toFixed(2)}%`);
+
+  const text = exportFOLDText(p, s.positions);
+  const parsed = JSON.parse(text);
+  assert.equal(parsed.frame_classes[0], 'creasePattern');
+  assert.equal(parsed.file_frames[0].frame_classes[0], 'foldedForm');
+  assert.equal(parsed.file_frames[0].vertices_coords.length, 9);
+  assert(
+    parsed.file_frames[0].vertices_coords.some((c) => Math.abs(c[2]) > 0.05),
+    'folded frame leaves the plane',
+  );
+
+  const back = importFOLD(text);
+  assert.equal(back.vertices.length, p.vertices.length, 'round-trip vertex count');
+  assert.equal(back.faces.length, p.faces.length, 'round-trip face count');
+  assert.equal(back.edges.length, p.edges.length, 'round-trip edge count (F preserved, no new diagonals)');
+  console.log('ok  FOLD round-trip: import → solve → export → re-import');
+}
+
 console.log('check:fold passed');

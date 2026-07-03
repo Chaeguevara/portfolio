@@ -35,8 +35,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </optgroup>
         </select>
         <label class="designer-slider-label" style="margin-top: 8px;">
-          Upload crease pattern (.svg)
-          <input type="file" id="sim-upload" accept=".svg" />
+          Upload crease pattern (.svg / .fold)
+          <input type="file" id="sim-upload" accept=".svg,.fold" />
         </label>
       </div>
 
@@ -77,11 +77,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="designer-sidebar__section">
         <h3>Export</h3>
         <button id="sim-export" class="designer-btn designer-btn--accent">Download printable SVG</button>
+        <button id="sim-export-fold" class="designer-btn">FOLD (pattern + folded)</button>
+        <button id="sim-export-stl" class="designer-btn">STL (folded mesh)</button>
+        <button id="sim-export-obj" class="designer-btn">OBJ (folded mesh)</button>
       </div>
 
       <div class="designer-sidebar__section designer-sidebar__section--help">
         <p><strong>Red</strong> = mountain, <strong>blue</strong> = valley; stroke opacity = fold angle / 180°.</p>
         <p>Exported SVG round-trips with <a href="https://origamisimulator.org" target="_blank" rel="noopener">origamisimulator.org</a> — print it, score the lines, fold by hand.</p>
+        <p><a href="https://github.com/edemaine/fold" target="_blank" rel="noopener">FOLD</a> export carries the flat crease pattern plus the current folded 3D form; STL/OBJ drop the folded mesh straight into modeling tools.</p>
         <p>Simulation ported from Amanda Ghassaei's Origami Simulator (MIT). All creases fold simultaneously via a compliant spring-mass solver.</p>
         <p>"Problematic" patterns self-intersect — this port has no collision handling (yet), matching their needsCollisions set.</p>
       </div>

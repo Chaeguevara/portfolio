@@ -3,10 +3,14 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { importSVG, type FoldPattern } from '../app/fold/svgImport';
 import { createSolver, DEFAULT_PARAMS, type Solver } from '../app/fold/solver';
 import { downloadSVG } from '../app/fold/svgExport';
+import { importFOLD, exportFOLDText } from '../app/fold/foldFormat';
+import { STLExporter } from 'three/addons/exporters/STLExporter.js';
+import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 
 /**
  * Origami simulator lab (SPEC B4) — frontend port of origamisimulator.org:
- * SVG crease pattern in, compliant fold simulation in 3D, printable SVG out.
+ * SVG/FOLD crease pattern in, compliant fold simulation in 3D; printable SVG
+ * or folded FOLD/STL/OBJ out.
  */
 
 const PAPER_FRONT = 0xf7f3e9;
@@ -88,7 +92,7 @@ export function initSimulator(): void {
   function loadText(text: string, name: string) {
     let pattern: FoldPattern;
     try {
-      pattern = importSVG(text);
+      pattern = /\.fold$/i.test(name) ? importFOLD(text) : importSVG(text);
     } catch (e) {
       status.textContent = `import failed: ${(e as Error).message}`;
       return;
@@ -180,8 +184,34 @@ export function initSimulator(): void {
     });
   }
   $('sim-reset').addEventListener('click', () => loaded?.solver.reset());
+  const saveFile = (data: BlobPart, type: string, filename: string) => {
+    const url = URL.createObjectURL(new Blob([data], { type }));
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  const baseName = () => loaded!.name.replace(/\.(svg|fold)$/i, '');
   $('sim-export').addEventListener('click', () => {
-    if (loaded) downloadSVG(loaded.pattern, loaded.name.replace(/\.svg$/, '-print'));
+    if (loaded) downloadSVG(loaded.pattern, `${baseName()}-print`);
+  });
+  $('sim-export-fold').addEventListener('click', () => {
+    if (!loaded) return;
+    saveFile(
+      exportFOLDText(loaded.pattern, loaded.solver.positions),
+      'application/json',
+      `${baseName()}.fold`,
+    );
+  });
+  $('sim-export-stl').addEventListener('click', () => {
+    if (!loaded) return;
+    const stl = new STLExporter().parse(new THREE.Mesh(loaded.geometry), { binary: true });
+    saveFile(stl, 'model/stl', `${baseName()}.stl`);
+  });
+  $('sim-export-obj').addEventListener('click', () => {
+    if (!loaded) return;
+    saveFile(new OBJExporter().parse(new THREE.Mesh(loaded.geometry)), 'text/plain', `${baseName()}.obj`);
   });
 
   // ---- loop ----

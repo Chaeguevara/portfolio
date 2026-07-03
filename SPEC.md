@@ -221,8 +221,10 @@ validator/cutGuide) + designer 연동. 접기 엔진(§4) 성숙 후 그 위에 
 **구현됨 (`/simulator`, 2026-07)**: SVG crease-pattern import (`src/app/fold/svgImport.ts`,
 origamisimulator.org 컨벤션 완전 호환), CPU compliant solver (`solver.ts`, 동일
 물리·기본값), 재질 파라미터 UI, 예제 번들 (`public/patterns/` — origami/maze/
-problematic, MIT attribution), 인쇄용 SVG export (round-trip 가능). 남은 것:
-FOLD 파일 import/export, STL/OBJ export, strain 시각화, 충돌 처리, GPU 포팅.
+problematic, MIT attribution), 인쇄용 SVG export (round-trip 가능), FOLD 파일
+import/export (`foldFormat.ts` — flat CP frame + 접힌 3D foldedForm frame,
+`npm run check:fold` round-trip 검증), 접힌 mesh STL/OBJ export (three addons
+exporter). 남은 것: strain 시각화, 충돌 처리, GPU 포팅.
 [origamisimulator.org](https://origamisimulator.org) (Ghassaei·Demaine·Gershenfeld,
 7OSME) 아키텍처를 참조 모델로. rigid 보간(§4) 위에 단계적으로:
 
