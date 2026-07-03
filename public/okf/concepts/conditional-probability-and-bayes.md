@@ -18,9 +18,9 @@ Conditioning updates probability given information; Bayes reverses the condition
 
 ## Prerequisites
 
-- [Probability: Sample Spaces & the Four-Step Method](/concepts/probability-basics.md)
+- [Probability: Sample Spaces & the Four-Step Method](probability-basics.md)
 
 ## Related
 
-- [Independence](/concepts/independence.md)
-- [Random Variables & Distributions](/concepts/random-variables.md)
+- [Independence](independence.md)
+- [Random Variables & Distributions](random-variables.md)

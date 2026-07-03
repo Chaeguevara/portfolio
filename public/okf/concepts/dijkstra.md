@@ -19,11 +19,11 @@ Greedily settle the nearest unsettled vertex using a priority queue; O(E + V log
 
 ## Prerequisites
 
-- [Weighted Shortest Paths: Overview](/concepts/weighted-shortest-paths.md)
-- [Binary Heaps & Priority Queues](/concepts/binary-heap.md)
+- [Weighted Shortest Paths: Overview](weighted-shortest-paths.md)
+- [Binary Heaps & Priority Queues](binary-heap.md)
 
 ## Related
 
-- [Bellman–Ford Algorithm](/concepts/bellman-ford.md)
-- [Binary Heaps & Priority Queues](/concepts/binary-heap.md)
-- [Johnson's Algorithm](/concepts/johnsons-algorithm.md)
+- [Bellman–Ford Algorithm](bellman-ford.md)
+- [Binary Heaps & Priority Queues](binary-heap.md)
+- [Johnson's Algorithm](johnsons-algorithm.md)

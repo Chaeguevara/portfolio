@@ -19,10 +19,10 @@ Sort all edges and add each lightest edge that joins two different components, u
 
 ## Prerequisites
 
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
-- [Union-Find (Disjoint Sets)](/concepts/union-find.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
+- [Union-Find (Disjoint Sets)](union-find.md)
 
 ## Related
 
-- [Prim's Algorithm](/concepts/prims-algorithm.md)
-- [Union-Find (Disjoint Sets)](/concepts/union-find.md)
+- [Prim's Algorithm](prims-algorithm.md)
+- [Union-Find (Disjoint Sets)](union-find.md)

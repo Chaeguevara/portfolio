@@ -18,9 +18,9 @@ The gcd of two integers is computed by repeated remainders (Euclid), and is an i
 
 ## Prerequisites
 
-- [Well-Ordering Principle](/concepts/well-ordering-principle.md)
+- [Well-Ordering Principle](well-ordering-principle.md)
 
 ## Related
 
-- [Modular Arithmetic](/concepts/modular-arithmetic.md)
-- [RSA Public-Key Cryptography](/concepts/rsa-cryptosystem.md)
+- [Modular Arithmetic](modular-arithmetic.md)
+- [RSA Public-Key Cryptography](rsa-cryptosystem.md)

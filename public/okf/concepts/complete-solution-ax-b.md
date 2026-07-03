@@ -18,11 +18,11 @@ Every solution is x_particular + x_nullspace; solvable iff b∈C(A); the rank de
 
 ## Prerequisites
 
-- [Solving Ax = 0: Pivots, Free Variables, RREF](/concepts/solving-ax-0.md)
-- [Column Space C(A)](/concepts/column-space.md)
+- [Solving Ax = 0: Pivots, Free Variables, RREF](solving-ax-0.md)
+- [Column Space C(A)](column-space.md)
 
 ## Related
 
-- [Nullspace N(A)](/concepts/nullspace.md)
-- [Column Space C(A)](/concepts/column-space.md)
-- [Rank](/concepts/rank.md)
+- [Nullspace N(A)](nullspace.md)
+- [Column Space C(A)](column-space.md)
+- [Rank](rank.md)

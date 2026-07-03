@@ -19,9 +19,9 @@ An induction where the step may assume P holds for all values up to n, not just 
 
 ## Prerequisites
 
-- [Mathematical Induction](/concepts/induction.md)
+- [Mathematical Induction](induction.md)
 
 ## Related
 
-- [Well-Ordering Principle](/concepts/well-ordering-principle.md)
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
+- [Well-Ordering Principle](well-ordering-principle.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)

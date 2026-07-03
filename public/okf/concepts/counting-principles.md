@@ -18,6 +18,6 @@ Count by sum/product rules, permutations and combinations, or by a bijection to 
 
 ## Related
 
-- [Binomial Coefficients & Pascal's Triangle](/concepts/binomial-coefficients.md)
-- [Inclusion–Exclusion](/concepts/inclusion-exclusion.md)
-- [Pigeonhole Principle](/concepts/pigeonhole-principle.md)
+- [Binomial Coefficients & Pascal's Triangle](binomial-coefficients.md)
+- [Inclusion–Exclusion](inclusion-exclusion.md)
+- [Pigeonhole Principle](pigeonhole-principle.md)

@@ -18,6 +18,6 @@ A collection of fixed-length bars joined at hinges (a graph with edge lengths); 
 
 ## Related
 
-- [Configuration Space](/concepts/configuration-space.md)
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Kempe's Universality Theorem](/concepts/kempe-universality-theorem.md)
+- [Configuration Space](configuration-space.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Kempe's Universality Theorem](kempe-universality-theorem.md)

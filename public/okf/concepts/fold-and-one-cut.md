@@ -20,9 +20,9 @@ Fold a sheet flat so that a single straight cut produces any desired arrangement
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Universal Molecule](/concepts/universal-molecule.md)
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
+- [Universal Molecule](universal-molecule.md)
+- [Tree Method (Origami Design)](tree-method.md)

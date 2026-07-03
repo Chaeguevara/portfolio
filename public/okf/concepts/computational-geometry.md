@@ -18,8 +18,8 @@ Algorithms for geometric objects: sweep lines for intersections, convex hull, an
 
 ## Prerequisites
 
-- [Comparison Sorting & Its Lower Bound](/concepts/comparison-sorting.md)
+- [Comparison Sorting & Its Lower Bound](comparison-sorting.md)
 
 ## Related
 
-- [Clustering](/concepts/clustering.md)
+- [Clustering](clustering.md)

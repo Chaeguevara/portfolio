@@ -16,9 +16,9 @@ Compute det A by expanding along a row/column using signed minors (cofactors).
 
 ## Prerequisites
 
-- [Determinant](/concepts/determinant.md)
+- [Determinant](determinant.md)
 
 ## Related
 
-- [Determinant](/concepts/determinant.md)
-- [Cramer's Rule & Volume](/concepts/cramers-rule.md)
+- [Determinant](determinant.md)
+- [Cramer's Rule & Volume](cramers-rule.md)

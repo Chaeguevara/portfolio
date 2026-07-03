@@ -18,10 +18,10 @@ The simplest nonzero matrices, A = uv^T; every rank-r matrix is a sum of r of th
 
 ## Prerequisites
 
-- [Rank](/concepts/rank.md)
-- [Matrix Multiplication](/concepts/matrix-multiplication.md)
+- [Rank](rank.md)
+- [Matrix Multiplication](matrix-multiplication.md)
 
 ## Related
 
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
-- [Rank](/concepts/rank.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)
+- [Rank](rank.md)

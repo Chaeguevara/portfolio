@@ -18,11 +18,11 @@ The same vector/map has different coordinates in different bases; related by B =
 
 ## Prerequisites
 
-- [Linear Transformations](/concepts/linear-transformation.md)
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
+- [Linear Transformations](linear-transformation.md)
+- [Diagonalization & Powers of A](diagonalization.md)
 
 ## Related
 
-- [Linear Transformations](/concepts/linear-transformation.md)
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
+- [Linear Transformations](linear-transformation.md)
+- [Diagonalization & Powers of A](diagonalization.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)

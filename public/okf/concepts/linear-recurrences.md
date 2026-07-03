@@ -18,9 +18,9 @@ Constant-coefficient recurrences solve via a characteristic equation plus a part
 
 ## Prerequisites
 
-- [Mathematical Induction](/concepts/induction.md)
+- [Mathematical Induction](induction.md)
 
 ## Related
 
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
-- [Generating Functions](/concepts/generating-functions.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)
+- [Generating Functions](generating-functions.md)

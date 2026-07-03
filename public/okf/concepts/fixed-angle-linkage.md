@@ -20,10 +20,10 @@ A 3D linkage where both bar lengths and the angles between consecutive bars are 
 
 ## Prerequisites
 
-- [Linkage](/concepts/linkage.md)
-- [Locked Linkage](/concepts/locked-linkage.md)
+- [Linkage](linkage.md)
+- [Locked Linkage](locked-linkage.md)
 
 ## Related
 
-- [Locked Linkage](/concepts/locked-linkage.md)
-- [HP Model of Protein Folding](/concepts/hp-model.md)
+- [Locked Linkage](locked-linkage.md)
+- [HP Model of Protein Folding](hp-model.md)

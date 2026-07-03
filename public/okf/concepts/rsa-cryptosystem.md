@@ -19,8 +19,8 @@ Public-key encryption built on modular exponentiation; security rests on the har
 
 ## Prerequisites
 
-- [Modular Arithmetic](/concepts/modular-arithmetic.md)
+- [Modular Arithmetic](modular-arithmetic.md)
 
 ## Related
 
-- [Divisibility, GCD & the Euclidean Algorithm](/concepts/divisibility-and-gcd.md)
+- [Divisibility, GCD & the Euclidean Algorithm](divisibility-and-gcd.md)

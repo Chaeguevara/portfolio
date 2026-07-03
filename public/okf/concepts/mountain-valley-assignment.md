@@ -20,9 +20,9 @@ A labeling of every crease as a mountain (folds away) or valley (folds toward yo
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Maekawa's Theorem](/concepts/maekawa-theorem.md)
-- [Flat-Foldability](/concepts/flat-foldability.md)
+- [Maekawa's Theorem](maekawa-theorem.md)
+- [Flat-Foldability](flat-foldability.md)

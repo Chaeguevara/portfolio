@@ -18,9 +18,9 @@ Every nonempty set of nonnegative integers has a least element — a proof tool 
 
 ## Prerequisites
 
-- [Mathematical Induction](/concepts/induction.md)
+- [Mathematical Induction](induction.md)
 
 ## Related
 
-- [Strong Induction](/concepts/strong-induction.md)
-- [Divisibility, GCD & the Euclidean Algorithm](/concepts/divisibility-and-gcd.md)
+- [Strong Induction](strong-induction.md)
+- [Divisibility, GCD & the Euclidean Algorithm](divisibility-and-gcd.md)

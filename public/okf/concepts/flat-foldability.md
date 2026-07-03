@@ -21,11 +21,11 @@ Whether a crease pattern can be folded into a flat (zero-thickness) state withou
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
-- [Mountain–Valley Assignment](/concepts/mountain-valley-assignment.md)
+- [Crease Pattern](crease-pattern.md)
+- [Mountain–Valley Assignment](mountain-valley-assignment.md)
 
 ## Related
 
-- [Single-Vertex Flat-Foldability](/concepts/single-vertex-flat-foldability.md)
-- [Map Folding](/concepts/map-folding.md)
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
+- [Single-Vertex Flat-Foldability](single-vertex-flat-foldability.md)
+- [Map Folding](map-folding.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)

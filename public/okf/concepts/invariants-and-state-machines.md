@@ -19,8 +19,8 @@ Model a process as states with transitions; a preserved invariant proves what th
 
 ## Prerequisites
 
-- [Mathematical Induction](/concepts/induction.md)
+- [Mathematical Induction](induction.md)
 
 ## Related
 
-- [Strong Induction](/concepts/strong-induction.md)
+- [Strong Induction](strong-induction.md)

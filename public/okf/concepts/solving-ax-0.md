@@ -19,11 +19,11 @@ Reduce A to RREF; pivot columns fix pivot variables, free columns give special s
 
 ## Prerequisites
 
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
-- [Nullspace N(A)](/concepts/nullspace.md)
+- [Gaussian Elimination](gaussian-elimination.md)
+- [Nullspace N(A)](nullspace.md)
 
 ## Related
 
-- [Nullspace N(A)](/concepts/nullspace.md)
-- [Complete Solution of Ax = b](/concepts/complete-solution-ax-b.md)
-- [Rank](/concepts/rank.md)
+- [Nullspace N(A)](nullspace.md)
+- [Complete Solution of Ax = b](complete-solution-ax-b.md)
+- [Rank](rank.md)

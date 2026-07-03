@@ -19,10 +19,10 @@ Explore a graph in layers from a source, computing shortest paths by edge count 
 
 ## Prerequisites
 
-- [Graph Representations](/concepts/graph-representation.md)
+- [Graph Representations](graph-representation.md)
 
 ## Related
 
-- [Depth-First Search (DFS)](/concepts/depth-first-search.md)
-- [Weighted Shortest Paths: Overview](/concepts/weighted-shortest-paths.md)
-- [DAG Shortest Paths (Relaxation)](/concepts/dag-relaxation.md)
+- [Depth-First Search (DFS)](depth-first-search.md)
+- [Weighted Shortest Paths: Overview](weighted-shortest-paths.md)
+- [DAG Shortest Paths (Relaxation)](dag-relaxation.md)

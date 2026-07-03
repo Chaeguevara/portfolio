@@ -20,9 +20,9 @@ The cost model: memory is words of w bits, and basic operations on a word take O
 
 ## Prerequisites
 
-- [Computational Problems & Algorithms](/concepts/computational-problem.md)
+- [Computational Problems & Algorithms](computational-problem.md)
 
 ## Related
 
-- [Dynamic Arrays](/concepts/dynamic-array.md)
-- [Hash Tables (Chaining)](/concepts/hash-table.md)
+- [Dynamic Arrays](dynamic-array.md)
+- [Hash Tables (Chaining)](hash-table.md)

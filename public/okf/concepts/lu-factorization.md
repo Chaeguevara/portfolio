@@ -19,9 +19,9 @@ Elimination written as A = LU: lower-triangular L (multipliers) times upper-tria
 
 ## Prerequisites
 
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
+- [Gaussian Elimination](gaussian-elimination.md)
 
 ## Related
 
-- [Transpose & Permutation Matrices](/concepts/transpose-and-permutations.md)
-- [Matrix Inverse](/concepts/matrix-inverse.md)
+- [Transpose & Permutation Matrices](transpose-and-permutations.md)
+- [Matrix Inverse](matrix-inverse.md)

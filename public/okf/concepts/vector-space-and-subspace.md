@@ -19,6 +19,6 @@ A set closed under addition and scalar multiplication; a subspace is such a set 
 
 ## Related
 
-- [Column Space C(A)](/concepts/column-space.md)
-- [Nullspace N(A)](/concepts/nullspace.md)
-- [Independence, Basis, Dimension](/concepts/independence-basis-dimension.md)
+- [Column Space C(A)](column-space.md)
+- [Nullspace N(A)](nullspace.md)
+- [Independence, Basis, Dimension](independence-basis-dimension.md)

@@ -20,8 +20,8 @@ The classic concentric-square 'hypar' model provably cannot fold without extra c
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Rigid Origami](/concepts/rigid-origami.md)
+- [Rigid Origami](rigid-origami.md)

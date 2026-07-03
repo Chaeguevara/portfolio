@@ -21,7 +21,7 @@ if (!existsSync(join(SUB, 'study'))) {
 // [fromSubmodule, toPortfolio]
 const pairs = [
   ['study', 'src/content/study'], // authored concepts → Astro content collection
-  ['study-okf', 'public/okf'],    // generated OKF bundle → published static artifact
+  ['bundle/study', 'public/okf'], // generated OKF study subtree → published static artifact
 ];
 for (const [from, to] of pairs) {
   const dst = join(root, to);

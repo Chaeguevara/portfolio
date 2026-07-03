@@ -20,9 +20,9 @@ A single vertex of degree 2n folds flat iff its alternating angle sum is 0° —
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Maekawa's Theorem](/concepts/maekawa-theorem.md)
-- [Single-Vertex Flat-Foldability](/concepts/single-vertex-flat-foldability.md)
+- [Maekawa's Theorem](maekawa-theorem.md)
+- [Single-Vertex Flat-Foldability](single-vertex-flat-foldability.md)

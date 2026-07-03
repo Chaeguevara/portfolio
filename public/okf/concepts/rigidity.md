@@ -20,12 +20,12 @@ A framework is rigid if its only motions are trivial (rotations/translations); r
 
 ## Prerequisites
 
-- [Linkage](/concepts/linkage.md)
-- [Configuration Space](/concepts/configuration-space.md)
+- [Linkage](linkage.md)
+- [Configuration Space](configuration-space.md)
 
 ## Related
 
-- [Laman's Theorem](/concepts/laman-theorem.md)
-- [Infinitesimal Rigidity](/concepts/infinitesimal-rigidity.md)
-- [Cauchy's Rigidity Theorem](/concepts/cauchy-rigidity-theorem.md)
-- [Rigid Origami](/concepts/rigid-origami.md)
+- [Laman's Theorem](laman-theorem.md)
+- [Infinitesimal Rigidity](infinitesimal-rigidity.md)
+- [Cauchy's Rigidity Theorem](cauchy-rigidity-theorem.md)
+- [Rigid Origami](rigid-origami.md)

@@ -20,8 +20,8 @@ A lattice model where amino acids are Hydrophobic or Polar; the optimal (max Hâ€
 
 ## Prerequisites
 
-- [Fixed-Angle Linkage (Protein Folding)](/concepts/fixed-angle-linkage.md)
+- [Fixed-Angle Linkage (Protein Folding)](fixed-angle-linkage.md)
 
 ## Related
 
-- [Fixed-Angle Linkage (Protein Folding)](/concepts/fixed-angle-linkage.md)
+- [Fixed-Angle Linkage (Protein Folding)](fixed-angle-linkage.md)

@@ -18,8 +18,8 @@ Arithmetic on remainders mod n; inverses exist when gcd with n is 1, and Fermat/
 
 ## Prerequisites
 
-- [Divisibility, GCD & the Euclidean Algorithm](/concepts/divisibility-and-gcd.md)
+- [Divisibility, GCD & the Euclidean Algorithm](divisibility-and-gcd.md)
 
 ## Related
 
-- [RSA Public-Key Cryptography](/concepts/rsa-cryptosystem.md)
+- [RSA Public-Key Cryptography](rsa-cryptosystem.md)

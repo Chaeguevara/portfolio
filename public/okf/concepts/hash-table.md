@@ -19,9 +19,9 @@ Store keys in buckets chosen by a hash function; with a good hash, search/insert
 
 ## Prerequisites
 
-- [Set vs Sequence Interfaces](/concepts/data-structure-interfaces.md)
+- [Set vs Sequence Interfaces](data-structure-interfaces.md)
 
 ## Related
 
-- [Universal & Perfect Hashing](/concepts/universal-hashing.md)
-- [Linear-Time Sorting (Counting & Radix)](/concepts/linear-sorting.md)
+- [Universal & Perfect Hashing](universal-hashing.md)
+- [Linear-Time Sorting (Counting & Radix)](linear-sorting.md)

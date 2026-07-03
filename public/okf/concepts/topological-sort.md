@@ -18,9 +18,9 @@ Linearly order a DAG so every edge points forward; the prerequisite of DAG dynam
 
 ## Prerequisites
 
-- [Depth-First Search (DFS)](/concepts/depth-first-search.md)
+- [Depth-First Search (DFS)](depth-first-search.md)
 
 ## Related
 
-- [DAG Shortest Paths (Relaxation)](/concepts/dag-relaxation.md)
-- [Relations & Partial Orders](/concepts/relations-and-partial-orders.md)
+- [DAG Shortest Paths (Relaxation)](dag-relaxation.md)
+- [Relations & Partial Orders](relations-and-partial-orders.md)

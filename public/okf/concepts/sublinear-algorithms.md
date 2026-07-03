@@ -18,8 +18,8 @@ Answer approximately by reading only a tiny sample of a huge input, in time less
 
 ## Prerequisites
 
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
+- [Randomized Algorithms](randomized-algorithms.md)
 
 ## Related
 
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
+- [Randomized Algorithms](randomized-algorithms.md)

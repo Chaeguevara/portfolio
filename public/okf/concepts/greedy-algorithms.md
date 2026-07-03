@@ -18,6 +18,6 @@ Build a solution by locally optimal choices; prove optimality by an exchange arg
 
 ## Related
 
-- [Interval Scheduling](/concepts/interval-scheduling.md)
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
-- [Huffman Coding](/concepts/huffman-coding.md)
+- [Interval Scheduling](interval-scheduling.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
+- [Huffman Coding](huffman-coding.md)

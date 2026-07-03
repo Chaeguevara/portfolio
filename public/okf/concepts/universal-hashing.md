@@ -19,9 +19,9 @@ Pick a hash function at random from a universal family so no adversary can force
 
 ## Prerequisites
 
-- [Hash Tables (Chaining)](/concepts/hash-table.md)
+- [Hash Tables (Chaining)](hash-table.md)
 
 ## Related
 
-- [Hash Tables (Chaining)](/concepts/hash-table.md)
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
+- [Hash Tables (Chaining)](hash-table.md)
+- [Randomized Algorithms](randomized-algorithms.md)

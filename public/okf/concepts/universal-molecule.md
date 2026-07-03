@@ -20,11 +20,11 @@ An algorithm that fills a convex polygon (from the tree-method packing) with cre
 
 ## Prerequisites
 
-- [Uniaxial Base](/concepts/uniaxial-base.md)
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
+- [Uniaxial Base](uniaxial-base.md)
+- [Tree Method (Origami Design)](tree-method.md)
 
 ## Related
 
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
-- [Uniaxial Base](/concepts/uniaxial-base.md)
-- [Fold-and-One-Cut](/concepts/fold-and-one-cut.md)
+- [Tree Method (Origami Design)](tree-method.md)
+- [Uniaxial Base](uniaxial-base.md)
+- [Fold-and-One-Cut](fold-and-one-cut.md)

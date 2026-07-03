@@ -19,9 +19,9 @@ A matching pairs up vertices with no shared endpoints; Hall's condition tells ex
 
 ## Prerequisites
 
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)
 
 ## Related
 
-- [Network Flow & Max-Flow Min-Cut](/concepts/network-flow.md)
-- [Graph Coloring](/concepts/graph-coloring.md)
+- [Network Flow & Max-Flow Min-Cut](network-flow.md)
+- [Graph Coloring](graph-coloring.md)

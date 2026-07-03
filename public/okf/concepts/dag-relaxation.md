@@ -19,9 +19,9 @@ On a DAG, relaxing edges in topological order gives shortest paths in O(V+E), ev
 
 ## Prerequisites
 
-- [Topological Sort](/concepts/topological-sort.md)
+- [Topological Sort](topological-sort.md)
 
 ## Related
 
-- [Weighted Shortest Paths: Overview](/concepts/weighted-shortest-paths.md)
-- [Dynamic Programming (SRTBOT)](/concepts/dynamic-programming.md)
+- [Weighted Shortest Paths: Overview](weighted-shortest-paths.md)
+- [Dynamic Programming (SRTBOT)](dynamic-programming.md)

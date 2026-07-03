@@ -20,9 +20,9 @@ Designing on a 45°/90° grid so a single fixed hinge pattern can fold any cube-
 
 ## Prerequisites
 
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
+- [Tree Method (Origami Design)](tree-method.md)
 
 ## Related
 
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
+- [Tree Method (Origami Design)](tree-method.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)

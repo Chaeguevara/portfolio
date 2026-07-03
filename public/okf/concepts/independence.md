@@ -18,9 +18,9 @@ Events are independent when one's occurrence does not change the other's probabi
 
 ## Prerequisites
 
-- [Conditional Probability & Bayes' Theorem](/concepts/conditional-probability-and-bayes.md)
+- [Conditional Probability & Bayes' Theorem](conditional-probability-and-bayes.md)
 
 ## Related
 
-- [Random Variables & Distributions](/concepts/random-variables.md)
-- [Variance & Deviation Bounds](/concepts/variance-and-deviation.md)
+- [Random Variables & Distributions](random-variables.md)
+- [Variance & Deviation Bounds](variance-and-deviation.md)

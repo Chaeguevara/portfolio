@@ -18,10 +18,10 @@ Independent vectors have only the trivial combination giving 0; a basis is an in
 
 ## Prerequisites
 
-- [Vector Space & Subspace](/concepts/vector-space-and-subspace.md)
+- [Vector Space & Subspace](vector-space-and-subspace.md)
 
 ## Related
 
-- [Rank](/concepts/rank.md)
-- [Column Space C(A)](/concepts/column-space.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [Rank](rank.md)
+- [Column Space C(A)](column-space.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)

@@ -18,8 +18,8 @@ A planar graph can be drawn without crossings; vertices, edges and faces satisfy
 
 ## Prerequisites
 
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)
 
 ## Related
 
-- [Graph Coloring](/concepts/graph-coloring.md)
+- [Graph Coloring](graph-coloring.md)

@@ -18,9 +18,9 @@ Algorithms that order items only by comparing pairs need Omega(n log n) comparis
 
 ## Prerequisites
 
-- [Asymptotic Notation (Big-O)](/concepts/asymptotic-notation.md)
+- [Asymptotic Notation (Big-O)](asymptotic-notation.md)
 
 ## Related
 
-- [Merge Sort](/concepts/merge-sort.md)
-- [Linear-Time Sorting (Counting & Radix)](/concepts/linear-sorting.md)
+- [Merge Sort](merge-sort.md)
+- [Linear-Time Sorting (Counting & Radix)](linear-sorting.md)

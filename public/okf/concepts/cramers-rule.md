@@ -18,10 +18,10 @@ Solve Ax=b by ratios of determinants; det also measures volume scaling of the ma
 
 ## Prerequisites
 
-- [Determinant](/concepts/determinant.md)
-- [Cofactor Expansion](/concepts/cofactor-expansion.md)
+- [Determinant](determinant.md)
+- [Cofactor Expansion](cofactor-expansion.md)
 
 ## Related
 
-- [Determinant](/concepts/determinant.md)
-- [Matrix Inverse](/concepts/matrix-inverse.md)
+- [Determinant](determinant.md)
+- [Matrix Inverse](matrix-inverse.md)

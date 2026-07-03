@@ -19,9 +19,9 @@ Non-negative columns summing to 1; λ=1 is always an eigenvalue and its eigenvec
 
 ## Prerequisites
 
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)
 
 ## Related
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Diagonalization & Powers of A](diagonalization.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)

@@ -19,10 +19,10 @@ There is a linkage whose tracing joint draws any given polynomial (algebraic) cu
 
 ## Prerequisites
 
-- [Linkage](/concepts/linkage.md)
-- [Configuration Space](/concepts/configuration-space.md)
+- [Linkage](linkage.md)
+- [Configuration Space](configuration-space.md)
 
 ## Related
 
-- [Linkage](/concepts/linkage.md)
-- [Configuration Space](/concepts/configuration-space.md)
+- [Linkage](linkage.md)
+- [Configuration Space](configuration-space.md)

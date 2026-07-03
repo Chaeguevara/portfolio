@@ -20,4 +20,4 @@ An algebraic quantity (from edge lengths and dihedral angles) that must match fo
 
 ## Related
 
-- [Hinged Dissection](/concepts/hinged-dissection.md)
+- [Hinged Dissection](hinged-dissection.md)

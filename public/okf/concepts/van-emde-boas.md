@@ -18,8 +18,8 @@ A recursive structure over a universe of size u giving predecessor/successor in 
 
 ## Prerequisites
 
-- [Binary Search Trees](/concepts/binary-search-tree.md)
+- [Binary Search Trees](binary-search-tree.md)
 
 ## Related
 
-- [Binary Search Trees](/concepts/binary-search-tree.md)
+- [Binary Search Trees](binary-search-tree.md)

@@ -19,9 +19,9 @@ A framework with struts (can't shrink), cables (can't grow), and bars (fixed); s
 
 ## Prerequisites
 
-- [Infinitesimal Rigidity](/concepts/infinitesimal-rigidity.md)
+- [Infinitesimal Rigidity](infinitesimal-rigidity.md)
 
 ## Related
 
-- [Infinitesimal Rigidity](/concepts/infinitesimal-rigidity.md)
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Infinitesimal Rigidity](infinitesimal-rigidity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)

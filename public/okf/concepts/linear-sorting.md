@@ -18,9 +18,9 @@ When keys are small integers, counting and radix sort order n items in O(n) by a
 
 ## Prerequisites
 
-- [Comparison Sorting & Its Lower Bound](/concepts/comparison-sorting.md)
+- [Comparison Sorting & Its Lower Bound](comparison-sorting.md)
 
 ## Related
 
-- [Comparison Sorting & Its Lower Bound](/concepts/comparison-sorting.md)
-- [Hash Tables (Chaining)](/concepts/hash-table.md)
+- [Comparison Sorting & Its Lower Bound](comparison-sorting.md)
+- [Hash Tables (Chaining)](hash-table.md)

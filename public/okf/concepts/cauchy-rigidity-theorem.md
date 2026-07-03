@@ -20,9 +20,9 @@ A convex polyhedron is uniquely determined (up to congruence) by its faces and h
 
 ## Prerequisites
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
 
 ## Related
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Alexandrov's Theorem](/concepts/alexandrov-theorem.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Alexandrov's Theorem](alexandrov-theorem.md)

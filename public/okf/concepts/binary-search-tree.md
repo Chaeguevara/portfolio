@@ -19,9 +19,9 @@ A tree keeping the BST property (left < node < right) supports ordered set opera
 
 ## Prerequisites
 
-- [Set vs Sequence Interfaces](/concepts/data-structure-interfaces.md)
+- [Set vs Sequence Interfaces](data-structure-interfaces.md)
 
 ## Related
 
-- [AVL Trees (Balanced BSTs)](/concepts/avl-tree.md)
-- [Binary Heaps & Priority Queues](/concepts/binary-heap.md)
+- [AVL Trees (Balanced BSTs)](avl-tree.md)
+- [Binary Heaps & Priority Queues](binary-heap.md)

@@ -19,9 +19,9 @@ Symmetric A with x^TAx>0 for all x≠0; equivalently all eigenvalues, pivots, an
 
 ## Prerequisites
 
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)
 
 ## Related
 
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
-- [Least Squares](/concepts/least-squares.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)
+- [Least Squares](least-squares.md)

@@ -18,9 +18,9 @@ A problem is NP-complete if it is in NP and every NP problem reduces to it; one 
 
 ## Prerequisites
 
-- [Complexity Classes: P, NP, EXP](/concepts/complexity-classes.md)
+- [Complexity Classes: P, NP, EXP](complexity-classes.md)
 
 ## Related
 
-- [Complexity Classes: P, NP, EXP](/concepts/complexity-classes.md)
-- [Approximation Algorithms](/concepts/approximation-algorithms.md)
+- [Complexity Classes: P, NP, EXP](complexity-classes.md)
+- [Approximation Algorithms](approximation-algorithms.md)

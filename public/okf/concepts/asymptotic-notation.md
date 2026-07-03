@@ -20,9 +20,9 @@ O, Omega, Theta describe how running time grows with input size, hiding constant
 
 ## Prerequisites
 
-- [Computational Problems & Algorithms](/concepts/computational-problem.md)
+- [Computational Problems & Algorithms](computational-problem.md)
 
 ## Related
 
-- [The Word-RAM Model](/concepts/word-ram-model.md)
-- [Asymptotics & Integral Bounds](/concepts/asymptotics-and-integral-bounds.md)
+- [The Word-RAM Model](word-ram-model.md)
+- [Asymptotics & Integral Bounds](asymptotics-and-integral-bounds.md)

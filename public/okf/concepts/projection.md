@@ -18,10 +18,10 @@ The closest point in a subspace to b; given by the projection matrix P = A(A^TA)
 
 ## Prerequisites
 
-- [Orthogonality & Orthogonal Complements](/concepts/orthogonality.md)
+- [Orthogonality & Orthogonal Complements](orthogonality.md)
 
 ## Related
 
-- [Least Squares](/concepts/least-squares.md)
-- [Orthogonality & Orthogonal Complements](/concepts/orthogonality.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
+- [Least Squares](least-squares.md)
+- [Orthogonality & Orthogonal Complements](orthogonality.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)

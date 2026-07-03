@@ -17,10 +17,10 @@ If A has n independent eigenvectors, A = SΛS^{-1}, so A^k = SΛ^kS^{-1}.
 
 ## Prerequisites
 
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)
 
 ## Related
 
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
-- [Matrix Exponential & Differential Equations](/concepts/matrix-exponential.md)
-- [Similar Matrices & Jordan Form](/concepts/jordan-form.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)
+- [Matrix Exponential & Differential Equations](matrix-exponential.md)
+- [Similar Matrices & Jordan Form](jordan-form.md)

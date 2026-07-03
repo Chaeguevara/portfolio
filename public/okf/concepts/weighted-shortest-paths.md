@@ -19,10 +19,10 @@ Find minimum-weight paths from a source; the right algorithm depends on edge sig
 
 ## Prerequisites
 
-- [Breadth-First Search (BFS)](/concepts/breadth-first-search.md)
+- [Breadth-First Search (BFS)](breadth-first-search.md)
 
 ## Related
 
-- [DAG Shortest Paths (Relaxation)](/concepts/dag-relaxation.md)
-- [Bellman–Ford Algorithm](/concepts/bellman-ford.md)
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
+- [DAG Shortest Paths (Relaxation)](dag-relaxation.md)
+- [Bellman–Ford Algorithm](bellman-ford.md)
+- [Dijkstra's Algorithm](dijkstra.md)

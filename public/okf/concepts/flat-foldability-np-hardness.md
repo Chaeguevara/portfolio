@@ -21,10 +21,10 @@ Deciding global flat-foldability of a given crease pattern is NP-hard (Bern & Ha
 
 ## Prerequisites
 
-- [Flat-Foldability](/concepts/flat-foldability.md)
+- [Flat-Foldability](flat-foldability.md)
 
 ## Related
 
-- [Map Folding](/concepts/map-folding.md)
-- [Simple Fold](/concepts/simple-fold.md)
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
+- [Map Folding](map-folding.md)
+- [Simple Fold](simple-fold.md)
+- [Tree Method (Origami Design)](tree-method.md)

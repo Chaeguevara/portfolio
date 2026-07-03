@@ -19,5 +19,5 @@ Maintain disjoint sets with near-constant find/union via union-by-rank and path 
 
 ## Related
 
-- [Kruskal's Algorithm](/concepts/kruskals-algorithm.md)
-- [Amortized Analysis](/concepts/amortized-analysis.md)
+- [Kruskal's Algorithm](kruskals-algorithm.md)
+- [Amortized Analysis](amortized-analysis.md)

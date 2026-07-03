@@ -18,11 +18,11 @@ A^{-1} undoes A (AA^{-1}=I); it exists iff A is square with full rank, found by 
 
 ## Prerequisites
 
-- [Matrix Multiplication](/concepts/matrix-multiplication.md)
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
+- [Matrix Multiplication](matrix-multiplication.md)
+- [Gaussian Elimination](gaussian-elimination.md)
 
 ## Related
 
-- [Determinant](/concepts/determinant.md)
-- [Rank](/concepts/rank.md)
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
+- [Determinant](determinant.md)
+- [Rank](rank.md)
+- [Gaussian Elimination](gaussian-elimination.md)

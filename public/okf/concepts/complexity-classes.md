@@ -18,9 +18,9 @@ Classify problems by the resources to solve or verify them; P is efficiently sol
 
 ## Prerequisites
 
-- [Asymptotic Notation (Big-O)](/concepts/asymptotic-notation.md)
+- [Asymptotic Notation (Big-O)](asymptotic-notation.md)
 
 ## Related
 
-- [NP-Completeness & Reductions](/concepts/np-completeness.md)
-- [Pseudopolynomial Time & Subset Sum](/concepts/pseudopolynomial.md)
+- [NP-Completeness & Reductions](np-completeness.md)
+- [Pseudopolynomial Time & Subset Sum](pseudopolynomial.md)

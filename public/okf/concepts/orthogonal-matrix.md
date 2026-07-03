@@ -18,10 +18,10 @@ A square matrix Q with orthonormal columns: Q^TQ=I, so Q^{-1}=Q^T; preserves len
 
 ## Prerequisites
 
-- [Orthogonality & Orthogonal Complements](/concepts/orthogonality.md)
+- [Orthogonality & Orthogonal Complements](orthogonality.md)
 
 ## Related
 
-- [QR Factorization](/concepts/qr-factorization.md)
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
+- [QR Factorization](qr-factorization.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)

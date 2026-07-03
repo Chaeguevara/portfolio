@@ -18,8 +18,8 @@ Big-O/Theta/Omega compare growth rates; sums are bounded by integrals, and Stirl
 
 ## Prerequisites
 
-- [Sums & Summation Techniques](/concepts/sums-and-techniques.md)
+- [Sums & Summation Techniques](sums-and-techniques.md)
 
 ## Related
 
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)

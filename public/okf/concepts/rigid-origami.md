@@ -21,11 +21,11 @@ Folding where faces stay rigid (flat) and only the creases move — the model fo
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
-- [Kawasaki's Theorem](/concepts/kawasaki-theorem.md)
+- [Crease Pattern](crease-pattern.md)
+- [Kawasaki's Theorem](kawasaki-theorem.md)
 
 ## Related
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Pleat Folding & the Hyperbolic Paraboloid](/concepts/hypar-pleat-folding.md)
-- [Tensegrity](/concepts/tensegrity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Pleat Folding & the Hyperbolic Paraboloid](hypar-pleat-folding.md)
+- [Tensegrity](tensegrity.md)

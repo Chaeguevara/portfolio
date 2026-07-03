@@ -18,9 +18,9 @@ Standard ways to prove a statement: direct, by cases, by contrapositive, and by 
 
 ## Prerequisites
 
-- [Propositions, Predicates & Quantifiers](/concepts/propositions-and-logic.md)
+- [Propositions, Predicates & Quantifiers](propositions-and-logic.md)
 
 ## Related
 
-- [Mathematical Induction](/concepts/induction.md)
-- [Well-Ordering Principle](/concepts/well-ordering-principle.md)
+- [Mathematical Induction](induction.md)
+- [Well-Ordering Principle](well-ordering-principle.md)

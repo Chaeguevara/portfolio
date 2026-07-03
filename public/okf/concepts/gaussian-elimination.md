@@ -19,10 +19,10 @@ Systematic row operations that reduce A to upper-triangular form, then solve by 
 
 ## Prerequisites
 
-- [Three Pictures of Ax = b](/concepts/linear-system-pictures.md)
+- [Three Pictures of Ax = b](linear-system-pictures.md)
 
 ## Related
 
-- [LU Factorization](/concepts/lu-factorization.md)
-- [Matrix Inverse](/concepts/matrix-inverse.md)
-- [Solving Ax = 0: Pivots, Free Variables, RREF](/concepts/solving-ax-0.md)
+- [LU Factorization](lu-factorization.md)
+- [Matrix Inverse](matrix-inverse.md)
+- [Solving Ax = 0: Pivots, Free Variables, RREF](solving-ax-0.md)

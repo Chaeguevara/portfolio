@@ -19,9 +19,9 @@ Partition points into groups by similarity; greedy and MST-based methods give ap
 
 ## Prerequisites
 
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
 
 ## Related
 
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
-- [Approximation Algorithms](/concepts/approximation-algorithms.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
+- [Approximation Algorithms](approximation-algorithms.md)

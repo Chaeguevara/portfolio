@@ -18,9 +18,9 @@ The product AB, understood four equivalent ways: entry dot-products, columns, ro
 
 ## Prerequisites
 
-- [Three Pictures of Ax = b](/concepts/linear-system-pictures.md)
+- [Three Pictures of Ax = b](linear-system-pictures.md)
 
 ## Related
 
-- [Matrix Inverse](/concepts/matrix-inverse.md)
-- [Rank-One Matrices](/concepts/rank-one-matrix.md)
+- [Matrix Inverse](matrix-inverse.md)
+- [Rank-One Matrices](rank-one-matrix.md)

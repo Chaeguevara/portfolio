@@ -17,10 +17,10 @@ Prove P(n) for all n by establishing a base case and that P(n) implies P(n+1).
 
 ## Prerequisites
 
-- [Proof Methods](/concepts/proof-methods.md)
+- [Proof Methods](proof-methods.md)
 
 ## Related
 
-- [Strong Induction](/concepts/strong-induction.md)
-- [Well-Ordering Principle](/concepts/well-ordering-principle.md)
-- [Linear Recurrences](/concepts/linear-recurrences.md)
+- [Strong Induction](strong-induction.md)
+- [Well-Ordering Principle](well-ordering-principle.md)
+- [Linear Recurrences](linear-recurrences.md)

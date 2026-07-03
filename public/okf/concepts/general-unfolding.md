@@ -19,9 +19,9 @@ Unfolding with cuts allowed across faces; convex polyhedra always have one via t
 
 ## Prerequisites
 
-- [Polyhedron Unfolding](/concepts/polyhedron-unfolding.md)
+- [Polyhedron Unfolding](polyhedron-unfolding.md)
 
 ## Related
 
-- [Polyhedron Unfolding](/concepts/polyhedron-unfolding.md)
-- [Edge Unfolding](/concepts/edge-unfolding.md)
+- [Polyhedron Unfolding](polyhedron-unfolding.md)
+- [Edge Unfolding](edge-unfolding.md)

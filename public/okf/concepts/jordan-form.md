@@ -18,9 +18,9 @@ Similar matrices B=M^{-1}AM share eigenvalues; the Jordan form is the canonical 
 
 ## Prerequisites
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
+- [Diagonalization & Powers of A](diagonalization.md)
 
 ## Related
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Diagonalization & Powers of A](diagonalization.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)

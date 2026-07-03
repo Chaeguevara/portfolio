@@ -19,10 +19,10 @@ A chain of polygons hinged at vertices that can refold to form any of several ta
 
 ## Prerequisites
 
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
 
 ## Related
 
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
-- [Locked Linkage](/concepts/locked-linkage.md)
-- [Dehn Invariant](/concepts/dehn-invariant.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
+- [Locked Linkage](locked-linkage.md)
+- [Dehn Invariant](dehn-invariant.md)

@@ -18,8 +18,8 @@ Select the most non-overlapping intervals by repeatedly taking the one that fini
 
 ## Prerequisites
 
-- [Greedy Algorithms & the Exchange Argument](/concepts/greedy-algorithms.md)
+- [Greedy Algorithms & the Exchange Argument](greedy-algorithms.md)
 
 ## Related
 
-- [Greedy Algorithms & the Exchange Argument](/concepts/greedy-algorithms.md)
+- [Greedy Algorithms & the Exchange Argument](greedy-algorithms.md)

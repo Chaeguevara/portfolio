@@ -22,11 +22,11 @@ Design an origami base by packing the legs of a stick-figure tree as circles/riv
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Uniaxial Base](/concepts/uniaxial-base.md)
-- [Universal Molecule](/concepts/universal-molecule.md)
-- [Box Pleating & Universal Hinge Patterns](/concepts/box-pleating.md)
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
+- [Uniaxial Base](uniaxial-base.md)
+- [Universal Molecule](universal-molecule.md)
+- [Box Pleating & Universal Hinge Patterns](box-pleating.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)

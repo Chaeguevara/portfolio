@@ -18,10 +18,10 @@ A walker takes random +/-1 steps; gambler's ruin computes the probability and du
 
 ## Prerequisites
 
-- [Expectation & Linearity](/concepts/expectation.md)
-- [Variance & Deviation Bounds](/concepts/variance-and-deviation.md)
+- [Expectation & Linearity](expectation.md)
+- [Variance & Deviation Bounds](variance-and-deviation.md)
 
 ## Related
 
-- [Expectation & Linearity](/concepts/expectation.md)
-- [Variance & Deviation Bounds](/concepts/variance-and-deviation.md)
+- [Expectation & Linearity](expectation.md)
+- [Variance & Deviation Bounds](variance-and-deviation.md)

@@ -19,5 +19,5 @@ A proposition is a statement that is true or false; predicates add variables, an
 
 ## Related
 
-- [Proof Methods](/concepts/proof-methods.md)
-- [Mathematical Induction](/concepts/induction.md)
+- [Proof Methods](proof-methods.md)
+- [Mathematical Induction](induction.md)

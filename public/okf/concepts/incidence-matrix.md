@@ -19,9 +19,9 @@ A matrix encoding a graph (edges×nodes); its four subspaces are loops, potentia
 
 ## Prerequisites
 
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
 
 ## Related
 
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
-- [Nullspace N(A)](/concepts/nullspace.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
+- [Nullspace N(A)](nullspace.md)

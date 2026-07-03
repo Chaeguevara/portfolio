@@ -18,5 +18,5 @@ Multiply degree-n polynomials in O(n log n) by evaluating at roots of unity and 
 
 ## Related
 
-- [Complex Matrices & the FFT](/concepts/complex-matrices-fft.md)
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
+- [Complex Matrices & the FFT](complex-matrices-fft.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)

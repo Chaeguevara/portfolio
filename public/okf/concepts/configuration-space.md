@@ -19,10 +19,10 @@ The space of all valid placements of a linkage; folding motions are paths in it,
 
 ## Prerequisites
 
-- [Linkage](/concepts/linkage.md)
+- [Linkage](linkage.md)
 
 ## Related
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Locked Linkage](/concepts/locked-linkage.md)
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Locked Linkage](locked-linkage.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)

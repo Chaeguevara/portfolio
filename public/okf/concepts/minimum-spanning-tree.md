@@ -20,10 +20,10 @@ The cheapest set of edges connecting all vertices; greedy works thanks to the cu
 
 ## Prerequisites
 
-- [Greedy Algorithms & the Exchange Argument](/concepts/greedy-algorithms.md)
+- [Greedy Algorithms & the Exchange Argument](greedy-algorithms.md)
 
 ## Related
 
-- [Prim's Algorithm](/concepts/prims-algorithm.md)
-- [Kruskal's Algorithm](/concepts/kruskals-algorithm.md)
-- [Trees & Spanning Trees](/concepts/trees-and-spanning-trees.md)
+- [Prim's Algorithm](prims-algorithm.md)
+- [Kruskal's Algorithm](kruskals-algorithm.md)
+- [Trees & Spanning Trees](trees-and-spanning-trees.md)

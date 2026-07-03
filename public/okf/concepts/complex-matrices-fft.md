@@ -19,9 +19,9 @@ Hermitian/unitary generalize symmetric/orthogonal to ℂ; the Fourier matrix fac
 
 ## Prerequisites
 
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
 
 ## Related
 
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)

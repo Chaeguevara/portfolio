@@ -19,9 +19,9 @@ Recurrences T(n)=aT(n/b)+f(n) are solved by recursion trees, summarized by the m
 
 ## Prerequisites
 
-- [Strong Induction](/concepts/strong-induction.md)
+- [Strong Induction](strong-induction.md)
 
 ## Related
 
-- [Linear Recurrences](/concepts/linear-recurrences.md)
-- [Asymptotics & Integral Bounds](/concepts/asymptotics-and-integral-bounds.md)
+- [Linear Recurrences](linear-recurrences.md)
+- [Asymptotics & Integral Bounds](asymptotics-and-integral-bounds.md)

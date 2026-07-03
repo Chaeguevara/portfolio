@@ -19,10 +19,10 @@ For NP-hard optimization, find a provably near-optimal solution in polynomial ti
 
 ## Prerequisites
 
-- [NP-Completeness & Reductions](/concepts/np-completeness.md)
+- [NP-Completeness & Reductions](np-completeness.md)
 
 ## Related
 
-- [NP-Completeness & Reductions](/concepts/np-completeness.md)
-- [Clustering](/concepts/clustering.md)
-- [Derandomization](/concepts/derandomization.md)
+- [NP-Completeness & Reductions](np-completeness.md)
+- [Clustering](clustering.md)
+- [Derandomization](derandomization.md)

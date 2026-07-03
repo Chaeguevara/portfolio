@@ -19,8 +19,8 @@ Judge an online algorithm (no future knowledge) by its worst-case ratio to the o
 
 ## Prerequisites
 
-- [Amortized Analysis](/concepts/amortized-analysis.md)
+- [Amortized Analysis](amortized-analysis.md)
 
 ## Related
 
-- [Amortized Analysis](/concepts/amortized-analysis.md)
+- [Amortized Analysis](amortized-analysis.md)

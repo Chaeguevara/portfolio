@@ -19,6 +19,6 @@ Bound the average cost per operation over a worst-case sequence using aggregate,
 
 ## Related
 
-- [Dynamic Arrays](/concepts/dynamic-array.md)
-- [Union-Find (Disjoint Sets)](/concepts/union-find.md)
-- [Competitive Analysis (Online Algorithms)](/concepts/competitive-analysis.md)
+- [Dynamic Arrays](dynamic-array.md)
+- [Union-Find (Disjoint Sets)](union-find.md)
+- [Competitive Analysis (Online Algorithms)](competitive-analysis.md)

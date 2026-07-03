@@ -20,8 +20,8 @@ All-pairs shortest paths in O(V^3) by a DP that allows intermediate vertices one
 
 ## Prerequisites
 
-- [All-Pairs Shortest Paths via DP](/concepts/apsp-dynamic-programming.md)
+- [All-Pairs Shortest Paths via DP](apsp-dynamic-programming.md)
 
 ## Related
 
-- [Johnson's Algorithm](/concepts/johnsons-algorithm.md)
+- [Johnson's Algorithm](johnsons-algorithm.md)

@@ -18,6 +18,6 @@ A graph is vertices joined by edges; walks, paths, cycles and connectivity descr
 
 ## Related
 
-- [Graph Coloring](/concepts/graph-coloring.md)
-- [Trees & Spanning Trees](/concepts/trees-and-spanning-trees.md)
-- [Bipartite Matching & Hall's Theorem](/concepts/bipartite-matching.md)
+- [Graph Coloring](graph-coloring.md)
+- [Trees & Spanning Trees](trees-and-spanning-trees.md)
+- [Bipartite Matching & Hall's Theorem](bipartite-matching.md)

@@ -19,4 +19,4 @@ Binary relations classify by reflexivity/symmetry/transitivity; partial orders m
 
 ## Related
 
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)

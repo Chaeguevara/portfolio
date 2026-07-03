@@ -19,10 +19,10 @@ Best-fit solution to an inconsistent Ax=b, found from the normal equations A^TA 
 
 ## Prerequisites
 
-- [Projection onto a Subspace](/concepts/projection.md)
+- [Projection onto a Subspace](projection.md)
 
 ## Related
 
-- [Projection onto a Subspace](/concepts/projection.md)
-- [QR Factorization](/concepts/qr-factorization.md)
-- [Pseudoinverse](/concepts/pseudoinverse.md)
+- [Projection onto a Subspace](projection.md)
+- [QR Factorization](qr-factorization.md)
+- [Pseudoinverse](pseudoinverse.md)

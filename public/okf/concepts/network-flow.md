@@ -19,8 +19,8 @@ Push the most flow from source to sink; the maximum flow equals the minimum cut 
 
 ## Prerequisites
 
-- [Graph Representations](/concepts/graph-representation.md)
+- [Graph Representations](graph-representation.md)
 
 ## Related
 
-- [Bipartite Matching & Hall's Theorem](/concepts/bipartite-matching.md)
+- [Bipartite Matching & Hall's Theorem](bipartite-matching.md)

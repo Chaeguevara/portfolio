@@ -20,12 +20,12 @@ Any matrix factors as A = UΣV^T with orthogonal U,V and nonnegative diagonal Σ
 
 ## Prerequisites
 
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
-- [Rank-One Matrices](/concepts/rank-one-matrix.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
+- [Rank-One Matrices](rank-one-matrix.md)
 
 ## Related
 
-- [Pseudoinverse](/concepts/pseudoinverse.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
-- [Rank-One Matrices](/concepts/rank-one-matrix.md)
+- [Pseudoinverse](pseudoinverse.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
+- [Rank-One Matrices](rank-one-matrix.md)

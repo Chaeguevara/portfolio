@@ -18,9 +18,9 @@ Convert a randomized algorithm into a deterministic one, e.g. by the method of c
 
 ## Prerequisites
 
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
+- [Randomized Algorithms](randomized-algorithms.md)
 
 ## Related
 
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
-- [Approximation Algorithms](/concepts/approximation-algorithms.md)
+- [Randomized Algorithms](randomized-algorithms.md)
+- [Approximation Algorithms](approximation-algorithms.md)

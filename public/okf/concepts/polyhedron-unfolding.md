@@ -18,6 +18,6 @@ Cutting a polyhedron's surface so it unfolds flat into one non-overlapping piece
 
 ## Related
 
-- [Edge Unfolding](/concepts/edge-unfolding.md)
-- [General Unfolding (Source & Star)](/concepts/general-unfolding.md)
-- [Vertex Unfolding](/concepts/vertex-unfolding.md)
+- [Edge Unfolding](edge-unfolding.md)
+- [General Unfolding (Source & Star)](general-unfolding.md)
+- [Vertex Unfolding](vertex-unfolding.md)

@@ -17,11 +17,11 @@ All solutions to Ax=0 — a subspace of R^n whose dimension is n − rank.
 
 ## Prerequisites
 
-- [Vector Space & Subspace](/concepts/vector-space-and-subspace.md)
+- [Vector Space & Subspace](vector-space-and-subspace.md)
 
 ## Related
 
-- [Solving Ax = 0: Pivots, Free Variables, RREF](/concepts/solving-ax-0.md)
-- [Column Space C(A)](/concepts/column-space.md)
-- [Rank](/concepts/rank.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [Solving Ax = 0: Pivots, Free Variables, RREF](solving-ax-0.md)
+- [Column Space C(A)](column-space.md)
+- [Rank](rank.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)

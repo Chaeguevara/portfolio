@@ -18,5 +18,5 @@ A problem maps inputs to correct outputs; an algorithm is a procedure that solve
 
 ## Related
 
-- [Asymptotic Notation (Big-O)](/concepts/asymptotic-notation.md)
-- [The Word-RAM Model](/concepts/word-ram-model.md)
+- [Asymptotic Notation (Big-O)](asymptotic-notation.md)
+- [The Word-RAM Model](word-ram-model.md)

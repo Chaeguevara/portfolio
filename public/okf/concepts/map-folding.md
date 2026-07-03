@@ -22,10 +22,10 @@ Given an m×n grid of creases with M/V labels, decide if it folds flat into a un
 
 ## Prerequisites
 
-- [Simple Fold](/concepts/simple-fold.md)
-- [Flat-Foldability](/concepts/flat-foldability.md)
+- [Simple Fold](simple-fold.md)
+- [Flat-Foldability](flat-foldability.md)
 
 ## Related
 
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
-- [Simple Fold](/concepts/simple-fold.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)
+- [Simple Fold](simple-fold.md)

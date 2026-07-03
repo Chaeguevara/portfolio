@@ -20,11 +20,11 @@ A planar subdivision into pseudotriangles (3 convex corners) with every vertex p
 
 ## Prerequisites
 
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
 
 ## Related
 
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
-- [Locked Linkage](/concepts/locked-linkage.md)
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
+- [Locked Linkage](locked-linkage.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)

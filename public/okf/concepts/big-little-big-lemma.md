@@ -20,10 +20,10 @@ At a flat-foldable vertex, the crease inside a strictly-smallest angle (a local 
 
 ## Prerequisites
 
-- [Mountain–Valley Assignment](/concepts/mountain-valley-assignment.md)
-- [Kawasaki's Theorem](/concepts/kawasaki-theorem.md)
+- [Mountain–Valley Assignment](mountain-valley-assignment.md)
+- [Kawasaki's Theorem](kawasaki-theorem.md)
 
 ## Related
 
-- [Single-Vertex Flat-Foldability](/concepts/single-vertex-flat-foldability.md)
-- [Maekawa's Theorem](/concepts/maekawa-theorem.md)
+- [Single-Vertex Flat-Foldability](single-vertex-flat-foldability.md)
+- [Maekawa's Theorem](maekawa-theorem.md)

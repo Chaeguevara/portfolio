@@ -21,9 +21,9 @@ A graph is minimally generically rigid in 2D iff it has 2n−3 edges and every k
 
 ## Prerequisites
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
 
 ## Related
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Infinitesimal Rigidity](/concepts/infinitesimal-rigidity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Infinitesimal Rigidity](infinitesimal-rigidity.md)

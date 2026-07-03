@@ -18,10 +18,10 @@ Variance measures spread; Markov and Chebyshev bound the chance a variable stray
 
 ## Prerequisites
 
-- [Expectation & Linearity](/concepts/expectation.md)
+- [Expectation & Linearity](expectation.md)
 
 ## Related
 
-- [Expectation & Linearity](/concepts/expectation.md)
-- [Random Walks & Gambler's Ruin](/concepts/random-walks.md)
-- [Independence](/concepts/independence.md)
+- [Expectation & Linearity](expectation.md)
+- [Random Walks & Gambler's Ruin](random-walks.md)
+- [Independence](independence.md)

@@ -19,9 +19,9 @@ Explore as deep as possible before backtracking; classifies edges and exposes gr
 
 ## Prerequisites
 
-- [Graph Representations](/concepts/graph-representation.md)
+- [Graph Representations](graph-representation.md)
 
 ## Related
 
-- [Breadth-First Search (BFS)](/concepts/breadth-first-search.md)
-- [Topological Sort](/concepts/topological-sort.md)
+- [Breadth-First Search (BFS)](breadth-first-search.md)
+- [Topological Sort](topological-sort.md)

@@ -19,11 +19,11 @@ A=A^T has real eigenvalues and orthonormal eigenvectors: A = QΛQ^T (spectral th
 
 ## Prerequisites
 
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
 
 ## Related
 
-- [Positive Definite Matrices](/concepts/positive-definite.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Positive Definite Matrices](positive-definite.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)

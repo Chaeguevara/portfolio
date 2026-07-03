@@ -19,9 +19,9 @@ Assign colors to vertices so adjacent ones differ; the minimum number needed is 
 
 ## Prerequisites
 
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)
 
 ## Related
 
-- [Planar Graphs & Euler's Formula](/concepts/planar-graphs.md)
-- [Bipartite Matching & Hall's Theorem](/concepts/bipartite-matching.md)
+- [Planar Graphs & Euler's Formula](planar-graphs.md)
+- [Bipartite Matching & Hall's Theorem](bipartite-matching.md)

@@ -18,10 +18,10 @@ Separate the operations a data structure must support (interface) from how it do
 
 ## Prerequisites
 
-- [The Word-RAM Model](/concepts/word-ram-model.md)
+- [The Word-RAM Model](word-ram-model.md)
 
 ## Related
 
-- [Dynamic Arrays](/concepts/dynamic-array.md)
-- [Hash Tables (Chaining)](/concepts/hash-table.md)
-- [Binary Search Trees](/concepts/binary-search-tree.md)
+- [Dynamic Arrays](dynamic-array.md)
+- [Hash Tables (Chaining)](hash-table.md)
+- [Binary Search Trees](binary-search-tree.md)

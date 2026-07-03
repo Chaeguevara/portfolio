@@ -19,9 +19,9 @@ A tree is a connected acyclic graph with n-1 edges; a spanning tree connects all
 
 ## Prerequisites
 
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)
 
 ## Related
 
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)

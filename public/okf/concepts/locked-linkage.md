@@ -18,11 +18,11 @@ A linkage stuck in a configuration it can't continuously move out of (to straigh
 
 ## Prerequisites
 
-- [Configuration Space](/concepts/configuration-space.md)
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
+- [Configuration Space](configuration-space.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
 
 ## Related
 
-- [Carpenter's Rule Theorem](/concepts/carpenters-rule-theorem.md)
-- [Pointed Pseudotriangulation](/concepts/pseudotriangulation.md)
-- [Fixed-Angle Linkage (Protein Folding)](/concepts/fixed-angle-linkage.md)
+- [Carpenter's Rule Theorem](carpenters-rule-theorem.md)
+- [Pointed Pseudotriangulation](pseudotriangulation.md)
+- [Fixed-Angle Linkage (Protein Folding)](fixed-angle-linkage.md)

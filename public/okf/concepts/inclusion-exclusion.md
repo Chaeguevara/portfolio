@@ -18,9 +18,9 @@ Count a union by adding sets, subtracting pairwise overlaps, adding triples, and
 
 ## Prerequisites
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
 
 ## Related
 
-- [Pigeonhole Principle](/concepts/pigeonhole-principle.md)
-- [Probability: Sample Spaces & the Four-Step Method](/concepts/probability-basics.md)
+- [Pigeonhole Principle](pigeonhole-principle.md)
+- [Probability: Sample Spaces & the Four-Step Method](probability-basics.md)

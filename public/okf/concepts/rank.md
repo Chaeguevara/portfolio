@@ -20,11 +20,11 @@ The number of pivots = dimension of the column space = number of independent row
 
 ## Prerequisites
 
-- [Column Space C(A)](/concepts/column-space.md)
-- [Nullspace N(A)](/concepts/nullspace.md)
+- [Column Space C(A)](column-space.md)
+- [Nullspace N(A)](nullspace.md)
 
 ## Related
 
-- [Independence, Basis, Dimension](/concepts/independence-basis-dimension.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
-- [Rank-One Matrices](/concepts/rank-one-matrix.md)
+- [Independence, Basis, Dimension](independence-basis-dimension.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
+- [Rank-One Matrices](rank-one-matrix.md)

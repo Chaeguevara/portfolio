@@ -18,10 +18,10 @@ Vectors are orthogonal when their dot product is 0; a subspace's orthogonal comp
 
 ## Prerequisites
 
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
 
 ## Related
 
-- [Projection onto a Subspace](/concepts/projection.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
+- [Projection onto a Subspace](projection.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)

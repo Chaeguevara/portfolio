@@ -18,10 +18,10 @@ At every interior vertex of a flat-foldable crease pattern,
 
 ## Prerequisites
 
-- [Mountain–Valley Assignment](/concepts/mountain-valley-assignment.md)
+- [Mountain–Valley Assignment](mountain-valley-assignment.md)
 
 ## Related
 
-- [Kawasaki's Theorem](/concepts/kawasaki-theorem.md)
-- [Single-Vertex Flat-Foldability](/concepts/single-vertex-flat-foldability.md)
-- [Big–Little–Big Lemma](/concepts/big-little-big-lemma.md)
+- [Kawasaki's Theorem](kawasaki-theorem.md)
+- [Single-Vertex Flat-Foldability](single-vertex-flat-foldability.md)
+- [Big–Little–Big Lemma](big-little-big-lemma.md)

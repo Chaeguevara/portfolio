@@ -19,10 +19,10 @@ A = QR with Q orthonormal and R upper-triangular; the stable way to do least squ
 
 ## Prerequisites
 
-- [Gram–Schmidt Orthogonalization](/concepts/gram-schmidt.md)
+- [Gram–Schmidt Orthogonalization](gram-schmidt.md)
 
 ## Related
 
-- [Gram–Schmidt Orthogonalization](/concepts/gram-schmidt.md)
-- [Least Squares](/concepts/least-squares.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
+- [Gram–Schmidt Orthogonalization](gram-schmidt.md)
+- [Least Squares](least-squares.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)

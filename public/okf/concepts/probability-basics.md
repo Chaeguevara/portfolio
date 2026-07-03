@@ -18,10 +18,10 @@ Model an experiment by a sample space and a probability on outcomes; the four-st
 
 ## Prerequisites
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
 
 ## Related
 
-- [Conditional Probability & Bayes' Theorem](/concepts/conditional-probability-and-bayes.md)
-- [Independence](/concepts/independence.md)
-- [Random Variables & Distributions](/concepts/random-variables.md)
+- [Conditional Probability & Bayes' Theorem](conditional-probability-and-bayes.md)
+- [Independence](independence.md)
+- [Random Variables & Distributions](random-variables.md)

@@ -86,6 +86,19 @@
       "url": "/portfolio/study/avl-tree/"
     },
     {
+      "id": "axial-spring-and-timestep",
+      "kind": "concept",
+      "title": "Axial Springs & Time Step",
+      "description": "Every edge is a Kelvin–Voigt spring K = EA/L₀ with near-critical damping; the stable step is dt = 0.9 / (2π·√(K_max/m)).",
+      "course": null,
+      "tags": [
+        "origami",
+        "simulation",
+        "implementation"
+      ],
+      "url": "/portfolio/study/axial-spring-and-timestep/"
+    },
+    {
       "id": "bellman-ford",
       "kind": "concept",
       "title": "Bellman–Ford Algorithm",
@@ -309,6 +322,19 @@
       "url": "/portfolio/study/complexity-classes/"
     },
     {
+      "id": "compliant-fold-simulation",
+      "kind": "concept",
+      "title": "Compliant Fold Simulation",
+      "description": "Simulating folding by relaxing a spring-mass sheet toward crease target angles — every crease folds simultaneously, no fold sequence needed.",
+      "course": null,
+      "tags": [
+        "origami",
+        "simulation",
+        "implementation"
+      ],
+      "url": "/portfolio/study/compliant-fold-simulation/"
+    },
+    {
       "id": "computational-geometry",
       "kind": "concept",
       "title": "Computational Geometry",
@@ -376,6 +402,19 @@
       "url": "/portfolio/study/cramers-rule/"
     },
     {
+      "id": "crease-pattern-import-pipeline",
+      "kind": "concept",
+      "title": "Crease Pattern Import Pipeline",
+      "description": "Recovering a fold graph from loose drawing geometry — merge endpoints, split crossings and T-junctions, prune, trace planar faces, triangulate.",
+      "course": null,
+      "tags": [
+        "origami",
+        "implementation",
+        "computational-geometry"
+      ],
+      "url": "/portfolio/study/crease-pattern-import-pipeline/"
+    },
+    {
       "id": "crease-pattern",
       "kind": "concept",
       "title": "Crease Pattern",
@@ -386,6 +425,19 @@
         "flat-folding"
       ],
       "url": "/portfolio/study/crease-pattern/"
+    },
+    {
+      "id": "crease-torsional-spring",
+      "kind": "concept",
+      "title": "Crease Torsional Spring",
+      "description": "A fold line as a hinge force — torque K·(target − θ) applied at the two apex vertices along face normals, reactions split over the crease endpoints.",
+      "course": null,
+      "tags": [
+        "origami",
+        "simulation",
+        "implementation"
+      ],
+      "url": "/portfolio/study/crease-torsional-spring/"
     },
     {
       "id": "d-form",
@@ -1610,6 +1662,19 @@
       "url": "/portfolio/study/sums-and-techniques/"
     },
     {
+      "id": "svg-crease-pattern-format",
+      "kind": "concept",
+      "title": "SVG Crease Pattern Format",
+      "description": "The de-facto interchange convention — stroke color encodes crease type (black border, red mountain, blue valley), stroke opacity encodes fold angle / 180°.",
+      "course": null,
+      "tags": [
+        "origami",
+        "file-format",
+        "implementation"
+      ],
+      "url": "/portfolio/study/svg-crease-pattern-format/"
+    },
+    {
       "id": "symmetric-matrix",
       "kind": "concept",
       "title": "Symmetric Matrices & the Spectral Theorem",
@@ -1974,6 +2039,16 @@
       "kind": "related"
     },
     {
+      "source": "axial-spring-and-timestep",
+      "target": "compliant-fold-simulation",
+      "kind": "prereq"
+    },
+    {
+      "source": "axial-spring-and-timestep",
+      "target": "crease-torsional-spring",
+      "kind": "related"
+    },
+    {
       "source": "bellman-ford",
       "target": "weighted-shortest-paths",
       "kind": "prereq"
@@ -2304,6 +2379,31 @@
       "kind": "related"
     },
     {
+      "source": "compliant-fold-simulation",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "compliant-fold-simulation",
+      "target": "rigid-origami",
+      "kind": "related"
+    },
+    {
+      "source": "compliant-fold-simulation",
+      "target": "crease-torsional-spring",
+      "kind": "related"
+    },
+    {
+      "source": "compliant-fold-simulation",
+      "target": "axial-spring-and-timestep",
+      "kind": "related"
+    },
+    {
+      "source": "compliant-fold-simulation",
+      "target": "crease-pattern-import-pipeline",
+      "kind": "related"
+    },
+    {
       "source": "computational-geometry",
       "target": "comparison-sorting",
       "kind": "prereq"
@@ -2394,6 +2494,21 @@
       "kind": "related"
     },
     {
+      "source": "crease-pattern-import-pipeline",
+      "target": "svg-crease-pattern-format",
+      "kind": "prereq"
+    },
+    {
+      "source": "crease-pattern-import-pipeline",
+      "target": "compliant-fold-simulation",
+      "kind": "related"
+    },
+    {
+      "source": "crease-pattern-import-pipeline",
+      "target": "crease-pattern",
+      "kind": "related"
+    },
+    {
       "source": "crease-pattern",
       "target": "mountain-valley-assignment",
       "kind": "related"
@@ -2406,6 +2521,21 @@
     {
       "source": "crease-pattern",
       "target": "simple-fold",
+      "kind": "related"
+    },
+    {
+      "source": "crease-torsional-spring",
+      "target": "compliant-fold-simulation",
+      "kind": "prereq"
+    },
+    {
+      "source": "crease-torsional-spring",
+      "target": "mountain-valley-assignment",
+      "kind": "related"
+    },
+    {
+      "source": "crease-torsional-spring",
+      "target": "axial-spring-and-timestep",
       "kind": "related"
     },
     {
@@ -4199,6 +4329,21 @@
       "kind": "related"
     },
     {
+      "source": "svg-crease-pattern-format",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "svg-crease-pattern-format",
+      "target": "mountain-valley-assignment",
+      "kind": "prereq"
+    },
+    {
+      "source": "svg-crease-pattern-format",
+      "target": "crease-pattern-import-pipeline",
+      "kind": "related"
+    },
+    {
       "source": "symmetric-matrix",
       "target": "eigenvalues-eigenvectors",
       "kind": "prereq"
@@ -4486,6 +4631,31 @@
     {
       "source": "word-ram-model",
       "target": "hash-table",
+      "kind": "related"
+    },
+    {
+      "source": "geometric-fabrication",
+      "target": "geometric-folding",
+      "kind": "related"
+    },
+    {
+      "source": "geometric-fabrication",
+      "target": "linear-algebra",
+      "kind": "related"
+    },
+    {
+      "source": "geometric-fabrication",
+      "target": "algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "geometric-fabrication",
+      "target": "advanced-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "geometric-fabrication",
+      "target": "math-for-cs",
       "kind": "related"
     }
   ]

@@ -18,9 +18,9 @@ A resizable array that doubles capacity when full, giving O(1) amortized append 
 
 ## Prerequisites
 
-- [The Word-RAM Model](/concepts/word-ram-model.md)
+- [The Word-RAM Model](word-ram-model.md)
 
 ## Related
 
-- [Set vs Sequence Interfaces](/concepts/data-structure-interfaces.md)
-- [Amortized Analysis](/concepts/amortized-analysis.md)
+- [Set vs Sequence Interfaces](data-structure-interfaces.md)
+- [Amortized Analysis](amortized-analysis.md)

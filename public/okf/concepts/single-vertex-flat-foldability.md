@@ -20,11 +20,11 @@ Deciding whether one interior vertex can fold flat — easy: check even degree, 
 
 ## Prerequisites
 
-- [Kawasaki's Theorem](/concepts/kawasaki-theorem.md)
-- [Maekawa's Theorem](/concepts/maekawa-theorem.md)
+- [Kawasaki's Theorem](kawasaki-theorem.md)
+- [Maekawa's Theorem](maekawa-theorem.md)
 
 ## Related
 
-- [Big–Little–Big Lemma](/concepts/big-little-big-lemma.md)
-- [Flat-Foldability](/concepts/flat-foldability.md)
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
+- [Big–Little–Big Lemma](big-little-big-lemma.md)
+- [Flat-Foldability](flat-foldability.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)

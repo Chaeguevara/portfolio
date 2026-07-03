@@ -18,8 +18,8 @@ If n+1 items go into n boxes, some box holds two — a simple counting fact with
 
 ## Prerequisites
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
 
 ## Related
 
-- [Inclusion–Exclusion](/concepts/inclusion-exclusion.md)
+- [Inclusion–Exclusion](inclusion-exclusion.md)

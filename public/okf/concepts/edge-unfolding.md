@@ -20,10 +20,10 @@ Unfolding where all cuts run along polyhedron edges; existence for all convex po
 
 ## Prerequisites
 
-- [Polyhedron Unfolding](/concepts/polyhedron-unfolding.md)
+- [Polyhedron Unfolding](polyhedron-unfolding.md)
 
 ## Related
 
-- [Polyhedron Unfolding](/concepts/polyhedron-unfolding.md)
-- [General Unfolding (Source & Star)](/concepts/general-unfolding.md)
-- [Vertex Unfolding](/concepts/vertex-unfolding.md)
+- [Polyhedron Unfolding](polyhedron-unfolding.md)
+- [General Unfolding (Source & Star)](general-unfolding.md)
+- [Vertex Unfolding](vertex-unfolding.md)

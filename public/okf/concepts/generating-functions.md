@@ -19,9 +19,9 @@ Encode a sequence as the coefficients of a power series; algebra on the series s
 
 ## Prerequisites
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
 
 ## Related
 
-- [Binomial Coefficients & Pascal's Triangle](/concepts/binomial-coefficients.md)
-- [Linear Recurrences](/concepts/linear-recurrences.md)
+- [Binomial Coefficients & Pascal's Triangle](binomial-coefficients.md)
+- [Linear Recurrences](linear-recurrences.md)

@@ -18,10 +18,10 @@ Store a graph as adjacency lists (sparse-friendly) or an adjacency matrix (dense
 
 ## Prerequisites
 
-- [Set vs Sequence Interfaces](/concepts/data-structure-interfaces.md)
+- [Set vs Sequence Interfaces](data-structure-interfaces.md)
 
 ## Related
 
-- [Breadth-First Search (BFS)](/concepts/breadth-first-search.md)
-- [Depth-First Search (DFS)](/concepts/depth-first-search.md)
-- [Graphs: Walks, Paths & Connectivity](/concepts/graphs-basics.md)
+- [Breadth-First Search (BFS)](breadth-first-search.md)
+- [Depth-First Search (DFS)](depth-first-search.md)
+- [Graphs: Walks, Paths & Connectivity](graphs-basics.md)

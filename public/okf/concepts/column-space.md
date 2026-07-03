@@ -18,11 +18,11 @@ All linear combinations of A's columns — the set of b for which Ax=b is solvab
 
 ## Prerequisites
 
-- [Vector Space & Subspace](/concepts/vector-space-and-subspace.md)
+- [Vector Space & Subspace](vector-space-and-subspace.md)
 
 ## Related
 
-- [Nullspace N(A)](/concepts/nullspace.md)
-- [Complete Solution of Ax = b](/concepts/complete-solution-ax-b.md)
-- [Rank](/concepts/rank.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [Nullspace N(A)](nullspace.md)
+- [Complete Solution of Ax = b](complete-solution-ax-b.md)
+- [Rank](rank.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)

@@ -18,9 +18,9 @@ A relaxed unfolding where pieces may stay connected only at single vertices (lik
 
 ## Prerequisites
 
-- [Edge Unfolding](/concepts/edge-unfolding.md)
+- [Edge Unfolding](edge-unfolding.md)
 
 ## Related
 
-- [Edge Unfolding](/concepts/edge-unfolding.md)
-- [Hinged Dissection](/concepts/hinged-dissection.md)
+- [Edge Unfolding](edge-unfolding.md)
+- [Hinged Dissection](hinged-dissection.md)

@@ -17,10 +17,10 @@ Solve du/dt = Au with u(t)=e^{At}u(0); compute e^{At}=Se^{Λt}S^{-1}.
 
 ## Prerequisites
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
+- [Diagonalization & Powers of A](diagonalization.md)
 
 ## Related
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
-- [Markov Matrices](/concepts/markov-matrix.md)
+- [Diagonalization & Powers of A](diagonalization.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)
+- [Markov Matrices](markov-matrix.md)

@@ -20,9 +20,9 @@ A folded base whose flaps all lie perpendicular to a single line (axis), so its 
 
 ## Prerequisites
 
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
+- [Tree Method (Origami Design)](tree-method.md)
 
 ## Related
 
-- [Tree Method (Origami Design)](/concepts/tree-method.md)
-- [Universal Molecule](/concepts/universal-molecule.md)
+- [Tree Method (Origami Design)](tree-method.md)
+- [Universal Molecule](universal-molecule.md)

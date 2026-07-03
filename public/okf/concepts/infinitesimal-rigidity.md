@@ -20,10 +20,10 @@ A linear-algebra test: a framework is infinitesimally rigid if the rigidity matr
 
 ## Prerequisites
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
 
 ## Related
 
-- [Rigidity (Generic & Minimal)](/concepts/rigidity.md)
-- [Tensegrity](/concepts/tensegrity.md)
-- [Laman's Theorem](/concepts/laman-theorem.md)
+- [Rigidity (Generic & Minimal)](rigidity.md)
+- [Tensegrity](tensegrity.md)
+- [Laman's Theorem](laman-theorem.md)

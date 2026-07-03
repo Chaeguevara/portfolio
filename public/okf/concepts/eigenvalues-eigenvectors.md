@@ -16,10 +16,10 @@ Directions x that A only scales: Ax=λx; found from det(A−λI)=0.
 
 ## Prerequisites
 
-- [Determinant](/concepts/determinant.md)
+- [Determinant](determinant.md)
 
 ## Related
 
-- [Diagonalization & Powers of A](/concepts/diagonalization.md)
-- [Symmetric Matrices & the Spectral Theorem](/concepts/symmetric-matrix.md)
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
+- [Diagonalization & Powers of A](diagonalization.md)
+- [Symmetric Matrices & the Spectral Theorem](symmetric-matrix.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)

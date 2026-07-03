@@ -18,6 +18,6 @@ The flat diagram of all fold lines drawn on the unfolded sheet of paper.
 
 ## Related
 
-- [Mountain–Valley Assignment](/concepts/mountain-valley-assignment.md)
-- [Flat-Foldability](/concepts/flat-foldability.md)
-- [Simple Fold](/concepts/simple-fold.md)
+- [Mountain–Valley Assignment](mountain-valley-assignment.md)
+- [Flat-Foldability](flat-foldability.md)
+- [Simple Fold](simple-fold.md)

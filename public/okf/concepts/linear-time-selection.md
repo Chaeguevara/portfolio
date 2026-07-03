@@ -19,4 +19,4 @@ Find the k-th smallest element in worst-case O(n) by choosing a provably good pi
 
 ## Related
 
-- [Randomized Algorithms](/concepts/randomized-algorithms.md)
+- [Randomized Algorithms](randomized-algorithms.md)

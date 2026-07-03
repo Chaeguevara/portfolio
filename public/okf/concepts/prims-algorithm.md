@@ -19,10 +19,10 @@ Grow an MST from one vertex, repeatedly adding the cheapest edge leaving the cur
 
 ## Prerequisites
 
-- [Minimum Spanning Trees](/concepts/minimum-spanning-tree.md)
-- [Binary Heaps & Priority Queues](/concepts/binary-heap.md)
+- [Minimum Spanning Trees](minimum-spanning-tree.md)
+- [Binary Heaps & Priority Queues](binary-heap.md)
 
 ## Related
 
-- [Kruskal's Algorithm](/concepts/kruskals-algorithm.md)
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
+- [Kruskal's Algorithm](kruskals-algorithm.md)
+- [Dijkstra's Algorithm](dijkstra.md)

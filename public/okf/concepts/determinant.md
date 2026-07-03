@@ -18,10 +18,10 @@ A single number det A that is 0 exactly when A is singular; equals signed volume
 
 ## Prerequisites
 
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
+- [Gaussian Elimination](gaussian-elimination.md)
 
 ## Related
 
-- [Cofactor Expansion](/concepts/cofactor-expansion.md)
-- [Cramer's Rule & Volume](/concepts/cramers-rule.md)
-- [Eigenvalues & Eigenvectors](/concepts/eigenvalues-eigenvectors.md)
+- [Cofactor Expansion](cofactor-expansion.md)
+- [Cramer's Rule & Volume](cramers-rule.md)
+- [Eigenvalues & Eigenvectors](eigenvalues-eigenvectors.md)

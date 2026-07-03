@@ -19,10 +19,10 @@ Turn any independent set into an orthonormal one by subtracting projections, one
 
 ## Prerequisites
 
-- [Projection onto a Subspace](/concepts/projection.md)
+- [Projection onto a Subspace](projection.md)
 
 ## Related
 
-- [QR Factorization](/concepts/qr-factorization.md)
-- [Orthogonal Matrix](/concepts/orthogonal-matrix.md)
-- [Projection onto a Subspace](/concepts/projection.md)
+- [QR Factorization](qr-factorization.md)
+- [Orthogonal Matrix](orthogonal-matrix.md)
+- [Projection onto a Subspace](projection.md)

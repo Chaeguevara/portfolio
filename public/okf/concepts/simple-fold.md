@@ -20,10 +20,10 @@ Folding all layers along one straight line by ±180°; the most restrictive, man
 
 ## Prerequisites
 
-- [Crease Pattern](/concepts/crease-pattern.md)
+- [Crease Pattern](crease-pattern.md)
 
 ## Related
 
-- [Map Folding](/concepts/map-folding.md)
-- [Flat-Foldability](/concepts/flat-foldability.md)
-- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)
+- [Map Folding](map-folding.md)
+- [Flat-Foldability](flat-foldability.md)
+- [NP-Hardness of Flat Foldability](flat-foldability-np-hardness.md)

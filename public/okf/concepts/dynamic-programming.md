@@ -20,9 +20,9 @@ Solve a problem via overlapping subproblems related by a recurrence, evaluated o
 
 ## Prerequisites
 
-- [DAG Shortest Paths (Relaxation)](/concepts/dag-relaxation.md)
+- [DAG Shortest Paths (Relaxation)](dag-relaxation.md)
 
 ## Related
 
-- [Pseudopolynomial Time & Subset Sum](/concepts/pseudopolynomial.md)
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
+- [Pseudopolynomial Time & Subset Sum](pseudopolynomial.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)

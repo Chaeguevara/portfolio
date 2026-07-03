@@ -19,9 +19,9 @@ Divide the array in half, sort each recursively, and merge the sorted halves in 
 
 ## Prerequisites
 
-- [Comparison Sorting & Its Lower Bound](/concepts/comparison-sorting.md)
+- [Comparison Sorting & Its Lower Bound](comparison-sorting.md)
 
 ## Related
 
-- [Divide-and-Conquer Recurrences & Master Theorem](/concepts/divide-and-conquer-recurrences.md)
-- [Comparison Sorting & Its Lower Bound](/concepts/comparison-sorting.md)
+- [Divide-and-Conquer Recurrences & Master Theorem](divide-and-conquer-recurrences.md)
+- [Comparison Sorting & Its Lower Bound](comparison-sorting.md)

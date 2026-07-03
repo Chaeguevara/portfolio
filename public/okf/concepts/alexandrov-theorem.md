@@ -22,11 +22,11 @@ Any convex polyhedral metric on a sphere is realized by a unique convex polyhedr
 
 ## Prerequisites
 
-- [Cauchy's Rigidity Theorem](/concepts/cauchy-rigidity-theorem.md)
-- [Gluing Tree](/concepts/gluing-tree.md)
+- [Cauchy's Rigidity Theorem](cauchy-rigidity-theorem.md)
+- [Gluing Tree](gluing-tree.md)
 
 ## Related
 
-- [Cauchy's Rigidity Theorem](/concepts/cauchy-rigidity-theorem.md)
-- [Gluing Tree](/concepts/gluing-tree.md)
-- [D-Form](/concepts/d-form.md)
+- [Cauchy's Rigidity Theorem](cauchy-rigidity-theorem.md)
+- [Gluing Tree](gluing-tree.md)
+- [D-Form](d-form.md)

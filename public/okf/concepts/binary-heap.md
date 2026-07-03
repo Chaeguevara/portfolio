@@ -19,9 +19,9 @@ An array-based near-complete tree with the heap property, giving O(log n) insert
 
 ## Prerequisites
 
-- [Set vs Sequence Interfaces](/concepts/data-structure-interfaces.md)
+- [Set vs Sequence Interfaces](data-structure-interfaces.md)
 
 ## Related
 
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
-- [Binary Search Trees](/concepts/binary-search-tree.md)
+- [Dijkstra's Algorithm](dijkstra.md)
+- [Binary Search Trees](binary-search-tree.md)

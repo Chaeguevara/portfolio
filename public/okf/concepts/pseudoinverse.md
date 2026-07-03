@@ -18,11 +18,11 @@ A^+ = VΣ^+U^T extends the inverse to any matrix; gives least-squares / minimum-
 
 ## Prerequisites
 
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
-- [Least Squares](/concepts/least-squares.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)
+- [Least Squares](least-squares.md)
 
 ## Related
 
-- [Singular Value Decomposition (SVD)](/concepts/singular-value-decomposition.md)
-- [Least Squares](/concepts/least-squares.md)
-- [The Four Fundamental Subspaces](/concepts/four-fundamental-subspaces.md)
+- [Singular Value Decomposition (SVD)](singular-value-decomposition.md)
+- [Least Squares](least-squares.md)
+- [The Four Fundamental Subspaces](four-fundamental-subspaces.md)

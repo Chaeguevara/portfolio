@@ -18,6 +18,6 @@ A linear system has three views: rows (intersecting planes), columns (combinatio
 
 ## Related
 
-- [Gaussian Elimination](/concepts/gaussian-elimination.md)
-- [Column Space C(A)](/concepts/column-space.md)
-- [Matrix Multiplication](/concepts/matrix-multiplication.md)
+- [Gaussian Elimination](gaussian-elimination.md)
+- [Column Space C(A)](column-space.md)
+- [Matrix Multiplication](matrix-multiplication.md)

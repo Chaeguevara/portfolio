@@ -19,9 +19,9 @@ A DP whose time depends on a numeric value (not just input length) runs in pseud
 
 ## Prerequisites
 
-- [Dynamic Programming (SRTBOT)](/concepts/dynamic-programming.md)
+- [Dynamic Programming (SRTBOT)](dynamic-programming.md)
 
 ## Related
 
-- [Dynamic Programming (SRTBOT)](/concepts/dynamic-programming.md)
-- [Complexity Classes: P, NP, EXP](/concepts/complexity-classes.md)
+- [Dynamic Programming (SRTBOT)](dynamic-programming.md)
+- [Complexity Classes: P, NP, EXP](complexity-classes.md)

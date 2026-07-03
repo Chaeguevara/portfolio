@@ -19,11 +19,11 @@ Any planar open chain or simple polygon can be straightened/convexified without 
 
 ## Prerequisites
 
-- [Linkage](/concepts/linkage.md)
-- [Configuration Space](/concepts/configuration-space.md)
+- [Linkage](linkage.md)
+- [Configuration Space](configuration-space.md)
 
 ## Related
 
-- [Locked Linkage](/concepts/locked-linkage.md)
-- [Pointed Pseudotriangulation](/concepts/pseudotriangulation.md)
-- [Hinged Dissection](/concepts/hinged-dissection.md)
+- [Locked Linkage](locked-linkage.md)
+- [Pointed Pseudotriangulation](pseudotriangulation.md)
+- [Hinged Dissection](hinged-dissection.md)

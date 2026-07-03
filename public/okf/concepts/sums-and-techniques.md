@@ -18,5 +18,5 @@ Evaluate and bound finite sums via arithmetic/geometric formulas, perturbation, 
 
 ## Related
 
-- [Asymptotics & Integral Bounds](/concepts/asymptotics-and-integral-bounds.md)
-- [Generating Functions](/concepts/generating-functions.md)
+- [Asymptotics & Integral Bounds](asymptotics-and-integral-bounds.md)
+- [Generating Functions](generating-functions.md)

@@ -18,9 +18,9 @@ C(n,k) counts k-subsets; the binomial theorem and Pascal's identity organize the
 
 ## Prerequisites
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
 
 ## Related
 
-- [Counting: Sum, Product & Bijections](/concepts/counting-principles.md)
-- [Generating Functions](/concepts/generating-functions.md)
+- [Counting: Sum, Product & Bijections](counting-principles.md)
+- [Generating Functions](generating-functions.md)

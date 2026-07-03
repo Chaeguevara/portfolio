@@ -19,11 +19,11 @@ All-pairs shortest paths on sparse graphs: reweight with Bellman-Ford to remove 
 
 ## Prerequisites
 
-- [Bellman–Ford Algorithm](/concepts/bellman-ford.md)
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
+- [Bellman–Ford Algorithm](bellman-ford.md)
+- [Dijkstra's Algorithm](dijkstra.md)
 
 ## Related
 
-- [Floyd–Warshall Algorithm](/concepts/floyd-warshall.md)
-- [Bellman–Ford Algorithm](/concepts/bellman-ford.md)
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
+- [Floyd–Warshall Algorithm](floyd-warshall.md)
+- [Bellman–Ford Algorithm](bellman-ford.md)
+- [Dijkstra's Algorithm](dijkstra.md)

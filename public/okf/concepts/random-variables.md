@@ -18,10 +18,10 @@ A random variable maps outcomes to numbers; its distribution (PMF) lists the pro
 
 ## Prerequisites
 
-- [Probability: Sample Spaces & the Four-Step Method](/concepts/probability-basics.md)
+- [Probability: Sample Spaces & the Four-Step Method](probability-basics.md)
 
 ## Related
 
-- [Expectation & Linearity](/concepts/expectation.md)
-- [Variance & Deviation Bounds](/concepts/variance-and-deviation.md)
-- [Independence](/concepts/independence.md)
+- [Expectation & Linearity](expectation.md)
+- [Variance & Deviation Bounds](variance-and-deviation.md)
+- [Independence](independence.md)

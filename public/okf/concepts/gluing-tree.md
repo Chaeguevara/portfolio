@@ -20,9 +20,9 @@ A combinatorial description of how a polygon's boundary is glued to itself; the 
 
 ## Prerequisites
 
-- [Alexandrov's Theorem](/concepts/alexandrov-theorem.md)
+- [Alexandrov's Theorem](alexandrov-theorem.md)
 
 ## Related
 
-- [Alexandrov's Theorem](/concepts/alexandrov-theorem.md)
-- [D-Form](/concepts/d-form.md)
+- [Alexandrov's Theorem](alexandrov-theorem.md)
+- [D-Form](d-form.md)

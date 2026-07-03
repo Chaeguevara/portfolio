@@ -19,9 +19,9 @@ The expected value is the probability-weighted average; expectation is linear ev
 
 ## Prerequisites
 
-- [Random Variables & Distributions](/concepts/random-variables.md)
+- [Random Variables & Distributions](random-variables.md)
 
 ## Related
 
-- [Variance & Deviation Bounds](/concepts/variance-and-deviation.md)
-- [Random Variables & Distributions](/concepts/random-variables.md)
+- [Variance & Deviation Bounds](variance-and-deviation.md)
+- [Random Variables & Distributions](random-variables.md)

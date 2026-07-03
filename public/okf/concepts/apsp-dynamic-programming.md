@@ -20,9 +20,9 @@ Compute shortest paths between every pair by a DP over path length, like repeate
 
 ## Prerequisites
 
-- [Bellman–Ford Algorithm](/concepts/bellman-ford.md)
+- [Bellman–Ford Algorithm](bellman-ford.md)
 
 ## Related
 
-- [Floyd–Warshall Algorithm](/concepts/floyd-warshall.md)
-- [Johnson's Algorithm](/concepts/johnsons-algorithm.md)
+- [Floyd–Warshall Algorithm](floyd-warshall.md)
+- [Johnson's Algorithm](johnsons-algorithm.md)

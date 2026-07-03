@@ -19,6 +19,6 @@ Use random choices for speed or simplicity; Las Vegas is always correct, Monte C
 
 ## Related
 
-- [Universal & Perfect Hashing](/concepts/universal-hashing.md)
-- [Derandomization](/concepts/derandomization.md)
-- [Linear-Time Selection (Median of Medians)](/concepts/linear-time-selection.md)
+- [Universal & Perfect Hashing](universal-hashing.md)
+- [Derandomization](derandomization.md)
+- [Linear-Time Selection (Median of Medians)](linear-time-selection.md)

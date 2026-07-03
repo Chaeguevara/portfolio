@@ -2,6 +2,11 @@
 type: map
 title: Geometric Folding
 summary: Topic map of 6.849 concepts — EN with KO pairs.
+applied_in:
+  - title: "Folding design (3D fabrication)"
+    href: ../../domains/3d-fabrication/aspects/folding-design.md
+  - title: "Design, CAD & fabrication (area)"
+    href: ../../areas/design-cad-fabrication.md
 ---
 
 # 🗺️ Geometric Folding (6.849)
@@ -56,6 +61,14 @@ summary: Topic map of 6.849 concepts — EN with KO pairs.
 - [Gluing Tree](/portfolio/study/gluing-tree/) · _A combinatorial description of how a polygon's boundary is glued to itself; the search structure for finding Alexandrov gluings._  (L17,18)
 - [D-Form](/portfolio/study/d-form/) · _A smooth convex surface made by gluing the perimeters of two convex curves of equal length._  (L17,19)
 - [Dehn Invariant](/portfolio/study/dehn-invariant/) · _An algebraic quantity (from edge lengths and dihedral angles) that must match for two 3D polyhedra to be scissors-congruent._  (L14)
+
+## Simulation (implemented in /simulator)
+
+- [Compliant Fold Simulation](/portfolio/study/compliant-fold-simulation/) · _Folding as spring-mass relaxation toward crease target angles — all creases fold simultaneously (Ghassaei 7OSME / Schenk–Guest)._
+- [Crease Torsional Spring](/portfolio/study/crease-torsional-spring/) · _The 4-node hinge stencil: torque K·(target − θ) at the apexes along face normals, reactions split over the crease endpoints._
+- [Axial Springs & Time Step](/portfolio/study/axial-spring-and-timestep/) · _K = EA/L₀ edge springs with near-critical damping; stable dt = 0.9/(2π·√(K_max/m))._
+- [SVG Crease Pattern Format](/portfolio/study/svg-crease-pattern-format/) · _Stroke color = crease type, stroke opacity = fold angle/180° — the round-trippable interchange convention._
+- [Crease Pattern Import Pipeline](/portfolio/study/crease-pattern-import-pipeline/) · _Drawing → fold graph: merge, split crossings/T-junctions, trace planar faces, triangulate._
 
 ---
 *Korean entry point:* each concept's Korean note is `<slug>.ko`.

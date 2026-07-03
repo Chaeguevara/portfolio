@@ -19,9 +19,9 @@ Relax all edges V-1 times to find shortest paths with negative weights, and dete
 
 ## Prerequisites
 
-- [Weighted Shortest Paths: Overview](/concepts/weighted-shortest-paths.md)
+- [Weighted Shortest Paths: Overview](weighted-shortest-paths.md)
 
 ## Related
 
-- [Dijkstra's Algorithm](/concepts/dijkstra.md)
-- [Johnson's Algorithm](/concepts/johnsons-algorithm.md)
+- [Dijkstra's Algorithm](dijkstra.md)
+- [Johnson's Algorithm](johnsons-algorithm.md)

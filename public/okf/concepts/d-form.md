@@ -20,9 +20,9 @@ A smooth convex surface made by gluing the perimeters of two convex curves of eq
 
 ## Prerequisites
 
-- [Alexandrov's Theorem](/concepts/alexandrov-theorem.md)
+- [Alexandrov's Theorem](alexandrov-theorem.md)
 
 ## Related
 
-- [Alexandrov's Theorem](/concepts/alexandrov-theorem.md)
-- [Gluing Tree](/concepts/gluing-tree.md)
+- [Alexandrov's Theorem](alexandrov-theorem.md)
+- [Gluing Tree](gluing-tree.md)
