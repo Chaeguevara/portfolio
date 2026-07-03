@@ -9,11 +9,13 @@
     "build": "npm run sync:ontology && astro build",
     "preview": "astro preview",
     "sync:ontology": "node scripts/sync-ontology.mjs",
-    "predev": "node scripts/sync-ontology.mjs"
+    "predev": "node scripts/sync-ontology.mjs",
+    "check:fold": "node scripts/check-fold.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@eslint/js": "^9.27.0",
+    "@types/earcut": "^3.0.0",
     "@types/geojson": "^7946.0.16",
     "astro": "^5.18.1",
     "eslint": "^9.27.0",
@@ -28,6 +30,7 @@
   },
   "dependencies": {
     "@types/three": "^0.176.0",
+    "earcut": "^3.2.3",
     "lil-gui": "^0.20.0",
     "three": "^0.176.0",
     "three-bvh-csg": "^0.0.17",

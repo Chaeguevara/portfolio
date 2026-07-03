@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Origami Simulator — Heejin Chae" current="simulator">
+  <div class="designer-layout">
+    <aside class="designer-sidebar">
+      <div class="designer-sidebar__section">
+        <h3>Pattern</h3>
+        <select id="sim-select" class="designer-select">
+          <optgroup label="Simple folds">
+            <option value="simple/simpleVertex.svg">Single Vertex</option>
+            <option value="simple/mapfold.svg">Map Fold</option>
+            <option value="simple/brochurefold.svg">Brochure Fold</option>
+            <option value="simple/russianTriangle.svg">Russian Triangle</option>
+          </optgroup>
+          <optgroup label="Bases">
+            <option value="bases/birdBase.svg" selected>Bird Base</option>
+            <option value="bases/waterbombBase.svg">Waterbomb Base</option>
+            <option value="bases/frogBase.svg">Frog Base</option>
+            <option value="bases/squareBase.svg">Square Base</option>
+          </optgroup>
+          <optgroup label="Origami">
+            <option value="origami/randlettflappingbird.svg">Flapping Bird (Randlett)</option>
+            <option value="origami/traditionalCrane.svg">Traditional Crane</option>
+            <option value="origami/singlesquaretwist.svg">Square Twist</option>
+            <option value="origami/airplane.svg">Airplane</option>
+            <option value="origami/hypar.svg">Hypar</option>
+          </optgroup>
+          <optgroup label="Maze folding">
+            <option value="maze/cross.svg">Maze: Cross</option>
+          </optgroup>
+          <optgroup label="Problematic (needs collisions)">
+            <option value="problematic/rose.svg">Rose</option>
+            <option value="problematic/byu solar driven.svg">BYU Solar Array</option>
+          </optgroup>
+        </select>
+        <label class="designer-slider-label" style="margin-top: 8px;">
+          Upload crease pattern (.svg)
+          <input type="file" id="sim-upload" accept=".svg" />
+        </label>
+      </div>
+
+      <div class="designer-sidebar__section">
+        <h3>Fold</h3>
+        <label class="designer-slider-label">
+          Fold percent: <span id="fold-val">70%</span>
+          <input type="range" id="fold-slider" min="-100" max="100" value="70" class="designer-slider" />
+        </label>
+        <button id="sim-reset" class="designer-btn">Reset simulation</button>
+        <div class="designer-status" style="margin-top: 8px;">strain: <span id="sim-strain">—</span></div>
+      </div>
+
+      <div class="designer-sidebar__section">
+        <h3>Material</h3>
+        <label class="designer-slider-label">
+          Axial stiffness (EA)
+          <input type="number" id="sim-axialStiffness" value="20" step="1" min="1" class="designer-select" />
+        </label>
+        <label class="designer-slider-label">
+          Crease stiffness
+          <input type="number" id="sim-creaseStiffness" value="0.7" step="0.1" min="0" class="designer-select" />
+        </label>
+        <label class="designer-slider-label">
+          Facet stiffness
+          <input type="number" id="sim-panelStiffness" value="0.7" step="0.1" min="0" class="designer-select" />
+        </label>
+        <label class="designer-slider-label">
+          Damping
+          <input type="number" id="sim-damping" value="0.45" step="0.05" min="0" max="1" class="designer-select" />
+        </label>
+        <label class="designer-slider-label">
+          Substeps / frame
+          <input type="number" id="sim-substeps" value="50" step="10" min="1" max="200" class="designer-select" />
+        </label>
+      </div>
+
+      <div class="designer-sidebar__section">
+        <h3>Export</h3>
+        <button id="sim-export" class="designer-btn designer-btn--accent">Download printable SVG</button>
+      </div>
+
+      <div class="designer-sidebar__section designer-sidebar__section--help">
+        <p><strong>Red</strong> = mountain, <strong>blue</strong> = valley; stroke opacity = fold angle / 180°.</p>
+        <p>Exported SVG round-trips with <a href="https://origamisimulator.org" target="_blank" rel="noopener">origamisimulator.org</a> — print it, score the lines, fold by hand.</p>
+        <p>Simulation ported from Amanda Ghassaei's Origami Simulator (MIT). All creases fold simultaneously via a compliant spring-mass solver.</p>
+        <p>"Problematic" patterns self-intersect — this port has no collision handling (yet), matching their needsCollisions set.</p>
+      </div>
+    </aside>
+
+    <main class="designer-canvas-area">
+      <div class="designer-view designer-view--3d" style="flex: 1;">
+        <div class="designer-view__label">Folded state — drag to rotate, scroll to zoom</div>
+        <div id="sim-3d" class="designer-3d-mount" style="height: 100%;"></div>
+      </div>
+      <div class="designer-status" id="sim-status">loading…</div>
+    </main>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initSimulator } from '../lib/simulatorApp';
+  initSimulator();
+</script>

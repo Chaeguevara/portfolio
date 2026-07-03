@@ -80,6 +80,7 @@ study·designer 가 쓰는 것은 보존. 구현 중 점진 삭제.
 | `/portfolio/about` | (캔버스 상태) | about room | 동상 |
 | `/portfolio/study/*` | `study/.../index.html` | markdown | 실제 페이지, hard nav |
 | `/portfolio/designer` | `designer/index.html` | lab | 실제 페이지, hard nav |
+| `/portfolio/simulator` | `simulator/index.html` | origami simulator lab (B4) | 실제 페이지, hard nav |
 | (그 외) | `404.html` | 404 | — |
 
 `/works`·`/about` 는 빌드 산출 HTML 이 없다(캔버스 가상 상태). 단, deeplink·새로고침
@@ -216,7 +217,12 @@ validator/cutGuide) + designer 연동. 접기 엔진(§4) 성숙 후 그 위에 
 **미구현**: study room 을 단일 캔버스(§3) 안 **3D force-directed 지식 그래프**로.
 `graph.json` fetch → 노드=concept, 엣지=prereq/related, 클릭 → 실제 `/study/<id>/` HTML.
 
-### B4. Origami Simulator 급 접기 엔진 (북극성 2축, §0)
+### B4. Origami Simulator 급 접기 엔진 (북극성 2축, §0) — 1차 구현 완료
+**구현됨 (`/simulator`, 2026-07)**: SVG crease-pattern import (`src/app/fold/svgImport.ts`,
+origamisimulator.org 컨벤션 완전 호환), CPU compliant solver (`solver.ts`, 동일
+물리·기본값), 재질 파라미터 UI, 예제 번들 (`public/patterns/` — origami/maze/
+problematic, MIT attribution), 인쇄용 SVG export (round-trip 가능). 남은 것:
+FOLD 파일 import/export, STL/OBJ export, strain 시각화, 충돌 처리, GPU 포팅.
 [origamisimulator.org](https://origamisimulator.org) (Ghassaei·Demaine·Gershenfeld,
 7OSME) 아키텍처를 참조 모델로. rigid 보간(§4) 위에 단계적으로:
 
