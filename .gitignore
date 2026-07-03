@@ -56,3 +56,4 @@ public/okf/
 
 # Serena MCP tooling
 .serena/
+.tokensave
