@@ -14,6 +14,14 @@ Erik Demaine 이 세 출처(6.849 folding · 6.006 algorithms · 6.042J math)의
 출처 지식은 [[geometric-folding]] 등 `src/content/study/` 노트로 이미 distill 됨 —
 이 PRD 는 그 지식을 **코드(접기 엔진)** 와 **공간(방)** 으로 reflect 한다.
 
+**북극성 (레포의 최종 목적) 두 축:**
+1. **페이지 자체가 Three.js 네이티브** — 위 단일 캔버스 방향 (§1–§5, 진행 중).
+2. **완전한 접기 엔진** — [origamisimulator.org](https://origamisimulator.org) 급
+   시뮬레이션 (재질/강성 포함). 사용자가 만든 2D 레이아웃(crease pattern)을
+   손으로 접을 수 있는 도면으로 뽑거나, 접힌 3D 형상을 모델링 툴 입력
+   (STL/OBJ/FOLD) 으로 내보낼 수 있어야 한다. 현 rigid 엔진(§4)은 1단계,
+   업그레이드 경로는 §12 B4.
+
 ## 1. 설계 결정 (확정)
 
 | 항목 | 결정 |
@@ -174,7 +182,8 @@ test -d dist/study                 # markdown 보존
 - 서버 런타임 없음 (정적). `/portfolio/` 서브패스 고정.
 - 캔버스 콘텐츠는 숨김 DOM 이 SSOT — 신규 work/about 문구는 `index.astro` 에 작성.
 - WebGL 미지원/JS off → 숨김 DOM 만 보임 (graceful degradation).
-- rigid origami 보간은 단일 정점 패턴 위주. 복잡한 multi-vertex 동시 접힘은 비범위.
+- rigid origami 보간(§4)은 단일 정점 패턴 위주. 복잡한 multi-vertex 동시 접힘은
+  rigid 보간으로는 비범위 — compliant solver 로 해결 (§12 B4).
 
 ---
 
@@ -206,3 +215,20 @@ validator/cutGuide) + designer 연동. 접기 엔진(§4) 성숙 후 그 위에 
 
 **미구현**: study room 을 단일 캔버스(§3) 안 **3D force-directed 지식 그래프**로.
 `graph.json` fetch → 노드=concept, 엣지=prereq/related, 클릭 → 실제 `/study/<id>/` HTML.
+
+### B4. Origami Simulator 급 접기 엔진 (북극성 2축, §0)
+[origamisimulator.org](https://origamisimulator.org) (Ghassaei·Demaine·Gershenfeld,
+7OSME) 아키텍처를 참조 모델로. rigid 보간(§4) 위에 단계적으로:
+
+1. **FOLD 내부 포맷** — `CreasePattern` 을 [FOLD spec](https://github.com/edemaine/fold)
+   과 상호 변환. SVG crease pattern import (M/V 를 색/스타일로), 다각형 face 는
+   earcut 류로 삼각화.
+2. **Compliant solver** — 모든 crease 를 동시에 접음. 초기 평면 시트에 crease 가
+   가하는 힘으로 미소 변위를 반복 해석 (Schenk & Guest 구조공학 모델 +
+   Tachi freeform variations). CPU 구현 먼저, GPU(fragment shader) 는 성능 필요 시.
+3. **재질/강성** — axial(면내) · crease(접힘) · face(굽힘) 강성 파라미터 노출.
+   fold percent 슬라이더 (−100%…100%, 음수 = MV 반전). strain 시각화는 후순위.
+4. **Export** — 접힌 상태를 FOLD/STL/OBJ 로 (3D 모델링 툴 입력), 평면 crease
+   pattern 을 SVG 도면으로 (손 접기용). designer(B1) 가 이 파이프라인의 UI.
+
+곡선 crease (ruling-aware triangulation) 는 명시적 비범위 — 필요해지면 추가.
