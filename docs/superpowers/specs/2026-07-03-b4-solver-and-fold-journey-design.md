@@ -58,6 +58,10 @@ SVG import, STL/OBJ/FOLD export, strain 시각화, GPU, 곡선 crease.
 
 ### 비트 (elapsed-time 상태기계, 라이브러리 없음, `home.ts` 내부)
 
+0. **Rationalize** (사용자의 façade consultant 이력) — 이중곡률 곡면
+   (saddle 패치)이 떠 있다가 평면 삼각/사각 패널로 rationalize 되고,
+   패널들이 펼쳐져(unroll) 하나의 평평한 시트로 정착. 캡션:
+   "Freeform → buildable panels". 이 시트가 다음 비트의 종이가 된다.
 1. **빈 시트** — 흰 종이만.
 2. **Crease 선이 그려짐** — M 빨강 / V 파랑 선이 순차 드로우-인.
 3. **이론 캡션** — troika 소형 라벨: "Kawasaki: 90°+90° = 180° ✓",
@@ -73,5 +77,11 @@ SVG import, STL/OBJ/FOLD export, strain 시각화, GPU, 곡선 crease.
 
 ## 구현 순서
 
-1부 (solver) → 2부 (fold journey). 서로 독립적이라 순서 교체 가능하나,
-1부가 SPEC 북극성 직결이므로 먼저.
+**2부 (fold journey, rationalize 비트 포함) → 1부 (solver).**
+사용자 지시: façade 이력 반영이 solver 보다 먼저.
+
+## 후속 (backlog, 이번 설계 비범위)
+
+**패널화 데모 work (SPEC B5)** — 인터랙티브 rationalization: freeform
+곡면 → 삼각/실린더 패널 fit, 편차 히트맵, 패널 수/코스트 지표. 사용자
+전문 분야의 본격 쇼케이스. 별도 슬라이스로 설계.

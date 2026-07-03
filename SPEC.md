@@ -232,3 +232,9 @@ validator/cutGuide) + designer 연동. 접기 엔진(§4) 성숙 후 그 위에 
    pattern 을 SVG 도면으로 (손 접기용). designer(B1) 가 이 파이프라인의 UI.
 
 곡선 crease (ruling-aware triangulation) 는 명시적 비범위 — 필요해지면 추가.
+
+### B5. Façade rationalization 데모 work
+사용자의 façade consultant 이력 반영. 인터랙티브 패널화: freeform 곡면 →
+평면 삼각/실린더 기반 패널 fit, 원면과의 편차 히트맵, 패널 수/코스트
+지표. 랜딩 fold journey 의 "Rationalize" 비트(스토리)와 짝을 이루는
+본격 쇼케이스. 상세 설계는 착수 시.
