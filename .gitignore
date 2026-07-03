@@ -46,12 +46,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Generated OKF bundle (built from study notes)
-public/okf/
-
-# study ontology — generated from the myownokf submodule (source of truth)
-/src/content/study/
-/public/okf/
+# study ontology — synced from the myownokf submodule (source of truth),
+# copies committed so CI can build without the private submodule
 /_source/
 
 # Serena MCP tooling

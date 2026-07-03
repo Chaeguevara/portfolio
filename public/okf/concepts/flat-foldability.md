@@ -1,0 +1,31 @@
+---
+type: concept
+title: Flat-Foldability
+description: >-
+  Whether a crease pattern can be folded into a flat (zero-thickness) state
+  without the paper crossing itself.
+tags:
+  - origami
+  - flat-folding
+course: '6.849'
+lectures:
+  - 2
+  - 3
+  - 7
+---
+# Flat-Foldability
+
+Whether a crease pattern can be folded into a flat (zero-thickness) state without the paper crossing itself.
+
+> Full note: [Flat-Foldability](/portfolio/study/flat-foldability/)
+
+## Prerequisites
+
+- [Crease Pattern](/concepts/crease-pattern.md)
+- [Mountain–Valley Assignment](/concepts/mountain-valley-assignment.md)
+
+## Related
+
+- [Single-Vertex Flat-Foldability](/concepts/single-vertex-flat-foldability.md)
+- [Map Folding](/concepts/map-folding.md)
+- [NP-Hardness of Flat Foldability](/concepts/flat-foldability-np-hardness.md)

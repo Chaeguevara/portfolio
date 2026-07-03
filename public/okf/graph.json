@@ -1,0 +1,4492 @@
+{
+  "okf_version": "0.1",
+  "nodes": [
+    {
+      "id": "alexandrov-theorem",
+      "kind": "concept",
+      "title": "Alexandrov's Theorem",
+      "description": "Any convex polyhedral metric on a sphere is realized by a unique convex polyhedron — so a valid gluing of a polygon folds to exactly one convex solid.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "theorem",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/alexandrov-theorem/"
+    },
+    {
+      "id": "amortized-analysis",
+      "kind": "concept",
+      "title": "Amortized Analysis",
+      "description": "Bound the average cost per operation over a worst-case sequence using aggregate, accounting, or potential methods.",
+      "course": "6.046J",
+      "tags": [
+        "analysis"
+      ],
+      "url": "/portfolio/study/amortized-analysis/"
+    },
+    {
+      "id": "approximation-algorithms",
+      "kind": "concept",
+      "title": "Approximation Algorithms",
+      "description": "For NP-hard optimization, find a provably near-optimal solution in polynomial time with a guaranteed ratio.",
+      "course": "6.046J",
+      "tags": [
+        "complexity",
+        "approximation"
+      ],
+      "url": "/portfolio/study/approximation-algorithms/"
+    },
+    {
+      "id": "apsp-dynamic-programming",
+      "kind": "concept",
+      "title": "All-Pairs Shortest Paths via DP",
+      "description": "Compute shortest paths between every pair by a DP over path length, like repeated matrix multiplication.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "shortest-paths",
+        "dynamic-programming"
+      ],
+      "url": "/portfolio/study/apsp-dynamic-programming/"
+    },
+    {
+      "id": "asymptotic-notation",
+      "kind": "concept",
+      "title": "Asymptotic Notation (Big-O)",
+      "description": "O, Omega, Theta describe how running time grows with input size, hiding constants and lower-order terms.",
+      "course": "6.006",
+      "tags": [
+        "foundations",
+        "asymptotics"
+      ],
+      "url": "/portfolio/study/asymptotic-notation/"
+    },
+    {
+      "id": "asymptotics-and-integral-bounds",
+      "kind": "concept",
+      "title": "Asymptotics & Integral Bounds",
+      "description": "Big-O/Theta/Omega compare growth rates; sums are bounded by integrals, and Stirling approximates n!.",
+      "course": "6.042J",
+      "tags": [
+        "asymptotics"
+      ],
+      "url": "/portfolio/study/asymptotics-and-integral-bounds/"
+    },
+    {
+      "id": "avl-tree",
+      "kind": "concept",
+      "title": "AVL Trees (Balanced BSTs)",
+      "description": "A self-balancing BST that keeps subtree heights within 1, guaranteeing O(log n) operations via rotations.",
+      "course": "6.006",
+      "tags": [
+        "data-structures",
+        "trees"
+      ],
+      "url": "/portfolio/study/avl-tree/"
+    },
+    {
+      "id": "bellman-ford",
+      "kind": "concept",
+      "title": "Bellman–Ford Algorithm",
+      "description": "Relax all edges V-1 times to find shortest paths with negative weights, and detect negative cycles.",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "shortest-paths"
+      ],
+      "url": "/portfolio/study/bellman-ford/"
+    },
+    {
+      "id": "big-little-big-lemma",
+      "kind": "concept",
+      "title": "Big–Little–Big Lemma",
+      "description": "At a flat-foldable vertex, the crease inside a strictly-smallest angle (a local minimum) is forced to differ in M/V from its two neighbors.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "theorem"
+      ],
+      "url": "/portfolio/study/big-little-big-lemma/"
+    },
+    {
+      "id": "binary-heap",
+      "kind": "concept",
+      "title": "Binary Heaps & Priority Queues",
+      "description": "An array-based near-complete tree with the heap property, giving O(log n) insert and extract-min/max.",
+      "course": "6.006",
+      "tags": [
+        "data-structures",
+        "trees"
+      ],
+      "url": "/portfolio/study/binary-heap/"
+    },
+    {
+      "id": "binary-search-tree",
+      "kind": "concept",
+      "title": "Binary Search Trees",
+      "description": "A tree keeping the BST property (left < node < right) supports ordered set operations in O(height).",
+      "course": "6.006",
+      "tags": [
+        "data-structures",
+        "trees"
+      ],
+      "url": "/portfolio/study/binary-search-tree/"
+    },
+    {
+      "id": "binomial-coefficients",
+      "kind": "concept",
+      "title": "Binomial Coefficients & Pascal's Triangle",
+      "description": "C(n,k) counts k-subsets; the binomial theorem and Pascal's identity organize them.",
+      "course": "6.042J",
+      "tags": [
+        "counting"
+      ],
+      "url": "/portfolio/study/binomial-coefficients/"
+    },
+    {
+      "id": "bipartite-matching",
+      "kind": "concept",
+      "title": "Bipartite Matching & Hall's Theorem",
+      "description": "A matching pairs up vertices with no shared endpoints; Hall's condition tells exactly when one side can be fully matched.",
+      "course": "6.042J",
+      "tags": [
+        "graph-theory",
+        "matching"
+      ],
+      "url": "/portfolio/study/bipartite-matching/"
+    },
+    {
+      "id": "box-pleating",
+      "kind": "concept",
+      "title": "Box Pleating & Universal Hinge Patterns",
+      "description": "Designing on a 45°/90° grid so a single fixed hinge pattern can fold any cube-complex (polycube) shape.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "design"
+      ],
+      "url": "/portfolio/study/box-pleating/"
+    },
+    {
+      "id": "breadth-first-search",
+      "kind": "concept",
+      "title": "Breadth-First Search (BFS)",
+      "description": "Explore a graph in layers from a source, computing shortest paths by edge count in O(V+E).",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "search"
+      ],
+      "url": "/portfolio/study/breadth-first-search/"
+    },
+    {
+      "id": "carpenters-rule-theorem",
+      "kind": "concept",
+      "title": "Carpenter's Rule Theorem",
+      "description": "Any planar open chain or simple polygon can be straightened/convexified without self-intersection — 2D chains never lock.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "theorem"
+      ],
+      "url": "/portfolio/study/carpenters-rule-theorem/"
+    },
+    {
+      "id": "cauchy-rigidity-theorem",
+      "kind": "concept",
+      "title": "Cauchy's Rigidity Theorem",
+      "description": "A convex polyhedron is uniquely determined (up to congruence) by its faces and how they're glued — convex polyhedra are rigid.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "rigidity",
+        "theorem"
+      ],
+      "url": "/portfolio/study/cauchy-rigidity-theorem/"
+    },
+    {
+      "id": "change-of-basis",
+      "kind": "concept",
+      "title": "Change of Basis",
+      "description": "The same vector/map has different coordinates in different bases; related by B = M^{-1}AM.",
+      "course": "18.06",
+      "tags": [
+        "transformations"
+      ],
+      "url": "/portfolio/study/change-of-basis/"
+    },
+    {
+      "id": "clustering",
+      "kind": "concept",
+      "title": "Clustering",
+      "description": "Partition points into groups by similarity; greedy and MST-based methods give approximation guarantees.",
+      "course": "6.046J",
+      "tags": [
+        "geometry",
+        "approximation"
+      ],
+      "url": "/portfolio/study/clustering/"
+    },
+    {
+      "id": "cofactor-expansion",
+      "kind": "concept",
+      "title": "Cofactor Expansion",
+      "description": "Compute det A by expanding along a row/column using signed minors (cofactors).",
+      "course": "18.06",
+      "tags": [
+        "determinants"
+      ],
+      "url": "/portfolio/study/cofactor-expansion/"
+    },
+    {
+      "id": "column-space",
+      "kind": "concept",
+      "title": "Column Space C(A)",
+      "description": "All linear combinations of A's columns — the set of b for which Ax=b is solvable.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/column-space/"
+    },
+    {
+      "id": "comparison-sorting",
+      "kind": "concept",
+      "title": "Comparison Sorting & Its Lower Bound",
+      "description": "Algorithms that order items only by comparing pairs need Omega(n log n) comparisons in the worst case.",
+      "course": "6.006",
+      "tags": [
+        "sorting"
+      ],
+      "url": "/portfolio/study/comparison-sorting/"
+    },
+    {
+      "id": "competitive-analysis",
+      "kind": "concept",
+      "title": "Competitive Analysis (Online Algorithms)",
+      "description": "Judge an online algorithm (no future knowledge) by its worst-case ratio to the optimal offline solution.",
+      "course": "6.046J",
+      "tags": [
+        "analysis",
+        "online"
+      ],
+      "url": "/portfolio/study/competitive-analysis/"
+    },
+    {
+      "id": "complete-solution-ax-b",
+      "kind": "concept",
+      "title": "Complete Solution of Ax = b",
+      "description": "Every solution is x_particular + x_nullspace; solvable iff b∈C(A); the rank decides how many solutions.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/complete-solution-ax-b/"
+    },
+    {
+      "id": "complex-matrices-fft",
+      "kind": "concept",
+      "title": "Complex Matrices & the FFT",
+      "description": "Hermitian/unitary generalize symmetric/orthogonal to ℂ; the Fourier matrix factors to give the O(n log n) FFT.",
+      "course": "18.06",
+      "tags": [
+        "special-matrices",
+        "applications"
+      ],
+      "url": "/portfolio/study/complex-matrices-fft/"
+    },
+    {
+      "id": "complexity-classes",
+      "kind": "concept",
+      "title": "Complexity Classes: P, NP, EXP",
+      "description": "Classify problems by the resources to solve or verify them; P is efficiently solvable, NP efficiently verifiable.",
+      "course": "6.006",
+      "tags": [
+        "complexity"
+      ],
+      "url": "/portfolio/study/complexity-classes/"
+    },
+    {
+      "id": "computational-geometry",
+      "kind": "concept",
+      "title": "Computational Geometry",
+      "description": "Algorithms for geometric objects: sweep lines for intersections, convex hull, and closest pair.",
+      "course": "6.046J",
+      "tags": [
+        "geometry"
+      ],
+      "url": "/portfolio/study/computational-geometry/"
+    },
+    {
+      "id": "computational-problem",
+      "kind": "concept",
+      "title": "Computational Problems & Algorithms",
+      "description": "A problem maps inputs to correct outputs; an algorithm is a procedure that solves every instance, proven correct by induction.",
+      "course": "6.006",
+      "tags": [
+        "foundations"
+      ],
+      "url": "/portfolio/study/computational-problem/"
+    },
+    {
+      "id": "conditional-probability-and-bayes",
+      "kind": "concept",
+      "title": "Conditional Probability & Bayes' Theorem",
+      "description": "Conditioning updates probability given information; Bayes reverses the conditioning direction.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/conditional-probability-and-bayes/"
+    },
+    {
+      "id": "configuration-space",
+      "kind": "concept",
+      "title": "Configuration Space",
+      "description": "The space of all valid placements of a linkage; folding motions are paths in it, and 'locked' means a disconnected component.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "topology"
+      ],
+      "url": "/portfolio/study/configuration-space/"
+    },
+    {
+      "id": "counting-principles",
+      "kind": "concept",
+      "title": "Counting: Sum, Product & Bijections",
+      "description": "Count by sum/product rules, permutations and combinations, or by a bijection to a set you can already count.",
+      "course": "6.042J",
+      "tags": [
+        "counting"
+      ],
+      "url": "/portfolio/study/counting-principles/"
+    },
+    {
+      "id": "cramers-rule",
+      "kind": "concept",
+      "title": "Cramer's Rule & Volume",
+      "description": "Solve Ax=b by ratios of determinants; det also measures volume scaling of the map A.",
+      "course": "18.06",
+      "tags": [
+        "determinants"
+      ],
+      "url": "/portfolio/study/cramers-rule/"
+    },
+    {
+      "id": "crease-pattern",
+      "kind": "concept",
+      "title": "Crease Pattern",
+      "description": "The flat diagram of all fold lines drawn on the unfolded sheet of paper.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding"
+      ],
+      "url": "/portfolio/study/crease-pattern/"
+    },
+    {
+      "id": "d-form",
+      "kind": "concept",
+      "title": "D-Form",
+      "description": "A smooth convex surface made by gluing the perimeters of two convex curves of equal length.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "smooth"
+      ],
+      "url": "/portfolio/study/d-form/"
+    },
+    {
+      "id": "dag-relaxation",
+      "kind": "concept",
+      "title": "DAG Shortest Paths (Relaxation)",
+      "description": "On a DAG, relaxing edges in topological order gives shortest paths in O(V+E), even with negative weights.",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "shortest-paths"
+      ],
+      "url": "/portfolio/study/dag-relaxation/"
+    },
+    {
+      "id": "data-structure-interfaces",
+      "kind": "concept",
+      "title": "Set vs Sequence Interfaces",
+      "description": "Separate the operations a data structure must support (interface) from how it does so (implementation).",
+      "course": "6.006",
+      "tags": [
+        "data-structures"
+      ],
+      "url": "/portfolio/study/data-structure-interfaces/"
+    },
+    {
+      "id": "dehn-invariant",
+      "kind": "concept",
+      "title": "Dehn Invariant",
+      "description": "An algebraic quantity (from edge lengths and dihedral angles) that must match for two 3D polyhedra to be scissors-congruent.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "geometry",
+        "theorem"
+      ],
+      "url": "/portfolio/study/dehn-invariant/"
+    },
+    {
+      "id": "depth-first-search",
+      "kind": "concept",
+      "title": "Depth-First Search (DFS)",
+      "description": "Explore as deep as possible before backtracking; classifies edges and exposes graph structure in O(V+E).",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "search"
+      ],
+      "url": "/portfolio/study/depth-first-search/"
+    },
+    {
+      "id": "derandomization",
+      "kind": "concept",
+      "title": "Derandomization",
+      "description": "Convert a randomized algorithm into a deterministic one, e.g. by the method of conditional expectations.",
+      "course": "6.046J",
+      "tags": [
+        "randomization"
+      ],
+      "url": "/portfolio/study/derandomization/"
+    },
+    {
+      "id": "determinant",
+      "kind": "concept",
+      "title": "Determinant",
+      "description": "A single number det A that is 0 exactly when A is singular; equals signed volume and the product of pivots.",
+      "course": "18.06",
+      "tags": [
+        "determinants"
+      ],
+      "url": "/portfolio/study/determinant/"
+    },
+    {
+      "id": "diagonalization",
+      "kind": "concept",
+      "title": "Diagonalization & Powers of A",
+      "description": "If A has n independent eigenvectors, A = SΛS^{-1}, so A^k = SΛ^kS^{-1}.",
+      "course": "18.06",
+      "tags": [
+        "eigenvalues",
+        "factorization"
+      ],
+      "url": "/portfolio/study/diagonalization/"
+    },
+    {
+      "id": "dijkstra",
+      "kind": "concept",
+      "title": "Dijkstra's Algorithm",
+      "description": "Greedily settle the nearest unsettled vertex using a priority queue; O(E + V log V) for nonnegative weights.",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "shortest-paths"
+      ],
+      "url": "/portfolio/study/dijkstra/"
+    },
+    {
+      "id": "divide-and-conquer-recurrences",
+      "kind": "concept",
+      "title": "Divide-and-Conquer Recurrences & Master Theorem",
+      "description": "Recurrences T(n)=aT(n/b)+f(n) are solved by recursion trees, summarized by the master theorem.",
+      "course": "6.042J",
+      "tags": [
+        "recurrences",
+        "asymptotics"
+      ],
+      "url": "/portfolio/study/divide-and-conquer-recurrences/"
+    },
+    {
+      "id": "divisibility-and-gcd",
+      "kind": "concept",
+      "title": "Divisibility, GCD & the Euclidean Algorithm",
+      "description": "The gcd of two integers is computed by repeated remainders (Euclid), and is an integer combination of them (Bezout).",
+      "course": "6.042J",
+      "tags": [
+        "number-theory"
+      ],
+      "url": "/portfolio/study/divisibility-and-gcd/"
+    },
+    {
+      "id": "dynamic-array",
+      "kind": "concept",
+      "title": "Dynamic Arrays",
+      "description": "A resizable array that doubles capacity when full, giving O(1) amortized append with O(1) indexing.",
+      "course": "6.006",
+      "tags": [
+        "data-structures"
+      ],
+      "url": "/portfolio/study/dynamic-array/"
+    },
+    {
+      "id": "dynamic-programming",
+      "kind": "concept",
+      "title": "Dynamic Programming (SRTBOT)",
+      "description": "Solve a problem via overlapping subproblems related by a recurrence, evaluated once each in topological order.",
+      "course": "6.006",
+      "tags": [
+        "dynamic-programming"
+      ],
+      "url": "/portfolio/study/dynamic-programming/"
+    },
+    {
+      "id": "edge-unfolding",
+      "kind": "concept",
+      "title": "Edge Unfolding",
+      "description": "Unfolding where all cuts run along polyhedron edges; existence for all convex polyhedra is a famous open problem.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "complexity"
+      ],
+      "url": "/portfolio/study/edge-unfolding/"
+    },
+    {
+      "id": "eigenvalues-eigenvectors",
+      "kind": "concept",
+      "title": "Eigenvalues & Eigenvectors",
+      "description": "Directions x that A only scales: Ax=λx; found from det(A−λI)=0.",
+      "course": "18.06",
+      "tags": [
+        "eigenvalues"
+      ],
+      "url": "/portfolio/study/eigenvalues-eigenvectors/"
+    },
+    {
+      "id": "expectation",
+      "kind": "concept",
+      "title": "Expectation & Linearity",
+      "description": "The expected value is the probability-weighted average; expectation is linear even for dependent variables.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/expectation/"
+    },
+    {
+      "id": "fft-polynomial-multiplication",
+      "kind": "concept",
+      "title": "FFT & Polynomial Multiplication",
+      "description": "Multiply degree-n polynomials in O(n log n) by evaluating at roots of unity and interpolating back.",
+      "course": "6.046J",
+      "tags": [
+        "divide-and-conquer"
+      ],
+      "url": "/portfolio/study/fft-polynomial-multiplication/"
+    },
+    {
+      "id": "fixed-angle-linkage",
+      "kind": "concept",
+      "title": "Fixed-Angle Linkage (Protein Folding)",
+      "description": "A 3D linkage where both bar lengths and the angles between consecutive bars are fixed; models protein backbones.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "biology",
+        "3d"
+      ],
+      "url": "/portfolio/study/fixed-angle-linkage/"
+    },
+    {
+      "id": "flat-foldability-np-hardness",
+      "kind": "concept",
+      "title": "NP-Hardness of Flat Foldability",
+      "description": "Deciding global flat-foldability of a given crease pattern is NP-hard (Bern & Hayes 1996), driven by the layer-ordering constraint.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "complexity",
+        "theorem"
+      ],
+      "url": "/portfolio/study/flat-foldability-np-hardness/"
+    },
+    {
+      "id": "flat-foldability",
+      "kind": "concept",
+      "title": "Flat-Foldability",
+      "description": "Whether a crease pattern can be folded into a flat (zero-thickness) state without the paper crossing itself.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding"
+      ],
+      "url": "/portfolio/study/flat-foldability/"
+    },
+    {
+      "id": "floyd-warshall",
+      "kind": "concept",
+      "title": "Floyd–Warshall Algorithm",
+      "description": "All-pairs shortest paths in O(V^3) by a DP that allows intermediate vertices one at a time.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "shortest-paths",
+        "dynamic-programming"
+      ],
+      "url": "/portfolio/study/floyd-warshall/"
+    },
+    {
+      "id": "fold-and-one-cut",
+      "kind": "concept",
+      "title": "Fold-and-One-Cut",
+      "description": "Fold a sheet flat so that a single straight cut produces any desired arrangement of polygons / line drawing.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "design",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/fold-and-one-cut/"
+    },
+    {
+      "id": "four-fundamental-subspaces",
+      "kind": "concept",
+      "title": "The Four Fundamental Subspaces",
+      "description": "Every matrix has C(A), N(A), C(A^T), N(A^T) with dimensions r, n−r, r, m−r — and they pair up as orthogonal complements.",
+      "course": "18.06",
+      "tags": [
+        "subspaces",
+        "theorem"
+      ],
+      "url": "/portfolio/study/four-fundamental-subspaces/"
+    },
+    {
+      "id": "gaussian-elimination",
+      "kind": "concept",
+      "title": "Gaussian Elimination",
+      "description": "Systematic row operations that reduce A to upper-triangular form, then solve by back-substitution.",
+      "course": "18.06",
+      "tags": [
+        "foundations",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/gaussian-elimination/"
+    },
+    {
+      "id": "general-unfolding",
+      "kind": "concept",
+      "title": "General Unfolding (Source & Star)",
+      "description": "Unfolding with cuts allowed across faces; convex polyhedra always have one via the source or star unfolding.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/general-unfolding/"
+    },
+    {
+      "id": "generating-functions",
+      "kind": "concept",
+      "title": "Generating Functions",
+      "description": "Encode a sequence as the coefficients of a power series; algebra on the series solves counting and recurrences.",
+      "course": "6.042J",
+      "tags": [
+        "counting",
+        "recurrences"
+      ],
+      "url": "/portfolio/study/generating-functions/"
+    },
+    {
+      "id": "gluing-tree",
+      "kind": "concept",
+      "title": "Gluing Tree",
+      "description": "A combinatorial description of how a polygon's boundary is glued to itself; the search structure for finding Alexandrov gluings.",
+      "course": "6.849",
+      "tags": [
+        "polyhedra",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/gluing-tree/"
+    },
+    {
+      "id": "gram-schmidt",
+      "kind": "concept",
+      "title": "Gram–Schmidt Orthogonalization",
+      "description": "Turn any independent set into an orthonormal one by subtracting projections, one vector at a time.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/gram-schmidt/"
+    },
+    {
+      "id": "graph-coloring",
+      "kind": "concept",
+      "title": "Graph Coloring",
+      "description": "Assign colors to vertices so adjacent ones differ; the minimum number needed is the chromatic number.",
+      "course": "6.042J",
+      "tags": [
+        "graph-theory"
+      ],
+      "url": "/portfolio/study/graph-coloring/"
+    },
+    {
+      "id": "graph-representation",
+      "kind": "concept",
+      "title": "Graph Representations",
+      "description": "Store a graph as adjacency lists (sparse-friendly) or an adjacency matrix (dense, O(1) edge test).",
+      "course": "6.006",
+      "tags": [
+        "graphs"
+      ],
+      "url": "/portfolio/study/graph-representation/"
+    },
+    {
+      "id": "graphs-basics",
+      "kind": "concept",
+      "title": "Graphs: Walks, Paths & Connectivity",
+      "description": "A graph is vertices joined by edges; walks, paths, cycles and connectivity describe how to move through it.",
+      "course": "6.042J",
+      "tags": [
+        "graph-theory"
+      ],
+      "url": "/portfolio/study/graphs-basics/"
+    },
+    {
+      "id": "greedy-algorithms",
+      "kind": "concept",
+      "title": "Greedy Algorithms & the Exchange Argument",
+      "description": "Build a solution by locally optimal choices; prove optimality by an exchange argument or matroid structure.",
+      "course": "6.046J",
+      "tags": [
+        "greedy"
+      ],
+      "url": "/portfolio/study/greedy-algorithms/"
+    },
+    {
+      "id": "hash-table",
+      "kind": "concept",
+      "title": "Hash Tables (Chaining)",
+      "description": "Store keys in buckets chosen by a hash function; with a good hash, search/insert/delete are O(1) expected.",
+      "course": "6.006",
+      "tags": [
+        "data-structures",
+        "hashing"
+      ],
+      "url": "/portfolio/study/hash-table/"
+    },
+    {
+      "id": "hinged-dissection",
+      "kind": "concept",
+      "title": "Hinged Dissection",
+      "description": "A chain of polygons hinged at vertices that can refold to form any of several target shapes; such universal dissections always exist.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "geometry"
+      ],
+      "url": "/portfolio/study/hinged-dissection/"
+    },
+    {
+      "id": "hp-model",
+      "kind": "concept",
+      "title": "HP Model of Protein Folding",
+      "description": "A lattice model where amino acids are Hydrophobic or Polar; the optimal (max H–H contacts) folding is NP-complete.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "biology",
+        "complexity"
+      ],
+      "url": "/portfolio/study/hp-model/"
+    },
+    {
+      "id": "huffman-coding",
+      "kind": "concept",
+      "title": "Huffman Coding",
+      "description": "Build an optimal prefix-free code greedily by repeatedly merging the two least-frequent symbols.",
+      "course": "6.046J",
+      "tags": [
+        "greedy",
+        "compression"
+      ],
+      "url": "/portfolio/study/huffman-coding/"
+    },
+    {
+      "id": "hypar-pleat-folding",
+      "kind": "concept",
+      "title": "Pleat Folding & the Hyperbolic Paraboloid",
+      "description": "The classic concentric-square 'hypar' model provably cannot fold without extra creases — straight creases stay straight and flat polygons stay flat.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "curved",
+        "theorem"
+      ],
+      "url": "/portfolio/study/hypar-pleat-folding/"
+    },
+    {
+      "id": "incidence-matrix",
+      "kind": "concept",
+      "title": "Incidence Matrices (Graphs & Networks)",
+      "description": "A matrix encoding a graph (edges×nodes); its four subspaces are loops, potentials, and Kirchhoff's laws.",
+      "course": "18.06",
+      "tags": [
+        "subspaces",
+        "applications"
+      ],
+      "url": "/portfolio/study/incidence-matrix/"
+    },
+    {
+      "id": "inclusion-exclusion",
+      "kind": "concept",
+      "title": "Inclusion–Exclusion",
+      "description": "Count a union by adding sets, subtracting pairwise overlaps, adding triples, and so on.",
+      "course": "6.042J",
+      "tags": [
+        "counting"
+      ],
+      "url": "/portfolio/study/inclusion-exclusion/"
+    },
+    {
+      "id": "independence-basis-dimension",
+      "kind": "concept",
+      "title": "Independence, Basis, Dimension",
+      "description": "Independent vectors have only the trivial combination giving 0; a basis is an independent spanning set; its size is the dimension.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/independence-basis-dimension/"
+    },
+    {
+      "id": "independence",
+      "kind": "concept",
+      "title": "Independence",
+      "description": "Events are independent when one's occurrence does not change the other's probability; mutual is stronger than pairwise.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/independence/"
+    },
+    {
+      "id": "induction",
+      "kind": "concept",
+      "title": "Mathematical Induction",
+      "description": "Prove P(n) for all n by establishing a base case and that P(n) implies P(n+1).",
+      "course": "6.042J",
+      "tags": [
+        "proofs",
+        "induction"
+      ],
+      "url": "/portfolio/study/induction/"
+    },
+    {
+      "id": "infinitesimal-rigidity",
+      "kind": "concept",
+      "title": "Infinitesimal Rigidity",
+      "description": "A linear-algebra test: a framework is infinitesimally rigid if the rigidity matrix admits only trivial velocity assignments.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "rigidity",
+        "linear-algebra"
+      ],
+      "url": "/portfolio/study/infinitesimal-rigidity/"
+    },
+    {
+      "id": "interval-scheduling",
+      "kind": "concept",
+      "title": "Interval Scheduling",
+      "description": "Select the most non-overlapping intervals by repeatedly taking the one that finishes earliest.",
+      "course": "6.046J",
+      "tags": [
+        "greedy"
+      ],
+      "url": "/portfolio/study/interval-scheduling/"
+    },
+    {
+      "id": "invariants-and-state-machines",
+      "kind": "concept",
+      "title": "Invariants & State Machines",
+      "description": "Model a process as states with transitions; a preserved invariant proves what the process can and cannot reach.",
+      "course": "6.042J",
+      "tags": [
+        "proofs",
+        "invariants"
+      ],
+      "url": "/portfolio/study/invariants-and-state-machines/"
+    },
+    {
+      "id": "johnsons-algorithm",
+      "kind": "concept",
+      "title": "Johnson's Algorithm",
+      "description": "All-pairs shortest paths on sparse graphs: reweight with Bellman-Ford to remove negatives, then run Dijkstra from each vertex.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "shortest-paths"
+      ],
+      "url": "/portfolio/study/johnsons-algorithm/"
+    },
+    {
+      "id": "jordan-form",
+      "kind": "concept",
+      "title": "Similar Matrices & Jordan Form",
+      "description": "Similar matrices B=M^{-1}AM share eigenvalues; the Jordan form is the canonical near-diagonal form when A can't be diagonalized.",
+      "course": "18.06",
+      "tags": [
+        "special-matrices"
+      ],
+      "url": "/portfolio/study/jordan-form/"
+    },
+    {
+      "id": "kawasaki-theorem",
+      "kind": "concept",
+      "title": "Kawasaki's Theorem",
+      "description": "A single vertex of degree 2n folds flat iff its alternating angle sum is 0° — equivalently, odd-indexed angles sum to 180°.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "theorem"
+      ],
+      "url": "/portfolio/study/kawasaki-theorem/"
+    },
+    {
+      "id": "kempe-universality-theorem",
+      "kind": "concept",
+      "title": "Kempe's Universality Theorem",
+      "description": "There is a linkage whose tracing joint draws any given polynomial (algebraic) curve — 'a linkage to sign your name'.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "theorem"
+      ],
+      "url": "/portfolio/study/kempe-universality-theorem/"
+    },
+    {
+      "id": "kruskals-algorithm",
+      "kind": "concept",
+      "title": "Kruskal's Algorithm",
+      "description": "Sort all edges and add each lightest edge that joins two different components, using union-find.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "greedy"
+      ],
+      "url": "/portfolio/study/kruskals-algorithm/"
+    },
+    {
+      "id": "laman-theorem",
+      "kind": "concept",
+      "title": "Laman's Theorem",
+      "description": "A graph is minimally generically rigid in 2D iff it has 2n−3 edges and every k-vertex subset spans at most 2k−3 edges.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "rigidity",
+        "theorem",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/laman-theorem/"
+    },
+    {
+      "id": "least-squares",
+      "kind": "concept",
+      "title": "Least Squares",
+      "description": "Best-fit solution to an inconsistent Ax=b, found from the normal equations A^TA x̂ = A^Tb.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality",
+        "applications"
+      ],
+      "url": "/portfolio/study/least-squares/"
+    },
+    {
+      "id": "linear-recurrences",
+      "kind": "concept",
+      "title": "Linear Recurrences",
+      "description": "Constant-coefficient recurrences solve via a characteristic equation plus a particular solution.",
+      "course": "6.042J",
+      "tags": [
+        "recurrences"
+      ],
+      "url": "/portfolio/study/linear-recurrences/"
+    },
+    {
+      "id": "linear-sorting",
+      "kind": "concept",
+      "title": "Linear-Time Sorting (Counting & Radix)",
+      "description": "When keys are small integers, counting and radix sort order n items in O(n) by avoiding comparisons.",
+      "course": "6.006",
+      "tags": [
+        "sorting"
+      ],
+      "url": "/portfolio/study/linear-sorting/"
+    },
+    {
+      "id": "linear-system-pictures",
+      "kind": "concept",
+      "title": "Three Pictures of Ax = b",
+      "description": "A linear system has three views: rows (intersecting planes), columns (combination of column vectors), and the matrix form Ax=b.",
+      "course": "18.06",
+      "tags": [
+        "foundations"
+      ],
+      "url": "/portfolio/study/linear-system-pictures/"
+    },
+    {
+      "id": "linear-time-selection",
+      "kind": "concept",
+      "title": "Linear-Time Selection (Median of Medians)",
+      "description": "Find the k-th smallest element in worst-case O(n) by choosing a provably good pivot via medians of groups.",
+      "course": "6.046J",
+      "tags": [
+        "divide-and-conquer",
+        "selection"
+      ],
+      "url": "/portfolio/study/linear-time-selection/"
+    },
+    {
+      "id": "linear-transformation",
+      "kind": "concept",
+      "title": "Linear Transformations",
+      "description": "Maps T with T(cu+dv)=cT(u)+dT(v); once bases are chosen, every such map IS a matrix.",
+      "course": "18.06",
+      "tags": [
+        "transformations"
+      ],
+      "url": "/portfolio/study/linear-transformation/"
+    },
+    {
+      "id": "linkage",
+      "kind": "concept",
+      "title": "Linkage",
+      "description": "A collection of fixed-length bars joined at hinges (a graph with edge lengths); the basic object of linkage folding.",
+      "course": "6.849",
+      "tags": [
+        "linkages"
+      ],
+      "url": "/portfolio/study/linkage/"
+    },
+    {
+      "id": "locked-linkage",
+      "kind": "concept",
+      "title": "Locked Linkage",
+      "description": "A linkage stuck in a configuration it can't continuously move out of (to straighten/convexify) without self-crossing.",
+      "course": "6.849",
+      "tags": [
+        "linkages"
+      ],
+      "url": "/portfolio/study/locked-linkage/"
+    },
+    {
+      "id": "lu-factorization",
+      "kind": "concept",
+      "title": "LU Factorization",
+      "description": "Elimination written as A = LU: lower-triangular L (multipliers) times upper-triangular U (pivots).",
+      "course": "18.06",
+      "tags": [
+        "foundations",
+        "factorization"
+      ],
+      "url": "/portfolio/study/lu-factorization/"
+    },
+    {
+      "id": "maekawa-theorem",
+      "kind": "concept",
+      "title": "Maekawa's Theorem",
+      "description": "At every interior vertex of a flat-foldable crease pattern,",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "theorem"
+      ],
+      "url": "/portfolio/study/maekawa-theorem/"
+    },
+    {
+      "id": "map-folding",
+      "kind": "concept",
+      "title": "Map Folding",
+      "description": "Given an m×n grid of creases with M/V labels, decide if it folds flat into a unit stack — easy in 1D, open/hard in general 2D.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "algorithms",
+        "complexity"
+      ],
+      "url": "/portfolio/study/map-folding/"
+    },
+    {
+      "id": "markov-matrix",
+      "kind": "concept",
+      "title": "Markov Matrices",
+      "description": "Non-negative columns summing to 1; λ=1 is always an eigenvalue and its eigenvector is the steady state.",
+      "course": "18.06",
+      "tags": [
+        "eigenvalues",
+        "applications"
+      ],
+      "url": "/portfolio/study/markov-matrix/"
+    },
+    {
+      "id": "matrix-exponential",
+      "kind": "concept",
+      "title": "Matrix Exponential & Differential Equations",
+      "description": "Solve du/dt = Au with u(t)=e^{At}u(0); compute e^{At}=Se^{Λt}S^{-1}.",
+      "course": "18.06",
+      "tags": [
+        "eigenvalues",
+        "applications"
+      ],
+      "url": "/portfolio/study/matrix-exponential/"
+    },
+    {
+      "id": "matrix-inverse",
+      "kind": "concept",
+      "title": "Matrix Inverse",
+      "description": "A^{-1} undoes A (AA^{-1}=I); it exists iff A is square with full rank, found by Gauss–Jordan.",
+      "course": "18.06",
+      "tags": [
+        "foundations"
+      ],
+      "url": "/portfolio/study/matrix-inverse/"
+    },
+    {
+      "id": "matrix-multiplication",
+      "kind": "concept",
+      "title": "Matrix Multiplication",
+      "description": "The product AB, understood four equivalent ways: entry dot-products, columns, rows, and a sum of rank-one pieces.",
+      "course": "18.06",
+      "tags": [
+        "foundations"
+      ],
+      "url": "/portfolio/study/matrix-multiplication/"
+    },
+    {
+      "id": "merge-sort",
+      "kind": "concept",
+      "title": "Merge Sort",
+      "description": "Divide the array in half, sort each recursively, and merge the sorted halves in linear time — O(n log n).",
+      "course": "6.006",
+      "tags": [
+        "sorting",
+        "divide-and-conquer"
+      ],
+      "url": "/portfolio/study/merge-sort/"
+    },
+    {
+      "id": "minimum-spanning-tree",
+      "kind": "concept",
+      "title": "Minimum Spanning Trees",
+      "description": "The cheapest set of edges connecting all vertices; greedy works thanks to the cut property.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "greedy"
+      ],
+      "url": "/portfolio/study/minimum-spanning-tree/"
+    },
+    {
+      "id": "modular-arithmetic",
+      "kind": "concept",
+      "title": "Modular Arithmetic",
+      "description": "Arithmetic on remainders mod n; inverses exist when gcd with n is 1, and Fermat/Euler give fast exponentiation.",
+      "course": "6.042J",
+      "tags": [
+        "number-theory"
+      ],
+      "url": "/portfolio/study/modular-arithmetic/"
+    },
+    {
+      "id": "mountain-valley-assignment",
+      "kind": "concept",
+      "title": "Mountain–Valley Assignment",
+      "description": "A labeling of every crease as a mountain (folds away) or valley (folds toward you).",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding"
+      ],
+      "url": "/portfolio/study/mountain-valley-assignment/"
+    },
+    {
+      "id": "network-flow",
+      "kind": "concept",
+      "title": "Network Flow & Max-Flow Min-Cut",
+      "description": "Push the most flow from source to sink; the maximum flow equals the minimum cut capacity.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "flow"
+      ],
+      "url": "/portfolio/study/network-flow/"
+    },
+    {
+      "id": "np-completeness",
+      "kind": "concept",
+      "title": "NP-Completeness & Reductions",
+      "description": "A problem is NP-complete if it is in NP and every NP problem reduces to it; one polynomial solution would collapse P=NP.",
+      "course": "6.046J",
+      "tags": [
+        "complexity"
+      ],
+      "url": "/portfolio/study/np-completeness/"
+    },
+    {
+      "id": "nullspace",
+      "kind": "concept",
+      "title": "Nullspace N(A)",
+      "description": "All solutions to Ax=0 — a subspace of R^n whose dimension is n − rank.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/nullspace/"
+    },
+    {
+      "id": "orthogonal-matrix",
+      "kind": "concept",
+      "title": "Orthogonal Matrix",
+      "description": "A square matrix Q with orthonormal columns: Q^TQ=I, so Q^{-1}=Q^T; preserves lengths and angles.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality"
+      ],
+      "url": "/portfolio/study/orthogonal-matrix/"
+    },
+    {
+      "id": "orthogonality",
+      "kind": "concept",
+      "title": "Orthogonality & Orthogonal Complements",
+      "description": "Vectors are orthogonal when their dot product is 0; a subspace's orthogonal complement holds everything perpendicular to it.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality"
+      ],
+      "url": "/portfolio/study/orthogonality/"
+    },
+    {
+      "id": "pigeonhole-principle",
+      "kind": "concept",
+      "title": "Pigeonhole Principle",
+      "description": "If n+1 items go into n boxes, some box holds two — a simple counting fact with surprising consequences.",
+      "course": "6.042J",
+      "tags": [
+        "counting"
+      ],
+      "url": "/portfolio/study/pigeonhole-principle/"
+    },
+    {
+      "id": "planar-graphs",
+      "kind": "concept",
+      "title": "Planar Graphs & Euler's Formula",
+      "description": "A planar graph can be drawn without crossings; vertices, edges and faces satisfy v - e + f = 2.",
+      "course": "6.042J",
+      "tags": [
+        "graph-theory"
+      ],
+      "url": "/portfolio/study/planar-graphs/"
+    },
+    {
+      "id": "polyhedron-unfolding",
+      "kind": "concept",
+      "title": "Polyhedron Unfolding",
+      "description": "Cutting a polyhedron's surface so it unfolds flat into one non-overlapping piece (a net).",
+      "course": "6.849",
+      "tags": [
+        "polyhedra"
+      ],
+      "url": "/portfolio/study/polyhedron-unfolding/"
+    },
+    {
+      "id": "positive-definite",
+      "kind": "concept",
+      "title": "Positive Definite Matrices",
+      "description": "Symmetric A with x^TAx>0 for all x≠0; equivalently all eigenvalues, pivots, and leading minors are positive.",
+      "course": "18.06",
+      "tags": [
+        "special-matrices"
+      ],
+      "url": "/portfolio/study/positive-definite/"
+    },
+    {
+      "id": "prims-algorithm",
+      "kind": "concept",
+      "title": "Prim's Algorithm",
+      "description": "Grow an MST from one vertex, repeatedly adding the cheapest edge leaving the current tree via a priority queue.",
+      "course": "6.046J",
+      "tags": [
+        "graphs",
+        "greedy"
+      ],
+      "url": "/portfolio/study/prims-algorithm/"
+    },
+    {
+      "id": "probability-basics",
+      "kind": "concept",
+      "title": "Probability: Sample Spaces & the Four-Step Method",
+      "description": "Model an experiment by a sample space and a probability on outcomes; the four-step method makes it systematic.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/probability-basics/"
+    },
+    {
+      "id": "projection",
+      "kind": "concept",
+      "title": "Projection onto a Subspace",
+      "description": "The closest point in a subspace to b; given by the projection matrix P = A(A^TA)^{-1}A^T.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality"
+      ],
+      "url": "/portfolio/study/projection/"
+    },
+    {
+      "id": "proof-methods",
+      "kind": "concept",
+      "title": "Proof Methods",
+      "description": "Standard ways to prove a statement: direct, by cases, by contrapositive, and by contradiction.",
+      "course": "6.042J",
+      "tags": [
+        "proofs"
+      ],
+      "url": "/portfolio/study/proof-methods/"
+    },
+    {
+      "id": "propositions-and-logic",
+      "kind": "concept",
+      "title": "Propositions, Predicates & Quantifiers",
+      "description": "A proposition is a statement that is true or false; predicates add variables, and quantifiers (for-all, exists) bind them.",
+      "course": "6.042J",
+      "tags": [
+        "logic",
+        "proofs"
+      ],
+      "url": "/portfolio/study/propositions-and-logic/"
+    },
+    {
+      "id": "pseudoinverse",
+      "kind": "concept",
+      "title": "Pseudoinverse",
+      "description": "A^+ = VΣ^+U^T extends the inverse to any matrix; gives least-squares / minimum-norm solutions.",
+      "course": "18.06",
+      "tags": [
+        "special-matrices"
+      ],
+      "url": "/portfolio/study/pseudoinverse/"
+    },
+    {
+      "id": "pseudopolynomial",
+      "kind": "concept",
+      "title": "Pseudopolynomial Time & Subset Sum",
+      "description": "A DP whose time depends on a numeric value (not just input length) runs in pseudopolynomial time — e.g. subset sum and knapsack.",
+      "course": "6.006",
+      "tags": [
+        "dynamic-programming",
+        "complexity"
+      ],
+      "url": "/portfolio/study/pseudopolynomial/"
+    },
+    {
+      "id": "pseudotriangulation",
+      "kind": "concept",
+      "title": "Pointed Pseudotriangulation",
+      "description": "A planar subdivision into pseudotriangles (3 convex corners) with every vertex pointed; its mechanics drive the carpenter's-rule unfolding.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "geometry",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/pseudotriangulation/"
+    },
+    {
+      "id": "qr-factorization",
+      "kind": "concept",
+      "title": "QR Factorization",
+      "description": "A = QR with Q orthonormal and R upper-triangular; the stable way to do least squares.",
+      "course": "18.06",
+      "tags": [
+        "orthogonality",
+        "factorization"
+      ],
+      "url": "/portfolio/study/qr-factorization/"
+    },
+    {
+      "id": "random-variables",
+      "kind": "concept",
+      "title": "Random Variables & Distributions",
+      "description": "A random variable maps outcomes to numbers; its distribution (PMF) lists the probability of each value.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/random-variables/"
+    },
+    {
+      "id": "random-walks",
+      "kind": "concept",
+      "title": "Random Walks & Gambler's Ruin",
+      "description": "A walker takes random +/-1 steps; gambler's ruin computes the probability and duration before hitting a boundary.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/random-walks/"
+    },
+    {
+      "id": "randomized-algorithms",
+      "kind": "concept",
+      "title": "Randomized Algorithms",
+      "description": "Use random choices for speed or simplicity; Las Vegas is always correct, Monte Carlo may err with small probability.",
+      "course": "6.046J",
+      "tags": [
+        "randomization"
+      ],
+      "url": "/portfolio/study/randomized-algorithms/"
+    },
+    {
+      "id": "rank-one-matrix",
+      "kind": "concept",
+      "title": "Rank-One Matrices",
+      "description": "The simplest nonzero matrices, A = uv^T; every rank-r matrix is a sum of r of them.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/rank-one-matrix/"
+    },
+    {
+      "id": "rank",
+      "kind": "concept",
+      "title": "Rank",
+      "description": "The number of pivots = dimension of the column space = number of independent rows/columns; it governs solvability.",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/rank/"
+    },
+    {
+      "id": "relations-and-partial-orders",
+      "kind": "concept",
+      "title": "Relations & Partial Orders",
+      "description": "Binary relations classify by reflexivity/symmetry/transitivity; partial orders model dependency and enable scheduling.",
+      "course": "6.042J",
+      "tags": [
+        "relations",
+        "order"
+      ],
+      "url": "/portfolio/study/relations-and-partial-orders/"
+    },
+    {
+      "id": "rigid-origami",
+      "kind": "concept",
+      "title": "Rigid Origami",
+      "description": "Folding where faces stay rigid (flat) and only the creases move — the model for stiff materials, self-folding sheets, and architecture.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "rigidity",
+        "applications"
+      ],
+      "url": "/portfolio/study/rigid-origami/"
+    },
+    {
+      "id": "rigidity",
+      "kind": "concept",
+      "title": "Rigidity (Generic & Minimal)",
+      "description": "A framework is rigid if its only motions are trivial (rotations/translations); rigidity theory characterizes which graphs are rigid.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "rigidity",
+        "theorem"
+      ],
+      "url": "/portfolio/study/rigidity/"
+    },
+    {
+      "id": "rsa-cryptosystem",
+      "kind": "concept",
+      "title": "RSA Public-Key Cryptography",
+      "description": "Public-key encryption built on modular exponentiation; security rests on the hardness of factoring n=pq.",
+      "course": "6.042J",
+      "tags": [
+        "number-theory",
+        "crypto"
+      ],
+      "url": "/portfolio/study/rsa-cryptosystem/"
+    },
+    {
+      "id": "simple-fold",
+      "kind": "concept",
+      "title": "Simple Fold",
+      "description": "Folding all layers along one straight line by ±180°; the most restrictive, manufacturing-friendly fold model.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/simple-fold/"
+    },
+    {
+      "id": "single-vertex-flat-foldability",
+      "kind": "concept",
+      "title": "Single-Vertex Flat-Foldability",
+      "description": "Deciding whether one interior vertex can fold flat — easy: check even degree, Kawasaki, Maekawa, and a layer-order pass.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "flat-folding",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/single-vertex-flat-foldability/"
+    },
+    {
+      "id": "singular-value-decomposition",
+      "kind": "concept",
+      "title": "Singular Value Decomposition (SVD)",
+      "description": "Any matrix factors as A = UΣV^T with orthogonal U,V and nonnegative diagonal Σ; the master factorization.",
+      "course": "18.06",
+      "tags": [
+        "special-matrices",
+        "factorization"
+      ],
+      "url": "/portfolio/study/singular-value-decomposition/"
+    },
+    {
+      "id": "solving-ax-0",
+      "kind": "concept",
+      "title": "Solving Ax = 0: Pivots, Free Variables, RREF",
+      "description": "Reduce A to RREF; pivot columns fix pivot variables, free columns give special solutions spanning the nullspace.",
+      "course": "18.06",
+      "tags": [
+        "subspaces",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/solving-ax-0/"
+    },
+    {
+      "id": "strong-induction",
+      "kind": "concept",
+      "title": "Strong Induction",
+      "description": "An induction where the step may assume P holds for all values up to n, not just n itself.",
+      "course": "6.042J",
+      "tags": [
+        "proofs",
+        "induction"
+      ],
+      "url": "/portfolio/study/strong-induction/"
+    },
+    {
+      "id": "sublinear-algorithms",
+      "kind": "concept",
+      "title": "Sublinear-Time Algorithms",
+      "description": "Answer approximately by reading only a tiny sample of a huge input, in time less than its size.",
+      "course": "6.046J",
+      "tags": [
+        "sublinear"
+      ],
+      "url": "/portfolio/study/sublinear-algorithms/"
+    },
+    {
+      "id": "sums-and-techniques",
+      "kind": "concept",
+      "title": "Sums & Summation Techniques",
+      "description": "Evaluate and bound finite sums via arithmetic/geometric formulas, perturbation, and telescoping.",
+      "course": "6.042J",
+      "tags": [
+        "sums"
+      ],
+      "url": "/portfolio/study/sums-and-techniques/"
+    },
+    {
+      "id": "symmetric-matrix",
+      "kind": "concept",
+      "title": "Symmetric Matrices & the Spectral Theorem",
+      "description": "A=A^T has real eigenvalues and orthonormal eigenvectors: A = QΛQ^T (spectral theorem).",
+      "course": "18.06",
+      "tags": [
+        "special-matrices",
+        "theorem"
+      ],
+      "url": "/portfolio/study/symmetric-matrix/"
+    },
+    {
+      "id": "tensegrity",
+      "kind": "concept",
+      "title": "Tensegrity",
+      "description": "A framework with struts (can't shrink), cables (can't grow), and bars (fixed); stabilized by an equilibrium stress.",
+      "course": "6.849",
+      "tags": [
+        "linkages",
+        "rigidity"
+      ],
+      "url": "/portfolio/study/tensegrity/"
+    },
+    {
+      "id": "topological-sort",
+      "kind": "concept",
+      "title": "Topological Sort",
+      "description": "Linearly order a DAG so every edge points forward; the prerequisite of DAG dynamic programming.",
+      "course": "6.006",
+      "tags": [
+        "graphs"
+      ],
+      "url": "/portfolio/study/topological-sort/"
+    },
+    {
+      "id": "transpose-and-permutations",
+      "kind": "concept",
+      "title": "Transpose & Permutation Matrices",
+      "description": "A^T swaps rows and columns; permutation matrices P reorder rows and handle pivoting (PA=LU).",
+      "course": "18.06",
+      "tags": [
+        "foundations"
+      ],
+      "url": "/portfolio/study/transpose-and-permutations/"
+    },
+    {
+      "id": "tree-method",
+      "kind": "concept",
+      "title": "Tree Method (Origami Design)",
+      "description": "Design an origami base by packing the legs of a stick-figure tree as circles/rivers on the square, then filling regions with molecules.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "design",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/tree-method/"
+    },
+    {
+      "id": "trees-and-spanning-trees",
+      "kind": "concept",
+      "title": "Trees & Spanning Trees",
+      "description": "A tree is a connected acyclic graph with n-1 edges; a spanning tree connects all vertices of a graph minimally.",
+      "course": "6.042J",
+      "tags": [
+        "graph-theory",
+        "trees"
+      ],
+      "url": "/portfolio/study/trees-and-spanning-trees/"
+    },
+    {
+      "id": "uniaxial-base",
+      "kind": "concept",
+      "title": "Uniaxial Base",
+      "description": "A folded base whose flaps all lie perpendicular to a single line (axis), so its shadow is exactly a tree.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "design"
+      ],
+      "url": "/portfolio/study/uniaxial-base/"
+    },
+    {
+      "id": "union-find",
+      "kind": "concept",
+      "title": "Union-Find (Disjoint Sets)",
+      "description": "Maintain disjoint sets with near-constant find/union via union-by-rank and path compression.",
+      "course": "6.046J",
+      "tags": [
+        "data-structures"
+      ],
+      "url": "/portfolio/study/union-find/"
+    },
+    {
+      "id": "universal-hashing",
+      "kind": "concept",
+      "title": "Universal & Perfect Hashing",
+      "description": "Pick a hash function at random from a universal family so no adversary can force many collisions.",
+      "course": "6.046J",
+      "tags": [
+        "randomization",
+        "hashing"
+      ],
+      "url": "/portfolio/study/universal-hashing/"
+    },
+    {
+      "id": "universal-molecule",
+      "kind": "concept",
+      "title": "Universal Molecule",
+      "description": "An algorithm that fills a convex polygon (from the tree-method packing) with creases that fold it into the required uniaxial flaps.",
+      "course": "6.849",
+      "tags": [
+        "origami",
+        "design",
+        "algorithms"
+      ],
+      "url": "/portfolio/study/universal-molecule/"
+    },
+    {
+      "id": "van-emde-boas",
+      "kind": "concept",
+      "title": "van Emde Boas Trees",
+      "description": "A recursive structure over a universe of size u giving predecessor/successor in O(log log u).",
+      "course": "6.046J",
+      "tags": [
+        "data-structures"
+      ],
+      "url": "/portfolio/study/van-emde-boas/"
+    },
+    {
+      "id": "variance-and-deviation",
+      "kind": "concept",
+      "title": "Variance & Deviation Bounds",
+      "description": "Variance measures spread; Markov and Chebyshev bound the chance a variable strays far from its mean.",
+      "course": "6.042J",
+      "tags": [
+        "probability"
+      ],
+      "url": "/portfolio/study/variance-and-deviation/"
+    },
+    {
+      "id": "vector-space-and-subspace",
+      "kind": "concept",
+      "title": "Vector Space & Subspace",
+      "description": "A set closed under addition and scalar multiplication; a subspace is such a set living inside another (must contain 0).",
+      "course": "18.06",
+      "tags": [
+        "subspaces"
+      ],
+      "url": "/portfolio/study/vector-space-and-subspace/"
+    },
+    {
+      "id": "vertex-unfolding",
+      "kind": "concept",
+      "title": "Vertex Unfolding",
+      "description": "A relaxed unfolding where pieces may stay connected only at single vertices (like a hinged chain of faces).",
+      "course": "6.849",
+      "tags": [
+        "polyhedra"
+      ],
+      "url": "/portfolio/study/vertex-unfolding/"
+    },
+    {
+      "id": "weighted-shortest-paths",
+      "kind": "concept",
+      "title": "Weighted Shortest Paths: Overview",
+      "description": "Find minimum-weight paths from a source; the right algorithm depends on edge signs and graph shape.",
+      "course": "6.006",
+      "tags": [
+        "graphs",
+        "shortest-paths"
+      ],
+      "url": "/portfolio/study/weighted-shortest-paths/"
+    },
+    {
+      "id": "well-ordering-principle",
+      "kind": "concept",
+      "title": "Well-Ordering Principle",
+      "description": "Every nonempty set of nonnegative integers has a least element — a proof tool equivalent to induction.",
+      "course": "6.042J",
+      "tags": [
+        "proofs"
+      ],
+      "url": "/portfolio/study/well-ordering-principle/"
+    },
+    {
+      "id": "word-ram-model",
+      "kind": "concept",
+      "title": "The Word-RAM Model",
+      "description": "The cost model: memory is words of w bits, and basic operations on a word take O(1) time.",
+      "course": "6.006",
+      "tags": [
+        "foundations",
+        "models"
+      ],
+      "url": "/portfolio/study/word-ram-model/"
+    },
+    {
+      "id": "advanced-algorithms",
+      "kind": "map",
+      "title": "Design and Analysis of Algorithms",
+      "description": "Topic map of 6.046J concepts — EN with KO pairs.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/advanced-algorithms/"
+    },
+    {
+      "id": "algorithms",
+      "kind": "map",
+      "title": "Algorithms",
+      "description": "Topic map of 6.006 concepts — EN with KO pairs.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/algorithms/"
+    },
+    {
+      "id": "geometric-fabrication",
+      "kind": "map",
+      "title": "Geometric Fabrication",
+      "description": "Cross-course study map for fabrication — folding theory (6.849) + the linear algebra (18.06) and algorithmic foundations (6.006/6.046J/6.042J) it runs on.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/geometric-fabrication/"
+    },
+    {
+      "id": "geometric-folding",
+      "kind": "map",
+      "title": "Geometric Folding",
+      "description": "Topic map of 6.849 concepts — EN with KO pairs.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/geometric-folding/"
+    },
+    {
+      "id": "linear-algebra",
+      "kind": "map",
+      "title": "Linear Algebra",
+      "description": "Topic map of 18.06 concepts — EN with KO pairs.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/linear-algebra/"
+    },
+    {
+      "id": "math-for-cs",
+      "kind": "map",
+      "title": "Mathematics for Computer Science",
+      "description": "Topic map of 6.042J concepts — EN with KO pairs.",
+      "course": null,
+      "tags": [],
+      "url": "/portfolio/study/math-for-cs/"
+    }
+  ],
+  "edges": [
+    {
+      "source": "alexandrov-theorem",
+      "target": "cauchy-rigidity-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "alexandrov-theorem",
+      "target": "gluing-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "alexandrov-theorem",
+      "target": "cauchy-rigidity-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "alexandrov-theorem",
+      "target": "gluing-tree",
+      "kind": "related"
+    },
+    {
+      "source": "alexandrov-theorem",
+      "target": "d-form",
+      "kind": "related"
+    },
+    {
+      "source": "amortized-analysis",
+      "target": "dynamic-array",
+      "kind": "related"
+    },
+    {
+      "source": "amortized-analysis",
+      "target": "union-find",
+      "kind": "related"
+    },
+    {
+      "source": "amortized-analysis",
+      "target": "competitive-analysis",
+      "kind": "related"
+    },
+    {
+      "source": "approximation-algorithms",
+      "target": "np-completeness",
+      "kind": "prereq"
+    },
+    {
+      "source": "approximation-algorithms",
+      "target": "np-completeness",
+      "kind": "related"
+    },
+    {
+      "source": "approximation-algorithms",
+      "target": "clustering",
+      "kind": "related"
+    },
+    {
+      "source": "approximation-algorithms",
+      "target": "derandomization",
+      "kind": "related"
+    },
+    {
+      "source": "apsp-dynamic-programming",
+      "target": "bellman-ford",
+      "kind": "prereq"
+    },
+    {
+      "source": "apsp-dynamic-programming",
+      "target": "floyd-warshall",
+      "kind": "related"
+    },
+    {
+      "source": "apsp-dynamic-programming",
+      "target": "johnsons-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "asymptotic-notation",
+      "target": "computational-problem",
+      "kind": "prereq"
+    },
+    {
+      "source": "asymptotic-notation",
+      "target": "word-ram-model",
+      "kind": "related"
+    },
+    {
+      "source": "asymptotic-notation",
+      "target": "asymptotics-and-integral-bounds",
+      "kind": "related"
+    },
+    {
+      "source": "asymptotics-and-integral-bounds",
+      "target": "sums-and-techniques",
+      "kind": "prereq"
+    },
+    {
+      "source": "asymptotics-and-integral-bounds",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "avl-tree",
+      "target": "binary-search-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "avl-tree",
+      "target": "binary-search-tree",
+      "kind": "related"
+    },
+    {
+      "source": "bellman-ford",
+      "target": "weighted-shortest-paths",
+      "kind": "prereq"
+    },
+    {
+      "source": "bellman-ford",
+      "target": "dijkstra",
+      "kind": "related"
+    },
+    {
+      "source": "bellman-ford",
+      "target": "johnsons-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "big-little-big-lemma",
+      "target": "mountain-valley-assignment",
+      "kind": "prereq"
+    },
+    {
+      "source": "big-little-big-lemma",
+      "target": "kawasaki-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "big-little-big-lemma",
+      "target": "single-vertex-flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "big-little-big-lemma",
+      "target": "maekawa-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "binary-heap",
+      "target": "data-structure-interfaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "binary-heap",
+      "target": "dijkstra",
+      "kind": "related"
+    },
+    {
+      "source": "binary-heap",
+      "target": "binary-search-tree",
+      "kind": "related"
+    },
+    {
+      "source": "binary-search-tree",
+      "target": "data-structure-interfaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "binary-search-tree",
+      "target": "avl-tree",
+      "kind": "related"
+    },
+    {
+      "source": "binary-search-tree",
+      "target": "binary-heap",
+      "kind": "related"
+    },
+    {
+      "source": "binomial-coefficients",
+      "target": "counting-principles",
+      "kind": "prereq"
+    },
+    {
+      "source": "binomial-coefficients",
+      "target": "counting-principles",
+      "kind": "related"
+    },
+    {
+      "source": "binomial-coefficients",
+      "target": "generating-functions",
+      "kind": "related"
+    },
+    {
+      "source": "bipartite-matching",
+      "target": "graphs-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "bipartite-matching",
+      "target": "network-flow",
+      "kind": "related"
+    },
+    {
+      "source": "bipartite-matching",
+      "target": "graph-coloring",
+      "kind": "related"
+    },
+    {
+      "source": "box-pleating",
+      "target": "tree-method",
+      "kind": "prereq"
+    },
+    {
+      "source": "box-pleating",
+      "target": "tree-method",
+      "kind": "related"
+    },
+    {
+      "source": "box-pleating",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "breadth-first-search",
+      "target": "graph-representation",
+      "kind": "prereq"
+    },
+    {
+      "source": "breadth-first-search",
+      "target": "depth-first-search",
+      "kind": "related"
+    },
+    {
+      "source": "breadth-first-search",
+      "target": "weighted-shortest-paths",
+      "kind": "related"
+    },
+    {
+      "source": "breadth-first-search",
+      "target": "dag-relaxation",
+      "kind": "related"
+    },
+    {
+      "source": "carpenters-rule-theorem",
+      "target": "linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "carpenters-rule-theorem",
+      "target": "configuration-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "carpenters-rule-theorem",
+      "target": "locked-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "carpenters-rule-theorem",
+      "target": "pseudotriangulation",
+      "kind": "related"
+    },
+    {
+      "source": "carpenters-rule-theorem",
+      "target": "hinged-dissection",
+      "kind": "related"
+    },
+    {
+      "source": "cauchy-rigidity-theorem",
+      "target": "rigidity",
+      "kind": "prereq"
+    },
+    {
+      "source": "cauchy-rigidity-theorem",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "cauchy-rigidity-theorem",
+      "target": "alexandrov-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "change-of-basis",
+      "target": "linear-transformation",
+      "kind": "prereq"
+    },
+    {
+      "source": "change-of-basis",
+      "target": "diagonalization",
+      "kind": "prereq"
+    },
+    {
+      "source": "change-of-basis",
+      "target": "linear-transformation",
+      "kind": "related"
+    },
+    {
+      "source": "change-of-basis",
+      "target": "diagonalization",
+      "kind": "related"
+    },
+    {
+      "source": "change-of-basis",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "clustering",
+      "target": "minimum-spanning-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "clustering",
+      "target": "minimum-spanning-tree",
+      "kind": "related"
+    },
+    {
+      "source": "clustering",
+      "target": "approximation-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "cofactor-expansion",
+      "target": "determinant",
+      "kind": "prereq"
+    },
+    {
+      "source": "cofactor-expansion",
+      "target": "determinant",
+      "kind": "related"
+    },
+    {
+      "source": "cofactor-expansion",
+      "target": "cramers-rule",
+      "kind": "related"
+    },
+    {
+      "source": "column-space",
+      "target": "vector-space-and-subspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "column-space",
+      "target": "nullspace",
+      "kind": "related"
+    },
+    {
+      "source": "column-space",
+      "target": "complete-solution-ax-b",
+      "kind": "related"
+    },
+    {
+      "source": "column-space",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "column-space",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "comparison-sorting",
+      "target": "asymptotic-notation",
+      "kind": "prereq"
+    },
+    {
+      "source": "comparison-sorting",
+      "target": "merge-sort",
+      "kind": "related"
+    },
+    {
+      "source": "comparison-sorting",
+      "target": "linear-sorting",
+      "kind": "related"
+    },
+    {
+      "source": "competitive-analysis",
+      "target": "amortized-analysis",
+      "kind": "prereq"
+    },
+    {
+      "source": "competitive-analysis",
+      "target": "amortized-analysis",
+      "kind": "related"
+    },
+    {
+      "source": "complete-solution-ax-b",
+      "target": "solving-ax-0",
+      "kind": "prereq"
+    },
+    {
+      "source": "complete-solution-ax-b",
+      "target": "column-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "complete-solution-ax-b",
+      "target": "nullspace",
+      "kind": "related"
+    },
+    {
+      "source": "complete-solution-ax-b",
+      "target": "column-space",
+      "kind": "related"
+    },
+    {
+      "source": "complete-solution-ax-b",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "complex-matrices-fft",
+      "target": "orthogonal-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "complex-matrices-fft",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "complex-matrices-fft",
+      "target": "symmetric-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "complexity-classes",
+      "target": "asymptotic-notation",
+      "kind": "prereq"
+    },
+    {
+      "source": "complexity-classes",
+      "target": "np-completeness",
+      "kind": "related"
+    },
+    {
+      "source": "complexity-classes",
+      "target": "pseudopolynomial",
+      "kind": "related"
+    },
+    {
+      "source": "computational-geometry",
+      "target": "comparison-sorting",
+      "kind": "prereq"
+    },
+    {
+      "source": "computational-geometry",
+      "target": "clustering",
+      "kind": "related"
+    },
+    {
+      "source": "computational-problem",
+      "target": "asymptotic-notation",
+      "kind": "related"
+    },
+    {
+      "source": "computational-problem",
+      "target": "word-ram-model",
+      "kind": "related"
+    },
+    {
+      "source": "conditional-probability-and-bayes",
+      "target": "probability-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "conditional-probability-and-bayes",
+      "target": "independence",
+      "kind": "related"
+    },
+    {
+      "source": "conditional-probability-and-bayes",
+      "target": "random-variables",
+      "kind": "related"
+    },
+    {
+      "source": "configuration-space",
+      "target": "linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "configuration-space",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "configuration-space",
+      "target": "locked-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "configuration-space",
+      "target": "carpenters-rule-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "counting-principles",
+      "target": "binomial-coefficients",
+      "kind": "related"
+    },
+    {
+      "source": "counting-principles",
+      "target": "inclusion-exclusion",
+      "kind": "related"
+    },
+    {
+      "source": "counting-principles",
+      "target": "pigeonhole-principle",
+      "kind": "related"
+    },
+    {
+      "source": "cramers-rule",
+      "target": "determinant",
+      "kind": "prereq"
+    },
+    {
+      "source": "cramers-rule",
+      "target": "cofactor-expansion",
+      "kind": "prereq"
+    },
+    {
+      "source": "cramers-rule",
+      "target": "determinant",
+      "kind": "related"
+    },
+    {
+      "source": "cramers-rule",
+      "target": "matrix-inverse",
+      "kind": "related"
+    },
+    {
+      "source": "crease-pattern",
+      "target": "mountain-valley-assignment",
+      "kind": "related"
+    },
+    {
+      "source": "crease-pattern",
+      "target": "flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "crease-pattern",
+      "target": "simple-fold",
+      "kind": "related"
+    },
+    {
+      "source": "d-form",
+      "target": "alexandrov-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "d-form",
+      "target": "alexandrov-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "d-form",
+      "target": "gluing-tree",
+      "kind": "related"
+    },
+    {
+      "source": "dag-relaxation",
+      "target": "topological-sort",
+      "kind": "prereq"
+    },
+    {
+      "source": "dag-relaxation",
+      "target": "weighted-shortest-paths",
+      "kind": "related"
+    },
+    {
+      "source": "dag-relaxation",
+      "target": "dynamic-programming",
+      "kind": "related"
+    },
+    {
+      "source": "data-structure-interfaces",
+      "target": "word-ram-model",
+      "kind": "prereq"
+    },
+    {
+      "source": "data-structure-interfaces",
+      "target": "dynamic-array",
+      "kind": "related"
+    },
+    {
+      "source": "data-structure-interfaces",
+      "target": "hash-table",
+      "kind": "related"
+    },
+    {
+      "source": "data-structure-interfaces",
+      "target": "binary-search-tree",
+      "kind": "related"
+    },
+    {
+      "source": "dehn-invariant",
+      "target": "hinged-dissection",
+      "kind": "related"
+    },
+    {
+      "source": "depth-first-search",
+      "target": "graph-representation",
+      "kind": "prereq"
+    },
+    {
+      "source": "depth-first-search",
+      "target": "breadth-first-search",
+      "kind": "related"
+    },
+    {
+      "source": "depth-first-search",
+      "target": "topological-sort",
+      "kind": "related"
+    },
+    {
+      "source": "derandomization",
+      "target": "randomized-algorithms",
+      "kind": "prereq"
+    },
+    {
+      "source": "derandomization",
+      "target": "randomized-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "derandomization",
+      "target": "approximation-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "determinant",
+      "target": "gaussian-elimination",
+      "kind": "prereq"
+    },
+    {
+      "source": "determinant",
+      "target": "cofactor-expansion",
+      "kind": "related"
+    },
+    {
+      "source": "determinant",
+      "target": "cramers-rule",
+      "kind": "related"
+    },
+    {
+      "source": "determinant",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "diagonalization",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "prereq"
+    },
+    {
+      "source": "diagonalization",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "diagonalization",
+      "target": "matrix-exponential",
+      "kind": "related"
+    },
+    {
+      "source": "diagonalization",
+      "target": "jordan-form",
+      "kind": "related"
+    },
+    {
+      "source": "dijkstra",
+      "target": "weighted-shortest-paths",
+      "kind": "prereq"
+    },
+    {
+      "source": "dijkstra",
+      "target": "binary-heap",
+      "kind": "prereq"
+    },
+    {
+      "source": "dijkstra",
+      "target": "bellman-ford",
+      "kind": "related"
+    },
+    {
+      "source": "dijkstra",
+      "target": "binary-heap",
+      "kind": "related"
+    },
+    {
+      "source": "dijkstra",
+      "target": "johnsons-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "divide-and-conquer-recurrences",
+      "target": "strong-induction",
+      "kind": "prereq"
+    },
+    {
+      "source": "divide-and-conquer-recurrences",
+      "target": "linear-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "divide-and-conquer-recurrences",
+      "target": "asymptotics-and-integral-bounds",
+      "kind": "related"
+    },
+    {
+      "source": "divisibility-and-gcd",
+      "target": "well-ordering-principle",
+      "kind": "prereq"
+    },
+    {
+      "source": "divisibility-and-gcd",
+      "target": "modular-arithmetic",
+      "kind": "related"
+    },
+    {
+      "source": "divisibility-and-gcd",
+      "target": "rsa-cryptosystem",
+      "kind": "related"
+    },
+    {
+      "source": "dynamic-array",
+      "target": "word-ram-model",
+      "kind": "prereq"
+    },
+    {
+      "source": "dynamic-array",
+      "target": "data-structure-interfaces",
+      "kind": "related"
+    },
+    {
+      "source": "dynamic-array",
+      "target": "amortized-analysis",
+      "kind": "related"
+    },
+    {
+      "source": "dynamic-programming",
+      "target": "dag-relaxation",
+      "kind": "prereq"
+    },
+    {
+      "source": "dynamic-programming",
+      "target": "pseudopolynomial",
+      "kind": "related"
+    },
+    {
+      "source": "dynamic-programming",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "edge-unfolding",
+      "target": "polyhedron-unfolding",
+      "kind": "prereq"
+    },
+    {
+      "source": "edge-unfolding",
+      "target": "polyhedron-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "edge-unfolding",
+      "target": "general-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "edge-unfolding",
+      "target": "vertex-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "eigenvalues-eigenvectors",
+      "target": "determinant",
+      "kind": "prereq"
+    },
+    {
+      "source": "eigenvalues-eigenvectors",
+      "target": "diagonalization",
+      "kind": "related"
+    },
+    {
+      "source": "eigenvalues-eigenvectors",
+      "target": "symmetric-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "eigenvalues-eigenvectors",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "expectation",
+      "target": "random-variables",
+      "kind": "prereq"
+    },
+    {
+      "source": "expectation",
+      "target": "variance-and-deviation",
+      "kind": "related"
+    },
+    {
+      "source": "expectation",
+      "target": "random-variables",
+      "kind": "related"
+    },
+    {
+      "source": "fft-polynomial-multiplication",
+      "target": "complex-matrices-fft",
+      "kind": "related"
+    },
+    {
+      "source": "fft-polynomial-multiplication",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "fixed-angle-linkage",
+      "target": "linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "fixed-angle-linkage",
+      "target": "locked-linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "fixed-angle-linkage",
+      "target": "locked-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "fixed-angle-linkage",
+      "target": "hp-model",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability-np-hardness",
+      "target": "flat-foldability",
+      "kind": "prereq"
+    },
+    {
+      "source": "flat-foldability-np-hardness",
+      "target": "map-folding",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability-np-hardness",
+      "target": "simple-fold",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability-np-hardness",
+      "target": "tree-method",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "flat-foldability",
+      "target": "mountain-valley-assignment",
+      "kind": "prereq"
+    },
+    {
+      "source": "flat-foldability",
+      "target": "single-vertex-flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability",
+      "target": "map-folding",
+      "kind": "related"
+    },
+    {
+      "source": "flat-foldability",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "floyd-warshall",
+      "target": "apsp-dynamic-programming",
+      "kind": "prereq"
+    },
+    {
+      "source": "floyd-warshall",
+      "target": "johnsons-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "fold-and-one-cut",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "fold-and-one-cut",
+      "target": "universal-molecule",
+      "kind": "related"
+    },
+    {
+      "source": "fold-and-one-cut",
+      "target": "tree-method",
+      "kind": "related"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "column-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "nullspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "rank",
+      "kind": "prereq"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "orthogonality",
+      "kind": "related"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "four-fundamental-subspaces",
+      "target": "incidence-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "gaussian-elimination",
+      "target": "linear-system-pictures",
+      "kind": "prereq"
+    },
+    {
+      "source": "gaussian-elimination",
+      "target": "lu-factorization",
+      "kind": "related"
+    },
+    {
+      "source": "gaussian-elimination",
+      "target": "matrix-inverse",
+      "kind": "related"
+    },
+    {
+      "source": "gaussian-elimination",
+      "target": "solving-ax-0",
+      "kind": "related"
+    },
+    {
+      "source": "general-unfolding",
+      "target": "polyhedron-unfolding",
+      "kind": "prereq"
+    },
+    {
+      "source": "general-unfolding",
+      "target": "polyhedron-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "general-unfolding",
+      "target": "edge-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "generating-functions",
+      "target": "counting-principles",
+      "kind": "prereq"
+    },
+    {
+      "source": "generating-functions",
+      "target": "binomial-coefficients",
+      "kind": "related"
+    },
+    {
+      "source": "generating-functions",
+      "target": "linear-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "gluing-tree",
+      "target": "alexandrov-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "gluing-tree",
+      "target": "alexandrov-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "gluing-tree",
+      "target": "d-form",
+      "kind": "related"
+    },
+    {
+      "source": "gram-schmidt",
+      "target": "projection",
+      "kind": "prereq"
+    },
+    {
+      "source": "gram-schmidt",
+      "target": "qr-factorization",
+      "kind": "related"
+    },
+    {
+      "source": "gram-schmidt",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "gram-schmidt",
+      "target": "projection",
+      "kind": "related"
+    },
+    {
+      "source": "graph-coloring",
+      "target": "graphs-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "graph-coloring",
+      "target": "planar-graphs",
+      "kind": "related"
+    },
+    {
+      "source": "graph-coloring",
+      "target": "bipartite-matching",
+      "kind": "related"
+    },
+    {
+      "source": "graph-representation",
+      "target": "data-structure-interfaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "graph-representation",
+      "target": "breadth-first-search",
+      "kind": "related"
+    },
+    {
+      "source": "graph-representation",
+      "target": "depth-first-search",
+      "kind": "related"
+    },
+    {
+      "source": "graph-representation",
+      "target": "graphs-basics",
+      "kind": "related"
+    },
+    {
+      "source": "graphs-basics",
+      "target": "graph-coloring",
+      "kind": "related"
+    },
+    {
+      "source": "graphs-basics",
+      "target": "trees-and-spanning-trees",
+      "kind": "related"
+    },
+    {
+      "source": "graphs-basics",
+      "target": "bipartite-matching",
+      "kind": "related"
+    },
+    {
+      "source": "greedy-algorithms",
+      "target": "interval-scheduling",
+      "kind": "related"
+    },
+    {
+      "source": "greedy-algorithms",
+      "target": "minimum-spanning-tree",
+      "kind": "related"
+    },
+    {
+      "source": "greedy-algorithms",
+      "target": "huffman-coding",
+      "kind": "related"
+    },
+    {
+      "source": "hash-table",
+      "target": "data-structure-interfaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "hash-table",
+      "target": "universal-hashing",
+      "kind": "related"
+    },
+    {
+      "source": "hash-table",
+      "target": "linear-sorting",
+      "kind": "related"
+    },
+    {
+      "source": "hinged-dissection",
+      "target": "carpenters-rule-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "hinged-dissection",
+      "target": "carpenters-rule-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "hinged-dissection",
+      "target": "locked-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "hinged-dissection",
+      "target": "dehn-invariant",
+      "kind": "related"
+    },
+    {
+      "source": "hp-model",
+      "target": "fixed-angle-linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "hp-model",
+      "target": "fixed-angle-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "huffman-coding",
+      "target": "greedy-algorithms",
+      "kind": "prereq"
+    },
+    {
+      "source": "huffman-coding",
+      "target": "greedy-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "huffman-coding",
+      "target": "binary-heap",
+      "kind": "related"
+    },
+    {
+      "source": "hypar-pleat-folding",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "hypar-pleat-folding",
+      "target": "rigid-origami",
+      "kind": "related"
+    },
+    {
+      "source": "incidence-matrix",
+      "target": "four-fundamental-subspaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "incidence-matrix",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "incidence-matrix",
+      "target": "nullspace",
+      "kind": "related"
+    },
+    {
+      "source": "inclusion-exclusion",
+      "target": "counting-principles",
+      "kind": "prereq"
+    },
+    {
+      "source": "inclusion-exclusion",
+      "target": "pigeonhole-principle",
+      "kind": "related"
+    },
+    {
+      "source": "inclusion-exclusion",
+      "target": "probability-basics",
+      "kind": "related"
+    },
+    {
+      "source": "independence-basis-dimension",
+      "target": "vector-space-and-subspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "independence-basis-dimension",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "independence-basis-dimension",
+      "target": "column-space",
+      "kind": "related"
+    },
+    {
+      "source": "independence-basis-dimension",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "independence",
+      "target": "conditional-probability-and-bayes",
+      "kind": "prereq"
+    },
+    {
+      "source": "independence",
+      "target": "random-variables",
+      "kind": "related"
+    },
+    {
+      "source": "independence",
+      "target": "variance-and-deviation",
+      "kind": "related"
+    },
+    {
+      "source": "induction",
+      "target": "proof-methods",
+      "kind": "prereq"
+    },
+    {
+      "source": "induction",
+      "target": "strong-induction",
+      "kind": "related"
+    },
+    {
+      "source": "induction",
+      "target": "well-ordering-principle",
+      "kind": "related"
+    },
+    {
+      "source": "induction",
+      "target": "linear-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "infinitesimal-rigidity",
+      "target": "rigidity",
+      "kind": "prereq"
+    },
+    {
+      "source": "infinitesimal-rigidity",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "infinitesimal-rigidity",
+      "target": "tensegrity",
+      "kind": "related"
+    },
+    {
+      "source": "infinitesimal-rigidity",
+      "target": "laman-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "interval-scheduling",
+      "target": "greedy-algorithms",
+      "kind": "prereq"
+    },
+    {
+      "source": "interval-scheduling",
+      "target": "greedy-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "invariants-and-state-machines",
+      "target": "induction",
+      "kind": "prereq"
+    },
+    {
+      "source": "invariants-and-state-machines",
+      "target": "strong-induction",
+      "kind": "related"
+    },
+    {
+      "source": "johnsons-algorithm",
+      "target": "bellman-ford",
+      "kind": "prereq"
+    },
+    {
+      "source": "johnsons-algorithm",
+      "target": "dijkstra",
+      "kind": "prereq"
+    },
+    {
+      "source": "johnsons-algorithm",
+      "target": "floyd-warshall",
+      "kind": "related"
+    },
+    {
+      "source": "johnsons-algorithm",
+      "target": "bellman-ford",
+      "kind": "related"
+    },
+    {
+      "source": "johnsons-algorithm",
+      "target": "dijkstra",
+      "kind": "related"
+    },
+    {
+      "source": "jordan-form",
+      "target": "diagonalization",
+      "kind": "prereq"
+    },
+    {
+      "source": "jordan-form",
+      "target": "diagonalization",
+      "kind": "related"
+    },
+    {
+      "source": "jordan-form",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "kawasaki-theorem",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "kawasaki-theorem",
+      "target": "maekawa-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "kawasaki-theorem",
+      "target": "single-vertex-flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "kempe-universality-theorem",
+      "target": "linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "kempe-universality-theorem",
+      "target": "configuration-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "kempe-universality-theorem",
+      "target": "linkage",
+      "kind": "related"
+    },
+    {
+      "source": "kempe-universality-theorem",
+      "target": "configuration-space",
+      "kind": "related"
+    },
+    {
+      "source": "kruskals-algorithm",
+      "target": "minimum-spanning-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "kruskals-algorithm",
+      "target": "union-find",
+      "kind": "prereq"
+    },
+    {
+      "source": "kruskals-algorithm",
+      "target": "prims-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "kruskals-algorithm",
+      "target": "union-find",
+      "kind": "related"
+    },
+    {
+      "source": "laman-theorem",
+      "target": "rigidity",
+      "kind": "prereq"
+    },
+    {
+      "source": "laman-theorem",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "laman-theorem",
+      "target": "infinitesimal-rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "least-squares",
+      "target": "projection",
+      "kind": "prereq"
+    },
+    {
+      "source": "least-squares",
+      "target": "projection",
+      "kind": "related"
+    },
+    {
+      "source": "least-squares",
+      "target": "qr-factorization",
+      "kind": "related"
+    },
+    {
+      "source": "least-squares",
+      "target": "pseudoinverse",
+      "kind": "related"
+    },
+    {
+      "source": "linear-recurrences",
+      "target": "induction",
+      "kind": "prereq"
+    },
+    {
+      "source": "linear-recurrences",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "linear-recurrences",
+      "target": "generating-functions",
+      "kind": "related"
+    },
+    {
+      "source": "linear-sorting",
+      "target": "comparison-sorting",
+      "kind": "prereq"
+    },
+    {
+      "source": "linear-sorting",
+      "target": "comparison-sorting",
+      "kind": "related"
+    },
+    {
+      "source": "linear-sorting",
+      "target": "hash-table",
+      "kind": "related"
+    },
+    {
+      "source": "linear-system-pictures",
+      "target": "gaussian-elimination",
+      "kind": "related"
+    },
+    {
+      "source": "linear-system-pictures",
+      "target": "column-space",
+      "kind": "related"
+    },
+    {
+      "source": "linear-system-pictures",
+      "target": "matrix-multiplication",
+      "kind": "related"
+    },
+    {
+      "source": "linear-time-selection",
+      "target": "randomized-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "linear-transformation",
+      "target": "matrix-multiplication",
+      "kind": "prereq"
+    },
+    {
+      "source": "linear-transformation",
+      "target": "independence-basis-dimension",
+      "kind": "prereq"
+    },
+    {
+      "source": "linear-transformation",
+      "target": "change-of-basis",
+      "kind": "related"
+    },
+    {
+      "source": "linear-transformation",
+      "target": "matrix-multiplication",
+      "kind": "related"
+    },
+    {
+      "source": "linear-transformation",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "linkage",
+      "target": "configuration-space",
+      "kind": "related"
+    },
+    {
+      "source": "linkage",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "linkage",
+      "target": "kempe-universality-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "locked-linkage",
+      "target": "configuration-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "locked-linkage",
+      "target": "carpenters-rule-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "locked-linkage",
+      "target": "carpenters-rule-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "locked-linkage",
+      "target": "pseudotriangulation",
+      "kind": "related"
+    },
+    {
+      "source": "locked-linkage",
+      "target": "fixed-angle-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "lu-factorization",
+      "target": "gaussian-elimination",
+      "kind": "prereq"
+    },
+    {
+      "source": "lu-factorization",
+      "target": "transpose-and-permutations",
+      "kind": "related"
+    },
+    {
+      "source": "lu-factorization",
+      "target": "matrix-inverse",
+      "kind": "related"
+    },
+    {
+      "source": "maekawa-theorem",
+      "target": "mountain-valley-assignment",
+      "kind": "prereq"
+    },
+    {
+      "source": "maekawa-theorem",
+      "target": "kawasaki-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "maekawa-theorem",
+      "target": "single-vertex-flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "maekawa-theorem",
+      "target": "big-little-big-lemma",
+      "kind": "related"
+    },
+    {
+      "source": "map-folding",
+      "target": "simple-fold",
+      "kind": "prereq"
+    },
+    {
+      "source": "map-folding",
+      "target": "flat-foldability",
+      "kind": "prereq"
+    },
+    {
+      "source": "map-folding",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "map-folding",
+      "target": "simple-fold",
+      "kind": "related"
+    },
+    {
+      "source": "markov-matrix",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "prereq"
+    },
+    {
+      "source": "markov-matrix",
+      "target": "diagonalization",
+      "kind": "related"
+    },
+    {
+      "source": "markov-matrix",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-exponential",
+      "target": "diagonalization",
+      "kind": "prereq"
+    },
+    {
+      "source": "matrix-exponential",
+      "target": "diagonalization",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-exponential",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-exponential",
+      "target": "markov-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-inverse",
+      "target": "matrix-multiplication",
+      "kind": "prereq"
+    },
+    {
+      "source": "matrix-inverse",
+      "target": "gaussian-elimination",
+      "kind": "prereq"
+    },
+    {
+      "source": "matrix-inverse",
+      "target": "determinant",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-inverse",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-inverse",
+      "target": "gaussian-elimination",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-multiplication",
+      "target": "linear-system-pictures",
+      "kind": "prereq"
+    },
+    {
+      "source": "matrix-multiplication",
+      "target": "matrix-inverse",
+      "kind": "related"
+    },
+    {
+      "source": "matrix-multiplication",
+      "target": "rank-one-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "merge-sort",
+      "target": "comparison-sorting",
+      "kind": "prereq"
+    },
+    {
+      "source": "merge-sort",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "merge-sort",
+      "target": "comparison-sorting",
+      "kind": "related"
+    },
+    {
+      "source": "minimum-spanning-tree",
+      "target": "greedy-algorithms",
+      "kind": "prereq"
+    },
+    {
+      "source": "minimum-spanning-tree",
+      "target": "prims-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "minimum-spanning-tree",
+      "target": "kruskals-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "minimum-spanning-tree",
+      "target": "trees-and-spanning-trees",
+      "kind": "related"
+    },
+    {
+      "source": "modular-arithmetic",
+      "target": "divisibility-and-gcd",
+      "kind": "prereq"
+    },
+    {
+      "source": "modular-arithmetic",
+      "target": "rsa-cryptosystem",
+      "kind": "related"
+    },
+    {
+      "source": "mountain-valley-assignment",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "mountain-valley-assignment",
+      "target": "maekawa-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "mountain-valley-assignment",
+      "target": "flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "network-flow",
+      "target": "graph-representation",
+      "kind": "prereq"
+    },
+    {
+      "source": "network-flow",
+      "target": "bipartite-matching",
+      "kind": "related"
+    },
+    {
+      "source": "np-completeness",
+      "target": "complexity-classes",
+      "kind": "prereq"
+    },
+    {
+      "source": "np-completeness",
+      "target": "complexity-classes",
+      "kind": "related"
+    },
+    {
+      "source": "np-completeness",
+      "target": "approximation-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "nullspace",
+      "target": "vector-space-and-subspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "nullspace",
+      "target": "solving-ax-0",
+      "kind": "related"
+    },
+    {
+      "source": "nullspace",
+      "target": "column-space",
+      "kind": "related"
+    },
+    {
+      "source": "nullspace",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "nullspace",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonal-matrix",
+      "target": "orthogonality",
+      "kind": "prereq"
+    },
+    {
+      "source": "orthogonal-matrix",
+      "target": "qr-factorization",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonal-matrix",
+      "target": "symmetric-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonal-matrix",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonality",
+      "target": "four-fundamental-subspaces",
+      "kind": "prereq"
+    },
+    {
+      "source": "orthogonality",
+      "target": "projection",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonality",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "orthogonality",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "pigeonhole-principle",
+      "target": "counting-principles",
+      "kind": "prereq"
+    },
+    {
+      "source": "pigeonhole-principle",
+      "target": "inclusion-exclusion",
+      "kind": "related"
+    },
+    {
+      "source": "planar-graphs",
+      "target": "graphs-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "planar-graphs",
+      "target": "graph-coloring",
+      "kind": "related"
+    },
+    {
+      "source": "polyhedron-unfolding",
+      "target": "edge-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "polyhedron-unfolding",
+      "target": "general-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "polyhedron-unfolding",
+      "target": "vertex-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "positive-definite",
+      "target": "symmetric-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "positive-definite",
+      "target": "symmetric-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "positive-definite",
+      "target": "least-squares",
+      "kind": "related"
+    },
+    {
+      "source": "prims-algorithm",
+      "target": "minimum-spanning-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "prims-algorithm",
+      "target": "binary-heap",
+      "kind": "prereq"
+    },
+    {
+      "source": "prims-algorithm",
+      "target": "kruskals-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "prims-algorithm",
+      "target": "dijkstra",
+      "kind": "related"
+    },
+    {
+      "source": "probability-basics",
+      "target": "counting-principles",
+      "kind": "prereq"
+    },
+    {
+      "source": "probability-basics",
+      "target": "conditional-probability-and-bayes",
+      "kind": "related"
+    },
+    {
+      "source": "probability-basics",
+      "target": "independence",
+      "kind": "related"
+    },
+    {
+      "source": "probability-basics",
+      "target": "random-variables",
+      "kind": "related"
+    },
+    {
+      "source": "projection",
+      "target": "orthogonality",
+      "kind": "prereq"
+    },
+    {
+      "source": "projection",
+      "target": "least-squares",
+      "kind": "related"
+    },
+    {
+      "source": "projection",
+      "target": "orthogonality",
+      "kind": "related"
+    },
+    {
+      "source": "projection",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "proof-methods",
+      "target": "propositions-and-logic",
+      "kind": "prereq"
+    },
+    {
+      "source": "proof-methods",
+      "target": "induction",
+      "kind": "related"
+    },
+    {
+      "source": "proof-methods",
+      "target": "well-ordering-principle",
+      "kind": "related"
+    },
+    {
+      "source": "propositions-and-logic",
+      "target": "proof-methods",
+      "kind": "related"
+    },
+    {
+      "source": "propositions-and-logic",
+      "target": "induction",
+      "kind": "related"
+    },
+    {
+      "source": "pseudoinverse",
+      "target": "singular-value-decomposition",
+      "kind": "prereq"
+    },
+    {
+      "source": "pseudoinverse",
+      "target": "least-squares",
+      "kind": "prereq"
+    },
+    {
+      "source": "pseudoinverse",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "pseudoinverse",
+      "target": "least-squares",
+      "kind": "related"
+    },
+    {
+      "source": "pseudoinverse",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "pseudopolynomial",
+      "target": "dynamic-programming",
+      "kind": "prereq"
+    },
+    {
+      "source": "pseudopolynomial",
+      "target": "dynamic-programming",
+      "kind": "related"
+    },
+    {
+      "source": "pseudopolynomial",
+      "target": "complexity-classes",
+      "kind": "related"
+    },
+    {
+      "source": "pseudotriangulation",
+      "target": "carpenters-rule-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "pseudotriangulation",
+      "target": "rigidity",
+      "kind": "prereq"
+    },
+    {
+      "source": "pseudotriangulation",
+      "target": "carpenters-rule-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "pseudotriangulation",
+      "target": "locked-linkage",
+      "kind": "related"
+    },
+    {
+      "source": "pseudotriangulation",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "qr-factorization",
+      "target": "gram-schmidt",
+      "kind": "prereq"
+    },
+    {
+      "source": "qr-factorization",
+      "target": "gram-schmidt",
+      "kind": "related"
+    },
+    {
+      "source": "qr-factorization",
+      "target": "least-squares",
+      "kind": "related"
+    },
+    {
+      "source": "qr-factorization",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "random-variables",
+      "target": "probability-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "random-variables",
+      "target": "expectation",
+      "kind": "related"
+    },
+    {
+      "source": "random-variables",
+      "target": "variance-and-deviation",
+      "kind": "related"
+    },
+    {
+      "source": "random-variables",
+      "target": "independence",
+      "kind": "related"
+    },
+    {
+      "source": "random-walks",
+      "target": "expectation",
+      "kind": "prereq"
+    },
+    {
+      "source": "random-walks",
+      "target": "variance-and-deviation",
+      "kind": "prereq"
+    },
+    {
+      "source": "random-walks",
+      "target": "expectation",
+      "kind": "related"
+    },
+    {
+      "source": "random-walks",
+      "target": "variance-and-deviation",
+      "kind": "related"
+    },
+    {
+      "source": "randomized-algorithms",
+      "target": "universal-hashing",
+      "kind": "related"
+    },
+    {
+      "source": "randomized-algorithms",
+      "target": "derandomization",
+      "kind": "related"
+    },
+    {
+      "source": "randomized-algorithms",
+      "target": "linear-time-selection",
+      "kind": "related"
+    },
+    {
+      "source": "rank-one-matrix",
+      "target": "rank",
+      "kind": "prereq"
+    },
+    {
+      "source": "rank-one-matrix",
+      "target": "matrix-multiplication",
+      "kind": "prereq"
+    },
+    {
+      "source": "rank-one-matrix",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "rank-one-matrix",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "rank",
+      "target": "column-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "rank",
+      "target": "nullspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "rank",
+      "target": "independence-basis-dimension",
+      "kind": "related"
+    },
+    {
+      "source": "rank",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "rank",
+      "target": "rank-one-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "relations-and-partial-orders",
+      "target": "graphs-basics",
+      "kind": "related"
+    },
+    {
+      "source": "rigid-origami",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "rigid-origami",
+      "target": "kawasaki-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "rigid-origami",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "rigid-origami",
+      "target": "hypar-pleat-folding",
+      "kind": "related"
+    },
+    {
+      "source": "rigid-origami",
+      "target": "tensegrity",
+      "kind": "related"
+    },
+    {
+      "source": "rigidity",
+      "target": "linkage",
+      "kind": "prereq"
+    },
+    {
+      "source": "rigidity",
+      "target": "configuration-space",
+      "kind": "prereq"
+    },
+    {
+      "source": "rigidity",
+      "target": "laman-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "rigidity",
+      "target": "infinitesimal-rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "rigidity",
+      "target": "cauchy-rigidity-theorem",
+      "kind": "related"
+    },
+    {
+      "source": "rigidity",
+      "target": "rigid-origami",
+      "kind": "related"
+    },
+    {
+      "source": "rsa-cryptosystem",
+      "target": "modular-arithmetic",
+      "kind": "prereq"
+    },
+    {
+      "source": "rsa-cryptosystem",
+      "target": "divisibility-and-gcd",
+      "kind": "related"
+    },
+    {
+      "source": "simple-fold",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "simple-fold",
+      "target": "map-folding",
+      "kind": "related"
+    },
+    {
+      "source": "simple-fold",
+      "target": "flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "simple-fold",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "single-vertex-flat-foldability",
+      "target": "kawasaki-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "single-vertex-flat-foldability",
+      "target": "maekawa-theorem",
+      "kind": "prereq"
+    },
+    {
+      "source": "single-vertex-flat-foldability",
+      "target": "big-little-big-lemma",
+      "kind": "related"
+    },
+    {
+      "source": "single-vertex-flat-foldability",
+      "target": "flat-foldability",
+      "kind": "related"
+    },
+    {
+      "source": "single-vertex-flat-foldability",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "symmetric-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "orthogonal-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "rank-one-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "pseudoinverse",
+      "kind": "related"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "four-fundamental-subspaces",
+      "kind": "related"
+    },
+    {
+      "source": "singular-value-decomposition",
+      "target": "rank-one-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "solving-ax-0",
+      "target": "gaussian-elimination",
+      "kind": "prereq"
+    },
+    {
+      "source": "solving-ax-0",
+      "target": "nullspace",
+      "kind": "prereq"
+    },
+    {
+      "source": "solving-ax-0",
+      "target": "nullspace",
+      "kind": "related"
+    },
+    {
+      "source": "solving-ax-0",
+      "target": "complete-solution-ax-b",
+      "kind": "related"
+    },
+    {
+      "source": "solving-ax-0",
+      "target": "rank",
+      "kind": "related"
+    },
+    {
+      "source": "strong-induction",
+      "target": "induction",
+      "kind": "prereq"
+    },
+    {
+      "source": "strong-induction",
+      "target": "well-ordering-principle",
+      "kind": "related"
+    },
+    {
+      "source": "strong-induction",
+      "target": "divide-and-conquer-recurrences",
+      "kind": "related"
+    },
+    {
+      "source": "sublinear-algorithms",
+      "target": "randomized-algorithms",
+      "kind": "prereq"
+    },
+    {
+      "source": "sublinear-algorithms",
+      "target": "randomized-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "sums-and-techniques",
+      "target": "asymptotics-and-integral-bounds",
+      "kind": "related"
+    },
+    {
+      "source": "sums-and-techniques",
+      "target": "generating-functions",
+      "kind": "related"
+    },
+    {
+      "source": "symmetric-matrix",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "prereq"
+    },
+    {
+      "source": "symmetric-matrix",
+      "target": "orthogonal-matrix",
+      "kind": "prereq"
+    },
+    {
+      "source": "symmetric-matrix",
+      "target": "positive-definite",
+      "kind": "related"
+    },
+    {
+      "source": "symmetric-matrix",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "symmetric-matrix",
+      "target": "eigenvalues-eigenvectors",
+      "kind": "related"
+    },
+    {
+      "source": "tensegrity",
+      "target": "infinitesimal-rigidity",
+      "kind": "prereq"
+    },
+    {
+      "source": "tensegrity",
+      "target": "infinitesimal-rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "tensegrity",
+      "target": "rigidity",
+      "kind": "related"
+    },
+    {
+      "source": "topological-sort",
+      "target": "depth-first-search",
+      "kind": "prereq"
+    },
+    {
+      "source": "topological-sort",
+      "target": "dag-relaxation",
+      "kind": "related"
+    },
+    {
+      "source": "topological-sort",
+      "target": "relations-and-partial-orders",
+      "kind": "related"
+    },
+    {
+      "source": "transpose-and-permutations",
+      "target": "matrix-multiplication",
+      "kind": "prereq"
+    },
+    {
+      "source": "transpose-and-permutations",
+      "target": "lu-factorization",
+      "kind": "related"
+    },
+    {
+      "source": "transpose-and-permutations",
+      "target": "symmetric-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "transpose-and-permutations",
+      "target": "orthogonal-matrix",
+      "kind": "related"
+    },
+    {
+      "source": "tree-method",
+      "target": "crease-pattern",
+      "kind": "prereq"
+    },
+    {
+      "source": "tree-method",
+      "target": "uniaxial-base",
+      "kind": "related"
+    },
+    {
+      "source": "tree-method",
+      "target": "universal-molecule",
+      "kind": "related"
+    },
+    {
+      "source": "tree-method",
+      "target": "box-pleating",
+      "kind": "related"
+    },
+    {
+      "source": "tree-method",
+      "target": "flat-foldability-np-hardness",
+      "kind": "related"
+    },
+    {
+      "source": "trees-and-spanning-trees",
+      "target": "graphs-basics",
+      "kind": "prereq"
+    },
+    {
+      "source": "trees-and-spanning-trees",
+      "target": "minimum-spanning-tree",
+      "kind": "related"
+    },
+    {
+      "source": "trees-and-spanning-trees",
+      "target": "graphs-basics",
+      "kind": "related"
+    },
+    {
+      "source": "uniaxial-base",
+      "target": "tree-method",
+      "kind": "prereq"
+    },
+    {
+      "source": "uniaxial-base",
+      "target": "tree-method",
+      "kind": "related"
+    },
+    {
+      "source": "uniaxial-base",
+      "target": "universal-molecule",
+      "kind": "related"
+    },
+    {
+      "source": "union-find",
+      "target": "kruskals-algorithm",
+      "kind": "related"
+    },
+    {
+      "source": "union-find",
+      "target": "amortized-analysis",
+      "kind": "related"
+    },
+    {
+      "source": "universal-hashing",
+      "target": "hash-table",
+      "kind": "prereq"
+    },
+    {
+      "source": "universal-hashing",
+      "target": "hash-table",
+      "kind": "related"
+    },
+    {
+      "source": "universal-hashing",
+      "target": "randomized-algorithms",
+      "kind": "related"
+    },
+    {
+      "source": "universal-molecule",
+      "target": "uniaxial-base",
+      "kind": "prereq"
+    },
+    {
+      "source": "universal-molecule",
+      "target": "tree-method",
+      "kind": "prereq"
+    },
+    {
+      "source": "universal-molecule",
+      "target": "tree-method",
+      "kind": "related"
+    },
+    {
+      "source": "universal-molecule",
+      "target": "uniaxial-base",
+      "kind": "related"
+    },
+    {
+      "source": "universal-molecule",
+      "target": "fold-and-one-cut",
+      "kind": "related"
+    },
+    {
+      "source": "van-emde-boas",
+      "target": "binary-search-tree",
+      "kind": "prereq"
+    },
+    {
+      "source": "van-emde-boas",
+      "target": "binary-search-tree",
+      "kind": "related"
+    },
+    {
+      "source": "variance-and-deviation",
+      "target": "expectation",
+      "kind": "prereq"
+    },
+    {
+      "source": "variance-and-deviation",
+      "target": "expectation",
+      "kind": "related"
+    },
+    {
+      "source": "variance-and-deviation",
+      "target": "random-walks",
+      "kind": "related"
+    },
+    {
+      "source": "variance-and-deviation",
+      "target": "independence",
+      "kind": "related"
+    },
+    {
+      "source": "vector-space-and-subspace",
+      "target": "column-space",
+      "kind": "related"
+    },
+    {
+      "source": "vector-space-and-subspace",
+      "target": "nullspace",
+      "kind": "related"
+    },
+    {
+      "source": "vector-space-and-subspace",
+      "target": "independence-basis-dimension",
+      "kind": "related"
+    },
+    {
+      "source": "vertex-unfolding",
+      "target": "edge-unfolding",
+      "kind": "prereq"
+    },
+    {
+      "source": "vertex-unfolding",
+      "target": "edge-unfolding",
+      "kind": "related"
+    },
+    {
+      "source": "vertex-unfolding",
+      "target": "hinged-dissection",
+      "kind": "related"
+    },
+    {
+      "source": "weighted-shortest-paths",
+      "target": "breadth-first-search",
+      "kind": "prereq"
+    },
+    {
+      "source": "weighted-shortest-paths",
+      "target": "dag-relaxation",
+      "kind": "related"
+    },
+    {
+      "source": "weighted-shortest-paths",
+      "target": "bellman-ford",
+      "kind": "related"
+    },
+    {
+      "source": "weighted-shortest-paths",
+      "target": "dijkstra",
+      "kind": "related"
+    },
+    {
+      "source": "well-ordering-principle",
+      "target": "induction",
+      "kind": "prereq"
+    },
+    {
+      "source": "well-ordering-principle",
+      "target": "strong-induction",
+      "kind": "related"
+    },
+    {
+      "source": "well-ordering-principle",
+      "target": "divisibility-and-gcd",
+      "kind": "related"
+    },
+    {
+      "source": "word-ram-model",
+      "target": "computational-problem",
+      "kind": "prereq"
+    },
+    {
+      "source": "word-ram-model",
+      "target": "dynamic-array",
+      "kind": "related"
+    },
+    {
+      "source": "word-ram-model",
+      "target": "hash-table",
+      "kind": "related"
+    }
+  ]
+}
