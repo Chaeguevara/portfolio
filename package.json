@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "check": "astro check",
+    "prebuild": "npm run check:fold",
     "build": "npm run sync:ontology && node scripts/gen-patterns.mjs && astro build",
     "gen:patterns": "node scripts/gen-patterns.mjs",
     "preview": "astro preview",

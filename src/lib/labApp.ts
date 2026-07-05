@@ -1743,7 +1743,7 @@ export function initLab(): void {
   matSelect.addEventListener('change', () => {
     const r = app.setMaterial(matSelect.value);
     const m = MATERIALS.find((x) => x.id === matSelect.value)!;
-    matNote.textContent = `${m.thickness} mm · max fold ${Math.round(foldCapDeg(m.thickness))}°`;
+    matNote.textContent = `${m.thickness} mm · max fold ${Math.round(foldCapDeg(m.thickness))}° · min panel ${m.minPanel} mm · min tab ${m.minTab} mm`;
     statusEl.textContent = r.ok ? `material: ${r.msg}` : r.msg;
   });
   matSec.appendChild(matSelect);

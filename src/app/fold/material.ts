@@ -15,6 +15,8 @@ export interface Material {
   label: string;
   thickness: number; // mm
   color: string; // render tint
+  minPanel: number; // mm — smallest panel edge that survives cutting/handling (ontology material-constraints)
+  minTab: number; // mm — smallest usable tuck tab
   solver: SolverParams; // stiffness the compliant solver runs at
 }
 
@@ -26,11 +28,11 @@ export function foldCapDeg(t: number): number {
 }
 
 export const MATERIALS: Material[] = [
-  { id: 'paper', label: 'Paper (0.1 mm)', thickness: 0.1, color: '#f2efe6', solver: { axialStiffness: 20, creaseStiffness: 0.7, panelStiffness: 0.7, damping: 0.45 } },
-  { id: 'cardstock', label: 'Cardstock (0.3 mm)', thickness: 0.3, color: '#efe3c8', solver: { axialStiffness: 22, creaseStiffness: 1.0, panelStiffness: 1.2, damping: 0.45 } },
-  { id: 'cardboard', label: 'Cardboard (2 mm)', thickness: 2.0, color: '#c8a878', solver: { axialStiffness: 28, creaseStiffness: 2.2, panelStiffness: 3.5, damping: 0.55 } },
-  { id: 'polypropylene', label: 'Polypropylene (0.8 mm)', thickness: 0.8, color: '#dfe7ee', solver: { axialStiffness: 24, creaseStiffness: 0.5, panelStiffness: 2.0, damping: 0.5 } },
-  { id: 'plywood', label: 'Plywood (3 mm)', thickness: 3.0, color: '#c79b62', solver: { axialStiffness: 34, creaseStiffness: 3.5, panelStiffness: 6.0, damping: 0.6 } },
+  { id: 'paper', label: 'Paper (0.1 mm)', thickness: 0.1, color: '#f2efe6', minPanel: 5, minTab: 8, solver: { axialStiffness: 20, creaseStiffness: 0.7, panelStiffness: 0.7, damping: 0.45 } },
+  { id: 'cardstock', label: 'Cardstock (0.3 mm)', thickness: 0.3, color: '#efe3c8', minPanel: 5, minTab: 8, solver: { axialStiffness: 22, creaseStiffness: 1.0, panelStiffness: 1.2, damping: 0.45 } },
+  { id: 'cardboard', label: 'Cardboard (2 mm)', thickness: 2.0, color: '#c8a878', minPanel: 20, minTab: 25, solver: { axialStiffness: 28, creaseStiffness: 2.2, panelStiffness: 3.5, damping: 0.55 } },
+  { id: 'polypropylene', label: 'Polypropylene (0.8 mm)', thickness: 0.8, color: '#dfe7ee', minPanel: 10, minTab: 12, solver: { axialStiffness: 24, creaseStiffness: 0.5, panelStiffness: 2.0, damping: 0.5 } },
+  { id: 'plywood', label: 'Plywood (3 mm)', thickness: 3.0, color: '#c79b62', minPanel: 15, minTab: 20, solver: { axialStiffness: 34, creaseStiffness: 3.5, panelStiffness: 6.0, damping: 0.6 } },
 ];
 
 export function getMaterial(id: string): Material {
