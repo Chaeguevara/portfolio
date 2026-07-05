@@ -6,8 +6,9 @@ import earcut from 'earcut';
  * js/pattern.js). Conventions are kept identical so patterns round-trip with
  * origamisimulator.org:
  *   black = border, red = mountain, blue = valley, yellow = facet (preset
- *   triangulation), magenta = free hinge, green = cut (unsupported here).
- *   Fold target angle = stroke opacity × 180°, mountain negative.
+ *   triangulation), magenta = free hinge (undriven), green = cut (preserved;
+ *   torn by the kirigami applyCuts pass).
+ *   Fold target angle = stroke opacity × 180°, mountain negative / valley positive.
  */
 
 export type Assignment = 'B' | 'M' | 'V' | 'C' | 'F' | 'U';
@@ -276,15 +277,20 @@ function buildGraph(segs: Seg[], tol: number): Graph {
   return { vertices, edges };
 }
 
+// Priority so a duplicated edge resolves to the same assignment regardless of
+// draw order (order-invariant import): a fold crease beats a facet/cut beats a
+// border beats unassigned. Prevents a seam drawn as both crease and border from
+// flipping with line order.
+const ASSIGN_PRIORITY: Record<string, number> = { M: 5, V: 5, F: 4, C: 3, B: 2, U: 1 };
 function dedupe(g: Graph): void {
-  const seen = new Set<string>();
-  g.edges = g.edges.filter((e) => {
-    if (e.v1 === e.v2) return false; // loop edge
+  const best = new Map<string, (typeof g.edges)[number]>();
+  for (const e of g.edges) {
+    if (e.v1 === e.v2) continue; // loop edge
     const k = e.v1 < e.v2 ? `${e.v1},${e.v2}` : `${e.v2},${e.v1}`;
-    if (seen.has(k)) return false;
-    seen.add(k);
-    return true;
-  });
+    const prev = best.get(k);
+    if (!prev || (ASSIGN_PRIORITY[e.assignment] ?? 0) > (ASSIGN_PRIORITY[prev.assignment] ?? 0)) best.set(k, e);
+  }
+  g.edges = [...best.values()];
 }
 
 /** Split edges at pairwise interior intersections (Bourke line-line test). */
@@ -494,10 +500,9 @@ export function importSVG(svgText: string, vertTol = 3): FoldPattern {
 
   const segs = collectSegments(svg, warnings);
   if (!segs.length) throw new Error('no crease lines found (need black/red/blue strokes)');
-  if (segs.some((s) => s.assignment === 'C')) warnings.push('cut (green) edges are not supported — treated as border');
-  segs.forEach((s) => {
-    if (s.assignment === 'C') s.assignment = 'B';
-  });
+  // Cut ('C') edges are preserved: the kirigami pass (applyCuts) tears the sheet
+  // along them. Consumers that don't tear (e.g. /simulator) treat them as beams,
+  // i.e. effectively borders — the previous behaviour, minus the data loss.
 
   const g = buildGraph(segs, vertTol);
   dedupe(g);

@@ -799,7 +799,7 @@ export function initDesigner(): () => void {
     const sliderBind = (sliderId: string, valId: string, key: 'cols' | 'rows' | 'paperW' | 'paperH') => {
         bind(sliderId, 'input', (e) => {
             const val = parseInt((e.target as HTMLInputElement).value);
-            (state as any)[key] = val;
+            (state as Record<string, number>)[key] = val;
             const valEl = document.getElementById(valId);
             if (valEl) valEl.textContent = String(val);
             rebuild();

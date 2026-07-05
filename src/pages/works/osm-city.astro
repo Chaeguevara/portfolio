@@ -1,0 +1,50 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href={`${base}vite.svg`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="OSM City Generator — procedural 3D city generation from OpenStreetMap data with Three.js: extruded buildings, road networks, and spatial queries at interactive frame rates." />
+    <title>OSM City Generator — Heejin Chae</title>
+    <style>
+      * { margin: 0; box-sizing: border-box; }
+      html, body { height: 100%; background: #0d0f14; overflow: hidden; }
+      #work { position: fixed; inset: 0; }
+      .topbar {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+        display: flex; gap: 16px; align-items: center; padding: 12px 20px;
+        font: 500 13px Inter, system-ui, sans-serif; pointer-events: none;
+      }
+      .topbar a { pointer-events: auto; color: #c7ccd4; text-decoration: none; }
+      .topbar a:hover { color: #fff; }
+      .topbar .home { font-weight: 600; color: #f2f3f5; margin-right: auto; }
+      .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); }
+    </style>
+  </head>
+  <body>
+    <div id="work"></div>
+    <nav class="topbar" aria-label="Site">
+      <a class="home" href={base}>← Heejin Chae</a>
+      <a href={`${base}works/curved-billboard/`}>Curved Billboard</a>
+      <a href={`${base}study/`}>Study</a>
+      <a href={`${base}designer/`}>Designer</a>
+      <a href={`${base}simulator/`}>Simulator</a>
+      <a href={`${base}lab/`}>Lab</a>
+    </nav>
+    <div class="sr-only">
+      <h1>OSM City Generator</h1>
+      <p>Procedural 3D city generation from OpenStreetMap data using Three.js — extruded buildings, road networks, and spatial queries at interactive frame rates.</p>
+      <noscript><p>This interactive demo requires JavaScript.</p></noscript>
+    </div>
+    <script>
+      import * as THREE from 'three';
+      import { osmCityBuilder } from '../../models/osmCityBuilder';
+      const mount = document.getElementById('work')!;
+      const scene = new THREE.Scene();
+      osmCityBuilder(scene, { mount });
+    </script>
+  </body>
+</html>

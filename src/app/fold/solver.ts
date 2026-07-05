@@ -32,6 +32,7 @@ export interface SolverParams {
   creaseStiffness: number; // fold creases (M/V), × length
   panelStiffness: number; // facet diagonals (F), × length
   damping: number; // damping ratio ζ
+  integrator?: 'euler' | 'verlet'; // default 'verlet' — 2nd order, lower error/more stable
 }
 
 export const DEFAULT_PARAMS: SolverParams = {
@@ -48,8 +49,10 @@ export interface Solver {
   params: SolverParams;
   /** Fold fraction in [-1, 1]; negative flips every mountain/valley. */
   setFoldPercent(p: number): void;
-  /** Advance n substeps. */
+  /** Advance n substeps (stops early once the fold has settled). */
   step(n: number): void;
+  /** True once per-step motion fell below tolerance — the fold has settled. */
+  settled(): boolean;
   /** Mean |axial strain| over all beams — cheap convergence/quality signal. */
   strain(): number;
   /** Back to the flat sheet, zero velocity. */
@@ -68,6 +71,8 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
     original[i * 3 + 1] = y;
   });
   positions.set(original);
+  const prev = new Float32Array(N * 3); // previous positions (Verlet)
+  prev.set(original);
 
   // ---- beams (every edge) ----
   const B = input.edges.length;
@@ -158,6 +163,7 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
 
   let dt = 0;
   let foldPercent = 0;
+  let converged = false; // max per-step motion below tolerance
 
   function refresh() {
     let maxK = 0;
@@ -249,8 +255,10 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
 
       const a1 = c.apex1 * 3;
       const a2 = c.apex2 * 3;
-      const f1 = angForce / q1.h;
-      const f2 = angForce / q2.h;
+      // sliver clamp: a tiny moment arm makes angForce/h explode → large-angle instability
+      const hFloor = 0.05 * creaseLen;
+      const f1 = angForce / Math.max(q1.h, hFloor);
+      const f2 = angForce / Math.max(q2.h, hFloor);
       forces[a1] += f1 * n1x;
       forces[a1 + 1] += f1 * n1y;
       forces[a1 + 2] += f1 * n1z;
@@ -294,11 +302,31 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
       forces[i2 + 2] -= fz;
     }
 
-    // symplectic Euler (mass = 1)
-    for (let i = 0; i < N * 3; i++) {
-      velocities[i] += forces[i] * dt;
-      positions[i] += velocities[i] * dt;
+    // integrate (mass = 1): Verlet (default, 2nd order) or semi-implicit Euler;
+    // track the largest per-node move so step() can stop once the fold settles.
+    const verlet = params.integrator !== 'euler';
+    let ms = 0;
+    if (verlet) {
+      for (let i = 0; i < N * 3; i++) {
+        const x = positions[i];
+        const xNew = 2 * x - prev[i] + forces[i] * dt * dt;
+        prev[i] = x;
+        positions[i] = xNew;
+        const d = xNew - x;
+        velocities[i] = d / dt; // velocity estimate for damping + strain
+        const ad = d < 0 ? -d : d;
+        if (ad > ms) ms = ad;
+      }
+    } else {
+      for (let i = 0; i < N * 3; i++) {
+        velocities[i] += forces[i] * dt;
+        positions[i] += velocities[i] * dt;
+        const d = velocities[i] * dt;
+        const ad = d < 0 ? -d : d;
+        if (ad > ms) ms = ad;
+      }
     }
+    converged = ms < 1e-6;
   }
 
   return {
@@ -309,7 +337,13 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
       foldPercent = Math.max(-1, Math.min(1, p));
     },
     step(n) {
-      for (let i = 0; i < n; i++) substep();
+      for (let i = 0; i < n; i++) {
+        substep();
+        if (converged) break; // convergence auto-stop: settled, no need to keep stepping
+      }
+    },
+    settled() {
+      return converged;
     },
     strain() {
       let sum = 0;
@@ -327,7 +361,9 @@ export function createSolver(input: SolverInput, params: SolverParams = { ...DEF
     },
     reset() {
       positions.set(original);
+      prev.set(original);
       velocities.fill(0);
+      converged = false;
       creases.forEach((c) => (c.theta = 0));
     },
     refresh,

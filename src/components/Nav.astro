@@ -33,6 +33,11 @@ const isActive = (path: string) => current === path;
       aria-current={isActive('simulator') ? 'page' : undefined}
     >Simulator</a>
     <a
+      href={href('lab')}
+      class:list={[{ active: isActive('lab') }]}
+      aria-current={isActive('lab') ? 'page' : undefined}
+    >Lab</a>
+    <a
       href={href('study')}
       class:list={[{ active: isActive('study') }]}
       aria-current={isActive('study') ? 'page' : undefined}

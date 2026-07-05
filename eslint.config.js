@@ -15,4 +15,11 @@ export default defineConfig([
   },
   { files: ["**/*.{js,mjs,cjs,ts,mts,cts}"], languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   tseslint.configs.recommended,
+  {
+    // `_`-prefixed identifiers are intentionally unused (deliberate discards).
+    files: ["**/*.{ts,mts,cts}"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
+    },
+  },
 ]);

@@ -4,6 +4,9 @@ import { importSVG, type FoldPattern } from '../app/fold/svgImport';
 import { createSolver, DEFAULT_PARAMS, type Solver } from '../app/fold/solver';
 import { downloadSVG } from '../app/fold/svgExport';
 import { importFOLD, exportFOLDText } from '../app/fold/foldFormat';
+import { analyzeFlatFoldability } from '../app/fold/foldability';
+import { getMaterial, foldCapDeg, capFoldAngles } from '../app/fold/material';
+import { selfIntersectionCount } from '../app/fold/collision';
 import { STLExporter } from 'three/addons/exporters/STLExporter.js';
 import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
 
@@ -13,8 +16,6 @@ import { OBJExporter } from 'three/addons/exporters/OBJExporter.js';
  * or folded FOLD/STL/OBJ out.
  */
 
-const PAPER_FRONT = 0xf7f3e9;
-const PAPER_BACK = 0xd8c9a3;
 const LINE_COLORS: Record<string, number> = { M: 0xd9544d, V: 0x4d7fd9, B: 0x555555 };
 
 interface Loaded {
@@ -89,7 +90,13 @@ export function initSimulator(): void {
     loaded = null;
   }
 
+  let materialId = 'paper';
+  let lastText = '';
+  let lastName = '';
+
   function loadText(text: string, name: string) {
+    lastText = text;
+    lastName = name;
     let pattern: FoldPattern;
     try {
       pattern = /\.fold$/i.test(name) ? importFOLD(text) : importSVG(text);
@@ -99,12 +106,25 @@ export function initSimulator(): void {
     }
     dispose();
 
+    // material/thickness: thick stock can't crease flat → cap fold angles
+    const mtl = getMaterial(materialId);
+    pattern = capFoldAngles(pattern, foldCapDeg(mtl.thickness));
+
     const params = { ...DEFAULT_PARAMS };
     for (const [k, input] of paramInputs) params[k as keyof typeof params] = parseFloat(input.value);
     const solver = createSolver(
       { vertices: pattern.vertices, faces: pattern.faces, edges: pattern.edges },
       params,
     );
+    // physical validity: mid-fold self-penetration check on the fresh solver, then reset
+    let penetrates = false;
+    const physChecked = pattern.faces.length <= 1500; // O(faces²) — skip very large patterns
+    if (physChecked) {
+      solver.setFoldPercent(0.7);
+      solver.step(400);
+      penetrates = selfIntersectionCount(solver.positions, pattern.faces) > 0;
+      solver.reset();
+    }
     solver.setFoldPercent(parseFloat(foldSlider.value) / 100);
 
     // paper mesh: ONE position attribute shared by mesh + line overlays, so a
@@ -118,11 +138,11 @@ export function initSimulator(): void {
     group.add(
       new THREE.Mesh(
         geometry,
-        new THREE.MeshStandardMaterial({ color: PAPER_FRONT, roughness: 0.9, side: THREE.FrontSide }),
+        new THREE.MeshStandardMaterial({ color: new THREE.Color(mtl.color), roughness: 0.9, side: THREE.FrontSide }),
       ),
       new THREE.Mesh(
         geometry,
-        new THREE.MeshStandardMaterial({ color: PAPER_BACK, roughness: 0.9, side: THREE.BackSide }),
+        new THREE.MeshStandardMaterial({ color: new THREE.Color(mtl.color).multiplyScalar(0.7), roughness: 0.9, side: THREE.BackSide }),
       ),
     );
 
@@ -148,7 +168,10 @@ export function initSimulator(): void {
     const nV = pattern.vertices.length;
     const nF = pattern.faces.length;
     const warn = pattern.warnings.length ? ` — ${pattern.warnings.join('; ')}` : '';
-    status.textContent = `${name}: ${nV} vertices, ${nF} triangles${warn}`;
+    // real-world verdict: does this crease pattern fold flat, or form a 3D shell?
+    const verdict = analyzeFlatFoldability(pattern).flatFoldable ? ' · flat-foldable ✓' : ' · 3D shell';
+    const phys = !physChecked ? '' : penetrates ? ' · ⚠ self-penetrates (needs collision)' : ' · physically clean';
+    status.textContent = `${name}: ${nV} vertices, ${nF} triangles${verdict}${phys}${warn}`;
   }
 
   async function loadURL(url: string, name: string) {
@@ -183,6 +206,17 @@ export function initSimulator(): void {
       loaded.solver.refresh();
     });
   }
+  // Material presets: set stiffness inputs to the stock's values + re-fold with its thickness cap
+  const matSelect = document.getElementById('sim-material') as HTMLSelectElement | null;
+  matSelect?.addEventListener('change', () => {
+    materialId = matSelect.value;
+    const mtl = getMaterial(materialId);
+    for (const [k, input] of paramInputs) {
+      const v = (mtl.solver as Record<string, number>)[k];
+      if (v !== undefined) input.value = String(v);
+    }
+    if (lastText) loadText(lastText, lastName);
+  });
   $('sim-reset').addEventListener('click', () => loaded?.solver.reset());
   const saveFile = (data: BlobPart, type: string, filename: string) => {
     const url = URL.createObjectURL(new Blob([data], { type }));

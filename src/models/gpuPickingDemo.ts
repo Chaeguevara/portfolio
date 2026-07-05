@@ -66,7 +66,7 @@ export const gpuPickingDemo = (scene: THREE.Scene, opts: Options = {}) => {
         // Give each object a unique color ID for picking
         const id = i + 1;
         idToObject[id] = cube;
-        // @ts-ignore
+        // @ts-expect-error three.js typing gap
         cube.material.userData = { id }; // Store ID if needed, but we use the map
     }
 
@@ -137,20 +137,20 @@ export const gpuPickingDemo = (scene: THREE.Scene, opts: Options = {}) => {
             // Handle highlighting
             if (pickedObject && pickedObject !== picked) {
                 // Restore color of previously picked object
-                // @ts-ignore
+                // @ts-expect-error three.js typing gap
                 pickedObject.material.emissive.setHex(pickedObjectSavedColor);
                 pickedObject = null;
             }
 
             if (picked && picked !== pickedObject) {
                 pickedObject = picked;
-                // @ts-ignore
+                // @ts-expect-error three.js typing gap
                 pickedObjectSavedColor = pickedObject.material.emissive.getHex();
-                // @ts-ignore
+                // @ts-expect-error three.js typing gap
                 pickedObject.material.emissive.setHex((Date.now() * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             } else if (picked) {
                 // Keep flashing
-                // @ts-ignore
+                // @ts-expect-error three.js typing gap
                 picked.material.emissive.setHex((Date.now() * 8) % 2 > 1 ? 0xFFFF00 : 0xFF0000);
             }
         }

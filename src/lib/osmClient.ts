@@ -95,7 +95,14 @@ export async function fetchBuildingsInRadius(
  * @param osmData - Raw OSM JSON from Overpass API.
  * @returns GeoJSON FeatureCollection.
  */
-function osmToGeoJSON(osmData: any): FeatureCollection {
+interface OsmElement {
+    type: string;
+    id?: number;
+    geometry?: { lon: number; lat: number }[];
+    tags?: Record<string, string>;
+}
+
+function osmToGeoJSON(osmData: { elements?: OsmElement[] }): FeatureCollection {
     const features: Feature[] = [];
 
     for (const element of osmData.elements || []) {
@@ -103,7 +110,7 @@ function osmToGeoJSON(osmData: any): FeatureCollection {
         if (!element.geometry) continue;
 
         // Extract coordinates
-        const coordinates = element.geometry.map((node: any) => [node.lon, node.lat]);
+        const coordinates = element.geometry.map((node) => [node.lon, node.lat]);
 
         // Close the polygon if not already closed
         if (coordinates.length > 0) {

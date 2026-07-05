@@ -6,11 +6,14 @@
   "scripts": {
     "dev": "astro dev --host",
     "check": "astro check",
-    "build": "npm run sync:ontology && astro build",
+    "build": "npm run sync:ontology && node scripts/gen-patterns.mjs && astro build",
+    "gen:patterns": "node scripts/gen-patterns.mjs",
     "preview": "astro preview",
     "sync:ontology": "node scripts/sync-ontology.mjs",
-    "predev": "node scripts/sync-ontology.mjs",
-    "check:fold": "node scripts/check-fold.mjs"
+    "predev": "node scripts/sync-ontology.mjs && node scripts/gen-patterns.mjs",
+    "check:fold": "node scripts/check-fold.mjs",
+    "validate:svgs": "node scripts/gen-patterns.mjs && node scripts/validate-svgs.mjs",
+    "manifest": "node scripts/gen-manifest.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",

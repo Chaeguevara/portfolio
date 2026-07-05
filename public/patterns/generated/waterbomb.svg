@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="84.8mm" height="64.8mm" viewBox="-2.40 -2.40 84.80 64.80" fill="none" stroke-width="0.400" stroke-linecap="round">
+  <title>Foldable crease pattern</title>
+  <desc>origamisimulator convention: stroke #ff0000=mountain, #0000ff=valley, #000000=border, #00ff00=cut, #ffff00=facet; line opacity = fold angle (1.0=180deg, 0.5=90deg). Scale: 1 unit = 1 mm. Laser: layer "cut" = cut-through, layer "score" = fold/score. Flat-foldable: yes (Maekawa+Kawasaki hold at all 10 interior vertices).</desc>
+  <g id="cut" data-laser="cut">
+    <line x1="0.00" y1="0.00" x2="0.00" y2="20.00" stroke="#000000"/>
+    <line x1="10.00" y1="10.00" x2="0.00" y2="0.00" stroke="#000000"/>
+    <line x1="0.00" y1="20.00" x2="0.00" y2="40.00" stroke="#000000"/>
+    <line x1="0.00" y1="40.00" x2="0.00" y2="60.00" stroke="#000000"/>
+    <line x1="0.00" y1="60.00" x2="10.00" y2="50.00" stroke="#000000"/>
+    <line x1="30.00" y1="10.00" x2="20.00" y2="0.00" stroke="#000000"/>
+    <line x1="10.00" y1="10.00" x2="20.00" y2="0.00" stroke="#000000"/>
+    <line x1="20.00" y1="60.00" x2="30.00" y2="50.00" stroke="#000000"/>
+    <line x1="20.00" y1="60.00" x2="10.00" y2="50.00" stroke="#000000"/>
+    <line x1="50.00" y1="10.00" x2="40.00" y2="0.00" stroke="#000000"/>
+    <line x1="30.00" y1="10.00" x2="40.00" y2="0.00" stroke="#000000"/>
+    <line x1="40.00" y1="60.00" x2="50.00" y2="50.00" stroke="#000000"/>
+    <line x1="40.00" y1="60.00" x2="30.00" y2="50.00" stroke="#000000"/>
+    <line x1="70.00" y1="10.00" x2="60.00" y2="0.00" stroke="#000000"/>
+    <line x1="50.00" y1="10.00" x2="60.00" y2="0.00" stroke="#000000"/>
+    <line x1="60.00" y1="60.00" x2="70.00" y2="50.00" stroke="#000000"/>
+    <line x1="60.00" y1="60.00" x2="50.00" y2="50.00" stroke="#000000"/>
+    <line x1="80.00" y1="0.00" x2="80.00" y2="20.00" stroke="#000000"/>
+    <line x1="70.00" y1="10.00" x2="80.00" y2="0.00" stroke="#000000"/>
+    <line x1="80.00" y1="20.00" x2="80.00" y2="40.00" stroke="#000000"/>
+    <line x1="80.00" y1="40.00" x2="80.00" y2="60.00" stroke="#000000"/>
+    <line x1="80.00" y1="60.00" x2="70.00" y2="50.00" stroke="#000000"/>
+  </g>
+  <g id="score" data-laser="score">
+    <line x1="0.00" y1="20.00" x2="10.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="0.00" y1="40.00" x2="10.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="10.00" y1="30.00" x2="0.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="10.00" y1="50.00" x2="0.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="10.00" y1="10.00" x2="10.00" y2="30.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="10.00" y1="30.00" x2="20.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="20.00" y1="20.00" x2="10.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="10.00" y1="30.00" x2="10.00" y2="50.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="10.00" y1="50.00" x2="20.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="20.00" y1="40.00" x2="10.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="20.00" y1="0.00" x2="20.00" y2="20.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="20.00" y1="20.00" x2="30.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="20.00" y1="20.00" x2="20.00" y2="40.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="20.00" y1="40.00" x2="30.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="30.00" y1="30.00" x2="20.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="20.00" y1="40.00" x2="20.00" y2="60.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="30.00" y1="50.00" x2="20.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="30.00" y1="10.00" x2="30.00" y2="30.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="30.00" y1="30.00" x2="40.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="40.00" y1="20.00" x2="30.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="30.00" y1="30.00" x2="30.00" y2="50.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="30.00" y1="50.00" x2="40.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="40.00" y1="40.00" x2="30.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="40.00" y1="0.00" x2="40.00" y2="20.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="40.00" y1="20.00" x2="50.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="40.00" y1="20.00" x2="40.00" y2="40.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="40.00" y1="40.00" x2="50.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="50.00" y1="30.00" x2="40.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="40.00" y1="40.00" x2="40.00" y2="60.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="50.00" y1="50.00" x2="40.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="50.00" y1="10.00" x2="50.00" y2="30.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="50.00" y1="30.00" x2="60.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="60.00" y1="20.00" x2="50.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="50.00" y1="30.00" x2="50.00" y2="50.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="50.00" y1="50.00" x2="60.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="60.00" y1="40.00" x2="50.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="60.00" y1="0.00" x2="60.00" y2="20.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="60.00" y1="20.00" x2="70.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="60.00" y1="20.00" x2="60.00" y2="40.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="60.00" y1="40.00" x2="70.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="70.00" y1="30.00" x2="60.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="60.00" y1="40.00" x2="60.00" y2="60.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="70.00" y1="50.00" x2="60.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="70.00" y1="10.00" x2="70.00" y2="30.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="70.00" y1="30.00" x2="80.00" y2="20.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="80.00" y1="20.00" x2="70.00" y2="10.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="70.00" y1="30.00" x2="70.00" y2="50.00" stroke="#ff0000" opacity="0.850"/>
+    <line x1="70.00" y1="50.00" x2="80.00" y2="40.00" stroke="#0000ff" opacity="0.850"/>
+    <line x1="80.00" y1="40.00" x2="70.00" y2="30.00" stroke="#0000ff" opacity="0.850"/>
+  </g>
+</svg>

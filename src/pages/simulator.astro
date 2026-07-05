@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { PATTERN_CASES, DEFAULT_PATTERN } from '../app/fold/patternCatalog';
+import { MATERIALS } from '../app/fold/material';
 ---
 <BaseLayout title="Origami Simulator — Heejin Chae" current="simulator">
   <div class="designer-layout">
@@ -7,32 +9,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="designer-sidebar__section">
         <h3>Pattern</h3>
         <select id="sim-select" class="designer-select">
-          <optgroup label="Simple folds">
-            <option value="simple/simpleVertex.svg">Single Vertex</option>
-            <option value="simple/mapfold.svg">Map Fold</option>
-            <option value="simple/brochurefold.svg">Brochure Fold</option>
-            <option value="simple/russianTriangle.svg">Russian Triangle</option>
-          </optgroup>
-          <optgroup label="Bases">
-            <option value="bases/birdBase.svg" selected>Bird Base</option>
-            <option value="bases/waterbombBase.svg">Waterbomb Base</option>
-            <option value="bases/frogBase.svg">Frog Base</option>
-            <option value="bases/squareBase.svg">Square Base</option>
-          </optgroup>
-          <optgroup label="Origami">
-            <option value="origami/randlettflappingbird.svg">Flapping Bird (Randlett)</option>
-            <option value="origami/traditionalCrane.svg">Traditional Crane</option>
-            <option value="origami/singlesquaretwist.svg">Square Twist</option>
-            <option value="origami/airplane.svg">Airplane</option>
-            <option value="origami/hypar.svg">Hypar</option>
-          </optgroup>
-          <optgroup label="Maze folding">
-            <option value="maze/cross.svg">Maze: Cross</option>
-          </optgroup>
-          <optgroup label="Problematic (needs collisions)">
-            <option value="problematic/rose.svg">Rose</option>
-            <option value="problematic/byu solar driven.svg">BYU Solar Array</option>
-          </optgroup>
+          {PATTERN_CASES.map((grp) => (
+            <optgroup label={grp.group}>
+              {grp.items.map((it) => (
+                <option value={it.file} selected={it.file === DEFAULT_PATTERN}>{it.label}</option>
+              ))}
+            </optgroup>
+          ))}
         </select>
         <label class="designer-slider-label" style="margin-top: 8px;">
           Upload crease pattern (.svg / .fold)
@@ -52,6 +35,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="designer-sidebar__section">
         <h3>Material</h3>
+        <label class="designer-slider-label">Stock (thickness caps the fold)</label>
+        <select id="sim-material" class="designer-select">
+          {MATERIALS.map((m) => <option value={m.id}>{m.label}</option>)}
+        </select>
         <label class="designer-slider-label">
           Axial stiffness (EA)
           <input type="number" id="sim-axialStiffness" value="20" step="1" min="1" class="designer-select" />

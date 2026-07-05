@@ -27,7 +27,6 @@ export function initCardPreviews() {
       }
     } catch (e) {
       // fail gracefully per card
-      // eslint-disable-next-line no-console
       console.warn('Preview init failed for', id, e);
     }
   });
@@ -36,6 +35,6 @@ export function initCardPreviews() {
 export function disposeCardPreviews() {
   while (previewCleanups.length) {
     const fn = previewCleanups.pop();
-    try { fn && fn(); } catch { /* noop */ }
+    try { if (fn) fn(); } catch { /* noop */ }
   }
 }

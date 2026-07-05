@@ -67,7 +67,7 @@ export async function fetchElevationGrid(
 
         const data = await response.json();
 
-        const elevationPoints: ElevationPoint[] = data.results.map((result: any) => ({
+        const elevationPoints: ElevationPoint[] = data.results.map((result: { latitude: number; longitude: number; elevation?: number }) => ({
             lat: result.latitude,
             lon: result.longitude,
             elevation: result.elevation || 0

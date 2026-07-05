@@ -60,10 +60,7 @@ export function importFOLD(jsonText: string): FoldPattern {
       warnings.push(`unknown edge assignment "${assignment}" — treated as unassigned`);
       assignment = 'U';
     }
-    if (assignment === 'C') {
-      warnings.push('cut (C) edges are not supported — treated as border');
-      assignment = 'B';
-    }
+    // Cut ('C') is preserved (kirigami applyCuts tears it) — matches svgImport.
     const targetAngle =
       typeof angles[i] === 'number' ? (angles[i] as number) : (DEFAULT_ANGLE[assignment] ?? null);
     return { v1, v2, assignment, targetAngle };
@@ -112,10 +109,12 @@ export function exportFOLDText(pattern: FoldPattern, folded?: Float32Array | nul
     file_creator: 'heejinchae/portfolio origami simulator',
     frame_classes: ['creasePattern'],
     frame_attributes: ['2D'],
+    frame_unit: 'unit',
     vertices_coords: pattern.vertices.map(([x, y]) => [x, y]),
     edges_vertices: pattern.edges.map((e) => [e.v1, e.v2]),
     edges_assignment: pattern.edges.map((e) => e.assignment),
-    edges_foldAngle: pattern.edges.map((e) => e.targetAngle),
+    // border edges are flat boundary (0°), not free-folding (null); cut/free stay null
+    edges_foldAngle: pattern.edges.map((e) => (e.assignment === 'B' ? 0 : e.targetAngle)),
     faces_vertices: pattern.faces.map((f) => [...f]),
   };
   if (folded) {

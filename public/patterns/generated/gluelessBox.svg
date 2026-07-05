@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36.7mm" height="48.3mm" viewBox="-1.37 -1.37 36.74 48.34" fill="none" stroke-width="0.228" stroke-linecap="round">
+  <title>Foldable crease pattern</title>
+  <desc>origamisimulator convention: stroke #ff0000=mountain, #0000ff=valley, #000000=border, #00ff00=cut, #ffff00=facet; line opacity = fold angle (1.0=180deg, 0.5=90deg). Scale: 1 unit = 1 mm. Laser: layer "cut" = cut-through, layer "score" = fold/score. Flat-foldable: no (folds to a 3D shell; 4/4 interior vertices violate the theorems).</desc>
+  <g id="cut" data-laser="cut">
+    <line x1="8.00" y1="0.00" x2="26.00" y2="0.00" stroke="#000000"/>
+    <line x1="8.00" y1="0.00" x2="8.00" y2="3.00" stroke="#000000"/>
+    <line x1="26.00" y1="0.00" x2="26.00" y2="3.00" stroke="#000000"/>
+    <line x1="8.00" y1="25.00" x2="8.00" y2="28.00" stroke="#000000"/>
+    <line x1="26.00" y1="25.00" x2="26.00" y2="28.00" stroke="#000000"/>
+    <line x1="0.00" y1="8.00" x2="0.00" y2="20.00" stroke="#000000"/>
+    <line x1="34.00" y1="8.00" x2="34.00" y2="20.00" stroke="#000000"/>
+    <line x1="0.00" y1="3.00" x2="8.00" y2="3.00" stroke="#000000"/>
+    <line x1="0.00" y1="3.00" x2="0.00" y2="8.00" stroke="#000000"/>
+    <line x1="0.00" y1="25.00" x2="8.00" y2="25.00" stroke="#000000"/>
+    <line x1="0.00" y1="20.00" x2="0.00" y2="25.00" stroke="#000000"/>
+    <line x1="26.00" y1="3.00" x2="34.00" y2="3.00" stroke="#000000"/>
+    <line x1="34.00" y1="3.00" x2="34.00" y2="8.00" stroke="#000000"/>
+    <line x1="26.00" y1="25.00" x2="34.00" y2="25.00" stroke="#000000"/>
+    <line x1="34.00" y1="20.00" x2="34.00" y2="25.00" stroke="#000000"/>
+    <line x1="8.00" y1="28.00" x2="8.00" y2="40.00" stroke="#000000"/>
+    <line x1="26.00" y1="28.00" x2="26.00" y2="40.00" stroke="#000000"/>
+    <line x1="8.00" y1="45.60" x2="26.00" y2="45.60" stroke="#000000"/>
+    <line x1="8.00" y1="40.00" x2="8.00" y2="45.60" stroke="#000000"/>
+    <line x1="26.00" y1="40.00" x2="26.00" y2="45.60" stroke="#000000"/>
+    <line x1="13.04" y1="4.00" x2="20.96" y2="4.00" stroke="#00ff00"/>
+  </g>
+  <g id="score" data-laser="score">
+    <line x1="8.00" y1="8.00" x2="26.00" y2="8.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="20.00" x2="26.00" y2="20.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="8.00" x2="8.00" y2="20.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="26.00" y1="8.00" x2="26.00" y2="20.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="3.00" x2="8.00" y2="8.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="26.00" y1="3.00" x2="26.00" y2="8.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="28.00" x2="26.00" y2="28.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="20.00" x2="8.00" y2="25.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="26.00" y1="20.00" x2="26.00" y2="25.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="0.00" y1="8.00" x2="8.00" y2="8.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="0.00" y1="20.00" x2="8.00" y2="20.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="26.00" y1="8.00" x2="34.00" y2="8.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="26.00" y1="20.00" x2="34.00" y2="20.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="40.00" x2="26.00" y2="40.00" stroke="#0000ff" opacity="0.500"/>
+    <line x1="8.00" y1="8.00" x2="26.00" y2="20.00" stroke="#ffff00"/>
+    <line x1="8.00" y1="20.00" x2="26.00" y2="28.00" stroke="#ffff00"/>
+    <line x1="0.00" y1="8.00" x2="8.00" y2="20.00" stroke="#ffff00"/>
+    <line x1="26.00" y1="8.00" x2="34.00" y2="20.00" stroke="#ffff00"/>
+    <line x1="0.00" y1="3.00" x2="8.00" y2="8.00" stroke="#ffff00"/>
+    <line x1="0.00" y1="20.00" x2="8.00" y2="25.00" stroke="#ffff00"/>
+    <line x1="26.00" y1="3.00" x2="34.00" y2="8.00" stroke="#ffff00"/>
+    <line x1="26.00" y1="20.00" x2="34.00" y2="25.00" stroke="#ffff00"/>
+    <line x1="8.00" y1="28.00" x2="26.00" y2="40.00" stroke="#ffff00"/>
+    <line x1="8.00" y1="40.00" x2="26.00" y2="45.60" stroke="#ffff00"/>
+  </g>
+</svg>

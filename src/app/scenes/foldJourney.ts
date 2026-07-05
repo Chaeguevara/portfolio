@@ -1,234 +1,410 @@
 import * as THREE from 'three';
-import { makeText, disposeText } from '../ui/text';
-import type { Text } from 'troika-three-text';
-import type { FoldMesh } from '../fold/foldEngine';
-import type { CreasePattern } from '../fold/creasePattern';
 
 /**
- * Landing "fold journey" — the site's thesis in ~7s (SPEC design doc, part 2):
- *   0. Rationalize: a doubly-curved surface becomes flat panels (façade work),
- *   1. the panels settle into one flat sheet,
- *   2. crease lines draw in, theory captions prove flat-foldability,
- *   3. (handed back to home.ts) the sheet folds into the nav rooms.
+ * Landing "fold journey" — the site's thesis, scroll-scrubbed.
+ *
+ * Ported from the Claude Design "Folded Intro" prototype (folded-intro.js):
+ * one continuous scroll axis drives four beats —
+ *   01 SURFACE     a freeform doubly-curved skin (unbuildable as-is),
+ *   02 RATIONALIZE the façade consultant's move: discrete planar panels,
+ *   03 DEVELOP     panels laid flat as one crease pattern (valleys/mountains),
+ *   04 FOLD        1 DOF — every crease rotates together into the rigid Miura.
+ * A captioned HUD and the "Folded" title reveal ride along.
+ *
+ * The prototype owned its own renderer + page scroll; here the sequence renders
+ * into the shared scene/camera and is advanced by a scroll fraction p∈[0,1]
+ * supplied by home.ts. home.ts hands off to the nav fold-in once p reaches 1.
  */
 export interface Journey {
-  /** Advance to `elapsed` seconds since start; true once the sequence is over. */
-  update(elapsed: number): boolean;
+  /** Advance to scroll fraction p (0 = start, 1 = fully folded). */
+  update(p: number): void;
+  /** Hold the fully-folded Miura without touching camera/title/HUD (rooms backdrop). */
+  hold(): void;
+  /** Show/hide the intro chrome (caption card + wordmark + title sprite). */
+  setChrome(visible: boolean): void;
+  /** Flat sheet width in world units — for framing the rooms camera. */
+  baseSize: number;
   dispose(): void;
 }
 
-const SADDLE_K = 0.35; // z = k(x² − y²)
-const GRID = 6; // panelization coarseness
+// Crease-pattern params (prototype defaults: sweep choreography, γ 63°, 14 cols, foldMax 72°).
+const COLS = 14;
+const GAMMA = 63;
+const FOLD_MAX = 72;
 
-// Phase timings (s)
-const T_SURFACE = 0.9; // smooth saddle fades in
-const T_PANELS = 1.0; // smooth → faceted panels
-const T_FLATTEN = 1.5; // panels unroll into the flat sheet
-const R_END = T_SURFACE + T_PANELS + T_FLATTEN;
-const T_CREASES = 2.6; // crease draw-in + theory captions
-export const JOURNEY_END = R_END + T_CREASES;
+const BEATS: [string, string][] = [
+  ['01 · SURFACE', 'A freeform skin — doubly curved, continuous. Beautiful, and unbuildable as-is.'],
+  ['02 · RATIONALIZE', 'The consultant’s move: reduce the surface to discrete planar panels. Buildable geometry, hairline joints.'],
+  ['03 · DEVELOP', 'Panels laid out flat: one sheet, one crease pattern. Cyan valleys, grey mountains — flat-foldable by construction.'],
+  ['04 · FOLD', 'One degree of freedom. Every crease rotates together — rigid faces, no bending — and the sheet becomes the site.'],
+];
 
-const saddleZ = (x: number, y: number) => SADDLE_K * (x * x - y * y);
-
-/** 1 inside [t0+ramp, t1−ramp], easing to 0 at the window edges. */
-function fade(t: number, t0: number, t1: number, ramp = 0.35): number {
-  const a = THREE.MathUtils.smoothstep(t, t0, t0 + ramp);
-  const b = 1 - THREE.MathUtils.smoothstep(t, t1 - ramp, t1);
-  return Math.min(a, b);
+function clamp(x: number, a: number, b: number): number {
+  return x < a ? a : x > b ? b : x;
+}
+function phase(p: number, s: number, e: number): number {
+  return clamp((p - s) / (e - s), 0, 1);
+}
+function smooth(u: number): number {
+  return u * u * u * (u * (u * 6 - 15) + 10);
+}
+function lerp(a: number, b: number, t: number): number {
+  return a + (b - a) * t;
 }
 
-export function createJourney(
-  scene: THREE.Scene,
-  foldMesh: FoldMesh,
-  pattern: CreasePattern,
-  dark: boolean,
-): Journey {
-  const group = new THREE.Group();
-  group.rotation.x = -0.55; // tilt so the double curvature reads
-  scene.add(group);
+export function createJourney(scene: THREE.Scene, camera: THREE.Camera): Journey {
+  const persp = camera as THREE.PerspectiveCamera;
+  const prevFov = persp.fov;
+  persp.fov = 38;
+  persp.updateProjectionMatrix();
 
-  const glass = dark ? 0x44576a : 0xaac4d4; // façade-glass tint
+  /* ---------- HUD (DOM overlay) ---------- */
+  const hud = document.createElement('div');
+  hud.style.cssText =
+    'position:fixed;inset:0;z-index:2;pointer-events:none;font-family:Inter,system-ui,sans-serif;';
+  const mark = document.createElement('div');
+  mark.textContent = 'FOLDED · INTRO';
+  mark.style.cssText =
+    'position:fixed;top:24px;left:28px;font:500 10px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.22em;color:#6b7480;';
+  const card = document.createElement('div');
+  card.style.cssText =
+    'position:fixed;left:28px;bottom:28px;max-width:380px;padding:16px 20px;border-radius:18px;background:rgba(17,19,26,.55);border:1px solid rgba(255,255,255,.06);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:opacity .45s cubic-bezier(.16,1,.3,1);opacity:1;';
+  const idxEl = document.createElement('div');
+  idxEl.style.cssText =
+    'font:500 11px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.14em;color:#3aa9e6;margin-bottom:6px;';
+  const txtEl = document.createElement('div');
+  txtEl.style.cssText = 'font:400 13px/1.55 Inter,system-ui,sans-serif;color:#aab2bf;';
+  idxEl.textContent = BEATS[0][0];
+  txtEl.textContent = BEATS[0][1];
+  card.appendChild(idxEl);
+  card.appendChild(txtEl);
+  const hint = document.createElement('div');
+  hint.textContent = 'SCROLL';
+  hint.style.cssText =
+    'position:fixed;left:50%;transform:translateX(-50%);bottom:26px;font:500 10px "JetBrains Mono",ui-monospace,monospace;letter-spacing:.34em;color:#6b7480;transition:opacity .6s;';
+  hud.appendChild(mark);
+  hud.appendChild(card);
+  hud.appendChild(hint);
+  document.body.appendChild(hud);
 
-  // --- Smooth doubly-curved surface (the "freeform" starting point) ---
-  const smoothGeo = new THREE.PlaneGeometry(2, 2, 40, 40);
-  {
-    const pos = smoothGeo.attributes.position;
-    for (let i = 0; i < pos.count; i++) pos.setZ(i, saddleZ(pos.getX(i), pos.getY(i)));
-    smoothGeo.computeVertexNormals();
-  }
-  const smoothMat = new THREE.MeshStandardMaterial({
-    color: glass,
-    roughness: 0.45,
-    metalness: 0.25,
-    side: THREE.DoubleSide,
-    transparent: true,
-    opacity: 0,
-    depthWrite: false, // faded-out ghost must not occlude the panels
-  });
-  const smooth = new THREE.Mesh(smoothGeo, smoothMat);
-  smooth.renderOrder = 1;
-  group.add(smooth);
+  /* ---------- lights (bluish rim to match the prototype paper look) ---------- */
+  const hemi = new THREE.HemisphereLight(0x8f9baa, 0x14161c, 0.55);
+  const key = new THREE.DirectionalLight(0xffffff, 1.6);
+  key.position.set(6, 10, 4);
+  const rim = new THREE.DirectionalLight(0x30a7e1, 0.55);
+  rim.position.set(-8, 3, -6);
+  scene.add(hemi, key, rim);
 
-  // --- Faceted panels: coarse triangulation, shrunk so seams show ---
-  const step = 2 / GRID;
-  const startPos: number[] = []; // on the saddle
-  const flatPos: number[] = []; // unrolled to z=0
-  const centroids: [number, number][] = [];
-  for (let i = 0; i < GRID; i++) {
-    for (let j = 0; j < GRID; j++) {
-      const x0 = -1 + i * step;
-      const y0 = -1 + j * step;
-      const cellTris: [number, number][][] = [
-        [
-          [x0, y0],
-          [x0 + step, y0],
-          [x0 + step, y0 + step],
-        ],
-        [
-          [x0, y0],
-          [x0 + step, y0 + step],
-          [x0, y0 + step],
-        ],
-      ];
-      for (const tri of cellTris) {
-        const cx = (tri[0][0] + tri[1][0] + tri[2][0]) / 3;
-        const cy = (tri[0][1] + tri[1][1] + tri[2][1]) / 3;
-        centroids.push([cx, cy]);
-        for (const [x, y] of tri) {
-          // shrink toward the centroid → visible panel joints
-          const sx = cx + (x - cx) * 0.92;
-          const sy = cy + (y - cy) * 0.92;
-          startPos.push(sx, sy, saddleZ(sx, sy));
-          flatPos.push(sx, sy, 0);
-        }
-      }
-    }
-  }
-  const triCount = centroids.length;
-  const positions = new Float32Array(startPos);
-  const startArr = new Float32Array(startPos);
-  const flatArr = new Float32Array(flatPos);
-  // Flatten wave spreads from the center outward
-  const delays = centroids.map(([cx, cy]) => (Math.hypot(cx, cy) / Math.SQRT2) * T_FLATTEN * 0.45);
-  const FLATTEN_LOCAL = T_FLATTEN * 0.55;
-
-  const panelGeo = new THREE.BufferGeometry();
-  panelGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  panelGeo.computeVertexNormals();
-  const panelMat = new THREE.MeshStandardMaterial({
-    color: glass,
-    roughness: 0.4,
-    metalness: 0.3,
+  const paperMat = new THREE.MeshStandardMaterial({
+    color: 0xf2f3f5,
+    roughness: 0.82,
+    metalness: 0.02,
     flatShading: true,
     side: THREE.DoubleSide,
-    transparent: true,
-    opacity: 0,
-    depthWrite: false, // faded-out ghost must not occlude sheet/crease lines
   });
-  const panels = new THREE.Mesh(panelGeo, panelMat);
-  panels.renderOrder = 2; // over the smooth surface, over the revealed sheet
-  panels.position.z = 0.006; // float above the sheet during the reveal crossfade
-  group.add(panels);
+  const lineMat = new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: 0 });
 
-  // --- Captions ---
-  const capColor = dark ? '#9aa7b5' : '#5a6672';
-  function cap(text: string): Text {
-    const t = makeText({ text, size: 0.075, color: capColor, anchorX: 'center', anchorY: 'middle' });
-    t.position.set(0, -1.4, 0.1);
-    t.fillOpacity = 0;
-    scene.add(t);
-    return t;
+  /* ---------- title sprite ---------- */
+  const titleCv = document.createElement('canvas');
+  titleCv.width = 1024;
+  titleCv.height = 300;
+  function drawTitle() {
+    const ctx2 = titleCv.getContext('2d');
+    if (!ctx2) return;
+    ctx2.clearRect(0, 0, 1024, 300);
+    ctx2.textAlign = 'center';
+    ctx2.fillStyle = '#f2f3f5';
+    ctx2.font = '600 118px Inter, system-ui, sans-serif';
+    ctx2.fillText('Folded', 512, 150);
+    try {
+      ctx2.letterSpacing = '10px';
+    } catch {
+      /* letterSpacing unsupported */
+    }
+    ctx2.fillStyle = '#7e8794';
+    ctx2.font = '400 26px "JetBrains Mono", ui-monospace, monospace';
+    ctx2.fillText('GEOMETRY, RATIONALIZED', 512, 226);
   }
-  const captions: { t: Text; t0: number; t1: number }[] = [
-    { t: cap('freeform → buildable panels'), t0: T_SURFACE + 0.3, t1: R_END + 0.2 },
-    {
-      t: cap('Kawasaki  90°+90° = 180° ✓     Maekawa  |M−V| = |3−1| = 2 ✓'),
-      t0: R_END + 0.4,
-      t1: JOURNEY_END - 1.0,
-    },
-    { t: cap('→ provably flat-foldable'), t0: JOURNEY_END - 1.1, t1: JOURNEY_END + 0.3 },
-  ];
+  drawTitle();
+  const titleTex = new THREE.CanvasTexture(titleCv);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      drawTitle();
+      titleTex.needsUpdate = true;
+    });
+  }
+  const titleMat = new THREE.SpriteMaterial({ map: titleTex, transparent: true, opacity: 0, depthTest: false });
+  const title = new THREE.Sprite(titleMat);
+  title.renderOrder = 10;
+  scene.add(title);
 
-  // --- Crease draw-in bookkeeping ---
-  // Fold creases reveal one by one; border lines fade in together.
-  const foldIdx = pattern.creases.map((c, i) => (c.assignment !== 'B' ? i : -1)).filter((i) => i >= 0);
-  const borderIdx = pattern.creases.map((c, i) => (c.assignment === 'B' ? i : -1)).filter((i) => i >= 0);
-  const lineMat = (i: number) => foldMesh.creaseLines[i].material as THREE.LineBasicMaterial;
+  /* ---------- geometry ---------- */
+  const C = COLS;
+  const R = Math.max(5, Math.round(C * 0.62));
+  const a = 1;
+  const b = 1.12;
+  const g = (GAMMA * Math.PI) / 180;
+  const F = R * C;
 
-  // Journey owns the fold mesh's initial visibility
-  foldMesh.group.visible = false;
-  foldMesh.creaseLines.forEach((l) => ((l.material as THREE.LineBasicMaterial).opacity = 0));
+  function mkm(theta: number) {
+    const st = Math.sin(theta),
+      ct = Math.cos(theta),
+      sg = Math.sin(g),
+      tg = Math.tan(g);
+    const dn = Math.sqrt(1 + ct * ct * tg * tg);
+    return { H: a * st * sg, S: (b * ct * tg) / dn, L: a * Math.sqrt(1 - st * st * sg * sg), V: b / dn };
+  }
+  const m0 = mkm(0);
+  const sheetW = C * m0.S,
+    sheetH = R * m0.L + m0.V;
+  const baseSize = sheetW;
+  title.scale.set(sheetW * 0.5, ((sheetW * 0.5) * 300) / 1024, 1);
+  title.position.set(0, sheetW * 0.2, 0);
 
-  let done = false;
-  let flattenDone = false;
+  // exact rigid Miura vertex: world = (x, y-up, z-depth)
+  function foldPos(i: number, j: number, m: ReturnType<typeof mkm>, out: number[]) {
+    out[0] = j * m.S - (C * m.S) / 2;
+    out[2] = i * m.L + (j % 2) * m.V - (R * m.L + m.V) / 2;
+    out[1] = (i % 2) * m.H - m.H / 2;
+  }
 
-  function update(elapsed: number): boolean {
-    if (done) return true;
+  // curved "façade" state: a shared smooth surface over the sheet
+  const amp = sheetW * 0.13;
+  const t0 = [0, 0, 0];
+  const cuGrid = new Float32Array((R + 1) * (C + 1) * 3);
+  for (let i = 0; i <= R; i++)
+    for (let j = 0; j <= C; j++) {
+      foldPos(i, j, m0, t0);
+      const x = t0[0],
+        y = t0[2];
+      const h =
+        amp * Math.sin((x / sheetW) * 3.4 + 0.6) * Math.cos((y / sheetH) * 2.6) +
+        amp * 0.55 * Math.sin(((x + y * 1.3) / sheetW) * 2.1);
+      const o = (i * (C + 1) + j) * 3;
+      cuGrid[o] = x + amp * 0.18 * Math.sin((y / sheetH) * 3.0);
+      cuGrid[o + 1] = h;
+      cuGrid[o + 2] = y + amp * 0.14 * Math.cos((x / sheetW) * 2.4);
+    }
 
-    // Smooth surface: in at 0, out as panels take over
-    smoothMat.opacity = fade(elapsed, 0, T_SURFACE + T_PANELS * 0.7, 0.5) * 0.95;
-    smooth.visible = smoothMat.opacity > 0.005;
-    // Panels: in during T_PANELS, out once the sheet is revealed
-    panelMat.opacity = Math.min(
-      THREE.MathUtils.smoothstep(elapsed, T_SURFACE, T_SURFACE + 0.5),
-      1 - THREE.MathUtils.smoothstep(elapsed, R_END, R_END + 0.4),
-    );
-    panels.visible = panelMat.opacity > 0.005;
+  // per-face data
+  const ijArr = new Int16Array(F * 8);
+  const cuArr = new Float32Array(F * 12);
+  const plArr = new Float32Array(F * 12);
+  const dArr = new Float32Array(F);
 
-    // Unroll: per-panel lerp saddle → flat, wave from center, tilt eases out
-    const flattenStart = T_SURFACE + T_PANELS;
-    if (elapsed > flattenStart && !flattenDone) {
-      for (let k = 0; k < triCount; k++) {
-        const lt = THREE.MathUtils.clamp((elapsed - flattenStart - delays[k]) / FLATTEN_LOCAL, 0, 1);
-        const e = THREE.MathUtils.smoothstep(lt, 0, 1);
-        for (let v = 0; v < 9; v++) {
-          const idx = k * 9 + v;
-          positions[idx] = startArr[idx] + (flatArr[idx] - startArr[idx]) * e;
+  // "sweep" choreography: diagonal stagger front (row+col)
+  function stagOf(r: number, c: number): number {
+    return ((R > 1 ? r / (R - 1) : 0) + (C > 1 ? c / (C - 1) : 0)) / 2;
+  }
+
+  const CI = [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [0, 1],
+  ]; // corner (di,dj), CCW
+  for (let r = 0; r < R; r++)
+    for (let c = 0; c < C; c++) {
+      const f = r * C + c;
+      dArr[f] = stagOf(r, c);
+      const cen = [0, 0, 0];
+      let k: number, q: number;
+      for (k = 0; k < 4; k++) {
+        const ci = r + CI[k][0],
+          cj = c + CI[k][1];
+        ijArr[f * 8 + k * 2] = ci;
+        ijArr[f * 8 + k * 2 + 1] = cj;
+        const go = (ci * (C + 1) + cj) * 3,
+          fo = f * 12 + k * 3;
+        for (q = 0; q < 3; q++) {
+          cuArr[fo + q] = cuGrid[go + q];
+          cen[q] += cuGrid[go + q] / 4;
         }
       }
-      panelGeo.attributes.position.needsUpdate = true;
-      panelGeo.computeVertexNormals();
-      if (elapsed > R_END) flattenDone = true;
+      // best-fit plane: normal = cross(diag02, diag13)
+      const d1: number[] = [],
+        d2: number[] = [];
+      for (q = 0; q < 3; q++) {
+        d1[q] = cuArr[f * 12 + 6 + q] - cuArr[f * 12 + q];
+        d2[q] = cuArr[f * 12 + 9 + q] - cuArr[f * 12 + 3 + q];
+      }
+      let n = [d1[1] * d2[2] - d1[2] * d2[1], d1[2] * d2[0] - d1[0] * d2[2], d1[0] * d2[1] - d1[1] * d2[0]];
+      const nl = Math.hypot(n[0], n[1], n[2]) || 1;
+      n = [n[0] / nl, n[1] / nl, n[2] / nl];
+      for (k = 0; k < 4; k++) {
+        const off = f * 12 + k * 3;
+        let dp = 0;
+        for (q = 0; q < 3; q++) dp += (cuArr[off + q] - cen[q]) * n[q];
+        for (q = 0; q < 3; q++) {
+          const proj = cuArr[off + q] - n[q] * dp; // flatten to plane
+          plArr[off + q] = cen[q] + (proj - cen[q]) * 0.9; // shrink → hairline gaps
+        }
+      }
     }
-    group.rotation.x = -0.55 * (1 - THREE.MathUtils.smoothstep(elapsed, flattenStart, R_END));
 
-    // Reveal the real sheet under the fading panels
-    if (elapsed > R_END && !foldMesh.group.visible) foldMesh.group.visible = true;
-
-    // Crease draw-in
-    const creaseStart = R_END + 0.3;
-    foldIdx.forEach((li, k) => {
-      lineMat(li).opacity = 0.9 * THREE.MathUtils.smoothstep(elapsed, creaseStart + k * 0.3, creaseStart + k * 0.3 + 0.4);
-    });
-    for (const li of borderIdx) {
-      lineMat(li).opacity = 0.3 * THREE.MathUtils.smoothstep(elapsed, creaseStart, creaseStart + 0.6);
+  // buffers
+  const posArr = new Float32Array(F * 18);
+  const lineArr = new Float32Array(F * 24);
+  const colArr = new Float32Array(F * 24);
+  const VALLEY = [0.22, 0.72, 1.0],
+    MOUNT = [0.6, 0.64, 0.7],
+    BORDER = [0.4, 0.43, 0.48];
+  for (let r = 0; r < R; r++)
+    for (let c = 0; c < C; c++) {
+      const f = r * C + c;
+      // edges: 0: col c | 1: row r+1 | 2: col c+1 | 3: row r
+      const types = [
+        c > 0 ? (c % 2 === 1 ? VALLEY : MOUNT) : BORDER,
+        r + 1 < R ? ((r + 1) % 2 === 0 ? VALLEY : MOUNT) : BORDER,
+        c + 1 < C ? ((c + 1) % 2 === 1 ? VALLEY : MOUNT) : BORDER,
+        r > 0 ? (r % 2 === 0 ? VALLEY : MOUNT) : BORDER,
+      ];
+      for (let e = 0; e < 4; e++) for (let v = 0; v < 2; v++) for (let q = 0; q < 3; q++) colArr[f * 24 + e * 6 + v * 3 + q] = types[e][q];
     }
 
-    // Captions
-    for (const c of captions) c.t.fillOpacity = fade(elapsed, c.t0, c.t1);
+  const geo = new THREE.BufferGeometry();
+  const posAttr = new THREE.BufferAttribute(posArr, 3);
+  posAttr.setUsage(THREE.DynamicDrawUsage);
+  geo.setAttribute('position', posAttr);
+  const lgeo = new THREE.BufferGeometry();
+  const lineAttr = new THREE.BufferAttribute(lineArr, 3);
+  lineAttr.setUsage(THREE.DynamicDrawUsage);
+  lgeo.setAttribute('position', lineAttr);
+  lgeo.setAttribute('color', new THREE.BufferAttribute(colArr, 3));
+  const mesh = new THREE.Mesh(geo, paperMat);
+  const lines = new THREE.LineSegments(lgeo, lineMat);
+  mesh.frustumCulled = false;
+  lines.frustumCulled = false;
+  scene.add(mesh, lines);
 
-    if (elapsed >= JOURNEY_END) {
-      done = true;
-      foldMesh.group.visible = true;
-      foldIdx.forEach((li) => (lineMat(li).opacity = 0.9));
-      borderIdx.forEach((li) => (lineMat(li).opacity = 0.3));
+  const corn = new Float32Array(12);
+  const STAG = 0.55,
+    INV = 1 / (1 - STAG);
+  const tmpPos = [0, 0, 0];
+  function wTri(o: number, ca: number, cb: number, cc: number) {
+    for (let q = 0; q < 3; q++) {
+      posArr[o + q] = corn[ca * 3 + q];
+      posArr[o + 3 + q] = corn[cb * 3 + q];
+      posArr[o + 6 + q] = corn[cc * 3 + q];
     }
-    return done;
+  }
+  function updateGeom(p: number) {
+    const pB = phase(p, 0.18, 0.46),
+      pC = phase(p, 0.46, 0.74),
+      pD = phase(p, 0.74, 1.0);
+    const theta = ((FOLD_MAX * Math.PI) / 180) * smooth(pD);
+    const m = mkm(theta);
+    let pi = 0,
+      li = 0;
+    for (let f = 0; f < F; f++) {
+      const d = dArr[f];
+      const tb = smooth(clamp((pB - d * STAG) * INV, 0, 1));
+      const tc = smooth(clamp((pC - d * STAG) * INV, 0, 1));
+      for (let k = 0; k < 4; k++) {
+        foldPos(ijArr[f * 8 + k * 2], ijArr[f * 8 + k * 2 + 1], m, tmpPos);
+        const o = f * 12 + k * 3;
+        for (let q = 0; q < 3; q++) {
+          const base = cuArr[o + q] + (plArr[o + q] - cuArr[o + q]) * tb;
+          corn[k * 3 + q] = base + (tmpPos[q] - base) * tc;
+        }
+      }
+      wTri(pi, 0, 1, 2);
+      pi += 9;
+      wTri(pi, 0, 2, 3);
+      pi += 9;
+      for (let e = 0; e < 4; e++) {
+        const a1 = e * 3,
+          b1 = ((e + 1) % 4) * 3;
+        for (let q = 0; q < 3; q++) {
+          lineArr[li + q] = corn[a1 + q];
+          lineArr[li + 3 + q] = corn[b1 + q];
+        }
+        li += 6;
+      }
+    }
+    posAttr.needsUpdate = true;
+    geo.computeVertexNormals();
+    lineAttr.needsUpdate = true;
+    lineMat.opacity = (0.4 * phase(p, 0.03, 0.18) + 0.5 * smooth(pC)) * (1 - 0.6 * smooth(pD));
   }
 
-  function dispose() {
-    scene.remove(group);
-    smoothGeo.dispose();
-    smoothMat.dispose();
-    panelGeo.dispose();
-    panelMat.dispose();
-    for (const c of captions) {
-      scene.remove(c.t);
-      disposeText(c.t);
-    }
-    // Leave the fold mesh in its revealed state for whoever runs next
-    foldMesh.group.visible = true;
+  /* ---------- camera choreography ---------- */
+  const KEYS = [
+    [0.0, 1.5, -38, 13],
+    [0.18, 1.6, -24, 30],
+    [0.46, 1.66, -10, 56],
+    [0.74, 1.52, 2, 80],
+    [1.0, 0.85, 42, 17],
+  ];
+  function updateCam(p: number) {
+    let s = 0;
+    while (s < KEYS.length - 2 && p > KEYS[s + 1][0]) s++;
+    const A = KEYS[s],
+      B = KEYS[s + 1];
+    const u = smooth(phase(p, A[0], B[0]));
+    const r = lerp(A[1], B[1], u) * baseSize;
+    const az = (lerp(A[2], B[2], u) * Math.PI) / 180;
+    const el = (lerp(A[3], B[3], u) * Math.PI) / 180;
+    camera.position.set(r * Math.cos(el) * Math.sin(az), r * Math.sin(el), r * Math.cos(el) * Math.cos(az));
+    camera.lookAt(0, 0, 0);
   }
 
-  return { update, dispose };
+  /* ---------- HUD beat swap ---------- */
+  let curBeat = -1,
+    swapT = 0;
+  function updateHud(p: number) {
+    const bi = p < 0.18 ? 0 : p < 0.46 ? 1 : p < 0.74 ? 2 : 3;
+    if (bi !== curBeat) {
+      const first = curBeat === -1;
+      curBeat = bi;
+      if (first) {
+        idxEl.textContent = BEATS[bi][0];
+        txtEl.textContent = BEATS[bi][1];
+      } else {
+        card.style.opacity = '0';
+        clearTimeout(swapT);
+        swapT = window.setTimeout(() => {
+          idxEl.textContent = BEATS[bi][0];
+          txtEl.textContent = BEATS[bi][1];
+          card.style.opacity = '1';
+        }, 240);
+      }
+    }
+    hint.style.opacity = p > 0.015 ? '0' : '1';
+  }
+
+  updateGeom(0);
+  updateCam(0);
+  updateHud(0);
+
+  return {
+    baseSize,
+    update(p: number) {
+      const cp = clamp(p, 0, 1);
+      updateGeom(cp);
+      updateCam(cp);
+      updateHud(cp);
+      titleMat.opacity = smooth(phase(cp, 0.88, 0.99));
+    },
+    hold() {
+      updateGeom(1);
+    },
+    setChrome(visible: boolean) {
+      hud.style.display = visible ? '' : 'none';
+      title.visible = visible;
+    },
+    dispose() {
+      clearTimeout(swapT);
+      hud.remove();
+      scene.remove(mesh, lines, title, hemi, key, rim);
+      geo.dispose();
+      lgeo.dispose();
+      paperMat.dispose();
+      lineMat.dispose();
+      titleTex.dispose();
+      titleMat.dispose();
+      persp.fov = prevFov;
+      persp.updateProjectionMatrix();
+    },
+  };
 }

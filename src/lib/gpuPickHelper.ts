@@ -10,7 +10,7 @@ export class GPUPickHelper {
         this.pickingTexture.texture.minFilter = THREE.NearestFilter;
         this.pickingTexture.texture.magFilter = THREE.NearestFilter;
         this.pickingTexture.texture.generateMipmaps = false;
-        // @ts-ignore
+        // @ts-expect-error three.js typing gap
         this.pickingTexture.texture.colorSpace = THREE.NoColorSpace; // Ensure linear color space
         this.pixelBuffer = new Uint8Array(4);
     }
@@ -26,7 +26,7 @@ export class GPUPickHelper {
         const pixelX = (normalizedPosition.x * drawingBufferWidth) | 0;
         const pixelY = (normalizedPosition.y * drawingBufferHeight) | 0;
 
-        // @ts-ignore
+        // @ts-expect-error three.js typing gap
         camera.setViewOffset(
             drawingBufferWidth,   // full width
             drawingBufferHeight,  // full height
@@ -42,7 +42,7 @@ export class GPUPickHelper {
         renderer.setRenderTarget(null);
 
         // clear the view offset so rendering returns to normal
-        // @ts-ignore
+        // @ts-expect-error three.js typing gap
         camera.clearViewOffset();
 
         // read the pixel

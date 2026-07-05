@@ -27,7 +27,10 @@ export function initRouter(
 
   return {
     go(r: Route) {
-      const path = r === 'home' ? base : `${base}${r}`;
+      // Pages build in directory format (works/index.html → /portfolio/works/),
+      // so pushed URLs need the trailing slash to survive reload / direct-type;
+      // without it only the in-memory back-button works.
+      const path = r === 'home' ? base : `${base}${r}/`;
       history.pushState(null, '', path);
       onEnter(r, false);
     },

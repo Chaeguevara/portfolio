@@ -141,3 +141,35 @@ boilerplate scene. Both should be delegated.
 **Pattern**: Opus designs the cylindrical-hinge geometry → spawns Sonnet subagent with
 "implement `addKnuckleCylinder()` matching this signature, here's the math" → reviews
 the diff, fixes any subtle bugs.
+
+## Origami / Kirigami Fold Pipeline (golden-standard SVGs)
+
+The `/lab` and `/simulator` pages fold crease patterns and export "golden-standard"
+SVGs for real-world folding. Core modules in `src/app/fold/`:
+
+- **`svgImport.ts`** — parse crease-pattern SVG → `FoldPattern`. Order-invariant
+  (duplicated edges resolve by assignment priority M/V > F > C > B > U). `foldFormat.ts`
+  does the same for FOLD v1.0 (lossless round-trip).
+- **`solver.ts`** — compliant bar-and-hinge fold solver (Verlet, port of Origami
+  Simulator). No collision; settles to a low-energy state, not necessarily fully flat.
+- **`foldability.ts`** — Maekawa + Kawasaki flat-foldability at each interior vertex
+  (topological boundary detection). The *correct* measure of flat-foldable (folded
+  flatness in the compliant solver is NOT a proxy).
+- **`collision.ts`** — self-intersection (Möller–Trumbore), physical validity. Only
+  meaningful at mid-fold (~0.7); flat layers stack coplanar near 100% and false-positive.
+- **`patternGen.ts`** — the Foundry generators (yoshimura/kresling/miuraTube/waterbomb/
+  gluelessBox). Every emitted SVG is golden: element `opacity` = fold angle, mm scale,
+  `<g id="cut">`/`<g id="score">` laser layers, `<title>`/`<desc>` legend, **closed** cut
+  outline. gluelessBox borders use coverage-sampling (T-junction robust).
+- **`kirigami.ts`** — `applyCuts` tears the sheet along `C` (green) cut edges.
+- **`material.ts`** — stock presets; thickness caps the fold angle (thick can't crease flat).
+
+SVG convention (origamisimulator-compatible): `#ff0000`=mountain, `#0000ff`=valley,
+`#000000`=border, `#00ff00`=cut, `#ffff00`=facet, `#ff00ff`=free; element `opacity`
+= fold angle (1.0=180°). All emitters (`svgOf`, `exportPatternSVG`, `builtinSVG`,
+`auxeticCutSVG`) follow it — keep new emitters golden.
+
+Gates (all must stay green): `npm run check:fold` (unit suite, 16 tests),
+`npm run validate:svgs` (folds all 49 catalog patterns + foldability/physical manifest),
+`npm run manifest` (regenerates `public/patterns/FOLDABILITY.md`). Node strips TS types,
+so scripts import `.ts` directly and use `scripts/domshim.mjs` for `DOMParser`.
